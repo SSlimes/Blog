@@ -4,6 +4,6 @@ description: "零碎"
 slug: "其他"
 image: "其他.webp"
 style:
-    background: "#2a9d8f"
+    background: "#e76f51"
     color: "#fff"
 ---
