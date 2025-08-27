@@ -1,0 +1,4 @@
+[[headers]]
+  for = "/*.ttf"  # 匹配所有TTF文件
+  [headers.values]
+    Content-Type = "font/ttf"  # 正确的MIME类型

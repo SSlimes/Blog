@@ -1,0 +1,85 @@
+{{ define "body-class" }}template-links{{ end }}
+
+{{ define "main" }}
+    <div class="main-content">
+        <div class="container">
+            <div class="article-content">
+                {{/* 不渲染 .Content，隐藏顶部正文块 */}}
+                
+                {{ if .Params.links }}
+                    <div class="links-section">
+                        <h1 class="section-title">信息收集</h1>
+                        <div class="article-list--compact links">
+                            {{ range .Params.links }}
+                                {{ if eq .category "partners" }}
+                                    <article>
+                                        <a href="{{ .website }}" target="_blank" rel="noopener">
+                                            <div class="article-details">
+                                                <h2 class="article-title">
+                                                    {{- .title -}}
+                                                </h2>
+                                                <footer class="article-time">
+                                                    {{ with .description }}
+                                                        {{ . }}
+                                                    {{ else }}
+                                                        {{ .website }}
+                                                    {{ end }}
+                                                </footer>
+                                            </div>
+        
+                                            {{ with .image }}
+                                                {{ $permalink := . }}
+                                                {{ with ($.Resources.GetMatch (printf "%s" (. | safeURL))) }}
+                                                    {{ $permalink = .RelPermalink }}
+                                                {{ end }}
+                                                <div class="article-image">
+                                                    <img src="{{ $permalink }}" loading="lazy">
+                                                </div>
+                                            {{ end }}
+                                        </a>
+                                    </article>
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                        
+                        <h1 class="section-title">工具</h1>
+                        <div class="article-list--compact links">
+                            {{ range .Params.links }}
+                                {{ if eq .category "unidirectional" }}
+                                    <article>
+                                        <a href="{{ .website }}" target="_blank" rel="noopener">
+                                            <div class="article-details">
+                                                <h2 class="article-title">
+                                                    {{- .title -}}
+                                                </h2>
+                                                <footer class="article-time">
+                                                    {{ with .description }}
+                                                        {{ . }}
+                                                    {{ else }}
+                                                        {{ .website }}
+                                                    {{ end }}
+                                                </footer>
+                                            </div>
+        
+                                            {{ with .image }}
+                                                {{ $permalink := . }}
+                                                {{ with ($.Resources.GetMatch (printf "%s" (. | safeURL))) }}
+                                                    {{ $permalink = .RelPermalink }}
+                                                {{ end }}
+                                                <div class="article-image">
+                                                    <img src="{{ $permalink }}" loading="lazy">
+                                                </div>
+                                            {{ end }}
+                                        </a>
+                                    </article>
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}

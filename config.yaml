@@ -1,0 +1,265 @@
+# 网站基础配置
+baseurl: http://slimer.cn # 网站的基础 URL，部署时需替换为实际域名
+languageCode: en-us            # 网站默认语言代码
+theme: hugo-theme-stack        # 使用的主题名称（这里是 hugo-theme-stack）
+title: Slimer Site             # 网站默认标题
+copyright: Slimer              # 版权信息，会显示在页脚
+
+# 主题国际化支持
+# 可用语言值: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
+DefaultContentLanguage: zh-cn  # 默认内容语言（这里设置为简体中文）
+
+# 如果默认语言是 [zh-cn ja ko] 等 CJK 语言，设为 true
+# 这会让 .Summary 和 .WordCount 对 CJK 语言正常工作
+hasCJKLanguage: true
+
+# 多语言配置（这里只配置了简体中文）
+languages:
+    zh-cn:
+        languageName: 中文      # 语言名称显示
+        title: Slimer          # 该语言下的网站标题
+        weight: 2              # 语言权重（用于排序）
+        params:
+            sidebar:
+                subtitle: 中华人民共和国万岁  # 侧边栏副标题（中文语言下）
+
+# 第三方服务配置
+services:
+    # 使用 Disqus 评论前，修改为你的 Disqus 短名称
+    disqus:
+        shortname: "hugo-theme-stack"
+    # Google 分析跟踪 ID
+    googleAnalytics:
+        id:  # 这里填写你的 GA 跟踪 ID，如 UA-XXXXXXX-X
+
+# 分页配置
+pagination:
+    pagerSize: 5  # 每页显示的文章数量
+
+# 永久链接格式
+permalinks:
+    post: /p/:slug/  # 文章页面的 URL 格式（/p/文章slug/）
+    page: /:slug/    # 普通页面的 URL 格式（/页面slug/）
+
+# 主题参数配置
+params:
+    mainSections:
+        - post  # 主内容区显示的内容章节（这里只显示 post 目录下的文章）
+    
+    featuredImageField: image  # 文章特色图片的字段名（对应 Front Matter 中的 image）
+    rssFullContent: true       # RSS 订阅是否包含全文
+    
+    # 网站图标配置
+    # 例如：将 favicon.ico 放在网站的 static 文件夹下，这里设置为 /favicon.ico（必须带 /）
+    favicon: /favicon.ico
+
+    # 页脚配置
+    footer:
+        since: 2024         # 网站创建年份，会显示在页脚
+        customText:         # 页脚自定义文本（留空则不显示）
+
+    # 日期格式配置
+    dateFormat:
+        published: 2006年01月02日  # 文章发布日期格式
+        lastUpdated: 2006年01月02日 15:04 MST  # 文章最后更新日期格式
+
+    # 侧边栏配置
+    sidebar:
+        emoji:                # 侧边栏显示的 emoji 图标
+        subtitle: Slimer        # 侧边栏副标题
+        avatar:
+            enabled: true       # 是否显示头像
+            local: true         # 头像是否是本地文件（false 则为外部 URL）
+            src: img/avatar.png # 头像路径（本地文件相对于 static 目录）
+
+    # 文章相关配置
+    article:
+        math: false            # 是否启用数学公式渲染
+        toc: true              # 是否显示文章目录
+        readingTime: false     # 是否显示阅读时间
+        license:
+            enabled: false     # 是否显示文章版权声明
+            default: Licensed  # 默认版权声明文本
+
+    # 评论系统配置
+    comments:
+        enabled: false         # 是否启用评论功能
+        provider: disqus       # 默认评论服务提供商（disqus/utterances等）
+
+        # 各评论服务的具体配置（根据启用的 provider 填写对应配置）
+        disqusjs:
+            shortname:
+            apiUrl:
+            apiKey:
+            admin:
+            adminLabel:
+
+        utterances:
+            repo:
+            issueTerm: pathname
+            label:
+
+        beaudar:
+            repo:
+            issueTerm: pathname
+            label:
+            theme:
+
+        remark42:
+            host:
+            site:
+            locale:
+
+        vssue:
+            platform:
+            owner:
+            repo:
+            clientId:
+            clientSecret:
+            autoCreateIssue: false
+
+        waline:
+            serverURL:
+            lang:
+            pageview:
+            emoji:
+                - https://unpkg.com/@waline/emojis@1.0.1/weibo
+            requiredMeta:
+                - name
+                - email
+                - url
+            locale:
+                admin: Admin
+                placeholder:
+
+        twikoo:
+            envId:
+            region:
+            path:
+            lang:
+
+        cactus:
+            defaultHomeserverUrl: "https://matrix.cactus.chat:8448"
+            serverName: "cactus.chat"
+            siteName: ""
+
+        giscus:
+            repo:
+            repoID:
+            category:
+            categoryID:
+            mapping:
+            lightTheme:
+            darkTheme:
+            reactionsEnabled: 1
+            emitMetadata: 0
+
+        gitalk:
+            owner:
+            admin:
+            repo:
+            clientID:
+            clientSecret:
+            proxy:
+
+        cusdis:
+            host:
+            id:
+
+    # 组件配置（侧边栏小部件）
+    widgets:
+        homepage:               # 首页显示的组件
+            - type: search      # 搜索框
+            - type: archives    # 归档组件
+
+        page:                   # 文章页面显示的组件
+            - type: toc         # 文章目录组件
+
+    # OpenGraph 配置（用于社交分享时的预览）
+    opengraph:
+        twitter:
+            site:              # 你的 Twitter 用户名
+            card: summary_large_image  # 分享卡片类型（summary/summary_large_image）
+
+    # 默认图片配置（用于没有指定特色图片时）
+    defaultImage:
+        opengraph:
+            enabled: false     # 是否启用默认分享图片
+            local: false       # 是否是本地图片
+            src:               # 图片路径或 URL
+
+    # 颜色主题配置
+    colorScheme:
+        toggle: false          # 是否显示明暗主题切换按钮
+        default: auto          # 默认主题（auto/light/dark）auto 会跟随系统设置
+
+    # 图片处理配置
+    imageProcessing:
+        cover:
+            enabled: true      # 是否处理封面图片
+        content:
+            enabled: true      # 是否处理文章内容中的图片
+
+# 自定义菜单配置
+# 参考: https://stack.jimmycai.com/config/menu
+# 若要移除关于、归档和搜索页面的菜单项，从它们的 FrontMatter 中删除 `menu` 字段即可
+menu:
+    main: []  # 主导航菜单（这里为空，可添加自定义菜单项）
+    # 社交菜单（显示在侧边栏或页脚）
+    social:
+        - identifier: github   # 唯一标识
+          name: GitHub        # 显示名称
+          url: https://github.com/SSlimes  # 链接
+          params:
+              icon: brand-github  # 图标（使用 Font Awesome 图标）
+
+        - identifier: bilibili
+          name: bilibili
+          url: https://space.bilibili.com/274685458?spm_id_from=333.1007.0.0
+          params:
+              icon: Brand-Bilibili
+
+# 相关文章配置
+related:
+    includeNewer: true   # 是否包含比当前文章更新的相关文章
+    threshold: 60       # 相关度阈值（0-100）
+    toLower: false      # 是否忽略大小写
+    indices:            # 用于计算相关度的索引
+        - name: tags    # 标签索引
+          weight: 100   # 权重（值越高影响越大）
+
+        - name: categories  # 分类索引
+          weight: 200       # 权重
+
+# 标记语言配置
+markup:
+    goldmark:  # Goldmark 是 Hugo 默认的 Markdown 渲染器
+        extensions:
+            passthrough:  # 直通模式（用于保留特定格式）
+                enable: true
+                delimiters:  # 界定符（用于识别需要保留的内容）
+                    block:
+                        - - \[
+                          - \]
+                        - - $$
+                          - $$
+                    inline:
+                        - - \(
+                          - \)
+        renderer:
+            # 如果 Markdown 中包含 HTML 内容，设为 true
+            unsafe: true
+    # 目录配置
+    tableOfContents:
+        endLevel: 1     # 目录包含的最大标题级别（h4）
+        ordered: false   # 是否使用有序列表（数字编号）
+        startLevel: 1   # 目录开始的标题级别（h2）
+    # 代码高亮配置
+    highlight:
+        noClasses: false    # 是否禁用 CSS 类（设为 false 可自定义高亮样式）
+        codeFences: true    # 是否启用代码块
+        guessSyntax: true   # 是否自动猜测代码语法
+        lineNoStart: 1      # 行号起始值
+        lineNos: true       # 是否显示行号
+        lineNumbersInTable: true  # 是否在表格中显示行号
+        tabWidth: 4         # 制表符宽度（空格数）

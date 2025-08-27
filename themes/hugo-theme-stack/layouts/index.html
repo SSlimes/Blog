@@ -1,0 +1,35 @@
+{{ define "main" }}
+    {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
+    {{ $filtered := ($pages | intersect $notHidden) }}
+    {{ $pag := .Paginate ($filtered) }}
+<!-- 首页欢迎字幅 -->
+<div class="welcome">
+  <p style="font-size: 3rem; text-align: center; font-weight: bold; text-shadow: 0 2px 3px rgba(0,0,0,0.15);">
+    <span class="shake">👋</span>
+    <span class="jump-text1" style="color: #8ab4f8;"> Welcome</span> <!-- 柔和的蓝色 -->
+    <span class="jump-text2" style="color: #b9a3e3;"> To </span> <!-- 淡紫色 -->
+    <span class="jump-text3" style="color: #ff85b3;">S</span><span class="jump-text4" style="color: #ff85b3;">l</span><span class="jump-text5" style="color: #ff85b3;">i</span><span class="jump-text6" style="color: #ff85b3;">m</span><span class="jump-text7" style="color: #ff85b3;">e</span><span class="jump-text8" style="color: #ff85b3;">r</span><span class="jump-text9" style="color: #ff85b3;">'</span><span class="jump-text10" style="color: #ff85b3;">s</span>
+    <span class="jump-text11" style="color: #8ab4f8;">Blog</span> <!-- 与Welcome呼应的蓝色 -->
+  </p>
+</div>
+
+<!-- 首页欢迎字幅 -->
+
+    <section class="article-list">
+        {{ range $index, $element := $pag.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{- partial "pagination.html" . -}}
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}
+
+
+
+

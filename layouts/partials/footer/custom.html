@@ -1,0 +1,24 @@
+ <style>
+    body {
+      background: url({{ (resources.Get "background/bz.webp").Permalink }}) no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px); /* 注意：这里建议和上面的模糊值保持一致，避免兼容问题 */
+    }
+  </style>
+
+<style>
+  @font-face {
+    font-family: 'AlibabaPuHuiTi';
+    src: url({{ (resources.Get "font/AlibabaPuHuiTi.ttf").Permalink }}) format('truetype');
+  }
+
+  :root {
+    --base-font-family: 'AlibabaPuHuiTi';
+    --code-font-family: 'AlibabaPuHuiTi';
+  }
+</style>
+
+<script src={{ (resources.Get "background/sakura.js").Permalink }}></script>
+

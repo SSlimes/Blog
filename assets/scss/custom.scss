@@ -1,0 +1,660 @@
+
+/*---------------------------------------代码块内化-------------------------------------------*/
+//---macOS风格的代码块
+.highlight {
+  border-radius: var(--card-border-radius);
+  max-width: 100% !important;
+  margin: 0 !important;
+  box-shadow: var(--shadow-l1) !important;
+}
+
+.highlight:before {
+  content: "";
+  display: block;
+  background: url(../icons/macOS-code-header.svg) no-repeat 0;
+  background-size: contain;
+  height: 18px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+// 代码块基础样式修改
+.highlight {
+  max-width: 102% !important;
+  background-color: var(--pre-background-color);
+  padding: var(--card-padding);
+  position: relative;
+  border-radius: 20px;
+  margin-left: -7px !important;
+  margin-right: -12px;
+  box-shadow: var(--shadow-l1) !important;
+
+  &:hover {
+    .copyCodeButton {
+      opacity: 1;
+    }
+  }
+
+  // keep Codeblocks LTR
+  [dir="rtl"] & {
+    direction: ltr;
+  }
+
+  pre {
+    margin: initial;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    /* 新增字体间距样式 */
+    letter-spacing: 1px; /* 字间距，可根据需要调整 */
+    line-height: 1.5; /* 行间距，可根据需要调整 */
+    font-size: 17px; /* 可选：调整字体大小配合间距 */
+  }
+}
+
+// light模式下的代码块样式调整
+[data-scheme="light"] .article-content .highlight {
+  background-color: #fff9f3; /* 亮色模式下代码块背景色（浅橙色底） */
+}
+
+[data-scheme="light"] .chroma {
+  color: #ff6f00; /* 亮色模式下代码文本颜色（橙色文字） */
+  background-color: #fff9f3cc; /* 亮色模式下代码高亮区域背景（半透明浅橙） */
+}
+
+/*----------------------------------------左侧导航栏-------------------------------------------*/
+// 头像旋转动画
+.sidebar header .site-avatar .site-logo {
+  transition: transform 1.65s ease-in-out; // 旋转时间
+}
+
+.sidebar header .site-avatar .site-logo:hover {
+  transform: rotate(360deg); // 旋转角度为360度
+}
+/* 页面整体布局占比 */
+:root {
+  --sidebar-width: 40rem;       // 左边栏整体宽度
+  --content-max-width: 1200px;   // 内容区最大宽度
+}
+
+.left-sidebar {
+  --sidebar-avatar-size: 140px; //左侧头像大小
+  --sidebar-element-separation: 20px; //头像下方间距
+  --emoji-size: 100px; //emoji容器大小
+  --emoji-font-size: 30px; //emoji字体大小
+}
+
+/* 左侧栏选项动画 */
+#main-menu {
+    overflow: visible;
+    li {
+		margin-bottom: 10px; // 控制每个菜单项的上下间距
+        a {
+            -webkit-font-smoothing: antialiased;
+            will-change: transform;
+            transition: transform 0.6s ease;
+            &:hover {
+                transform: scale(1.1, 1.1);
+                will-change: transform;
+            }
+        }
+    }
+	 font-size: 17px !important;  //控制每个菜单项字体大小
+}
+
+
+/*----------------------------------------其他-------------------------------------------*/
+//修改鼠标选中颜色
+::selection {
+    color: #fff;
+    background: #557697;
+}
+
+/*---------------------------------------归档链接------------------------------------------*/
+/* 归档和链接卡片动画 */
+.article-list--compact {
+    overflow: visible;
+}
+
+.article-list--compact article {
+    transition: transform 0.6s ease;
+    -webkit-font-smoothing: antialiased;
+    will-change: transform;
+    
+    &:hover {
+        transform: scale(1.05,1.05);
+        z-index: 4;
+    }
+}
+/*---------------------------------------归档页面------------------------------------------*/
+/*归档页面卡片缩放*/
+.article-list--tile article {
+  transition: .6s ease;
+}
+
+.article-list--tile article:hover {
+  transform: scale(1.03, 1.03);
+}
+
+/* 归档页面两栏 */
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      border-radius: 16px;
+    }
+  }
+}
+/*---------------------------------------链接页面------------------------------------------*/
+//链接页面//链接页面
+
+// 链接页面分类标题样式
+.links-section {
+	/* 移除主题在正文标题（h1-h6）上加的左侧边框，防止出现第二条竖线 */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	.article-title {
+		border-inline-start: none !important;
+		padding-inline-start: 0 !important;
+		margin-inline-start: 0 !important;
+	}
+	.section-title {
+		color: var(--card-text-color-main);
+		font-weight: 700;
+		font-size: 2rem; // 增大标题字体
+		margin: 3rem 0 1.5rem 0;
+		padding: 0.5rem 0;
+		position: relative;
+		display: flex;
+		align-items: center;
+		
+		&::before {
+			content: '';
+			position: absolute;
+			left: -15px;
+			width: 4px;
+			height: 1.8rem; // 调整垂直条高度
+			background: var(--card-text-color-main);
+			border-radius: 2px;
+		}
+	}
+	
+	// 优化链接卡片间距
+	.article-list--compact.links {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+		
+		article {
+			padding: 0.5rem !important; // 增大卡片内边距
+			min-height: 120px; // 确保卡片有足够高度
+		}
+		
+		// 增大链接卡片中的字体
+		.article-title {
+			font-size: 1.9rem !important; // 进一步增大链接标题字体
+			font-weight: 700;
+			margin-bottom: 0.8rem;
+			line-height: 1.3;
+		}
+		
+		.article-time {
+			font-size: 1.4rem !important; // 进一步增大描述文字字体
+			line-height: 1.5;
+			opacity: 0.85;
+			margin-top: 0.5rem;
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+    .article-list--compact.links {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background: none;
+        box-shadow: none;
+
+        article {
+            background: var(--card-background);
+            border: none;
+            box-shadow: var(--shadow-l2);
+            margin-bottom: 8px;
+            border-radius: 10px;
+            transition: transform .2s;
+
+            &:not(:nth-child(3n)) {
+                margin-right: 8px;
+            }
+
+            // 添加hover效果
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-l3);
+            }
+        }
+    }
+}
+
+.article-list--title {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-left: 10px;
+}
+
+.article-list--compact.links {
+    // 缩小连接组标题与下面链接的距离
+    margin-top: -20px;
+}
+
+.article-image>img {
+    // 给文章卡片、友链卡片等的图标添加圆角
+    border-radius: 10px;
+}
+
+/*-------------------------------------------TOC目录---------------------------------------------*/
+// 主要解决了几个问题：
+// 目录太高了，使得之前添加的返回顶部按钮可能会被顶出屏幕；
+// 目录项前面的小黑点不太好看，隐去；
+// 目录项之间的距离不够紧凑。
+.widget--toc {
+  background-color: var(--card-background);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--shadow-l2); //修改阴影样式
+  display: flex;
+  flex-direction: column;
+  color: var(--card-text-color-main);
+  overflow: hidden;
+  display:inline-block; //根据内容调整宽度
+
+  #TableOfContents {
+      max-height: 65vh;
+
+      ol,
+      ul {
+          list-style-type: none;
+      }
+
+      li {
+          margin: 10px 10px;
+
+          & > ol,
+          & > ul {
+              margin-top: 10px;
+              padding-left: 10px;
+              margin-bottom: -5px;
+
+              & > li:last-child {
+                  margin-bottom: 0;
+              }
+          }
+      }
+
+      & > ul {
+          padding: 0 1em;
+      }
+
+      li {
+          margin: 5px 20px; //第一个参数是行间距，第二个是卡片周边的宽度
+          
+          padding: 8px; //控制内边距
+
+          & > ol,
+          & > ul {
+              margin-top: 10px;
+              padding-left: 10px;
+              margin-bottom: -5px;
+
+              & > li:last-child {
+                  margin-bottom: 0;
+              }
+          }
+      }
+  }
+}
+
+
+
+
+
+/*-------------------------------------------文章内容---------------------------------------------*/
+// 文章内容图片圆角阴影
+.article-page .main-article .article-content {
+  img {
+    max-width: 96% !important;
+    height: auto !important;
+    border-radius: 8px;
+  }
+}
+
+/*-------------------------------------------页面--------------------------------------------------*/
+// 页面三栏布局宽度调整样式
+.container {
+  // 使容器在页面中水平居中
+  margin-left: auto;
+  margin-right: auto;
+
+  // 左侧边栏样式设置
+  .left-sidebar {
+    // 设置左侧边栏在弹性布局中的排序（最左侧）
+    order: -3;
+    // 限制左侧边栏的最大宽度，使用CSS变量便于统一调整
+    max-width: var(--left-sidebar-max-width);
+  }
+
+  // 右侧边栏样式设置
+  .right-sidebar {
+    // 设置右侧边栏在弹性布局中的排序（最右侧）
+    order: -1;
+    // 限制右侧边栏的最大宽度，使用CSS变量便于统一调整
+    max-width: var(--right-sidebar-max-width);
+
+    /// 在屏幕宽度达到lg（大尺寸）时显示右侧边栏
+    @include respond(lg) {
+      display: flex;
+    }
+  }
+
+  // 扩展模式（可能对应内容较宽的布局）
+  &.extended {
+    // 在屏幕宽度达到md（中等尺寸）时的样式
+    @include respond(md) {
+      // 容器最大宽度限制
+      max-width: 1024px;
+      // 左侧边栏宽度占比25%
+      --left-sidebar-max-width: 30%;
+      // 右侧边栏宽度占比22%（!important强制优先级）
+      --right-sidebar-max-width: 22% !important;
+    }
+
+    // 在屏幕宽度达到lg（大尺寸）时的样式
+    @include respond(lg) {
+      max-width: 1080px;
+      // 左侧边栏宽度占比缩小到20%
+      --left-sidebar-max-width: 30%;
+      // 右侧边栏宽度占比增加到30%
+      --right-sidebar-max-width: 30%;
+    }
+
+    // 在屏幕宽度达到xl（超大尺寸）时的样式
+    @include respond(xl) {
+      max-width: 1700px; // 原始值1536px，这里做了调整
+      // 左侧边栏宽度占比进一步缩小到15%
+      --left-sidebar-max-width: 30%;
+      // 右侧边栏宽度占比调整为25%
+      --right-sidebar-max-width: 30%;
+    }
+  }
+
+  // 紧凑模式（可能对应内容较窄的布局）
+  &.compact {
+    // 在屏幕宽度达到md（中等尺寸）时的样式
+    @include respond(md) {
+      // 左侧边栏宽度占比25%
+      --left-sidebar-max-width: 25%;
+      // 容器最大宽度限制为768px
+      max-width: 768px;
+    }
+
+    // 在屏幕宽度达到lg（大尺寸）时的样式
+    @include respond(lg) {
+      max-width: 1024px;
+      // 左侧边栏宽度占比缩小到20%
+      --left-sidebar-max-width: 20%;
+    }
+
+    // 在屏幕宽度达到xl（超大尺寸）时的样式
+    @include respond(xl) {
+      // 容器最大宽度限制为1280px
+      max-width: 1280px;
+    }
+  }
+}
+
+/*-------------------------------------------网站/Movies 页面----------------------------------------*/
+.games-section {
+  margin-top: 1.5rem;
+}
+
+.games-tabs {
+  display: flex;
+  gap: .75rem;
+  margin-bottom: 1rem;
+
+  .games-tab {
+    padding: .5rem .9rem;
+    border-radius: 10px;
+    background: var(--card-background);
+    color: var(--card-text-color-main);
+    border: 1px solid var(--card-separator-color);
+    box-shadow: var(--shadow-l1);
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+    &:hover { transform: translateY(-2px); box-shadow: var(--shadow-l2); }
+    &.is-active { background: var(--accent-color); color: #fff; border-color: transparent; }
+  }
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.game-card {
+  background: var(--card-background);
+  color: var(--card-text-color-main);
+  border-radius: 14px;
+  box-shadow: var(--shadow-l2);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-l3);
+  }
+}
+
+.game-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.game-card__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--pre-background-color);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  position: relative;
+}
+
+.game-card__year {
+  position: absolute;
+  right: .6rem;
+  bottom: .6rem;
+  padding: .15rem .45rem;
+  border-radius: 6px;
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  font-size: .85rem;
+}
+
+.game-card__body {
+  padding: 0.9rem 1rem 1.05rem;
+}
+
+.game-card__title {
+  font-size: 1.05rem;
+  line-height: 1.45;
+  margin: 0 0 0.35rem 0;
+}
+
+.game-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .75rem;
+  margin-bottom: .4rem;
+  .meta-item { opacity: .85; font-size: .9rem; }
+  .is-right { margin-left: auto; }
+}
+
+.game-card__desc {
+  margin: 0;
+  opacity: .8;
+  font-size: .95rem;
+}
+
+/*-------------------------------------------首页欢迎板块样式--------------------------------------------------*/
+.welcome {
+  color: var(--card-text-color-main);
+  background: var(--card-background);
+  box-shadow: var(--shadow-l2);
+  border-radius: 30px;
+  display: inline-block;
+}
+
+// 👋emoji实现摆动效果
+.shake {
+  display: inline-block;
+  animation: shake 1s;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: shake;
+  animation-timeline: auto;
+  animation-range-start: normal;
+  animation-range-end: normal;
+  animation-delay: 2s;
+  @keyframes shake {
+    0% {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(45deg) scale(1.2);
+    }
+    50% {
+      transform: rotate(0) scale(1.2);
+    }
+    75% {
+      transform: rotate(45deg) scale(1.2);
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+}
+
+// 实现字符跳动动画
+.jump-text1 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+}
+
+.jump-text2 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.1s;
+}
+
+.jump-text3 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.2s;
+}
+
+.jump-text4 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.3s;
+}
+
+.jump-text5 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.4s;
+}
+
+.jump-text6 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.5s;
+}
+
+.jump-text7 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.6s;
+}
+
+.jump-text8 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.7s;
+}
+
+.jump-text9 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.9s;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

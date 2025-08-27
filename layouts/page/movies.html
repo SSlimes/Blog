@@ -1,0 +1,118 @@
+{{ define "body-class" }}
+    article-page
+{{ end }}
+
+{{/*
+  Movies/Websites grid with year tabs. Expected Front Matter on the page:
+  links:
+    - title: xxx
+      description: yyy
+      website: https://...
+      image: cover.png | https://...
+      year: 2025
+      platform: PC
+      media_score: 8.6
+      personal_score: 9.0
+      hours: 16
+*/}}
+
+{{ define "main" }}
+  {{ partial "article/article.html" . }}
+
+  {{ $links := .Params.links }}
+  {{ $sourcePage := . }}
+  {{ if not $links }}
+    {{/* fallback: pull from content/page/links if current page has no links */}}
+    {{ $linksPage := .Site.GetPage "page/links" }}
+    {{ if $linksPage }}
+      {{ $links = $linksPage.Params.links }}
+      {{ $sourcePage = $linksPage }}
+    {{ end }}
+  {{ end }}
+  {{ if $links }}
+    {{/* collect distinct years desc */}}
+    {{ $yearsMap := dict }}
+    {{ range $links }}
+      {{ with .year }}
+        {{ $yearsMap = merge $yearsMap (dict (printf "%v" .) true) }}
+      {{ end }}
+    {{ end }}
+    {{ $years := slice }}
+    {{ range $k, $v := $yearsMap }}
+      {{ $years = $years | append $k }}
+    {{ end }}
+    {{ $years = sort $years "value" "desc" }}
+
+    <section class="games-section">
+      {{ if gt (len $years) 0 }}
+        <div class="games-tabs" role="tablist">
+          {{ range $i, $y := $years }}
+            <button class="games-tab {{ if eq $i 0 }}is-active{{ end }}" role="tab" data-year="{{ $y }}">{{ $y }}</button>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <div class="games-grid" id="games-grid">
+        {{ range $links }}
+          {{ $permalink := .image }}
+          {{ $cardTitle := .title }}
+          {{ with .image }}
+            {{ with ($sourcePage.Resources.GetMatch (printf "%s" (. | safeURL))) }}
+              {{ $permalink = .RelPermalink }}
+            {{ end }}
+          {{ end }}
+          <article class="game-card" data-year="{{ with .year }}{{ . }}{{ else }}other{{ end }}">
+            <div class="game-card__media">
+              {{ with $permalink }}
+                <img src="{{ . }}" loading="lazy" alt="{{ $cardTitle }}" />
+              {{ end }}
+              {{ with .year }}<span class="game-card__year">{{ . }}</span>{{ end }}
+            </div>
+            <div class="game-card__body">
+              <div class="game-card__title">{{ .title }}</div>
+              <div class="game-card__meta">
+                {{ with .platform }}<span class="meta-item">{{ . }}</span>{{ end }}
+                {{ with .media_score }}<span class="meta-item">媒体 ⭐ {{ . }}</span>{{ end }}
+                {{ with .personal_score }}<span class="meta-item">个人 ⭐ {{ . }}</span>{{ end }}
+                {{ with .hours }}<span class="meta-item is-right">{{ . }}H</span>{{ end }}
+              </div>
+              {{ with .description }}
+                <div class="game-card__desc">{{ . }}</div>
+              {{ end }}
+              {{ with .website }}
+                <a class="game-card__link" href="{{ . }}" target="_blank" rel="noopener" aria-label="{{ $cardTitle }}"></a>
+              {{ end }}
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+
+    <script>
+      (function(){
+        const tabs = document.querySelectorAll('.games-tab');
+        const cards = document.querySelectorAll('.game-card');
+        function activate(year){
+          tabs.forEach(t => t.classList.toggle('is-active', t.getAttribute('data-year') === year));
+          cards.forEach(c => {
+            const show = c.getAttribute('data-year') === year;
+            c.style.display = show ? '' : 'none';
+          });
+        }
+        if (tabs.length){
+          const initial = tabs[0].getAttribute('data-year');
+          activate(initial);
+          tabs.forEach(t => t.addEventListener('click', () => activate(t.getAttribute('data-year'))));
+        }
+      })();
+    </script>
+  {{ else }}
+    <div class="sites-empty">
+      本页暂无数据。在页面 Front Matter 中添加 links 列表以展示卡片。
+    </div>
+  {{ end }}
+
+  {{ partialCached "footer/footer" . }}
+{{ end }}
+
+
