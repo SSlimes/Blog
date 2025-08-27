@@ -1,5 +1,5 @@
 # 网站基础配置
-baseurl: http://slimer.cn # 网站的基础 URL，部署时需替换为实际域名
+baseurl: https://slimer.cn # 网站的基础 URL，部署时需替换为实际域名
 languageCode: en-us            # 网站默认语言代码
 theme: hugo-theme-stack        # 使用的主题名称（这里是 hugo-theme-stack）
 title: Slimer Site             # 网站默认标题
