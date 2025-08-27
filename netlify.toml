@@ -2,3 +2,10 @@
   for = "/*.ttf"  # 匹配所有TTF文件
   [headers.values]
     Content-Type = "font/ttf"  # 正确的MIME类型
+	
+[build]
+  publish = "public"
+  command = "hugo"
+
+[build.environment]
+  HUGO_VERSION = "0.148.2" # 替换为你需要的版本
