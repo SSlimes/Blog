@@ -57,7 +57,7 @@ params:
     footer:
         since: 2024         # 网站创建年份，会显示在页脚
         customText:         # 页脚自定义文本（留空则不显示）
-
+        runtimeSince: 2025-08-025T00:00:00   # 站点开始运行的时间（本地时区），用于页脚运行时间
     # 日期格式配置
     dateFormat:
         published: 2006年01月02日  # 文章发布日期格式

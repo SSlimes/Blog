@@ -7,7 +7,30 @@
         {{ end }}
         {{ now.Format "2006" }} {{ default .Site.Title .Site.Copyright }}
     </section>
-    
+        {{ with .Site.Params.footer.runtimeSince }}
+    <section class="runtime" style="margin-top:8px;font-size:1.3rem">
+        <span id="site-runtime">站点已运行计算中...</span>
+    </section>
+    <script>
+      (function(){
+        var sinceStr = '{{ . }}'.replace('T',' ').replace('t',' ');
+        var start = new Date(sinceStr);
+        function update(){
+          var now = new Date();
+          var diff = Math.max(0, now - start);
+          var days = Math.floor(diff / (24*60*60*1000));
+          var hours = Math.floor((diff % (24*60*60*1000)) / (60*60*1000));
+          var mins = Math.floor((diff % (60*60*1000)) / (60*1000));
+          var secs = Math.floor((diff % (60*1000)) / 1000);
+          var el = document.getElementById('site-runtime');
+          if(el){ el.textContent = '站点已运行 ' + days + ' 天 ' + hours + ' 小时 ' + mins + ' 分 ' + secs + ' 秒'; }
+        }
+        update();
+        setInterval(update, 1000);
+      })();
+    </script>
+    {{ end }}
+	
     <section class="powerby">
         {{ with .Site.Params.footer.customText }}
             {{ . | safeHTML }} <br/>
