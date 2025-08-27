@@ -1,7 +1,6 @@
 ---
 author: Slimer
 title: 【Hugo】hugo-stack主题魔改-1
-description: 主题魔改
 date: 2025-08-27
 slug: 其他
 categories:
