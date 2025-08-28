@@ -2,8 +2,8 @@
 title: 【内网攻防】Windows工作组信息收集
 date: 2025-08-28
 categories:
-  - 内网
   - 红队
+  - 内网攻防
 image: images/13.webp
 ---
 # 0x00 前置
