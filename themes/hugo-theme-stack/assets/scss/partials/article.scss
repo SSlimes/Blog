@@ -276,3 +276,21 @@
         }
     }
 }
+		.article-content {
+			.highlight {
+				padding: var(--card-padding);
+				pre {
+					margin: initial;
+					padding: var(--card-padding);
+					margin: 0;
+					width: auto;
+					max-height: 21em;
+					scrollbar-width: none;
+					/* Firefox */
+					&::-webkit-scrollbar {
+						display: none;
+						/* Chrome Safari */
+                }
+            }
+        }
+    }

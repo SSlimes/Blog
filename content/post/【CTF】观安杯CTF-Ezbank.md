@@ -1,6 +1,6 @@
 ---
 title: 【CTF】观安杯CTF-Ezbank
-date: 2025-08-28
+date: 2025-08-27
 categories:
   - 其他
   - 蓝队

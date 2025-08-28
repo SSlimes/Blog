@@ -4,6 +4,7 @@ date: 2025-08-28
 categories:
   - 靶场
   - 蓝队
+  - 内网攻防
 image: images/8.webp
 ---
 # 前景需要
