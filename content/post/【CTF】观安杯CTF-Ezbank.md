@@ -1,5 +1,5 @@
 ---
-title: 【其他】观安杯CTF-Ezbank
+title: 【CTF】观安杯CTF-Ezbank
 date: 2025-08-28
 categories:
   - 其他
