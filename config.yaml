@@ -249,6 +249,7 @@ markup:
         renderer:
             # 如果 Markdown 中包含 HTML 内容，设为 true
             unsafe: true
+            hardWraps: true
     # 目录配置
     tableOfContents:
         endLevel: 1     # 目录包含的最大标题级别（h4）
