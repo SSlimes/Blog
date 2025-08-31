@@ -3,6 +3,7 @@ title: 【游戏】CS2_cfg文件-个人使用方案
 date: 2025-08-31
 categories:
   - 其他
+  - 游戏
 image: images/21.webp
 ---
 # autoexec.cfg
