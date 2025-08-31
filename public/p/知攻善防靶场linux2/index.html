@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前提须知\r1 2 3 4 5 6 7 8 9 看监控的时候发现webshell告警，领导让你上机检查你可以救救安服仔吗！！ （1）提交攻击者IP （2）提交攻击者修改的管理员密码(明文) （3）提交第一次Webshell的连接URL （4）提交Webshell连接密码 （5）提交数据包的flag1 （6）提交攻击者使用的后续上传的木马文件名称 （7）提交攻击者隐藏的flag2 （8）提交攻击者隐藏的flag3 虚拟机账号/密码：\n1 2 账号：root 密码：Inch@957821. 1. 提交攻击者IP\r方法一：\r1 2 首先看一下管理员登录情况，确定一下黑客登录IP 命令：last -f /var/log/wtmp 方法二：\r1 2 如果不确定的话，我们可以登录bt面板看一下 这里我看var目录文件时，看到了bt配置文件，那就bt看一下 1 果然安装了宝塔，那就登录一下，因为不知道面板的密码那我们就直接修改一下面板的密码。 然后看一下面板的默认信息，看一下url地址\n">
+<title>【知攻善防靶场】Linux2</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/'>
+
+<link rel="stylesheet" href="/scss/style.min.846205401cf1d4760919a30372604ffc75e770201832f52f2fe120609e4c0467.css"><meta property='og:title' content="【知攻善防靶场】Linux2">
+<meta property='og:description' content="前提须知\r1 2 3 4 5 6 7 8 9 看监控的时候发现webshell告警，领导让你上机检查你可以救救安服仔吗！！ （1）提交攻击者IP （2）提交攻击者修改的管理员密码(明文) （3）提交第一次Webshell的连接URL （4）提交Webshell连接密码 （5）提交数据包的flag1 （6）提交攻击者使用的后续上传的木马文件名称 （7）提交攻击者隐藏的flag2 （8）提交攻击者隐藏的flag3 虚拟机账号/密码：\n1 2 账号：root 密码：Inch@957821. 1. 提交攻击者IP\r方法一：\r1 2 首先看一下管理员登录情况，确定一下黑客登录IP 命令：last -f /var/log/wtmp 方法二：\r1 2 如果不确定的话，我们可以登录bt面板看一下 这里我看var目录文件时，看到了bt配置文件，那就bt看一下 1 果然安装了宝塔，那就登录一下，因为不知道面板的密码那我们就直接修改一下面板的密码。 然后看一下面板的默认信息，看一下url地址\n">
+<meta property='og:url' content='http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/'>
+<meta property='og:site_name' content='Slimer'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-08-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-28T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/14.webp' />
+<meta name="twitter:title" content="【知攻善防靶场】Linux2">
+<meta name="twitter:description" content="前提须知\r1 2 3 4 5 6 7 8 9 看监控的时候发现webshell告警，领导让你上机检查你可以救救安服仔吗！！ （1）提交攻击者IP （2）提交攻击者修改的管理员密码(明文) （3）提交第一次Webshell的连接URL （4）提交Webshell连接密码 （5）提交数据包的flag1 （6）提交攻击者使用的后续上传的木马文件名称 （7）提交攻击者隐藏的flag2 （8）提交攻击者隐藏的flag3 虚拟机账号/密码：\n1 2 账号：root 密码：Inch@957821. 1. 提交攻击者IP\r方法一：\r1 2 首先看一下管理员登录情况，确定一下黑客登录IP 命令：last -f /var/log/wtmp 方法二：\r1 2 如果不确定的话，我们可以登录bt面板看一下 这里我看var目录文件时，看到了bt配置文件，那就bt看一下 1 果然安装了宝塔，那就登录一下，因为不知道面板的密码那我们就直接修改一下面板的密码。 然后看一下面板的默认信息，看一下url地址\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/14.webp' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1e84a80b7c36c5c6.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Slimer</a></h1>
+            <h2 class="site-description">中华人民共和国万岁</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/274685458?spm_id_from=333.1007.0.0'
+                        target="_blank"
+                        title="bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" id="Brand-Bilibili--Streamline-Tabler" height="24" width="24">
+  <desc>
+    Brand Bilibili Streamline Icon: https://streamlinehq.com
+  </desc>
+  <path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4H7a4 4 0 0 1 -4 -4v-6z" stroke-width="2"></path>
+  <path d="m8 3 2 3" stroke-width="2"></path>
+  <path d="m16 3 -2 3" stroke-width="2"></path>
+  <path d="M9 13v-2" stroke-width="2"></path>
+  <path d="M15 11v2" stroke-width="2"></path>
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/SSlimes'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E-about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5-links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前提须知">前提须知</a></li>
+    <li><a href="#1-提交攻击者ip">1. 提交攻击者IP</a></li>
+    <li><a href="#2-提交攻击者修改的管理员密码明文">2. 提交攻击者修改的管理员密码(明文)</a></li>
+    <li><a href="#3-提交第一次webshell的连接url">3. 提交第一次Webshell的连接URL</a></li>
+    <li><a href="#4-提交webshell连接密码">4. 提交Webshell连接密码</a></li>
+    <li><a href="#5-提交数据包的flag1">5. 提交数据包的flag1</a></li>
+    <li><a href="#6-提交攻击者使用的后续上传的木马文件名称">6. 提交攻击者使用的后续上传的木马文件名称</a></li>
+    <li><a href="#7-提交攻击者隐藏的flag2">7. 提交攻击者隐藏的flag2</a></li>
+    <li><a href="#8-提交攻击者隐藏的flag3">8. 提交攻击者隐藏的flag3</a></li>
+    <li><a href="#全部答案">全部答案：</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/">
+                
+                    <img src="/images/14.webp" loading="lazy" alt="Featured image of post 【知攻善防靶场】Linux2" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E9%9D%B6%E5%9C%BA/" style="background-color: #9b2226; color: #f5ebe0;">
+                靶场
+            </a>
+        
+            <a href="/categories/%E8%93%9D%E9%98%9F/" style="background-color: #0077b6; color: #ffffff;">
+                蓝队
+            </a>
+        
+            <a href="/categories/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2/" style="background-color: #2b2d42; color: #edf2f4;">
+                内网攻防
+            </a>
+        
+		
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/">【知攻善防靶场】Linux2</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+	
+    
+	
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025年08月28日</time>
+            </time>
+</div>
+			
+        
+
+        
+    </footer>
+    
+
+    
+	
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="前提须知">前提须知
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">看监控的时候发现webshell告警</span><span class="err">，</span><span class="nx">领导让你上机检查你可以救救安服仔吗</span><span class="err">！！</span>
+</span></span><span class="line"><span class="cl"><span class="err">（</span><span class="mi">1</span><span class="err">）</span><span class="nx">提交攻击者IP</span>
+</span></span><span class="line"><span class="cl"><span class="err">（</span><span class="mi">2</span><span class="err">）</span><span class="nx">提交攻击者修改的管理员密码</span><span class="p">(</span><span class="nx">明文</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">（</span><span class="mi">3</span><span class="err">）</span><span class="nx">提交第一次Webshell的连接URL</span>
+</span></span><span class="line"><span class="cl"><span class="err">（</span><span class="mi">4</span><span class="err">）</span><span class="nx">提交Webshell连接密码</span>
+</span></span><span class="line"><span class="cl"><span class="err">（</span><span class="mi">5</span><span class="err">）</span><span class="nx">提交数据包的flag1</span>
+</span></span><span class="line"><span class="cl"><span class="err">（</span><span class="mi">6</span><span class="err">）</span><span class="nx">提交攻击者使用的后续上传的木马文件名称</span>
+</span></span><span class="line"><span class="cl"><span class="err">（</span><span class="mi">7</span><span class="err">）</span><span class="nx">提交攻击者隐藏的flag2</span>
+</span></span><span class="line"><span class="cl"><span class="err">（</span><span class="mi">8</span><span class="err">）</span><span class="nx">提交攻击者隐藏的flag3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>虚拟机账号/密码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">账号</span><span class="err">：</span><span class="nx">root</span>
+</span></span><span class="line"><span class="cl"><span class="nx">密码</span><span class="err">：</span><span class="nx">Inch</span><span class="err">@</span><span class="mf">957821.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="1-提交攻击者ip">1. 提交攻击者IP
+</h1><h3 id="方法一">方法一：
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">首先看一下管理员登录情况</span><span class="err">，</span><span class="nx">确定一下黑客登录IP</span>
+</span></span><span class="line"><span class="cl"><span class="nx">命令</span><span class="err">：</span><span class="nx">last</span> <span class="o">-</span><span class="nx">f</span> <span class="o">/</span><span class="kd">var</span><span class="o">/</span><span class="nx">log</span><span class="o">/</span><span class="nx">wtmp</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015239.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h3 id="方法二">方法二：
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">如果不确定的话</span><span class="err">，</span><span class="nx">我们可以登录bt面板看一下</span>
+</span></span><span class="line"><span class="cl"><span class="nx">这里我看var目录文件时</span><span class="err">，</span><span class="nx">看到了bt配置文件</span><span class="err">，</span><span class="nx">那就bt看一下</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015259.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">果然安装了宝塔</span><span class="err">，</span><span class="nx">那就登录一下</span><span class="err">，</span><span class="nx">因为不知道面板的密码那我们就直接修改一下面板的密码</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015315.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+><br>
+然后看一下面板的默认信息，看一下url地址</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">外网面板地址</span><span class="p">:</span> <span class="p">&lt;</span><span class="nx">https</span><span class="p">:</span><span class="c1">//58.247.126.6:12485/5a2ce72d&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">内网面板地址</span><span class="p">:</span> <span class="p">&lt;</span><span class="nx">https</span><span class="p">:</span><span class="c1">//192.168.198.130:12485/5a2ce72d&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">username</span><span class="p">:</span> <span class="nx">uysycv5w</span>
+</span></span><span class="line"><span class="cl"><span class="nx">password</span><span class="p">:</span> <span class="nx">admin123</span>
+</span></span><span class="line"><span class="cl"><span class="nx">进行登录</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015356.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015404.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">我们从bt面板里面看到了他添加了一个网站</span><span class="err">，</span><span class="nx">我们去看一下他的日志</span><span class="err">（</span><span class="nx">这里我就不用宝塔面板中的去查看日志了</span><span class="err">），</span><span class="nx">我们首先去</span><span class="o">/</span><span class="nx">www</span><span class="o">/</span><span class="nx">wwwlogs目录下127</span><span class="mf">.0.0.1</span><span class="p">.</span><span class="nx">log</span> <span class="nx">查看一下日志</span>
+</span></span><span class="line"><span class="cl"><span class="nx">使用命令</span><span class="err">：</span><span class="nx">cat</span> <span class="mf">127.0.0.1</span><span class="p">.</span><span class="nx">log</span> <span class="p">|</span> <span class="nx">gerp</span> <span class="mi">200</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015419.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">答案</span><span class="err">：</span><span class="mf">192.168.20.1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="2-提交攻击者修改的管理员密码明文">2. 提交攻击者修改的管理员密码(明文)
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">在宝塔面板发现一个phpmyadmin的mysql数据库</span><span class="err">，</span><span class="nx">进管理看数据</span><span class="err">，</span><span class="nx">找密码即可</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015432.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">找到一个x2_user表</span><span class="err">，</span><span class="nx">密码</span><span class="p">,</span><span class="nx">这里使用过的是md5进行加密的</span><span class="err">，</span><span class="nx">不清楚的可以去网上搜一下或者看一下源码</span><span class="err">，</span><span class="nx">md5加密是不可逆的</span><span class="err">，</span><span class="nx">但是可以在网上公开的网站进行解密</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="nx">URL</span><span class="err">：</span><span class="p">&lt;</span><span class="nx">https</span><span class="p">:</span><span class="c1">//www.somd5.com/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">答案</span><span class="err">：</span><span class="nx">Network</span><span class="err">@</span><span class="mi">2020</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015447.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015502.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">答案</span><span class="err">：</span><span class="nx">Network</span><span class="err">@</span><span class="mi">2020</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="3-提交第一次webshell的连接url">3. 提交第一次Webshell的连接URL
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">查看流量包</span><span class="err">，</span><span class="nx">可以看出</span>
+</span></span><span class="line"><span class="cl"><span class="nx">index</span><span class="p">.</span><span class="nx">php</span><span class="err">?</span><span class="nx">user</span><span class="o">-</span><span class="nx">app</span><span class="o">-</span><span class="nx">register</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015513.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Webshell的连接</span><span class="err">：</span><span class="p">&lt;</span><span class="nx">http</span><span class="p">:</span><span class="c1">//192.168.198.130/index.php?user-app-register&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="4-提交webshell连接密码">4. 提交Webshell连接密码
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">根据题目3可以看出</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015530.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">webshell密码是</span><span class="err">：</span><span class="nx">Network2020</span>
+</span></span><span class="line"><span class="cl"><span class="nx">使用蚁剑进行连接</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015548.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h1 id="5-提交数据包的flag1">5. 提交数据包的flag1
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ls一下</span><span class="err">，</span><span class="nx">你就会发现默认的文件夹下给了一个流量数据包</span><span class="err">，</span><span class="nx">下载这个数据包使用wireshark进行分析</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">web</span><span class="o">-</span><span class="nx">server</span> <span class="p">~]</span><span class="err">#</span> <span class="nx">ls</span>
+</span></span><span class="line"><span class="cl"><span class="nx">anaconda</span><span class="o">-</span><span class="nx">ks</span><span class="p">.</span><span class="nx">cfg</span>  <span class="nx">wp</span>  <span class="nx">数据包1</span><span class="p">.</span><span class="nx">pcapng</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015601.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">首先</span><span class="err">，</span><span class="nx">过滤一下http报文</span><span class="err">，</span><span class="nx">可以看到这些报文都是攻击者192</span><span class="mf">.168.20.1</span><span class="nx">在访问Linux主机</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015612.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">先浏览一下过滤出来的报文</span><span class="err">，</span><span class="nx">发现攻击者访问了</span><span class="o">/</span><span class="nx">flag1路径</span><span class="err">，</span><span class="nx">追踪http流</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015622.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">发现了一个第一个flag</span><span class="err">：</span><span class="nx">flag1</span><span class="p">{</span><span class="nx">Network</span><span class="err">@</span><span class="nx">_2020_Hack</span><span class="p">}</span><span class="err">，</span><span class="nx">提交判题程序得知正确</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015637.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">答案</span><span class="err">：</span><span class="nx">flag1</span><span class="p">{</span><span class="nx">Network</span><span class="err">@</span><span class="nx">_2020_Hack</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="6-提交攻击者使用的后续上传的木马文件名称">6. 提交攻击者使用的后续上传的木马文件名称
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">查看数据包</span><span class="err">，</span><span class="nx">可以看出</span><span class="err">，</span><span class="nx">黑客上传了一个version2</span><span class="p">.</span><span class="nx">php文件</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015650.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">答案</span><span class="err">：</span><span class="nx">version2</span><span class="p">.</span><span class="nx">php</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="7-提交攻击者隐藏的flag2">7. 提交攻击者隐藏的flag2
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">根据命令可以看出</span><span class="err">，</span><span class="nx">黑客进入了127</span><span class="mf">.0.0.1</span><span class="nx">文件夹</span><span class="err">，</span><span class="nx">并创建了一个隐藏文件夹</span><span class="p">.</span><span class="nx">api</span><span class="err">，</span><span class="nx">进入后查看</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015702.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">可以看出他编辑了这两个文件</span><span class="err">，</span><span class="nx">cat看一下</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015711.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">alinotify</span><span class="p">.</span><span class="nx">php</span><span class="p">,</span><span class="nx">发现flag2</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015724.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">答案</span><span class="err">：$</span><span class="nx">flag2</span> <span class="p">=</span> <span class="s">&#34;flag{bL5Frin6JVwVw7tJBdqXlHCMVpAenXI9In9}&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="8-提交攻击者隐藏的flag3">8. 提交攻击者隐藏的flag3
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">使用命令</span><span class="err">：</span><span class="nx">history</span><span class="p">,</span><span class="nx">查看历史使用过的命令可以发现</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015740.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">答案</span><span class="err">：</span><span class="nx">flag</span><span class="p">{</span><span class="mi">5</span><span class="nx">LourqoFt5d2zyOVUoVPJbOmeVmoKgcy6OZ</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="全部答案">全部答案：
+</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="mf">192.168.20.1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Network</span><span class="err">@</span><span class="mi">2020</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nx">http</span><span class="p">:</span><span class="c1">//192.168.198.130/index.php?user-app-register&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Network2020</span>
+</span></span><span class="line"><span class="cl"><span class="nx">flag1</span><span class="p">{</span><span class="nx">Network</span><span class="err">@</span><span class="nx">_2020_Hack</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version2</span><span class="p">.</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">flag</span><span class="p">{</span><span class="nx">bL5Frin6JVwVw7tJBdqXlHCMVpAenXI9In9</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">flag</span><span class="p">{</span><span class="mi">5</span><span class="nx">LourqoFt5d2zyOVUoVPJbOmeVmoKgcy6OZ</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/8.webp" loading="lazy" data-key="" data-hash="/images/8.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【知攻善防靶场】Linux1</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E9%9D%B6%E5%9C%BAsql-labs-less1-5/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/19.webp" loading="lazy" data-key="" data-hash="/images/19.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【靶场】sql-labs-Less1-5</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/15.webp" loading="lazy" data-key="" data-hash="/images/15.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/13.webp" loading="lazy" data-key="" data-hash="/images/13.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【内网攻防】Windows工作组信息收集</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BAvulntarget-j-01/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/7.webp" loading="lazy" data-key="" data-hash="/images/7.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【应急响应靶场】vulntarget-j-01</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Slimer
+    </section>
+        
+    <section class="runtime" style="margin-top:8px;font-size:1.3rem">
+        <span id="site-runtime">站点已运行计算中...</span>
+    </section>
+    <script>
+      (function(){
+        var sinceStr = '2025-08-025T00:00:00  '.replace('T',' ').replace('t',' ');
+        var start = new Date(sinceStr);
+        function update(){
+          var now = new Date();
+          var diff = Math.max(0, now - start);
+          var days = Math.floor(diff / (24*60*60*1000));
+          var hours = Math.floor((diff % (24*60*60*1000)) / (60*60*1000));
+          var mins = Math.floor((diff % (60*60*1000)) / (60*1000));
+          var secs = Math.floor((diff % (60*1000)) / 1000);
+          var el = document.getElementById('site-runtime');
+          if(el){ el.textContent = '站点已运行 ' + days + ' 天 ' + hours + ' 小时 ' + mins + ' 分 ' + secs + ' 秒'; }
+        }
+        update();
+        setInterval(update, 1000);
+      })();
+    </script>
+    
+	
+    <section class="powerby">
+        
+        
+        
+    </section>
+</footer>
+
+
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.310d38c99963e86c53c43232d9b04e101a98b09425c2fb12195e655db9e34368.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+ <style>
+    body {
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);  
+    }
+  </style>
+
+<style>
+  @font-face {
+    font-family: 'AlibabaPuHuiTi';
+    src: url(http://localhost:1313/font/AlibabaPuHuiTi.ttf) format('truetype');
+  }
+
+  :root {
+    --base-font-family: 'AlibabaPuHuiTi';
+    --code-font-family: 'AlibabaPuHuiTi';
+  }
+</style>
+
+<script src=http://localhost:1313/background/sakura.js></script>
+
+
+    </body>
+</html>
