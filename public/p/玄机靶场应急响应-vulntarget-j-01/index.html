@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 前置知识\r需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n">
-<title>【内网】域环境搭建-01</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="简介\r题目来源公众号 vulntarget\nhttps://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg\n任务环境说明\nwindows账密：workstation admin@20221123\nweb端口外部无法访问，请RDP连接上机排查\nflag1\r主站进入后台的文件名称？\n查看apache日志，找到\n![[Pasted image 20250325111801.png]]\nflag\n">
+<title>【玄机靶场】应急响应-vulntarget-j-01</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E5%86%85%E7%BD%91%E5%9F%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-01/'>
+<link rel='canonical' href='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/'>
 
-<link rel="stylesheet" href="/scss/style.min.2bc3e90d9ece5b282f5646b25ef88428331c235171fc0fc3f16afe24cade9909.css"><meta property='og:title' content="【内网】域环境搭建-01">
-<meta property='og:description' content="0x00 前置知识\r需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n">
-<meta property='og:url' content='http://localhost:1313/p/%E5%86%85%E7%BD%91%E5%9F%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-01/'>
+<link rel="stylesheet" href="/scss/style.min.2bc3e90d9ece5b282f5646b25ef88428331c235171fc0fc3f16afe24cade9909.css"><meta property='og:title' content="【玄机靶场】应急响应-vulntarget-j-01">
+<meta property='og:description' content="简介\r题目来源公众号 vulntarget\nhttps://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg\n任务环境说明\nwindows账密：workstation admin@20221123\nweb端口外部无法访问，请RDP连接上机排查\nflag1\r主站进入后台的文件名称？\n查看apache日志，找到\n![[Pasted image 20250325111801.png]]\nflag\n">
+<meta property='og:url' content='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/'>
 <meta property='og:site_name' content='Slimer'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-08-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-27T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/1.webp' />
-<meta name="twitter:title" content="【内网】域环境搭建-01">
-<meta name="twitter:description" content="0x00 前置知识\r需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/1.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-08-31T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-31T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/24.webp' />
+<meta name="twitter:title" content="【玄机靶场】应急响应-vulntarget-j-01">
+<meta name="twitter:description" content="简介\r题目来源公众号 vulntarget\nhttps://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg\n任务环境说明\nwindows账密：workstation admin@20221123\nweb端口外部无法访问，请RDP连接上机排查\nflag1\r主站进入后台的文件名称？\n查看apache日志，找到\n![[Pasted image 20250325111801.png]]\nflag\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/24.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -247,10 +247,11 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#0x00-前置知识">0x00 前置知识</a></li>
-    <li><a href="#0x01-主域的搭建">0x01 主域的搭建</a></li>
-    <li><a href="#0x02-子域的搭建">0x02 子域的搭建</a></li>
-    <li><a href="#0x03-辅域的搭建">0x03 辅域的搭建</a></li>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#flag1">flag1</a></li>
+    <li><a href="#flag2">flag2</a></li>
+    <li><a href="#flag3">flag3</a></li>
+    <li><a href="#flag4">flag4</a></li>
   </ul>
 </nav>
         </div>
@@ -265,9 +266,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E5%86%85%E7%BD%91%E5%9F%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-01/">
+            <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/">
                 
-                    <img src="/images/1.webp" loading="lazy" alt="Featured image of post 【内网】域环境搭建-01" />
+                    <img src="/images/24.webp" loading="lazy" alt="Featured image of post 【玄机靶场】应急响应-vulntarget-j-01" />
                 
             </a>
         </div>
@@ -277,8 +278,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2/" style="background-color: #2b2d42; color: #edf2f4;">
-                内网攻防
+            <a href="/categories/%E9%9D%B6%E5%9C%BA/" style="background-color: #9b2226; color: #f5ebe0;">
+                靶场
             </a>
         
 		
@@ -287,7 +288,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%86%85%E7%BD%91%E5%9F%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-01/">【内网】域环境搭建-01</a>
+            <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/">【玄机靶场】应急响应-vulntarget-j-01</a>
         </h2>
     
         
@@ -311,7 +312,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025年08月27日</time>
+                <time class="article-time--published">2025年08月31日</time>
             </time>
 </div>
 			
@@ -330,472 +331,110 @@
     <section class="article-content">
     
     
-    <h1 id="0x00-前置知识">0x00 前置知识
-</h1><p>需要三个windows_server虚拟机。<br>
-这里我使用2012做主域，只能上相兼容不能向下兼容。<br>
-使用windows_server_2012做主域，就不能使用2008做子域了。<br>
-这就可以看出一般<strong>主域的服务器版本很低</strong>。<br>
-三台服务器分别为（域控）（子域）（辅域）</p>
-<h1 id="0x01-主域的搭建">0x01 主域的搭建
-</h1><ol>
-<li>修改网络配置为自定义的一个网段（192.16.100.1/24），为了确保都在同一网段。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143458.png"
+    <h1 id="简介">简介
+</h1><p>题目来源公众号  vulntarget<br>
+<a class="link" href="https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg"  target="_blank" rel="noopener"
+    >https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg</a><br>
+任务环境说明<br>
+windows账密：workstation admin@20221123<br>
+web端口外部无法访问，请RDP连接上机排查</p>
+<h1 id="flag1">flag1
+</h1><p><strong>主站进入后台的文件名称？</strong><br>
+查看apache日志，找到<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111723.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image.png"
-	
-	
-></li>
-<li>关闭防火墙<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708142930.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>设置IP地址：192.168.100.100为域控的IP，后续DNS服务器地址就是192.168.100.100。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143717.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>修改名称：此电脑-&gt;属性，修改名称为：DC，然后重启一下。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708144209.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
+		alt="Pasted image 20250325111723"
 	
 	
 ><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708144312.png"
+![[Pasted image 20250325111801.png]]<br>
+flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{FNeSOgYGkp.php}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="flag2">flag2
+</h1><p><strong>黑客是从哪个端口上传木马文件的?</strong><br>
+打开小皮查看网页端口，7001打不开，所以为80<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111917.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image.png"
-	
-	
-></li>
-<li>添加角色服务，Active Directory域服务和DNS服务器，安装好之后会自动重启一下即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143918.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>配置域环境，添加新林为：slimer.com后，进行等待，大约2分钟左右<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145202.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>输入自己设置的密码即可（p-0p-0p-0..）<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145326.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>下一步<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145441.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>默认即可<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145504.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>默认即可<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145555.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>安装，然后重启一下，完成域控的搭建。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145715.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>重启完成后，将网卡重启一下，就可以看到域环境了。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150247.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
+		alt="Pasted image 20250325111917"
 	
 	
 ><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150334.png"
+flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{80}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="flag3">flag3
+</h1><p><strong>黑客添加的木马文件名称和密码分别是什么，将黑客添加 的木马名称和密码作为flag提交{fag(名称:密码)</strong><br>
+直接可以使用D盾扫出该文件。然后使用webshell检测一下，发现确实是webshell后门工具。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325112640.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image.png"
-	
-	
-></li>
-<li>这里会多出来一个域防火墙，记得给关了。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151341.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ol>
-<h1 id="0x02-子域的搭建">0x02 子域的搭建
-</h1><ol>
-<li>关闭防火墙<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150448.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>设置网卡为同一网段。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150556.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>设置IP地址，DNS为域控的IP地址。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150708.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>修改</li>
-</ol>
-<ul>
-<li><input disabled="" type="checkbox"> 计算机名称为:RODCServer</li>
-<li><input disabled="" type="checkbox"> 隶属于slimer.com域<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102446.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ul>
-<ol start="5">
-<li>改：</li>
-</ol>
-<ul>
-<li><input disabled="" type="checkbox"> 计算机名改成administrator</li>
-<li><input disabled="" type="checkbox"> 密码为开机密码：p-0p-0p-0<br>
-重启查看一下是否成功连接到slimer.com域<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102537.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
+		alt="Pasted image 20250325112640"
 	
 	
 ><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102642.png"
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325112156.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image.png"
+		alt="Pasted image 20250325112156"
 	
 	
-><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102907.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ul>
-<ol start="6">
-<li>安装域环境，选好之后，直接下一步安装即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151223.png"
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{api3.php:Admin}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="flag4">flag4
+</h1><p>可以根据日志查看：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325131342.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image.png"
-	
-	
-></li>
-<li>部署子域，新域名为：RODCServer。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151703.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>换一下自己机器的凭据。</li>
-</ol>
-<ul>
-<li><input disabled="" type="checkbox"> 账号：administrator</li>
-<li><input disabled="" type="checkbox"> 密码：p-0p-0p-0<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103128.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
-9.设置密码（满足复杂度）</li>
-<li><input disabled="" type="checkbox"> 密码：p-0p-0p-0..<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103415.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
-10.一直下一步，直到安装即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103807.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
-11.在工具中找到 AD域和信任关系</li>
-<li><input disabled="" type="checkbox"> 就可以进行配置了，这里先这样后续再处理。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709105606.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ul>
-<h1 id="0x03-辅域的搭建">0x03 辅域的搭建
-</h1><p>只读域控，辅助域控<br>
-只读域控制器（Read-only Domian Controller，RODC）的AD DS数据库只可以被读取，不可以被修改，也就是说用户或应用程序无法直接修改RODC 的AD DS数据库。RODC的AD DS数据库内容只能够从其他可读写的域控制器复制过来。RODC主要设计给远程分公司网络来使用的，因为一般来说远程分公 司的网络规模比较小，用户人数较少，此网络的安全措施或许并不如总公司完备，也可能缺乏IT技术人员，因此采用RODC可避免因其AD DS数据库被破坏 影响整个AD DS环境。<br>
-辅助域控制器，在主域控不工作的事情下，辅助可以顶替他继续工作。<br>
-安装SUBDCServer（辅域）<br>
-注意：IP地址不要重复 要提前关闭防火墙</p>
-<ol>
-<li>修改IP（如上步骤）IP地址修改（与域控不同）但（首选DNS服务器选择域控IP）<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110139.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>右击（这台电脑）然后点击（属性）再点击（更改配置）然后点击（更改）最后</li>
-</ol>
-<ul>
-<li><input disabled="" type="checkbox"> 计算机名改为（SUBDCServer）</li>
-<li><input disabled="" type="checkbox"> 属于选择（域）并添加为（slimer.com）<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110336.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ul>
-<ol start="3">
-<li>改</li>
-</ol>
-<ul>
-<li><input disabled="" type="checkbox"> 计算机名（administrator）</li>
-<li><input disabled="" type="checkbox"> 密码（开机密码）p-0p-0p-0<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110459.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ul>
-<ol start="4">
-<li>添加该两个功能，直接默认安装即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112504.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>将此服务器提升为域控制器即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112610.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>点击 将域控制器添加到现有域 点击 更改 输入域控用户和密码</li>
-</ol>
-<ul>
-<li><input disabled="" type="checkbox"> 账户：administrator</li>
-<li><input disabled="" type="checkbox"> 密码：p-0p-0p-0<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112737.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ul>
-<ol start="4">
-<li>勾选域名系统服务器全局编录作为辅助域控输入密码（需要满足密码复杂性）</li>
-</ol>
-<ul>
-<li><input disabled="" type="checkbox"> 密码：p-0p-0p-0..<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112920.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ul>
-<ol start="4">
-<li>复制自 选为 DC.slimer.com<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709113039.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-<li>点击下一步 一直到 安装<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709113120.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
-</ol>
-
+		alt="Pasted image 20250325131342"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{192.168.112.123}
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -819,18 +458,18 @@
             
                 
 <article class="has-image">
-    <a href="/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+    <a href="/p/%E9%9D%B6%E5%9C%BAsql-labs-less-6-14/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/13.webp" loading="lazy" data-key="" data-hash="/images/13.webp"/>
+                    <img src="/images/22.webp" loading="lazy" data-key="" data-hash="/images/22.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【内网攻防】Windows工作组信息收集</h2>
+            <h2 class="article-title">【靶场】sql-labs-Less 6-14</h2>
         </div>
     </a>
 </article>
@@ -838,18 +477,18 @@
             
                 
 <article class="has-image">
-    <a href="/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/">
+    <a href="/p/%E9%9D%B6%E5%9C%BAvulnyx%E9%9D%B6%E5%9C%BA-lower2/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/8.webp" loading="lazy" data-key="" data-hash="/images/8.webp"/>
+                    <img src="/images/23.webp" loading="lazy" data-key="" data-hash="/images/23.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【知攻善防靶场】Linux1</h2>
+            <h2 class="article-title">【靶场】vulnyx靶场-Lower2</h2>
         </div>
     </a>
 </article>
@@ -857,18 +496,56 @@
             
                 
 <article class="has-image">
-    <a href="/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/">
+    <a href="/p/%E9%9D%B6%E5%9C%BAsql-labs-less1-5/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/14.webp" loading="lazy" data-key="" data-hash="/images/14.webp"/>
+                    <img src="/images/19.webp" loading="lazy" data-key="" data-hash="/images/19.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【知攻善防靶场】Linux2</h2>
+            <h2 class="article-title">【靶场】sql-labs-Less1-5</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/15.webp" loading="lazy" data-key="" data-hash="/images/15.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BAvulntarget-j-01/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/7.webp" loading="lazy" data-key="" data-hash="/images/7.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【应急响应靶场】vulntarget-j-01</h2>
         </div>
     </a>
 </article>

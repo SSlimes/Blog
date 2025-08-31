@@ -8,20 +8,6 @@
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
         <lastBuildDate>Sun, 31 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%85%B6%E4%BB%96/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>【Hugo】hugo-stack主题魔改-短链接的使用</title>
-        <link>http://localhost:1313/p/hugohugo-stack%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9-%E7%9F%AD%E9%93%BE%E6%8E%A5%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
-        <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/hugohugo-stack%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9-%E7%9F%AD%E9%93%BE%E6%8E%A5%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-        <description>&lt;img src="http://localhost:1313/images/23.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-短链接的使用" /&gt;&lt;h1 id=&#34;前置准备&#34;&gt;前置准备
-&lt;/h1&gt;&lt;p&gt;没有什么特别的准备！但可以提前打开&lt;br&gt;
-
-&lt;mark&gt;custom.scss&lt;/mark&gt;文件和
-&lt;mark&gt;layouts/shortcodes&lt;/mark&gt;文件夹。&lt;/p&gt;
-&lt;h2 id=&#34;文本样式类&#34;&gt;文本样式类
-&lt;/h2&gt;</description>
-        </item>
-        <item>
         <title>【游戏】CS2_cfg文件-个人使用方案</title>
         <link>http://localhost:1313/p/%E6%B8%B8%E6%88%8Fcs2_cfg%E6%96%87%E4%BB%B6-%E4%B8%AA%E4%BA%BA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88/</link>
         <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>

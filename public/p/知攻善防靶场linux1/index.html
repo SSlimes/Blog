@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/'>
 
-<link rel="stylesheet" href="/scss/style.min.846205401cf1d4760919a30372604ffc75e770201832f52f2fe120609e4c0467.css"><meta property='og:title' content="【知攻善防靶场】Linux1">
+<link rel="stylesheet" href="/scss/style.min.2bc3e90d9ece5b282f5646b25ef88428331c235171fc0fc3f16afe24cade9909.css"><meta property='og:title' content="【知攻善防靶场】Linux1">
 <meta property='og:description' content="前景需要\r1 2 3 看监控的时候发现webshell告警，领导让你上机检查你可以救救安服仔吗！！ 1. 黑客的IP地址 2. 遗留下的三个flag 虚拟机账号/密码\n1 2 账号/密码：defend/defend 账号/密码：root/defend 1. 黑客的IP地址\r1 2 3 查看日志文件,Linux查看/var/log/wtmp文件查看可疑IP登陆 last -f /var/log/wtmp 或者直接使用命令 lastlog命令 可以看出192.168.75.129，非常可疑。 1 答案：192.168.75.129 2. 第一个flag\r1 2 3 黑客使用root登录了系统，我们可以先去root用户下看看黑客使用了什么命令： 使用命令：history 得到第一个flag：thisismybaby 1 答案：flag{thisismybaby} 3. 第二个flag\r1 2 3 4 5 从第一个flag中我们可以看出，黑客对/etc/rc.d/rc.local进行编辑和提升了执行权限 Linux中/etc/rc.d/rc.local 用于添加开机启动命令 我们cd /etc/rc.d/下，使用ls -la ，查看有rc.local，直接用cat rc.local得到第二个flag ">
 <meta property='og:url' content='http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/'>
 <meta property='og:site_name' content='Slimer'>
@@ -556,6 +556,63 @@
             
                 
 <article class="has-image">
+    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/24.webp" loading="lazy" data-key="" data-hash="/images/24.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【玄机靶场】应急响应-vulntarget-j-01</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E9%9D%B6%E5%9C%BAsql-labs-less-6-14/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/22.webp" loading="lazy" data-key="" data-hash="/images/22.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【靶场】sql-labs-Less 6-14</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E9%9D%B6%E5%9C%BAvulnyx%E9%9D%B6%E5%9C%BA-lower2/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/23.webp" loading="lazy" data-key="" data-hash="/images/23.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【靶场】vulnyx靶场-Lower2</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/%E9%9D%B6%E5%9C%BAsql-labs-less1-5/">
         
         
@@ -568,63 +625,6 @@
 
         <div class="article-details">
             <h2 class="article-title">【靶场】sql-labs-Less1-5</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/15.webp" loading="lazy" data-key="" data-hash="/images/15.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/13.webp" loading="lazy" data-key="" data-hash="/images/13.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【内网攻防】Windows工作组信息收集</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BAvulntarget-j-01/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/7.webp" loading="lazy" data-key="" data-hash="/images/7.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【应急响应靶场】vulntarget-j-01</h2>
         </div>
     </a>
 </article>
