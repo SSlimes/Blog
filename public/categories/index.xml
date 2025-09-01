@@ -16,6 +16,14 @@
         <description>&lt;img src="http://localhost:1313/categories/web%E6%94%BB%E9%98%B2/Web%E6%94%BB%E9%98%B2.webp" alt="Featured image of post Web攻防" /&gt;</description>
         </item>
         <item>
+        <title>靶场</title>
+        <link>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</link>
+        <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/%E9%9D%B6%E5%9C%BA.webp" alt="Featured image of post 靶场" /&gt;</description>
+        </item>
+        <item>
         <title>其他</title>
         <link>http://localhost:1313/categories/%E5%85%B6%E4%BB%96/</link>
         <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
@@ -30,14 +38,6 @@
         
         <guid>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/</guid>
         <description>&lt;img src="http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/%E6%B8%B8%E6%88%8F.webp" alt="Featured image of post 游戏" /&gt;</description>
-        </item>
-        <item>
-        <title>靶场</title>
-        <link>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</link>
-        <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/%E9%9D%B6%E5%9C%BA.webp" alt="Featured image of post 靶场" /&gt;</description>
         </item>
         <item>
         <title>工具</title>

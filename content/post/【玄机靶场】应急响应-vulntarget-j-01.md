@@ -15,7 +15,7 @@ web端口外部无法访问，请RDP连接上机排查
 **主站进入后台的文件名称？**
 查看apache日志，找到
 ![Pasted image 20250325111723](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111723.png)
-![[Pasted image 20250325111801.png]]
+![Pasted image 20250325111801](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111801.png)
 flag
 ```
 flag{FNeSOgYGkp.php}
