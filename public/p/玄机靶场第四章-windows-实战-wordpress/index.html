@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="简介\r题目来源公众号 vulntarget\nhttps://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg\n任务环境说明\nwindows账密：workstation admin@20221123\nweb端口外部无法访问，请RDP连接上机排查\nflag1\r主站进入后台的文件名称？\n查看apache日志，找到\nflag\n">
-<title>【玄机靶场】应急响应-vulntarget-j-01</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="简介\r第四章 windows实战-wordpress\nrdp 端口 3389\n账号：administrator\n密码：xj@123456\nflag1\r请提交攻击者攻击成功的第一时间，格式：flag{YY:MM:DD hh:mm:ss}\n登录后台，获取后台地址：http://localhost:8080/manage/login.php\n在日志里筛选一下：\n">
+<title>【玄机靶场】第四章 windows 实战-wordpress</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/'>
+<link rel='canonical' href='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/'>
 
-<link rel="stylesheet" href="/scss/style.min.2bc3e90d9ece5b282f5646b25ef88428331c235171fc0fc3f16afe24cade9909.css"><meta property='og:title' content="【玄机靶场】应急响应-vulntarget-j-01">
-<meta property='og:description' content="简介\r题目来源公众号 vulntarget\nhttps://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg\n任务环境说明\nwindows账密：workstation admin@20221123\nweb端口外部无法访问，请RDP连接上机排查\nflag1\r主站进入后台的文件名称？\n查看apache日志，找到\nflag\n">
-<meta property='og:url' content='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/'>
+<link rel="stylesheet" href="/scss/style.min.2bc3e90d9ece5b282f5646b25ef88428331c235171fc0fc3f16afe24cade9909.css"><meta property='og:title' content="【玄机靶场】第四章 windows 实战-wordpress">
+<meta property='og:description' content="简介\r第四章 windows实战-wordpress\nrdp 端口 3389\n账号：administrator\n密码：xj@123456\nflag1\r请提交攻击者攻击成功的第一时间，格式：flag{YY:MM:DD hh:mm:ss}\n登录后台，获取后台地址：http://localhost:8080/manage/login.php\n在日志里筛选一下：\n">
+<meta property='og:url' content='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/'>
 <meta property='og:site_name' content='Slimer'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-08-31T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-31T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/24.webp' />
-<meta name="twitter:title" content="【玄机靶场】应急响应-vulntarget-j-01">
-<meta name="twitter:description" content="简介\r题目来源公众号 vulntarget\nhttps://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg\n任务环境说明\nwindows账密：workstation admin@20221123\nweb端口外部无法访问，请RDP连接上机排查\nflag1\r主站进入后台的文件名称？\n查看apache日志，找到\nflag\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/24.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-01T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/26.webp' />
+<meta name="twitter:title" content="【玄机靶场】第四章 windows 实战-wordpress">
+<meta name="twitter:description" content="简介\r第四章 windows实战-wordpress\nrdp 端口 3389\n账号：administrator\n密码：xj@123456\nflag1\r请提交攻击者攻击成功的第一时间，格式：flag{YY:MM:DD hh:mm:ss}\n登录后台，获取后台地址：http://localhost:8080/manage/login.php\n在日志里筛选一下：\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/26.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -252,6 +252,8 @@
     <li><a href="#flag2">flag2</a></li>
     <li><a href="#flag3">flag3</a></li>
     <li><a href="#flag4">flag4</a></li>
+    <li><a href="#flag5">flag5</a></li>
+    <li><a href="#flag6">flag6</a></li>
   </ul>
 </nav>
         </div>
@@ -266,9 +268,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/">
+            <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/">
                 
-                    <img src="/images/24.webp" loading="lazy" alt="Featured image of post 【玄机靶场】应急响应-vulntarget-j-01" />
+                    <img src="/images/26.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第四章 windows 实战-wordpress" />
                 
             </a>
         </div>
@@ -288,7 +290,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/">【玄机靶场】应急响应-vulntarget-j-01</a>
+            <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/">【玄机靶场】第四章 windows 实战-wordpress</a>
         </h2>
     
         
@@ -312,7 +314,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025年08月31日</time>
+                <time class="article-time--published">2025年09月01日</time>
             </time>
 </div>
 			
@@ -332,54 +334,92 @@
     
     
     <h1 id="简介">简介
-</h1><p>题目来源公众号  vulntarget<br>
-<a class="link" href="https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg"  target="_blank" rel="noopener"
-    >https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg</a><br>
-任务环境说明<br>
-windows账密：workstation admin@20221123<br>
-web端口外部无法访问，请RDP连接上机排查</p>
+</h1><p>第四章 windows实战-wordpress<br>
+rdp 端口 3389<br>
+账号：administrator<br>
+密码：xj@123456</p>
 <h1 id="flag1">flag1
-</h1><p><strong>主站进入后台的文件名称？</strong><br>
-查看apache日志，找到<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111723.png"
+</h1><p><strong>请提交攻击者攻击成功的第一时间，格式：flag{YY:MM:DD hh:mm:ss}</strong><br>
+登录后台，获取后台地址：http://localhost:8080/manage/login.php<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325154712.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="Pasted image 20250325111723"
+		alt="Pasted image 20250325154712"
 	
 	
 ><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111801.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="Pasted image 20250325111801"
-	
-	
-><br>
-flag</p>
+在日志里筛选一下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{FNeSOgYGkp.php}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">grep  &#34;manage/login.php&#34; access.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到302成功跳转：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">192.168.141.55 - - [29/Apr/2023:22:45:23 +0800] &#34;POST /index.php/action/login?_=139102b0477b064f9cf570483837d74c HTTP/1.1&#34; 302 5 &#34;http://  
+</span></span><span class="line"><span class="cl">192.168.141.188/manage/login.php?referer=http%3A%2F%2F192.168.141.188%2Fmanage%2F&#34; &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) G  
+</span></span><span class="line"><span class="cl">ecko/20100101 Firefox/110.0&#34;                                                                                                               
+</span></span><span class="line"><span class="cl">192.168.141.55 - - [29/Apr/2023:22:45:23 +0800] &#34;GET /manage/ HTTP/1.1&#34; 302 5 &#34;http://192.168.141.188/manage/login.php?referer=http%3A%2F  
+</span></span><span class="line"><span class="cl">%2F192.168.141.188%2Fmanage%2F&#34; &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0&#34;                         
+</span></span><span class="line"><span class="cl">192.168.141.55 - - [29/Apr/2023:22:45:23 +0800] &#34;GET /manage/welcome.php HTTP/1.1&#34; 200 10013 &#34;http://192.168.141.188/manage/login.php?ref  
+</span></span><span class="line"><span class="cl">erer=http%3A%2F%2F192.168.141.188%2Fmanage%2F&#34; &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{2023:04:29 22:45:23}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="flag2">flag2
-</h1><p><strong>黑客是从哪个端口上传木马文件的?</strong><br>
-打开小皮查看网页端口，7001打不开，所以为80<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111917.png"
+</h1><p><strong>请提交攻击者的浏览器版本 flag{Firgfox/2200}</strong><br>
+由flag1可知<br>
+flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{Firefox/110.0}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="flag3">flag3
+</h1><p><strong>请提交攻击者目录扫描所使用的工具名称</strong><br>
+可以看出扫描器的特征：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Fuzz Faster U Fool v1.5.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325155258.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="Pasted image 20250325111917"
+		alt="Pasted image 20250325155258"
 	
 	
 ><br>
@@ -389,49 +429,29 @@ flag</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{80}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 id="flag3">flag3
-</h1><p><strong>黑客添加的木马文件名称和密码分别是什么，将黑客添加 的木马名称和密码作为flag提交{fag(名称:密码)</strong><br>
-直接可以使用D盾扫出该文件。然后使用webshell检测一下，发现确实是webshell后门工具。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325112640.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="Pasted image 20250325112640"
-	
-	
-><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325112156.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="Pasted image 20250325112156"
-	
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{api3.php:Admin}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{Fuzz Faster U Fool}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="flag4">flag4
-</h1><p>可以根据日志查看：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325131342.png"
+</h1><p><strong>找到攻击者写入的恶意后门文件，提交文件名（完整路径）</strong><br>
+查看日志：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325151625.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="Pasted image 20250325131342"
+		alt="Pasted image 20250325151625"
+	
+	
+><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325151645.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Pasted image 20250325151645"
 	
 	
 ></p>
@@ -440,7 +460,73 @@ flag</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{192.168.112.123}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{C:\phpstudy_pro\WWW\.x.php}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="flag5">flag5
+</h1><p><strong>找到攻击者隐藏在正常web应用代码中的恶意代码，提交该文件名（完整路径）</strong><br>
+D盾直接扫描即可：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325152028.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Pasted image 20250325152028"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{C:\phpstudy_pro\WWW\usr\themes\default\post.php}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="flag6">flag6
+</h1><p><strong>请指出可疑进程采用的自动启动的方式，启动的脚本的名字 flag{1.exe}</strong><br>
+查看开机自动文件夹，并没有发现有什么恶意的东西。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">C</span><span class="o">:</span><span class="nx">\ProgramData\Microsoft\Windows\Start</span> <span class="nx">Menu\Programs\StartUp</span>
+</span></span><span class="line"><span class="cl"><span class="nx">C</span><span class="o">:</span><span class="nx">\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start</span> <span class="nx">Menu\Programs\Startup</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>并无可疑文件，接下来查看 <code>Temp</code> 目录和 <code>Windows</code> 目录<br>
+在 <code>Windows</code> 目录下，发现可疑文件<br>
+在windows目录下，发现一个x.bat文件，发现这个bat文件是打开360.exe文件<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325153807.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Pasted image 20250325153807"
+	
+	
+><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325161044.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Pasted image 20250325161044"
+	
+	
+><br>
+flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{x.bat}
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
@@ -486,18 +572,18 @@ flag</p>
             
                 
 <article class="has-image">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/">
+    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/26.webp" loading="lazy" data-key="" data-hash="/images/26.webp"/>
+                    <img src="/images/24.webp" loading="lazy" data-key="" data-hash="/images/24.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第四章 windows 实战-wordpress</h2>
+            <h2 class="article-title">【玄机靶场】应急响应-vulntarget-j-01</h2>
         </div>
     </a>
 </article>
