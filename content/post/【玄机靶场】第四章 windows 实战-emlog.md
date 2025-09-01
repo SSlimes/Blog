@@ -53,7 +53,7 @@ flag{hacker138}
 **通过本地 PC RDP到服务器并且分析黑客的挖矿程序的矿池域名,将黑客挖矿程序的矿池域名称作为(仅域名)FLAG 提交;**
 找到hacker128用户的桌面,发现一个恶意的挖矿程序,然后进行反编译一下,得到flag
 ![Pasted image 20250320134714](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134714.png)
-![[Pasted image 20250320134737.png]]
+![Pasted image 20250320134701](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134701.png)
 
 ![Pasted image 20250320134701](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134701.png)
 ![Pasted image 20250320134647](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134647.png)
