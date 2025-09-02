@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>靶场 on Slimer</title>
-        <link>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</link>
+        <link>http://localhost:6681/categories/%E9%9D%B6%E5%9C%BA/</link>
         <description>Recent content in 靶场 on Slimer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Mon, 01 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 01 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:6681/categories/%E9%9D%B6%E5%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>【玄机靶场】第四章 windows 实战-emlog</title>
-        <link>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-emlog/</link>
+        <link>http://localhost:6681/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-emlog/</link>
         <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-emlog/</guid>
-        <description>&lt;img src="http://localhost:1313/images/25.webp" alt="Featured image of post 【玄机靶场】第四章 windows 实战-emlog" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
+        <guid>http://localhost:6681/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-emlog/</guid>
+        <description>&lt;img src="http://localhost:6681/images/25.webp" alt="Featured image of post 【玄机靶场】第四章 windows 实战-emlog" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
 &lt;/h1&gt;&lt;p&gt;服务器场景操作系统 Windows&lt;br&gt;
 服务器账号密码 administrator xj@123456&lt;br&gt;
 题目来源公众号 知攻善防实验室&lt;br&gt;
@@ -180,11 +180,11 @@ flag&lt;/p&gt;
         </item>
         <item>
         <title>【玄机靶场】第四章 windows 实战-wordpress</title>
-        <link>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/</link>
+        <link>http://localhost:6681/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/</link>
         <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/</guid>
-        <description>&lt;img src="http://localhost:1313/images/26.webp" alt="Featured image of post 【玄机靶场】第四章 windows 实战-wordpress" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
+        <guid>http://localhost:6681/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/</guid>
+        <description>&lt;img src="http://localhost:6681/images/26.webp" alt="Featured image of post 【玄机靶场】第四章 windows 实战-wordpress" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
 &lt;/h1&gt;&lt;p&gt;第四章 windows实战-wordpress&lt;br&gt;
 rdp 端口 3389&lt;br&gt;
 账号：administrator&lt;br&gt;
@@ -384,11 +384,11 @@ flag&lt;/p&gt;
         </item>
         <item>
         <title>【玄机靶场】应急响应-vulntarget-j-01</title>
-        <link>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/</link>
+        <link>http://localhost:6681/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/</link>
         <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/</guid>
-        <description>&lt;img src="http://localhost:1313/images/24.webp" alt="Featured image of post 【玄机靶场】应急响应-vulntarget-j-01" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
+        <guid>http://localhost:6681/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/</guid>
+        <description>&lt;img src="http://localhost:6681/images/24.webp" alt="Featured image of post 【玄机靶场】应急响应-vulntarget-j-01" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
 &lt;/h1&gt;&lt;p&gt;题目来源公众号  vulntarget&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg&lt;/a&gt;&lt;br&gt;
@@ -504,11 +504,11 @@ flag&lt;/p&gt;
         </item>
         <item>
         <title>【靶场】sql-labs-Less 6-14</title>
-        <link>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAsql-labs-less-6-14/</link>
+        <link>http://localhost:6681/p/%E9%9D%B6%E5%9C%BAsql-labs-less-6-14/</link>
         <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAsql-labs-less-6-14/</guid>
-        <description>&lt;img src="http://localhost:1313/images/22.webp" alt="Featured image of post 【靶场】sql-labs-Less 6-14" /&gt;&lt;h1 id=&#34;less-6&#34;&gt;Less-6
+        <guid>http://localhost:6681/p/%E9%9D%B6%E5%9C%BAsql-labs-less-6-14/</guid>
+        <description>&lt;img src="http://localhost:6681/images/22.webp" alt="Featured image of post 【靶场】sql-labs-Less 6-14" /&gt;&lt;h1 id=&#34;less-6&#34;&gt;Less-6
 &lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：双引号报错，两个双引号闭合利用闭合方式：&lt;code&gt;&amp;quot; &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
 就闭合方式和 Less-5 不一样外，其余都一样&lt;br&gt;
 1.进入第六题，显示&lt;code&gt;Please input the ID as parameter with numeric value&lt;/code&gt;，告诉了我们参数为&lt;strong&gt;id&lt;/strong&gt;&lt;br&gt;
@@ -1174,11 +1174,11 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
         </item>
         <item>
         <title>【靶场】vulnyx靶场-Lower2</title>
-        <link>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAvulnyx%E9%9D%B6%E5%9C%BA-lower2/</link>
+        <link>http://localhost:6681/p/%E9%9D%B6%E5%9C%BAvulnyx%E9%9D%B6%E5%9C%BA-lower2/</link>
         <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAvulnyx%E9%9D%B6%E5%9C%BA-lower2/</guid>
-        <description>&lt;img src="http://localhost:1313/images/23.webp" alt="Featured image of post 【靶场】vulnyx靶场-Lower2" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
+        <guid>http://localhost:6681/p/%E9%9D%B6%E5%9C%BAvulnyx%E9%9D%B6%E5%9C%BA-lower2/</guid>
+        <description>&lt;img src="http://localhost:6681/images/23.webp" alt="Featured image of post 【靶场】vulnyx靶场-Lower2" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
 &lt;/h1&gt;&lt;p&gt;vulnyx是一个提供各种漏洞环境的靶场平台，大部分环境是做好的虚拟机镜像文件，镜像预先设计了多种漏洞，需要使用VMware或者VirtualBox运行。每个镜像会有破解的目标，挑战的目标是获取操作系统的root权限和查看flag。&lt;/p&gt;
 &lt;h1 id=&#34;部署方法&#34;&gt;&lt;strong&gt;部署方法&lt;/strong&gt;
 &lt;/h1&gt;&lt;p&gt;官网：https://vulnyx.com/&lt;br&gt;
@@ -1347,11 +1347,11 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
         </item>
         <item>
         <title>【靶场】sql-labs-Less1-5</title>
-        <link>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAsql-labs-less1-5/</link>
+        <link>http://localhost:6681/p/%E9%9D%B6%E5%9C%BAsql-labs-less1-5/</link>
         <pubDate>Fri, 29 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAsql-labs-less1-5/</guid>
-        <description>&lt;img src="http://localhost:1313/images/19.webp" alt="Featured image of post 【靶场】sql-labs-Less1-5" /&gt;&lt;h1 id=&#34;less-1&#34;&gt;Less-1
+        <guid>http://localhost:6681/p/%E9%9D%B6%E5%9C%BAsql-labs-less1-5/</guid>
+        <description>&lt;img src="http://localhost:6681/images/19.webp" alt="Featured image of post 【靶场】sql-labs-Less1-5" /&gt;&lt;h1 id=&#34;less-1&#34;&gt;Less-1
 &lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39; &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
 1.进入第一题，显示&lt;code&gt;Please input the ID as parameter with numeric value&lt;/code&gt;，告诉了我们参数为&lt;code&gt;id&lt;/code&gt;&lt;br&gt;
 &lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160458.png&#34;
@@ -2160,11 +2160,11 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
         </item>
         <item>
         <title>【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞</title>
-        <link>http://localhost:1313/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</link>
+        <link>http://localhost:6681/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</guid>
-        <description>&lt;img src="http://localhost:1313/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述
+        <guid>http://localhost:6681/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</guid>
+        <description>&lt;img src="http://localhost:6681/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述
 &lt;/h1&gt;&lt;p&gt;2020年12月29日，Nacos官⽅在github发布的issue中披露Alibaba Nacos 存在⼀个由于不当处理User-Agent导致的未授权访问漏洞 。通过该漏洞，攻击者可以进⾏任意操作，包括&lt;strong&gt;创建新⽤户&lt;/strong&gt;并进⾏登录后操作。&lt;/p&gt;
 &lt;h1 id=&#34;2-影响版本&#34;&gt;2. 影响版本
 &lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Nacos &amp;lt;= 2.0.0-ALPHA.1&lt;/strong&gt;&lt;/p&gt;
@@ -2388,11 +2388,11 @@ TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的�
         </item>
         <item>
         <title>【应急响应靶场】vulntarget-j-01</title>
-        <link>http://localhost:1313/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BAvulntarget-j-01/</link>
+        <link>http://localhost:6681/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BAvulntarget-j-01/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BAvulntarget-j-01/</guid>
-        <description>&lt;img src="http://localhost:1313/images/7.webp" alt="Featured image of post 【应急响应靶场】vulntarget-j-01" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
+        <guid>http://localhost:6681/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BAvulntarget-j-01/</guid>
+        <description>&lt;img src="http://localhost:6681/images/7.webp" alt="Featured image of post 【应急响应靶场】vulntarget-j-01" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
 &lt;/h1&gt;&lt;p&gt;题目来源公众号  vulntarget&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2513,11 +2513,11 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
         </item>
         <item>
         <title>【知攻善防靶场】Linux1</title>
-        <link>http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/</link>
+        <link>http://localhost:6681/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/</guid>
-        <description>&lt;img src="http://localhost:1313/images/8.webp" alt="Featured image of post 【知攻善防靶场】Linux1" /&gt;&lt;h1 id=&#34;前景需要&#34;&gt;前景需要
+        <guid>http://localhost:6681/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/</guid>
+        <description>&lt;img src="http://localhost:6681/images/8.webp" alt="Featured image of post 【知攻善防靶场】Linux1" /&gt;&lt;h1 id=&#34;前景需要&#34;&gt;前景需要
 &lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2694,11 +2694,11 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
         </item>
         <item>
         <title>【知攻善防靶场】Linux2</title>
-        <link>http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/</link>
+        <link>http://localhost:6681/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/</guid>
-        <description>&lt;img src="http://localhost:1313/images/14.webp" alt="Featured image of post 【知攻善防靶场】Linux2" /&gt;&lt;h1 id=&#34;前提须知&#34;&gt;前提须知
+        <guid>http://localhost:6681/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/</guid>
+        <description>&lt;img src="http://localhost:6681/images/14.webp" alt="Featured image of post 【知攻善防靶场】Linux2" /&gt;&lt;h1 id=&#34;前提须知&#34;&gt;前提须知
 &lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
