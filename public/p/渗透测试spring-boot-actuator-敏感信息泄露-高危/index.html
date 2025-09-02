@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/'>
 
-<link rel="stylesheet" href="/scss/style.min.2bc3e90d9ece5b282f5646b25ef88428331c235171fc0fc3f16afe24cade9909.css"><meta property='og:title' content="【渗透测试】Spring Boot Actuator 敏感信息泄露-高危">
+<link rel="stylesheet" href="/scss/style.min.11207ff81409bbe9433b02843a9ded640f4a8e3b1a8a586bb557251116607463.css"><meta property='og:title' content="【渗透测试】Spring Boot Actuator 敏感信息泄露-高危">
 <meta property='og:description' content="0x00 什么是Actuator\rSpring Boot Actuator 模块提供了健康检查，审计，指标收集，HTTP 跟踪等，是帮助我们监控和管理Spring Boot 应用的模块。这个模块采集应用的内部信息，展现给外部模块，可以查看应用配置的详细信息，例如自动化配置信息、创建的Spring beans信息、系统环境变量的配置信息以及Web请求的详细信息等。\n如果没有正确使用Actuator，可能造成信息泄露等严重的安全隐患（外部人员非授权访问Actuator端点）。其中heapdump作为Actuator组件最为危险的Web端点，heapdump因未授权访问被恶意人员获取后进行分析，可进一步获取敏感信息。\nSpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径也有差别，但现在多使用的SpringBoot版本为2.x，这篇文章只讲SpringBoo 2.x Actuator模块带来的信息泄露。\n">
 <meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/'>
 <meta property='og:site_name' content='Slimer'>
@@ -571,34 +571,6 @@ SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径
     
 
     
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">相关文章</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/27.webp" loading="lazy" data-key="" data-hash="/images/27.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【渗透测试】Spring Boot Actuator 敏感信息泄露</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
 
      
     
