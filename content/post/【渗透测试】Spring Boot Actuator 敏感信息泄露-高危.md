@@ -1,5 +1,5 @@
 ---
-title: 【渗透测试】Spring Boot Actuator 敏感信息泄露
+title: 【渗透测试】Spring Boot Actuator 敏感信息泄露-高危
 date: 2025-09-02
 image: images/27.webp
 categories:
