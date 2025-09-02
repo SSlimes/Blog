@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>红队 on Slimer</title>
-        <link>http://localhost:6681/categories/%E7%BA%A2%E9%98%9F/</link>
+        <link>http://localhost:1313/categories/%E7%BA%A2%E9%98%9F/</link>
         <description>Recent content in 红队 on Slimer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:6681/categories/%E7%BA%A2%E9%98%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%BA%A2%E9%98%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞</title>
-        <link>http://localhost:6681/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</link>
+        <link>http://localhost:1313/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:6681/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</guid>
-        <description>&lt;img src="http://localhost:6681/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述
+        <guid>http://localhost:1313/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</guid>
+        <description>&lt;img src="http://localhost:1313/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述
 &lt;/h1&gt;&lt;p&gt;2020年12月29日，Nacos官⽅在github发布的issue中披露Alibaba Nacos 存在⼀个由于不当处理User-Agent导致的未授权访问漏洞 。通过该漏洞，攻击者可以进⾏任意操作，包括&lt;strong&gt;创建新⽤户&lt;/strong&gt;并进⾏登录后操作。&lt;/p&gt;
 &lt;h1 id=&#34;2-影响版本&#34;&gt;2. 影响版本
 &lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Nacos &amp;lt;= 2.0.0-ALPHA.1&lt;/strong&gt;&lt;/p&gt;
@@ -237,11 +237,11 @@ TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的�
         </item>
         <item>
         <title>【Nacos】Nacos红队打点方法</title>
-        <link>http://localhost:6681/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</link>
+        <link>http://localhost:1313/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:6681/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</guid>
-        <description>&lt;img src="http://localhost:6681/images/10.webp" alt="Featured image of post 【Nacos】Nacos红队打点方法" /&gt;&lt;h1 id=&#34;0x00-前置知识&#34;&gt;0x00 前置知识
+        <guid>http://localhost:1313/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</guid>
+        <description>&lt;img src="http://localhost:1313/images/10.webp" alt="Featured image of post 【Nacos】Nacos红队打点方法" /&gt;&lt;h1 id=&#34;0x00-前置知识&#34;&gt;0x00 前置知识
 &lt;/h1&gt;&lt;h2 id=&#34;1-平台语法&#34;&gt;1. 平台语法
 &lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -345,11 +345,11 @@ NacosExploit&lt;/p&gt;
         </item>
         <item>
         <title>【Web攻防】常见Web攻防登录框打法-01</title>
-        <link>http://localhost:6681/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</link>
+        <link>http://localhost:1313/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:6681/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</guid>
-        <description>&lt;img src="http://localhost:6681/images/12.webp" alt="Featured image of post 【Web攻防】常见Web攻防登录框打法-01" /&gt;&lt;h1 id=&#34;开局&#34;&gt;开局
+        <guid>http://localhost:1313/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</guid>
+        <description>&lt;img src="http://localhost:1313/images/12.webp" alt="Featured image of post 【Web攻防】常见Web攻防登录框打法-01" /&gt;&lt;h1 id=&#34;开局&#34;&gt;开局
 &lt;/h1&gt;&lt;p&gt;首先先拿到一个站点：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -557,11 +557,11 @@ NacosExploit&lt;/p&gt;
         </item>
         <item>
         <title>【内网攻防】Windows工作组信息收集</title>
-        <link>http://localhost:6681/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
+        <link>http://localhost:1313/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:6681/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
-        <description>&lt;img src="http://localhost:6681/images/13.webp" alt="Featured image of post 【内网攻防】Windows工作组信息收集" /&gt;&lt;h1 id=&#34;0x00-前置&#34;&gt;0x00 前置
+        <guid>http://localhost:1313/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
+        <description>&lt;img src="http://localhost:1313/images/13.webp" alt="Featured image of post 【内网攻防】Windows工作组信息收集" /&gt;&lt;h1 id=&#34;0x00-前置&#34;&gt;0x00 前置
 &lt;/h1&gt;&lt;p&gt;当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：&lt;br&gt;
 我是谁？&amp;ndash;主机身份与特权边界确认。&lt;br&gt;
 这是哪？&amp;ndash;对目前机器处网络环境的拓扑结构进行分析和判断。&lt;br&gt;

