@@ -6,6 +6,239 @@
         <description>Recent content in 渗透测试 on Slimer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>Slimer</copyright><atom:link href="http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>Slimer</copyright>
+        <lastBuildDate>Tue, 02 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【渗透测试】Spring Boot Actuator 敏感信息泄露</title>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link>
+        <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid>
+        <description>&lt;img src="http://localhost:1313/images/27.webp" alt="Featured image of post 【渗透测试】Spring Boot Actuator 敏感信息泄露" /&gt;&lt;h1 id=&#34;0x00-什么是actuator&#34;&gt;0x00 什么是Actuator
+&lt;/h1&gt;&lt;p&gt;Spring Boot Actuator 模块提供了健康检查，审计，指标收集，HTTP 跟踪等，是帮助我们监控和管理Spring Boot 应用的模块。这个模块采集应用的内部信息，展现给外部模块，可以查看应用配置的详细信息，例如自动化配置信息、创建的Spring beans信息、系统环境变量的配置信息以及Web请求的详细信息等。&lt;br&gt;
+如果没有正确使用Actuator，可能造成信息泄露等严重的安全隐患（外部人员非授权访问Actuator端点）。其中heapdump作为Actuator组件最为危险的Web端点，heapdump因未授权访问被恶意人员获取后进行分析，可进一步获取敏感信息。&lt;br&gt;
+SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径也有差别，但现在多使用的SpringBoot版本为2.x，这篇文章只讲SpringBoo 2.x Actuator模块带来的信息泄露。&lt;/p&gt;
+&lt;h1 id=&#34;0x01-actuator-使用&#34;&gt;0x01 Actuator 使用
+&lt;/h1&gt;&lt;p&gt;如果要使用 SpringBoot Actuator 提供的监控功能，需要先加入相关的 maven dependency：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;dependency&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;lt;artifactId&amp;gt;spring-boot-starter-actuator&amp;lt;/artifactId&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;lt;version&amp;gt;2.7.0&amp;lt;/version&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/dependency&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;只要加上了这个actuator依赖，SpringBoot 在运行时会自动开启/actuator/health和/actuator/info这两个 endpoint。&lt;br&gt;
+为了更方便漏洞利用，当前环境在一个CMS中加入了该依赖，因为自己新建的Springboot项目没有配置数据库之类的信息。&lt;/p&gt;
+&lt;h1 id=&#34;0x02-endpoints-介绍&#34;&gt;0x02 Endpoints 介绍
+&lt;/h1&gt;&lt;p&gt;Spring Boot 提供了所谓的 endpoints （下文翻译为端点）给外部来与应用程序进行访问和交互。&lt;br&gt;
+打比方来说，/health 端点 提供了关于应用健康情况的一些基础信息。metrics 端点提供了一些有用的应用程序指标（JVM 内存使用、系统CPU使用等）。&lt;br&gt;
+这些 Actuator 模块本来就有的端点我们称之为原生端点。根据端点的作用的话，我们大概可以分为三大类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用配置类：获取应用程序中加载的应用配置、环境变量、自动化配置报告等与Spring Boot应用密切相关的配置类信息。&lt;/li&gt;
+&lt;li&gt;度量指标类：获取应用程序运行过程中用于监控的度量指标，比如：内存信息、线程池信息、HTTP请求统计等。&lt;/li&gt;
+&lt;li&gt;操作控制类：提供了对应用的关闭等操作类功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;需要注意的就是：&lt;br&gt;
+每一个端点都可以通过配置来单独禁用或者启动&lt;br&gt;
+不同于Actuator 1.x，Actuator 2.x 的大多数端点默认被禁掉。Actuator 2.x 中的默认端点增加了/actuator前缀。默认暴露的两个端点为/actuator/health和 /actuator/info&lt;br&gt;
+原生端点如下：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;请求方法&lt;/th&gt;
+          &lt;th&gt;端点&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator&lt;/td&gt;
+          &lt;td&gt;查看有哪些 Actuator端点是开放的。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/auditevent&lt;/td&gt;
+          &lt;td&gt;auditevents端点提供有关应用程序审计事件的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/beans&lt;/td&gt;
+          &lt;td&gt;beans端点提供有关应用程序 bean 的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/conditions&lt;/td&gt;
+          &lt;td&gt;conditions端点提供有关配置和自动配置类条件评估的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/configprops&lt;/td&gt;
+          &lt;td&gt;configprops端点提供有关应用程序@ConfigurationPropertiesbean的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/env&lt;/td&gt;
+          &lt;td&gt;查看全部环境属性，可以看到 SpringBoot 载入哪些 properties，以及 properties 的值（会自动用*替换 key、password、secret 等关键字的 properties 的值）。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/flyway&lt;/td&gt;
+          &lt;td&gt;flyway端点提供有关 Flyway 执行的数据库迁移的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/health&lt;/td&gt;
+          &lt;td&gt;端点提供有关应用程序运行状况的health详细信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/heapdump&lt;/td&gt;
+          &lt;td&gt;heapdump端点提供来自应用程序 JVM 的堆转储。(通过分析查看/env端点被*号替换到数据的具体值。)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/httptrace&lt;/td&gt;
+          &lt;td&gt;httptrace端点提供有关 HTTP 请求-响应交换的信息。（包括用户HTTP请求的Cookie数据，会造成Cookie泄露等）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/info&lt;/td&gt;
+          &lt;td&gt;info端点提供有关应用程序的一般信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/integrationgraph&lt;/td&gt;
+          &lt;td&gt;integrationgraph端点公开了一个包含所有 Spring Integration 组件的图。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/liquibase&lt;/td&gt;
+          &lt;td&gt;liquibase端点提供有关 Liquibase 应用的数据库更改集的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/logfile&lt;/td&gt;
+          &lt;td&gt;logfile端点提供对应用程序日志文件内容的访问。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/loggers&lt;/td&gt;
+          &lt;td&gt;loggers端点提供对应用程序记录器及其级别配置的访问。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/mappings&lt;/td&gt;
+          &lt;td&gt;mappings端点提供有关应用程序请求映射的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/metrics&lt;/td&gt;
+          &lt;td&gt;metrics端点提供对应用程序指标的访问。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/prometheus&lt;/td&gt;
+          &lt;td&gt;端点以prometheusPrometheus 服务器抓取所需的格式提供 Spring Boot 应用程序的指标。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/quartz&lt;/td&gt;
+          &lt;td&gt;quartz端点提供有关由 Quartz 调度程序管理的作业和触发器的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/scheduledtasks&lt;/td&gt;
+          &lt;td&gt;scheduledtasks端点提供有关应用程序计划任务的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/sessions&lt;/td&gt;
+          &lt;td&gt;sessions端点提供有关由 Spring Session 管理的应用程序 HTTP 会话的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GET&lt;/td&gt;
+          &lt;td&gt;/actuator/startup&lt;/td&gt;
+          &lt;td&gt;startup端点提供有关应用程序启动顺序的信息。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;POST&lt;/td&gt;
+          &lt;td&gt;/actuator/shutdown&lt;/td&gt;
+          &lt;td&gt;shutdown端点用于关闭应用程序。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;0x03-漏洞利用&#34;&gt;0x03 漏洞利用
+&lt;/h1&gt;&lt;p&gt;前面介绍过了Actuator一些基础后，现在来研究一下如果目标站点存在这个漏洞该如何利用。&lt;br&gt;
+首先访问一下/actuator/env该文件目录，寻找一下敏感信息等等&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902094313.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;br&gt;
+/actuator/heapdump文件可以直接下载下来。使用工具进行分析：&lt;br&gt;
+工具下载地址：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;通过网盘分享的文件：JDumpSpider-1.1-SNAPSHOT-full.jar
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;链接: https://pan.baidu.com/s/1tL0gY9Xm4jBrXUxVj-g8og 提取码: pkb9 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--来自百度网盘超级会员v4的分享
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;java -jar JDumpSpider-1.1-SNAPSHOT-full.jar 绝地地址（heapdump） &amp;gt;&amp;gt;222.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902094616.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;br&gt;
+这里直接泄露了Cookie信息。&lt;/p&gt;
+&lt;h1 id=&#34;0x04-漏洞修复&#34;&gt;0x04 漏洞修复
+&lt;/h1&gt;&lt;p&gt;1、屏蔽actuator路径&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;location ~ .*actuator.* {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   deny all;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        
     </channel>
 </rss>
