@@ -52,7 +52,18 @@ params:
     # 网站图标配置
     # 例如：将 favicon.ico 放在网站的 static 文件夹下，这里设置为 /favicon.ico（必须带 /）
     favicon: /favicon.ico
-
+    
+    # 添加更多的图标格式支持，以确保在各种浏览器中都能正常显示
+    icons:
+        - src: /favicon.ico
+          sizes: "32x32"
+          type: "image/x-icon"
+        - src: /favicon.ico
+          sizes: "16x16"
+          type: "image/x-icon"
+        - src: /favicon.ico
+          sizes: "48x48"
+          type: "image/x-icon"
     # 页脚配置
     footer:
         since: 2024         # 网站创建年份，会显示在页脚
