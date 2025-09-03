@@ -62,8 +62,6 @@ menu:
 
 这个博客使用 [Hugo](https://gohugo.io/) 构建，采用 [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack) 主题，并进行了个性化定制。
 
-> **免责声明**: 本博客内容仅供学习和研究使用，请勿用于非法用途。所有技术分享都基于合法的安全测试环境。
-
 ---
 
 <div class="about-footer">
