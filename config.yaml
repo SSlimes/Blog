@@ -17,11 +17,11 @@ hasCJKLanguage: true
 languages:
     zh-cn:
         languageName: 中文      # 语言名称显示
-        title: Slimer          # 该语言下的网站标题
+        title: SlimerのBlog          # 该语言下的网站标题
         weight: 2              # 语言权重（用于排序）
         params:
             sidebar:
-                subtitle: 中华人民共和国万岁  # 侧边栏副标题（中文语言下）
+                subtitle:   # 侧边栏副标题（中文语言下）
 
 # 第三方服务配置
 services:

@@ -34,12 +34,15 @@
     <footer class="article-time">
         {{ if $showDate }}
             <div>
-                {{ partial "helper/icon" "date" }}
                 <time class="article-time--published">
+                    {{ partial "helper/icon" "date" }}
                     {{- .Date | time.Format (or .Site.Params.dateFormat.published "Jan 02, 2006") -}}
                 </time>
-            </time>
-</div>
+                <span class="article-word-count">
+                    {{ partial "helper/icon" "file-text" }}
+                    文章共{{- .WordCount -}} 字
+                </span>
+            </div>
 			
         {{ end }}
 

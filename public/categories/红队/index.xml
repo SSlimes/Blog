@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>红队 on Slimer</title>
+        <title>红队 on SlimerのBlog</title>
         <link>http://localhost:1313/categories/%E7%BA%A2%E9%98%9F/</link>
-        <description>Recent content in 红队 on Slimer</description>
+        <description>Recent content in 红队 on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
@@ -13,12 +13,12 @@
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</guid>
-        <description>&lt;img src="http://localhost:1313/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述
-&lt;/h1&gt;&lt;p&gt;2020年12月29日，Nacos官⽅在github发布的issue中披露Alibaba Nacos 存在⼀个由于不当处理User-Agent导致的未授权访问漏洞 。通过该漏洞，攻击者可以进⾏任意操作，包括&lt;strong&gt;创建新⽤户&lt;/strong&gt;并进⾏登录后操作。&lt;/p&gt;
-&lt;h1 id=&#34;2-影响版本&#34;&gt;2. 影响版本
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Nacos &amp;lt;= 2.0.0-ALPHA.1&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&#34;3-环境搭建&#34;&gt;3. 环境搭建
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Nacos下载地址(github):&lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述&lt;/h1&gt;
+&lt;p&gt;2020年12月29日，Nacos官⽅在github发布的issue中披露Alibaba Nacos 存在⼀个由于不当处理User-Agent导致的未授权访问漏洞 。通过该漏洞，攻击者可以进⾏任意操作，包括&lt;strong&gt;创建新⽤户&lt;/strong&gt;并进⾏登录后操作。&lt;/p&gt;
+&lt;h1 id=&#34;2-影响版本&#34;&gt;2. 影响版本&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Nacos &amp;lt;= 2.0.0-ALPHA.1&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3-环境搭建&#34;&gt;3. 环境搭建&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Nacos下载地址(github):&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -74,16 +74,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;192.168.31.134：自己的内网IP地址
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214003.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214003.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 5. 默认账号密码&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -94,8 +85,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;即可。&lt;/p&gt;
-&lt;h1 id=&#34;4-漏洞复现&#34;&gt;4. 漏洞复现
-&lt;/h1&gt;&lt;ol&gt;
+&lt;h1 id=&#34;4-漏洞复现&#34;&gt;4. 漏洞复现&lt;/h1&gt;
+&lt;ol&gt;
 &lt;li&gt;漏洞路径&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -106,16 +97,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http: your-ip:8848/nacos/v1/auth/users?pageNo=1&amp;amp;pageSize=1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214308.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214308.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 2. 虽然有password了, 但是是加盐过的,解密不了，从上图可以发现，⽬前有⼀个⽤户nacos 漏洞利⽤，访问&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -125,16 +107,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http: your-ip:8848/nacos/v1/auth/users
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214433.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704214433.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 PSOT传参：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -154,27 +127,9 @@ PSOT传参：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;发送POST请求，返回码200，创建⽤户成功~！&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705124923.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705124923.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 返回Nacos登录界面：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125222.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125222.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;使用账号/密码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -184,16 +139,7 @@ PSOT传参：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;test1/test1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125331.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125331.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 关闭环境：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -203,8 +149,8 @@ PSOT传参：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./shutdown.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;5-漏洞分析&#34;&gt;5. 漏洞分析
-&lt;/h1&gt;&lt;p&gt;Nacos-Server是⽤来进⾏服务间的通信的⽩名单。⽐如服务A要访问服务B，如何知道服务A是服务，只需要在服务A访问服务B的时候UA上写成 Nacos-Server 即可。&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;5-漏洞分析&#34;&gt;5. 漏洞分析&lt;/h1&gt;
+&lt;p&gt;Nacos-Server是⽤来进⾏服务间的通信的⽩名单。⽐如服务A要访问服务B，如何知道服务A是服务，只需要在服务A访问服务B的时候UA上写成 Nacos-Server 即可。&lt;br&gt;
 正因为这样，所以当我们&lt;strong&gt;UA恶意改为Nacos-Server的时候&lt;/strong&gt;，就会被误以为是服务间的通信，因此在⽩名单当中，绕过的认证。&lt;br&gt;
 这⾥⽤的是nacos-2.0.0-ALPHA.1的代码进⾏分析&lt;br&gt;
 关键代码在该⽂件下:&lt;/p&gt;
@@ -218,21 +164,12 @@ PSOT传参：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Filter.java
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125530.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250705125530.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的就很明确了。注释中写道，当接收到其他节点服务的请求时应该被通过，如何验证是其他服务。&lt;br&gt;
 就是很简单的⼀个对于UA的⼀个判断逻辑&lt;br&gt;
 这个Constants.NACOS_SERVER_HEADER跟踪⼀下，正是Nacos-Server 经过这⼀层的验证，那么则进⼊到filterChain 过滤器链中的下⼀个filter过滤器，继续接下来的请求。&lt;/p&gt;
-&lt;h1 id=&#34;6-漏洞修复&#34;&gt;6. 漏洞修复
-&lt;/h1&gt;&lt;p&gt;若业务环境允许，使⽤⽩名单限制相关web项⽬的访问来降低⻛险。 官⽅已发布最新安全版本，请及时下载升级⾄安全版本。&lt;/p&gt;
+&lt;h1 id=&#34;6-漏洞修复&#34;&gt;6. 漏洞修复&lt;/h1&gt;
+&lt;p&gt;若业务环境允许，使⽤⽩名单限制相关web项⽬的访问来降低⻛险。 官⽅已发布最新安全版本，请及时下载升级⾄安全版本。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -241,9 +178,9 @@ TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的�
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</guid>
-        <description>&lt;img src="http://localhost:1313/images/10.webp" alt="Featured image of post 【Nacos】Nacos红队打点方法" /&gt;&lt;h1 id=&#34;0x00-前置知识&#34;&gt;0x00 前置知识
-&lt;/h1&gt;&lt;h2 id=&#34;1-平台语法&#34;&gt;1. 平台语法
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+        <description>&lt;img src="http://localhost:1313/images/10.webp" alt="Featured image of post 【Nacos】Nacos红队打点方法" /&gt;&lt;h1 id=&#34;0x00-前置知识&#34;&gt;0x00 前置知识&lt;/h1&gt;
+&lt;h2 id=&#34;1-平台语法&#34;&gt;1. 平台语法&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -260,8 +197,8 @@ TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的�
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;端口：port=&amp;ldquo;8848&amp;rdquo;&lt;/p&gt;
-&lt;h2 id=&#34;2-信息收集&#34;&gt;2. 信息收集
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;资产少的情况下：&lt;/strong&gt;&lt;br&gt;
+&lt;h2 id=&#34;2-信息收集&#34;&gt;2. 信息收集&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;资产少的情况下：&lt;/strong&gt;&lt;br&gt;
 如果没有明显特征，那就通过被动扫描器，如：burp的插件TsojanScan，HAE，logger++等&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -293,18 +230,9 @@ NacosExploit&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;漏洞检测：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704212254.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;3-漏洞利用点&#34;&gt;3. 漏洞利用点
-&lt;/h2&gt;&lt;p&gt;Nacos 默认帐户名密码：&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250704212254.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-漏洞利用点&#34;&gt;3. 漏洞利用点&lt;/h2&gt;
+&lt;p&gt;Nacos 默认帐户名密码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -313,8 +241,8 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nacos/nacos
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x01-工具&#34;&gt;0x01 工具
-&lt;/h1&gt;&lt;p&gt;反序列化漏洞利⽤⼯具&lt;/p&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x01-工具&#34;&gt;0x01 工具&lt;/h1&gt;
+&lt;p&gt;反序列化漏洞利⽤⼯具&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -349,8 +277,8 @@ NacosExploit&lt;/p&gt;
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</guid>
-        <description>&lt;img src="http://localhost:1313/images/12.webp" alt="Featured image of post 【Web攻防】常见Web攻防登录框打法-01" /&gt;&lt;h1 id=&#34;开局&#34;&gt;开局
-&lt;/h1&gt;&lt;p&gt;首先先拿到一个站点：&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/images/12.webp" alt="Featured image of post 【Web攻防】常见Web攻防登录框打法-01" /&gt;&lt;h1 id=&#34;开局&#34;&gt;开局&lt;/h1&gt;
+&lt;p&gt;首先先拿到一个站点：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -378,22 +306,13 @@ NacosExploit&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#/login?redirect=%2Fplat
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;思路一&#34;&gt;思路一
-&lt;/h1&gt;&lt;h2 id=&#34;0x01-进入后台首先尝试弱口令&#34;&gt;0x01 进入后台首先尝试弱口令
-&lt;/h2&gt;&lt;p&gt;一般就是最简单的admin&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630103827.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;0x02-看数据包&#34;&gt;0x02 看数据包
-&lt;/h2&gt;&lt;h3 id=&#34;修改error为0&#34;&gt;修改error为0
-&lt;/h3&gt;&lt;p&gt;通过抓包可以看到返回信息：&lt;/p&gt;
+&lt;/div&gt;&lt;h1 id=&#34;思路一&#34;&gt;思路一&lt;/h1&gt;
+&lt;h2 id=&#34;0x01-进入后台首先尝试弱口令&#34;&gt;0x01 进入后台首先尝试弱口令&lt;/h2&gt;
+&lt;p&gt;一般就是最简单的admin&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630103827.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;0x02-看数据包&#34;&gt;0x02 看数据包&lt;/h2&gt;
+&lt;h3 id=&#34;修改error为0&#34;&gt;修改error为0&lt;/h3&gt;
+&lt;p&gt;通过抓包可以看到返回信息：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -412,133 +331,34 @@ NacosExploit&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;一共三个参数，都可以试一下：
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104121.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104121.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;接触该请求，拦截一下相应信息对error进行修改。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104313.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104313.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 这里可以看到：error和data数据都可以进行修改，然后进行测试。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104356.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104356.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 发现进入了/admin/user/info，但Cookie认证是一个未知的，这里可以看出已经没什么用了。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104448.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;修改error为200&#34;&gt;修改error为200
-&lt;/h3&gt;&lt;p&gt;这里可以将error修改为200，试一下是否可以绕过。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104643.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104448.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;修改error为200&#34;&gt;修改error为200&lt;/h3&gt;
+&lt;p&gt;这里可以将error修改为200，试一下是否可以绕过。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104643.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 发现还是不行，这里思路也没了。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104859.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;data进行测试&#34;&gt;data进行测试
-&lt;/h3&gt;&lt;p&gt;尝试再data参数中添加一下值，看一下是否可以绕过，&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630105024.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630104859.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;data进行测试&#34;&gt;data进行测试&lt;/h3&gt;
+&lt;p&gt;尝试再data参数中添加一下值，看一下是否可以绕过，&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630105024.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 发现还是不行:&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630105124.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630105124.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 这时候就可以看一下js文件了，是否有关于这两个参数的代码逻辑问题。&lt;/p&gt;
-&lt;h3 id=&#34;js文件查找参数&#34;&gt;js文件查找参数
-&lt;/h3&gt;&lt;p&gt;这里看出从js文件中找到了一个data对应的参数值，也是可以进行尝试的。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630105548.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;h3 id=&#34;js文件查找参数&#34;&gt;js文件查找参数&lt;/h3&gt;
+&lt;p&gt;这里看出从js文件中找到了一个data对应的参数值，也是可以进行尝试的。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630105548.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;但经过测试还是不行，但也是一个思路，后续遇到了可以进行尝试。&lt;/p&gt;
-&lt;h3 id=&#34;丢弃req数据包&#34;&gt;丢弃req数据包
-&lt;/h3&gt;&lt;p&gt;通过劫持req的数据包，丢弃掉，有的时候也可以卡进去，但是这里发现，并不行，这时候这种思路也不行了。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630110131.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630110246.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;总结&#34;&gt;总结
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h3 id=&#34;丢弃req数据包&#34;&gt;丢弃req数据包&lt;/h3&gt;
+&lt;p&gt;通过劫持req的数据包，丢弃掉，有的时候也可以卡进去，但是这里发现，并不行，这时候这种思路也不行了。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630110131.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250630110246.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -546,8 +366,8 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;这时候再尝试逻辑漏洞就不现实了，现在这种带#的这种漏洞就不多了。
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;思路二&#34;&gt;思路二
-&lt;/h1&gt;&lt;p&gt;如果遇到Cookie:admin-token=未知&lt;br&gt;
+&lt;/div&gt;&lt;h1 id=&#34;思路二&#34;&gt;思路二&lt;/h1&gt;
+&lt;p&gt;如果遇到Cookie:admin-token=未知&lt;br&gt;
 如果遇到一个后台登录页面，抓包发现一个error返回参数为1，然后修改参数0，进行尝试发送后，遇到返回数据中有Cookie:admin-token=未知后，我们的思路是：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;找小程序的token/Cookie，抓取过去进行尝试&lt;/li&gt;
@@ -561,14 +381,14 @@ NacosExploit&lt;/p&gt;
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
-        <description>&lt;img src="http://localhost:1313/images/13.webp" alt="Featured image of post 【内网攻防】Windows工作组信息收集" /&gt;&lt;h1 id=&#34;0x00-前置&#34;&gt;0x00 前置
-&lt;/h1&gt;&lt;p&gt;当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/13.webp" alt="Featured image of post 【内网攻防】Windows工作组信息收集" /&gt;&lt;h1 id=&#34;0x00-前置&#34;&gt;0x00 前置&lt;/h1&gt;
+&lt;p&gt;当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：&lt;br&gt;
 我是谁？&amp;ndash;主机身份与特权边界确认。&lt;br&gt;
 这是哪？&amp;ndash;对目前机器处网络环境的拓扑结构进行分析和判断。&lt;br&gt;
 我在哪？&amp;ndash;对目前机器所处伪造区域的判断。&lt;br&gt;
 谁在哪？&amp;ndash;对比钱机器反防御技术识别网络中的安全监控节点。&lt;/p&gt;
-&lt;h1 id=&#34;0x01-要收集的信息&#34;&gt;0x01 要收集的信息
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h1 id=&#34;0x01-要收集的信息&#34;&gt;0x01 要收集的信息&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -658,9 +478,9 @@ NacosExploit&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;......
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x02-windows信息收集&#34;&gt;0x02 Windows信息收集
-&lt;/h1&gt;&lt;h3 id=&#34;1-主机信息收集&#34;&gt;1. 主机信息收集
-&lt;/h3&gt;&lt;p&gt;查看当前用户以及当前用户所在组，所拥有的权限。&lt;/p&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x02-windows信息收集&#34;&gt;0x02 Windows信息收集&lt;/h1&gt;
+&lt;h3 id=&#34;1-主机信息收集&#34;&gt;1. 主机信息收集&lt;/h3&gt;
+&lt;p&gt;查看当前用户以及当前用户所在组，所拥有的权限。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -669,18 +489,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell whoami /all
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715000825.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2-网卡和ip信息收集&#34;&gt;2. 网卡和IP信息收集
-&lt;/h3&gt;&lt;p&gt;查看网卡等基本网络配置信息，主要留意Ethernet0以及Ethernet1，这个网卡，记录了可以通的网段信息&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715000825.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-网卡和ip信息收集&#34;&gt;2. 网卡和IP信息收集&lt;/h3&gt;
+&lt;p&gt;查看网卡等基本网络配置信息，主要留意Ethernet0以及Ethernet1，这个网卡，记录了可以通的网段信息&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -689,19 +500,10 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell ipconfig /all
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715001546.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715001546.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 可以看出当前是两个网卡，并且主DNS是一个域名（这里环境有问题，一般看DNS是一个域名，既是域环境。），一般来说只有域机器才会有域名显示，而在工作组下显示的是空：&lt;/p&gt;
-&lt;h3 id=&#34;3-查看系统详情信息&#34;&gt;3. 查看系统详情信息
-&lt;/h3&gt;&lt;p&gt;可以查看网卡，系统，补丁信息&lt;/p&gt;
+&lt;h3 id=&#34;3-查看系统详情信息&#34;&gt;3. 查看系统详情信息&lt;/h3&gt;
+&lt;p&gt;可以查看网卡，系统，补丁信息&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -710,16 +512,7 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell systeminfo
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002249.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002249.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 我们可以通过该命令获得了系统的信息，就可以直接使用下面网站获取exp。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -730,28 +523,10 @@ NacosExploit&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;直接复制粘贴过来即可&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002637.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002708.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;4-查看操作系统和版本信息&#34;&gt;4. 查看操作系统和版本信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002637.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002708.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;4-查看操作系统和版本信息&#34;&gt;4. 查看操作系统和版本信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -765,18 +540,9 @@ NacosExploit&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell systeminfo | findstr /B /C:&amp;#34;OS 名称&amp;#34; /C:&amp;#34;OS 版本&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003206.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;5-查看系统体系结构&#34;&gt;5. 查看系统体系结构
-&lt;/h3&gt;&lt;p&gt;检查系统架构（AMD64或者x86）-&amp;gt;影响后续工具选择&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003206.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;5-查看系统体系结构&#34;&gt;5. 查看系统体系结构&lt;/h3&gt;
+&lt;p&gt;检查系统架构（AMD64或者x86）-&amp;gt;影响后续工具选择&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -785,18 +551,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell echo %PROCESSOR_ARCHITECTURE%
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003409.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;6-主机路由信息&#34;&gt;6. 主机路由信息
-&lt;/h3&gt;&lt;p&gt;可以查看网络目标，都是主机可以直接访问到的机器&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003409.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;6-主机路由信息&#34;&gt;6. 主机路由信息&lt;/h3&gt;
+&lt;p&gt;可以查看网络目标，都是主机可以直接访问到的机器&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -805,18 +562,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell route print
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003943.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;7-arp缓存信息&#34;&gt;7. ARP缓存信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003943.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;7-arp缓存信息&#34;&gt;7. ARP缓存信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -824,18 +572,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell arp -a
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004046.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;8-dns缓存信息&#34;&gt;8. DNS缓存信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004046.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;8-dns缓存信息&#34;&gt;8. DNS缓存信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -843,18 +582,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell ipconfig /displaydns
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004213.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;9-host文件信息&#34;&gt;9. Host文件信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004213.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;9-host文件信息&#34;&gt;9. Host文件信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -862,18 +592,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell type C:\windows\System32\drivers\etc\hosts
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004319.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;10-端口连接信息&#34;&gt;10. 端口连接信息
-&lt;/h3&gt;&lt;p&gt;可以查看当前主机的端口链接情况，一级当前主机与网络中的主机连接建立情况，不仅有公网主机还有内网主机。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004319.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;10-端口连接信息&#34;&gt;10. 端口连接信息&lt;/h3&gt;
+&lt;p&gt;可以查看当前主机的端口链接情况，一级当前主机与网络中的主机连接建立情况，不仅有公网主机还有内网主机。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -882,18 +603,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell netstat -ano
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004540.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;11-会话连接&#34;&gt;11. 会话连接
-&lt;/h3&gt;&lt;p&gt;可以查看主机与客户机之间的会话连接&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004540.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;11-会话连接&#34;&gt;11. 会话连接&lt;/h3&gt;
+&lt;p&gt;可以查看主机与客户机之间的会话连接&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -902,18 +614,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell net session
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004712.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;12-查看当前保存的登录凭证也能看到通的ip&#34;&gt;12. 查看当前保存的登录凭证，也能看到通的ip
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004712.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;12-查看当前保存的登录凭证也能看到通的ip&#34;&gt;12. 查看当前保存的登录凭证，也能看到通的ip&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -921,18 +624,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell cmdkey /l
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004813.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;13-查看当前主机开启的共享列表&#34;&gt;13. 查看当前主机开启的共享列表
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004813.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;13-查看当前主机开启的共享列表&#34;&gt;13. 查看当前主机开启的共享列表&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -940,18 +634,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell net share
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004915.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;14-远程相关信息&#34;&gt;14. 远程相关信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004915.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;14-远程相关信息&#34;&gt;14. 远程相关信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -965,18 +650,9 @@ NacosExploit&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell tasklist
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005059.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;15-查看当前主机与网络中的其他主机建立的共享链接&#34;&gt;15. 查看当前主机与网络中的其他主机建立的共享链接
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005059.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;15-查看当前主机与网络中的其他主机建立的共享链接&#34;&gt;15. 查看当前主机与网络中的其他主机建立的共享链接&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -984,18 +660,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell net use
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005226.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;16-查看主机进程信息&#34;&gt;16. 查看主机进程信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005226.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;16-查看主机进程信息&#34;&gt;16. 查看主机进程信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1004,18 +671,9 @@ NacosExploit&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;可以查看主机进程信息，并作出过滤进程路径，名称和pid。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005346.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;17-指定查看路径信息&#34;&gt;17. 指定查看路径信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005346.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;17-指定查看路径信息&#34;&gt;17. 指定查看路径信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1023,18 +681,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell wmic process where Name=&amp;#34;有道云笔记.exe&amp;#34; get ExecutablePath
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005611.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;18-查看补丁信息&#34;&gt;18. 查看补丁信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005611.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;18-查看补丁信息&#34;&gt;18. 查看补丁信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1042,18 +691,9 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell wmic qfe get Caption,CSName,Description,HotFixID,InstalledOn
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005731.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;19-查看安装应用信息&#34;&gt;19. 查看安装应用信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005731.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;19-查看安装应用信息&#34;&gt;19. 查看安装应用信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1061,16 +701,7 @@ NacosExploit&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell wmic product get Caption,Version
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005846.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005846.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 PS：在win10中，输入&lt;code&gt;wmic /?&lt;/code&gt;会提示wmic已弃用，但在server2012R2,win7等版本可以正常使用&lt;br&gt;
 powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1081,8 +712,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Get-WinObject -class win32_product | Select-object -property name,version
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;20-查询本机服务&#34;&gt;20. 查询本机服务
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;20-查询本机服务&#34;&gt;20. 查询本机服务&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1090,18 +721,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell wmic server list brief
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715010339.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;21-查询目标主机上的杀毒软件&#34;&gt;21. 查询目标主机上的杀毒软件
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715010339.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;21-查询目标主机上的杀毒软件&#34;&gt;21. 查询目标主机上的杀毒软件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1111,16 +733,7 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;或者：shell wmic process list brief
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715110942.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715110942.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 常见的杀软进程：&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -1180,16 +793,7 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell wmic /node:localhost /namespace:\\root\SecurityCenter2 path AntiVirusProduct Get DisplayName | findstr /V /B /C:displayName || echo No Antivirus installed
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112024.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112024.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 主动防御软件的安装路径&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1199,8 +803,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell wmic /namespace:\\root\SecurityCenter2 path antiVirusProduct Get displayName,productstate,pathtosignedproductexe
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;22-查看已启动的程序信息&#34;&gt;22. 查看已启动的程序信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;22-查看已启动的程序信息&#34;&gt;22. 查看已启动的程序信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1208,18 +812,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell wmic startup get command,caption
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112539.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;23-查看计划任务&#34;&gt;23. 查看计划任务
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112539.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;23-查看计划任务&#34;&gt;23. 查看计划任务&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1227,8 +822,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell schtasks /query /fo LISR /v
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;24-查看主机的开机时间&#34;&gt;24. 查看主机的开机时间
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;24-查看主机的开机时间&#34;&gt;24. 查看主机的开机时间&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1236,18 +831,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell net statistics workstation
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112823.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x04-探测网段存活&#34;&gt;0x04 探测网段存活
-&lt;/h1&gt;&lt;p&gt;高速内网扫描&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112823.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x04-探测网段存活&#34;&gt;0x04 探测网段存活&lt;/h1&gt;
+&lt;p&gt;高速内网扫描&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1266,8 +852,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这里看好有没有杀软edr再用，不然就是自首，除非你能二开工具。&lt;/p&gt;
-&lt;h3 id=&#34;1-利用betbios快速探测内网&#34;&gt;1. 利用betbios快速探测内网
-&lt;/h3&gt;&lt;p&gt;工具：Nbtscan&lt;/p&gt;
+&lt;h3 id=&#34;1-利用betbios快速探测内网&#34;&gt;1. 利用betbios快速探测内网&lt;/h3&gt;
+&lt;p&gt;工具：Nbtscan&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1277,16 +863,7 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;使用cs可以直接上传该脚本。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715140127.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715140127.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1295,18 +872,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell nbscan.exe 10.10.20.0/24
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715140608.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2-通过arp扫描完整探测内网&#34;&gt;2. 通过arp扫描完整探测内网
-&lt;/h3&gt;&lt;p&gt;下载地址：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715140608.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-通过arp扫描完整探测内网&#34;&gt;2. 通过arp扫描完整探测内网&lt;/h3&gt;
+&lt;p&gt;下载地址：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1324,8 +892,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell arp.exe -t 10.10.20.0/24
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;3-通过arpscan脚本&#34;&gt;3. 通过ARPScan脚本
-&lt;/h3&gt;&lt;p&gt;下载地址：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;3-通过arpscan脚本&#34;&gt;3. 通过ARPScan脚本&lt;/h3&gt;
+&lt;p&gt;下载地址：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1351,40 +919,13 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;powershell Invoke-ARPScan -CIDR 10.10.20.0/24
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142613.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142613.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 上传上去：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142630.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142630.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 执行该命令即可：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142703.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x05-针对件内容的信息搜集&#34;&gt;0x05 针对⽂件内容的信息搜集
-&lt;/h1&gt;&lt;p&gt;当对内⽹束⼿⽆策的时候，⼊⼝机器上⾯说不定藏着突破⼝，翻找本地的⽂件和建⽴的⽹络连接就是⼿法&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142703.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x05-针对件内容的信息搜集&#34;&gt;0x05 针对⽂件内容的信息搜集&lt;/h1&gt;
+&lt;p&gt;当对内⽹束⼿⽆策的时候，⼊⼝机器上⾯说不定藏着突破⼝，翻找本地的⽂件和建⽴的⽹络连接就是⼿法&lt;br&gt;
 这⾥也提供⼀个⽂件内容敏感词的字典，需要可以⾃⼰去整理，如下:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1408,9 +949,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sk-
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x06-配置信息收集&#34;&gt;0x06 配置信息收集
-&lt;/h1&gt;&lt;h3 id=&#34;1-web信息&#34;&gt;1. web信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x06-配置信息收集&#34;&gt;0x06 配置信息收集&lt;/h1&gt;
+&lt;h3 id=&#34;1-web信息&#34;&gt;1. web信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1418,18 +959,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run netstat -ano
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142911.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2-文档信息&#34;&gt;2. 文档信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142911.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-文档信息&#34;&gt;2. 文档信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1439,18 +971,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell dir /a /s /b c:\*.doc
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715143756.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;3-查看最近打开的文档&#34;&gt;3. 查看最近打开的文档
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715143756.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-查看最近打开的文档&#34;&gt;3. 查看最近打开的文档&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1458,18 +981,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell dir %APPDATA%\Microsoft\Windows\Recent
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715143914.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;4-查看微信信息&#34;&gt;4. 查看微信信息
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715143914.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;4-查看微信信息&#34;&gt;4. 查看微信信息&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1477,19 +991,10 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell dir /s /b c:\&amp;#34;WeChat Files&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715144017.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x07-网络资产搜集&#34;&gt;0x07 网络资产搜集
-&lt;/h1&gt;&lt;h3 id=&#34;1-网络各种配置文件&#34;&gt;1. 网络各种配置文件
-&lt;/h3&gt;&lt;p&gt;通常再行动中，入口点都在泛OA，致OA，通OA，用NC等等。&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715144017.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x07-网络资产搜集&#34;&gt;0x07 网络资产搜集&lt;/h1&gt;
+&lt;h3 id=&#34;1-网络各种配置文件&#34;&gt;1. 网络各种配置文件&lt;/h3&gt;
+&lt;p&gt;通常再行动中，入口点都在泛OA，致OA，通OA，用NC等等。&lt;br&gt;
 用NC解密：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1580,9 +1085,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;\Users\XXX\AppData\Local&lt;/span&gt;          &lt;span class=&#34;c1&#34;&gt;//用户软件信息【仅个人安装选项】
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x08-内网工具&#34;&gt;0x08 内网工具
-&lt;/h1&gt;&lt;h3 id=&#34;1-fscan&#34;&gt;1. fscan
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x08-内网工具&#34;&gt;0x08 内网工具&lt;/h1&gt;
+&lt;h3 id=&#34;1-fscan&#34;&gt;1. fscan&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1634,8 +1139,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql.exe -i 10.10.20.0/24 -np -p 22,2222,3389,1433,3306,1521,5432,6379 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;2-kscan-轻量化全方位扫描器&#34;&gt;2. Kscan-轻量化全方位扫描器
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;2-kscan-轻量化全方位扫描器&#34;&gt;2. Kscan-轻量化全方位扫描器&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1645,8 +1150,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/lcvvvv/kscan
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;3-dismap&#34;&gt;3. dismap
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;3-dismap&#34;&gt;3. dismap&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1656,16 +1161,7 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/zhzyker/dismap
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715150212.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715150212.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 原则就是：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;安静&lt;/li&gt;
@@ -1673,9 +1169,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;li&gt;尽量用正常的协议&lt;/li&gt;
 &lt;li&gt;尽量用改造过的工具&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;0x09-密码凭证收集&#34;&gt;0x09 密码凭证收集
-&lt;/h1&gt;&lt;h3 id=&#34;1-主机密码&#34;&gt;1. 主机密码
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h1 id=&#34;0x09-密码凭证收集&#34;&gt;0x09 密码凭证收集&lt;/h1&gt;
+&lt;h3 id=&#34;1-主机密码&#34;&gt;1. 主机密码&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1683,16 +1179,7 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell logonpasswords
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715150910.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715150910.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1712,9 +1199,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/k8gege/Ladon
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x10-用户操作相关&#34;&gt;0x10 用户操作相关
-&lt;/h1&gt;&lt;h3 id=&#34;1-当前用户&#34;&gt;1. 当前用户
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x10-用户操作相关&#34;&gt;0x10 用户操作相关&lt;/h1&gt;
+&lt;h3 id=&#34;1-当前用户&#34;&gt;1. 当前用户&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1726,8 +1213,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell echo %username%
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;2-收集用户信息&#34;&gt;2. 收集用户信息
-&lt;/h3&gt;&lt;p&gt;查看⽤户名，查看⽤户信息&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;2-收集用户信息&#34;&gt;2. 收集用户信息&lt;/h3&gt;
+&lt;p&gt;查看⽤户名，查看⽤户信息&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1738,8 +1225,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net user ⽤户名
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;3-在线户&#34;&gt;3. 在线⽤户
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;3-在线户&#34;&gt;3. 在线⽤户&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1747,8 +1234,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell query user
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;4-查看域管&#34;&gt;4. 查看域管
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;4-查看域管&#34;&gt;4. 查看域管&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1756,8 +1243,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; shell net localgroup administrators
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;5-激活guest&#34;&gt;5. 激活Guest
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;5-激活guest&#34;&gt;5. 激活Guest&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1771,8 +1258,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell net localgroup administrators
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;6-激活administrator&#34;&gt;6. 激活administrator
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;6-激活administrator&#34;&gt;6. 激活administrator&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1782,8 +1269,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell net user Administrator P@ssw0rd123
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;7-创建户&#34;&gt;7. 创建⽤户
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;7-创建户&#34;&gt;7. 创建⽤户&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1793,8 +1280,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell net localgroup administrators ⽤户名 /add #将⽤户加到管理组
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;8-创建后户&#34;&gt;8. 创建后⻔⽤户
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;8-创建后户&#34;&gt;8. 创建后⻔⽤户&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1806,8 +1293,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell net localgroup administrators
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x11-查看防墙相关&#34;&gt;0x11 查看防⽕墙相关
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x11-查看防墙相关&#34;&gt;0x11 查看防⽕墙相关&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1815,8 +1302,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh firewall show config
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;关闭防墙&#34;&gt;关闭防⽕墙
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;关闭防墙&#34;&gt;关闭防⽕墙&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1837,16 +1324,7 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell netsh firewall show portopening
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717214640.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717214640.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 根据防⽕墙配置，⽬标主机已放⾏ TCP 7001 端⼝的⼊站流量（对应 WebLogic 服务端⼝）。我们可以利⽤这个开放端⼝进⾏ Beacon 连接 这仅表示：&lt;br&gt;
 添加防⽕墙规则:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1883,9 +1361,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/iagox86/dnscat2
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x12-rdp操作相关&#34;&gt;0x12 RDP操作相关
-&lt;/h1&gt;&lt;h2 id=&#34;查看rdp端&#34;&gt;查看RDP端⼝
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x12-rdp操作相关&#34;&gt;0x12 RDP操作相关&lt;/h1&gt;
+&lt;h2 id=&#34;查看rdp端&#34;&gt;查看RDP端⼝&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1893,19 +1371,10 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell reg query &amp;#34;HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&amp;#34; /v PortNumber
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133525.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133525.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 为16进制数0xd3d，转换为10进制就是3389&lt;/p&gt;
-&lt;h2 id=&#34;开放rdp服务&#34;&gt;开放RDP服务
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h2 id=&#34;开放rdp服务&#34;&gt;开放RDP服务&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1913,18 +1382,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell reg add &amp;#34;HKLM\SYSTEM\CurrentControlSet\control\Terminal Server&amp;#34; /v fDenyTSConnections /d 0 /t REG_DWORD /f
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133644.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;开放rdp端&#34;&gt;开放RDP端⼝
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133644.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;开放rdp端&#34;&gt;开放RDP端⼝&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -1932,18 +1392,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell netsh advfirewall firewall add rule name=&amp;#34;Remote Desktop&amp;#34; protocol=TCP dir=in localport=3389 action=allow
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133732.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;离线破解rdp连接密码&#34;&gt;离线破解RDP连接密码
-&lt;/h2&gt;&lt;p&gt;查看是否存在凭证：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133732.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;离线破解rdp连接密码&#34;&gt;离线破解RDP连接密码&lt;/h2&gt;
+&lt;p&gt;查看是否存在凭证：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1952,18 +1403,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell dir /a %userprofile%\AppData\Local\Microsoft\Credentials\*
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133858.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;获取wifi密码&#34;&gt;获取WiFi密码
-&lt;/h2&gt;&lt;p&gt;查看连接过的Wifi名称：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133858.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;获取wifi密码&#34;&gt;获取WiFi密码&lt;/h2&gt;
+&lt;p&gt;查看连接过的Wifi名称：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1972,16 +1414,7 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh wlan show profiles
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722134654.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722134654.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 如果乱码可以下载下来看&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2000,18 +1433,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh wlan show profile name=&amp;#34;WIFI名称&amp;#34; key=clear
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722134819.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;查看代理&#34;&gt;查看代理
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722134819.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;查看代理&#34;&gt;查看代理&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -2019,19 +1443,10 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shell reg query &amp;#34;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722135014.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x13-志痕迹相关&#34;&gt;0x13 ⽇志痕迹相关
-&lt;/h1&gt;&lt;h2 id=&#34;清除事件志&#34;&gt;清除事件⽇志
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722135014.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x13-志痕迹相关&#34;&gt;0x13 ⽇志痕迹相关&lt;/h1&gt;
+&lt;h2 id=&#34;清除事件志&#34;&gt;清除事件⽇志&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2055,8 +1470,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Application：应⽤程序事件
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;停志相关服务&#34;&gt;停⽌⽇志相关服务
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h2 id=&#34;停志相关服务&#34;&gt;停⽌⽇志相关服务&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2074,18 +1489,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sc stop eventlog
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722135228.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;永久禁志服务&#34;&gt;永久禁⽤⽇志服务
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722135228.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;永久禁志服务&#34;&gt;永久禁⽤⽇志服务&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -2093,8 +1499,8 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sc config EventLog start= disabled
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;志件覆盖&#34;&gt;⽇志⽂件覆盖
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h2 id=&#34;志件覆盖&#34;&gt;⽇志⽂件覆盖&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2110,9 +1516,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;防⽌⽂件恢复⼯具提取⽇志
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x13-cs插件&#34;&gt;0x13 CS插件
-&lt;/h1&gt;&lt;h4 id=&#34;ola&#34;&gt;OLa
-&lt;/h4&gt;&lt;p&gt;下载地址：&lt;/p&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x13-cs插件&#34;&gt;0x13 CS插件&lt;/h1&gt;
+&lt;h4 id=&#34;ola&#34;&gt;OLa&lt;/h4&gt;
+&lt;p&gt;下载地址：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2122,18 +1528,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;cs2插件，直接可以在cs2中使用：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717212946.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h4 id=&#34;taowu&#34;&gt;taowu
-&lt;/h4&gt;&lt;p&gt;下载地址：&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717212946.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;taowu&#34;&gt;taowu&lt;/h4&gt;
+&lt;p&gt;下载地址：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2143,18 +1540,9 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;cs2插件&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717213252.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h4 id=&#34;lstar---aggressor&#34;&gt;LSTAR - Aggressor
-&lt;/h4&gt;&lt;p&gt;下载地址：&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717213252.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;lstar---aggressor&#34;&gt;LSTAR - Aggressor&lt;/h4&gt;
+&lt;p&gt;下载地址：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2164,16 +1552,7 @@ powershell中可代替该命令的是：&lt;code&gt;Get-WinObject&lt;/code&gt;�
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;cs插件&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717213634.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717213634.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 </description>
         </item>
         

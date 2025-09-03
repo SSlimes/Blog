@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>其他 on Slimer</title>
+        <title>其他 on SlimerのBlog</title>
         <link>http://localhost:1313/categories/%E5%85%B6%E4%BB%96/</link>
-        <description>Recent content in 其他 on Slimer</description>
+        <description>Recent content in 其他 on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
@@ -13,19 +13,10 @@
         <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/hugohugo-stack%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9-%E5%BD%92%E6%A1%A3%E4%B8%8B%E4%B8%80%E9%A1%B5%E9%85%8D%E7%BD%AE/</guid>
-        <description>&lt;img src="http://localhost:1313/images/28.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-归档下一页配置" /&gt;&lt;h1 id=&#34;演示效果&#34;&gt;演示效果：
-&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902102246.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;修改&#34;&gt;修改：
-&lt;/h1&gt;&lt;p&gt;在&lt;code&gt;\layouts\_default&lt;/code&gt;文件夹下创建：&lt;code&gt;archives.html&lt;/code&gt;&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/images/28.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-归档下一页配置" /&gt;&lt;h1 id=&#34;演示效果&#34;&gt;演示效果：&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250902102246.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;修改&#34;&gt;修改：&lt;/h1&gt;
+&lt;p&gt;在&lt;code&gt;\layouts\_default&lt;/code&gt;文件夹下创建：&lt;code&gt;archives.html&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1
@@ -351,8 +342,8 @@
         <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E6%B8%B8%E6%88%8Fcs2_cfg%E6%96%87%E4%BB%B6-%E4%B8%AA%E4%BA%BA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88/</guid>
-        <description>&lt;img src="http://localhost:1313/images/21.webp" alt="Featured image of post 【游戏】CS2_cfg文件-个人使用方案" /&gt;&lt;h1 id=&#34;autoexeccfg&#34;&gt;autoexec.cfg
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+        <description>&lt;img src="http://localhost:1313/images/21.webp" alt="Featured image of post 【游戏】CS2_cfg文件-个人使用方案" /&gt;&lt;h1 id=&#34;autoexeccfg&#34;&gt;autoexec.cfg&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  2
@@ -576,8 +567,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;bind&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;space&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;+jump&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;lianxicfg&#34;&gt;lianxi.cfg
-&lt;/h1&gt;&lt;p&gt;一些跑图的cfg文件：&lt;/p&gt;
+&lt;/div&gt;&lt;h1 id=&#34;lianxicfg&#34;&gt;lianxi.cfg&lt;/h1&gt;
+&lt;p&gt;一些跑图的cfg文件：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -694,10 +685,10 @@
         <pubDate>Fri, 29 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/hugohugo-stack%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9-%E5%8F%96%E6%B6%88-markdown-%E4%B8%A5%E6%A0%BC%E6%8D%A2%E8%A1%8C/</guid>
-        <description>&lt;img src="http://localhost:1313/images/18.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-取消 markdown 严格换行" /&gt;&lt;h1 id=&#34;引言&#34;&gt;引言：
-&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;不修改之前一定要在markdown换两行才能在博文里换行，实在是太烦了。&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&#34;修改&#34;&gt;修改：
-&lt;/h1&gt;&lt;p&gt;其实只要在 &lt;code&gt;hugo.yaml&lt;/code&gt; （也就是&lt;code&gt;config.yaml&lt;/code&gt;）里面对应的选项里添加： &lt;code&gt;hardWraps: true&lt;/code&gt;&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/images/18.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-取消 markdown 严格换行" /&gt;&lt;h1 id=&#34;引言&#34;&gt;引言：&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;不修改之前一定要在markdown换两行才能在博文里换行，实在是太烦了。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;修改&#34;&gt;修改：&lt;/h1&gt;
+&lt;p&gt;其实只要在 &lt;code&gt;hugo.yaml&lt;/code&gt; （也就是&lt;code&gt;config.yaml&lt;/code&gt;）里面对应的选项里添加： &lt;code&gt;hardWraps: true&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -721,19 +712,10 @@
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/hugohugo-stack%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9-%E5%9B%BA%E5%AE%9A%E4%BB%A3%E7%A0%81%E5%9D%97%E9%AB%98%E5%BA%A6/</guid>
-        <description>&lt;img src="http://localhost:1313/images/17.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-固定代码块高度" /&gt;&lt;h1 id=&#34;效果&#34;&gt;效果
-&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829024714.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;修改&#34;&gt;修改
-&lt;/h1&gt;&lt;p&gt;高度限制在 20em，并隐藏滚动条。&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/17.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-固定代码块高度" /&gt;&lt;h1 id=&#34;效果&#34;&gt;效果&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250829024714.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;修改&#34;&gt;修改&lt;/h1&gt;
+&lt;p&gt;高度限制在 20em，并隐藏滚动条。&lt;br&gt;
 增添到 ==/themes/hugo-theme-stack/assets/scss/partials/article.scss==&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -786,29 +768,11 @@
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/hugohugo-stack%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9-%E5%BD%92%E6%A1%A3%E6%A0%87%E7%AD%BE%E9%A2%9C%E8%89%B2%E8%87%AA%E5%AE%9A%E4%B9%89/</guid>
-        <description>&lt;img src="http://localhost:1313/images/11.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-归档标签颜色自定义" /&gt;&lt;h1 id=&#34;最终效果&#34;&gt;最终效果：
-&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828185235.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;自定义修改&#34;&gt;自定义修改
-&lt;/h1&gt;&lt;p&gt;修改位置：&lt;code&gt;\content\categories\标签名\_index.md&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828185332.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/11.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-归档标签颜色自定义" /&gt;&lt;h1 id=&#34;最终效果&#34;&gt;最终效果：&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828185235.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;自定义修改&#34;&gt;自定义修改&lt;/h1&gt;
+&lt;p&gt;修改位置：&lt;code&gt;\content\categories\标签名\_index.md&lt;/code&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828185332.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 index.md文件内容：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -929,72 +893,18 @@ index.md文件内容：&lt;/p&gt;
         <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/ctf%E8%A7%82%E5%AE%89%E6%9D%AFctf-ezbank/</guid>
-        <description>&lt;img src="http://localhost:1313/images/9.webp" alt="Featured image of post 【CTF】观安杯CTF-Ezbank" /&gt;&lt;h1 id=&#34;题目解题&#34;&gt;题目解题
-&lt;/h1&gt;&lt;p&gt;1、注册一个账户，登陆并添加一个账户&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183439.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+        <description>&lt;img src="http://localhost:1313/images/9.webp" alt="Featured image of post 【CTF】观安杯CTF-Ezbank" /&gt;&lt;h1 id=&#34;题目解题&#34;&gt;题目解题&lt;/h1&gt;
+&lt;p&gt;1、注册一个账户，登陆并添加一个账户&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183439.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 2、通过转账功能，向ID为6的账户转账&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183456.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183456.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 3、转账时抓包&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183505.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183505.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 4、抓包后通过测试并发获取更多钱。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183524.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183530.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183524.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183530.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 5、两个ID相互转账并多次并发，得到最后的金额购买最后一个礼物，得到flag。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183546.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828183546.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1003,8 +913,8 @@ index.md文件内容：&lt;/p&gt;
         <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/%E5%85%B6%E4%BB%96/</guid>
-        <description>&lt;img src="http://localhost:1313/images/2.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-1" /&gt;&lt;h1 id=&#34;0x01-搭建方式&#34;&gt;0x01 搭建方式
-&lt;/h1&gt;&lt;p&gt;直接拉取我的github仓库文件即可：&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/images/2.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-1" /&gt;&lt;h1 id=&#34;0x01-搭建方式&#34;&gt;0x01 搭建方式&lt;/h1&gt;
+&lt;p&gt;直接拉取我的github仓库文件即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1013,11 +923,10 @@ index.md文件内容：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/SSlimes/Blog
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;0x02-stack主题修改&#34;&gt;0x02 stack主题修改
-&lt;/h1&gt;&lt;h2 id=&#34;1-字体修改&#34;&gt;1. 字体修改：
-&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;前往【&lt;a class=&#34;link&#34; href=&#34;https://www.100font.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;100font&lt;/a&gt;】，下载自己想要的字体，字体文件为 &lt;strong&gt;fusion-pixel-10px-monospaced-zh_hans.ttf&lt;/strong&gt;&lt;/li&gt;
+&lt;/div&gt;&lt;h1 id=&#34;0x02-stack主题修改&#34;&gt;0x02 stack主题修改&lt;/h1&gt;
+&lt;h2 id=&#34;1-字体修改&#34;&gt;1. 字体修改：&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;前往【&lt;a href=&#34;https://www.100font.com/&#34;&gt;100font&lt;/a&gt;】，下载自己想要的字体，字体文件为 &lt;strong&gt;fusion-pixel-10px-monospaced-zh_hans.ttf&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;把字体文件放入&lt;code&gt;assets/font&lt;/code&gt;下(文件夹自己创建)&lt;/li&gt;
 &lt;li&gt;将以下代码修改并复制到&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt;文件中(文件不存在就自己创建)&lt;/li&gt;
 &lt;/ol&gt;
@@ -1049,8 +958,8 @@ index.md文件内容：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/style&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;2-背景图片&#34;&gt;2. 背景图片
-&lt;/h2&gt;&lt;p&gt;将以下代码复制到&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt;文件中(文件不存在则自行创建)&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;2-背景图片&#34;&gt;2. 背景图片&lt;/h2&gt;
+&lt;p&gt;将以下代码复制到&lt;code&gt;layouts/partials/footer/custom.html&lt;/code&gt;文件中(文件不存在则自行创建)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1075,8 +984,8 @@ index.md文件内容：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;lt;/style&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;3-首页欢迎横幅&#34;&gt;3. 首页欢迎横幅
-&lt;/h2&gt;&lt;p&gt;在 &lt;code&gt;/layouts/index.html&lt;/code&gt; 的 &lt;code&gt;&amp;lt;section class=&amp;quot;article-list&amp;quot;&amp;gt;&lt;/code&gt; 前添加以下代码：&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;3-首页欢迎横幅&#34;&gt;3. 首页欢迎横幅&lt;/h2&gt;
+&lt;p&gt;在 &lt;code&gt;/layouts/index.html&lt;/code&gt; 的 &lt;code&gt;&amp;lt;section class=&amp;quot;article-list&amp;quot;&amp;gt;&lt;/code&gt; 前添加以下代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1107,10 +1016,9 @@ index.md文件内容：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;!-- 首页欢迎字幅 --&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;4-macos风格的代码块&#34;&gt;4. macOS风格的代码块
-&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;准备一张macOS代码块的&lt;a class=&#34;link&#34; href=&#34;https://letere-gzj.github.io/hugo-stack/p/hugo/custom-stack-theme/macOS-code-header.svg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;&lt;strong&gt;红绿灯图片&lt;/strong&gt;&lt;/a&gt;(Ctrl+S保存), 放到&lt;code&gt;static/icons&lt;/code&gt;文件夹下&lt;/li&gt;
+&lt;/div&gt;&lt;h2 id=&#34;4-macos风格的代码块&#34;&gt;4. macOS风格的代码块&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;准备一张macOS代码块的&lt;a href=&#34;https://letere-gzj.github.io/hugo-stack/p/hugo/custom-stack-theme/macOS-code-header.svg&#34;&gt;&lt;strong&gt;红绿灯图片&lt;/strong&gt;&lt;/a&gt;(Ctrl+S保存), 放到&lt;code&gt;static/icons&lt;/code&gt;文件夹下&lt;/li&gt;
 &lt;li&gt;将以下代码复制进&lt;code&gt;assets/scss/custom.scss&lt;/code&gt;文件中(不存在则自行创建)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1151,8 +1059,8 @@ index.md文件内容：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;5-头像旋转&#34;&gt;5. 头像旋转
-&lt;/h2&gt;&lt;p&gt;在 &lt;code&gt;/assets/scss/custom.scss&lt;/code&gt; 中加入以下代码：&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;5-头像旋转&#34;&gt;5. 头像旋转&lt;/h2&gt;
+&lt;p&gt;在 &lt;code&gt;/assets/scss/custom.scss&lt;/code&gt; 中加入以下代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1183,20 +1091,11 @@ index.md文件内容：&lt;/p&gt;
         <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/hugohugo-stack%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9-%E5%8D%9A%E5%AE%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/</guid>
-        <description>&lt;img src="http://localhost:1313/images/3.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-博客运行时间" /&gt;&lt;h1 id=&#34;博客运行时间&#34;&gt;博客运行时间
-&lt;/h1&gt;&lt;h2 id=&#34;1-完成样式&#34;&gt;1. 完成样式
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250827160323.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2-footerhtml文件修改&#34;&gt;2. footer.html文件修改
-&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;layouts\partials\footer\footer.html&lt;/code&gt;目录下新增以下代码：（没有该文件则自己创建）&lt;/p&gt;
+        <description>&lt;img src="http://localhost:1313/images/3.webp" alt="Featured image of post 【Hugo】hugo-stack主题魔改-博客运行时间" /&gt;&lt;h1 id=&#34;博客运行时间&#34;&gt;博客运行时间&lt;/h1&gt;
+&lt;h2 id=&#34;1-完成样式&#34;&gt;1. 完成样式&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250827160323.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-footerhtml文件修改&#34;&gt;2. footer.html文件修改&lt;/h2&gt;
+&lt;p&gt;在&lt;code&gt;layouts\partials\footer\footer.html&lt;/code&gt;目录下新增以下代码：（没有该文件则自己创建）&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1249,18 +1148,9 @@ index.md文件内容：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;end&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250827160253.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;3-修改configyaml文件&#34;&gt;3. 修改config.yaml文件
-&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;config.yaml&lt;/code&gt;文件下新增该内容即可&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250827160253.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-修改configyaml文件&#34;&gt;3. 修改config.yaml文件&lt;/h2&gt;
+&lt;p&gt;在&lt;code&gt;config.yaml&lt;/code&gt;文件下新增该内容即可&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1269,18 +1159,9 @@ index.md文件内容：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;runtimeSince: 2025-08-025T00:00:00   # 站点开始运行的时间（本地时区），用于页脚运行时间
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250827160530.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;4-修改customscss文件按&#34;&gt;4. 修改custom.scss文件按
-&lt;/h2&gt;&lt;p&gt;让页脚运行时间颜色与版权一致。修改\assets\scss\custom.scss文件。（没有自己创建即可）&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250827160530.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4-修改customscss文件按&#34;&gt;4. 修改custom.scss文件按&lt;/h2&gt;
+&lt;p&gt;让页脚运行时间颜色与版权一致。修改\assets\scss\custom.scss文件。（没有自己创建即可）&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1299,16 +1180,7 @@ index.md文件内容：&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250827160830.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250827160830.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
 </description>
         </item>
         

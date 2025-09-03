@@ -1,4 +1,22 @@
 
+/*---------------------------------------文章加粗文本样式-------------------------------------------*/
+// 设置文章中加粗文本的样式（更浅、更柔和的颜色方案）
+.article-content strong {
+  color: #4a5568 !important; // 深灰色文字，提高可读性
+  background-color: #e6f7ff !important; // 淡蓝色背景
+  padding: 2px 5px; // 保留内边距
+  border-radius: 4px; // 保留圆角
+  font-weight: bold; // 确保字体加粗
+  border: 1px solid #bae7ff; // 添加浅色边框
+  transition: all 0.2s ease; // 平滑过渡效果
+}
+
+// 鼠标悬停时的效果
+.article-content strong:hover {
+  background-color: #bae7ff !important; // 稍深的蓝色背景
+  border-color: #91d5ff; // 稍深的边框颜色
+}
+
 /*---------------------------------------代码块内化-------------------------------------------*/
 //---macOS风格的代码块
 .highlight {
@@ -46,30 +64,49 @@
     width: auto;
     /* 新增字体间距样式 */
     letter-spacing: 1px; /* 字间距，可根据需要调整 */
-    line-height: 1.5; /* 行间距，可根据需要调整 */
-    font-size: 17px; /* 可选：调整字体大小配合间距 */
+    line-height: 1.8; /* 行间距，可根据需要调整 */
+    font-size: 18px; /* 可选：调整字体大小配合间距 */
   }
 }
 
 // light模式下的代码块样式调整
 [data-scheme="light"] .article-content .highlight {
-  background-color: #fff9f3; /* 亮色模式下代码块背景色（浅橙色底） */
+  background-color: #f1f1f1; /* 亮色模式下代码块背景色（浅灰色底） */
 }
 
 [data-scheme="light"] .chroma {
-  color: #ff6f00; /* 亮色模式下代码文本颜色（橙色文字） */
-  background-color: #fff9f3cc; /* 亮色模式下代码高亮区域背景（半透明浅橙） */
+  color: #333333; /* 亮色模式下代码文本颜色（深灰色文字） */
+  background-color: #f1f1f1cc; /* 亮色模式下代码高亮区域背景（半透明浅灰） */
+}
+
+/* 移除代码块行号 */
+.chroma .lntd:first-child {
+  display: none !important; /* 隐藏行号单元格 */
+}
+
+.chroma .lntable > tbody > tr > td:last-child {
+  width: 100% !important; /* 让代码内容单元格占满宽度 */
+}
+
+.chroma .lnt {
+  display: none !important; /* 隐藏行号表格样式 */
+}
+
+.chroma .ln {
+  display: none !important; /* 隐藏行号 */
 }
 
 /*----------------------------------------左侧导航栏-------------------------------------------*/
-// 头像旋转动画
+// 头像样式 - 圆角正方形
 .sidebar header .site-avatar .site-logo {
   transition: transform 1.65s ease-in-out; // 旋转时间
+  border-radius: 29px; // 设置为圆角正方形
+  object-fit: cover; // 确保图片正确填充容器
+  width: var(--sidebar-avatar-size);
+  height: var(--sidebar-avatar-size);
 }
 
-.sidebar header .site-avatar .site-logo:hover {
-  transform: rotate(360deg); // 旋转角度为360度
-}
+
 /* 页面整体布局占比 */
 :root {
   --sidebar-width: 40rem;       // 左边栏整体宽度
@@ -77,15 +114,26 @@
 }
 
 .left-sidebar {
-  --sidebar-avatar-size: 140px; //左侧头像大小
+  --sidebar-avatar-size: 220px; //左侧头像大小（进一步增大）
   --sidebar-element-separation: 20px; //头像下方间距
   --emoji-size: 100px; //emoji容器大小
   --emoji-font-size: 30px; //emoji字体大小
 }
 
+// 头像居中样式
+.sidebar header .site-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 /* 左侧栏选项动画 */
 #main-menu {
     overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     li {
 		margin-bottom: 10px; // 控制每个菜单项的上下间距
         a {
@@ -331,6 +379,43 @@
 /*-------------------------------------------文章内容---------------------------------------------*/
 // 文章内容图片圆角阴影
 .article-page .main-article .article-content {
+  // 修改文章中各级标题的颜色
+  h1 {
+    color: #ff69b4 !important; // 粉色
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  h2 {
+    color: #10b981 !important; // 绿色
+    margin-top: 1.3rem;
+    margin-bottom: 0.9rem;
+  }
+  
+  h3 {
+    color: #f59e0b !important; // 橙色
+    margin-top: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  h4 {
+    color: #8b5cf6 !important; // 紫色
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+  }
+  
+  h5 {
+    color: #ec4899 !important; // 粉色
+    margin-top: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  h6 {
+    color: #6b7280 !important; // 灰色
+    margin-top: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
   img {
     max-width: 96% !important;
     height: auto !important;
@@ -362,6 +447,42 @@ footer.site-footer {
     font-weight: bold;
   }
 }
+
+/* 文章发布时间样式修改 */
+/* 统一的时间和字数统计样式 */
+.article-time time,
+.article-time--published,
+.article-word-count,
+.article-list article .article-time time {
+  font-size: 1.5rem !important;
+  color: #ffffff !important;
+  font-weight: 500;
+  background: linear-gradient(135deg, #a5b4fc, #fbcfe8) !important;
+  padding: 4px 10px !important;
+  border-radius: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+/* 时间元素右侧间距 */
+.article-time--published {
+  margin-right: 8px !important;
+}
+
+/* 统一的图标样式 */
+.article-time svg,
+.article-time--published svg,
+.article-word-count svg,
+.article-list article .article-time svg {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 移除了不再需要的特定图标选择器，因为图标已移至time标签内部 */
+
 /*-------------------------------------------页面--------------------------------------------------*/
 // 页面三栏布局宽度调整样式
 .container {
@@ -665,6 +786,218 @@ footer.site-footer {
   100% {
     transform: translateY(0);
   }
+}
+/*-------------------------------------------文章内容字体大小---------------------------------------------*/
+// 设置文章内容正文的字体大小
+.article-page .main-article .article-content {
+  // 基础文字大小
+  font-size: 20px; // 可以根据需要调整这个值
+  line-height: 2; // 调整行高以提高可读性
+  
+  // 段落样式
+  p {
+    font-size: inherit; // 继承父元素的字体大小
+    margin-bottom: 1.2rem; // 段落间距
+  }
+  
+  // 标题样式
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4; // 标题行高
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  h2 {
+    font-size: 2.2rem;
+  }
+  
+  h3 {
+    font-size: 2rem;
+  }
+  
+  h4 {
+    font-size: 1.8rem;
+  }
+  
+  h5 {
+    font-size: 1.6rem;
+  }
+  
+  h6 {
+    font-size: 1.4rem;
+  }
+  
+  // 列表样式
+  ul, ol {
+    font-size: inherit;
+    margin-bottom: 1.2rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  // 引用块样式
+  blockquote {
+    font-size: inherit;
+    line-height: 1.7;
+  }
+}
+
+// 响应式调整：在小屏幕上适当缩小字体
+@media (max-width: 768px) {
+  .article-page .main-article .article-content {
+    font-size: 16px; // 小屏幕上的字体大小
+    
+    h1 {
+      font-size: 2.2rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    h3 {
+      font-size: 1.8rem;
+    }
+    
+    h4 {
+      font-size: 1.6rem;
+    }
+    
+    h5 {
+      font-size: 1.4rem;
+    }
+    
+    h6 {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// 左侧导航栏菜单颜色样式 - 蓝粉色渐变
+#main-menu {
+    li {
+        a {
+            color: #ec4899; // 设置基础颜色
+            transition: all 0.3s ease;
+            padding: 15px 15px; // 增加上下内边距，使菜单间距更大
+            border-radius: 6px;
+            width: 100%;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 20px; // 图标和文字之间的间距
+        }
+        
+        a:hover {
+            color: #db2777; // 悬停时颜色
+            background-color: rgba(236, 72, 153, 0.1); // 轻微的背景色变化
+        }
+        
+        &.current {
+            a {
+                color: #be185d; // 活动状态颜色
+                font-weight: 600;
+                background-color: rgba(236, 72, 153, 0.15); // 更明显的背景色
+            }
+        }
+        
+        // 确保图标显示渐变颜色
+        a .icon {
+            color: inherit; // 继承父元素的颜色
+            background: inherit !important; // 继承父元素的背景渐变
+            -webkit-background-clip: text !important; // 应用文本背景裁剪
+            background-clip: text !important; // 应用文本背景裁剪
+        }
+        
+        // 为文字添加渐变效果
+        a span {
+            background: linear-gradient(135deg, #60a5fa, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline;
+            font-weight: 600; // 字体加粗
+        }
+        
+        a:hover span {
+            background: linear-gradient(135deg, #3b82f6, #db2777);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600; // 字体加粗
+        }
+        
+        &.current a span {
+            background: linear-gradient(135deg, #2563eb, #be185d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700; // 活动状态字体更粗
+        }
+    }
+}
+
+// 网站标题颜色调整 - 蓝粉色渐变
+.sidebar header .site-name {
+    text-align: center; // 使标题居中显示
+}
+
+.sidebar header .site-name a {
+    // 蓝粉色渐变效果
+    background: linear-gradient(135deg, #60a5fa, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 2.2rem; // 增大字体大小
+}
+
+.sidebar header .site-name a:hover {
+    // 悬停时更深的蓝粉色渐变
+    background: linear-gradient(135deg, #3b82f6, #db2777);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+// 社交媒体图标颜色调整 - 蓝粉色渐变
+.menu-social {
+    display: flex;
+    justify-content: center;
+    gap: 10px; // 图标之间的间距
+    li {
+        a {
+            // 设置蓝粉色渐变效果（与标题相同）
+            background: linear-gradient(135deg, #60a5fa, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            // 悬停时更深的蓝粉色渐变（与标题相同）
+            background: linear-gradient(135deg, #3b82f6, #db2777);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        // 确保图标显示渐变颜色
+        a .icon {
+            color: inherit; // 继承父元素的颜色
+            background: inherit !important; // 继承父元素的背景渐变
+            -webkit-background-clip: text !important; // 应用文本背景裁剪
+            background-clip: text !important; // 应用文本背景裁剪
+        }
+    }
 }
 
 

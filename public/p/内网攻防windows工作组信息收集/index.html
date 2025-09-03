@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 前置\r当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：\n我是谁？&ndash;主机身份与特权边界确认。\n这是哪？&ndash;对目前机器处网络环境的拓扑结构进行分析和判断。\n我在哪？&ndash;对目前机器所处伪造区域的判断。\n谁在哪？&ndash;对比钱机器反防御技术识别网络中的安全监控节点。\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 前置 当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：\n我是谁？&ndash;主机身份与特权边界确认。\n这是哪？&ndash;对目前机器处网络环境的拓扑结构进行分析和判断。\n我在哪？&ndash;对目前机器所处伪造区域的判断。\n谁在哪？&ndash;对比钱机器反防御技术识别网络中的安全监控节点。\n">
 <title>【内网攻防】Windows工作组信息收集</title>
 
 <link rel='canonical' href='http://localhost:1313/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/'>
 
-<link rel="stylesheet" href="/scss/style.min.11207ff81409bbe9433b02843a9ded640f4a8e3b1a8a586bb557251116607463.css"><meta property='og:title' content="【内网攻防】Windows工作组信息收集">
-<meta property='og:description' content="0x00 前置\r当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：\n我是谁？&ndash;主机身份与特权边界确认。\n这是哪？&ndash;对目前机器处网络环境的拓扑结构进行分析和判断。\n我在哪？&ndash;对目前机器所处伪造区域的判断。\n谁在哪？&ndash;对比钱机器反防御技术识别网络中的安全监控节点。\n">
+<link rel="stylesheet" href="/scss/style.min.e5c621ce00d10380fc9596e768851c5e9e91c8f1166ec3bff7818927c1c60bc4.css"><meta property='og:title' content="【内网攻防】Windows工作组信息收集">
+<meta property='og:description' content="0x00 前置 当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：\n我是谁？&ndash;主机身份与特权边界确认。\n这是哪？&ndash;对目前机器处网络环境的拓扑结构进行分析和判断。\n我在哪？&ndash;对目前机器所处伪造区域的判断。\n谁在哪？&ndash;对比钱机器反防御技术识别网络中的安全监控节点。\n">
 <meta property='og:url' content='http://localhost:1313/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/'>
-<meta property='og:site_name' content='Slimer'>
+<meta property='og:site_name' content='SlimerのBlog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-08-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-28T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/13.webp' />
 <meta name="twitter:title" content="【内网攻防】Windows工作组信息收集">
-<meta name="twitter:description" content="0x00 前置\r当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：\n我是谁？&ndash;主机身份与特权边界确认。\n这是哪？&ndash;对目前机器处网络环境的拓扑结构进行分析和判断。\n我在哪？&ndash;对目前机器所处伪造区域的判断。\n谁在哪？&ndash;对比钱机器反防御技术识别网络中的安全监控节点。\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="0x00 前置 当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：\n我是谁？&ndash;主机身份与特权边界确认。\n这是哪？&ndash;对目前机器处网络环境的拓扑结构进行分析和判断。\n我在哪？&ndash;对目前机器所处伪造区域的判断。\n谁在哪？&ndash;对比钱机器反防御技术识别网络中的安全监控节点。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/images/13.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -57,7 +57,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_1e84a80b7c36c5c6.png" width="300"
+                        <img src="/img/avatar_hu_1bd8e8462945ae7f.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -68,8 +68,8 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Slimer</a></h1>
-            <h2 class="site-description">中华人民共和国万岁</h2>
+            <h1 class="site-name"><a href="/">SlimerのBlog</a></h1>
+            <h2 class="site-description"></h2>
         </div>
     </header><ol class="menu-social">
             
@@ -82,16 +82,7 @@
                     >
                         
                         
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" id="Brand-Bilibili--Streamline-Tabler" height="24" width="24">
-  <desc>
-    Brand Bilibili Streamline Icon: https://streamlinehq.com
-  </desc>
-  <path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4H7a4 4 0 0 1 -4 -4v-6z" stroke-width="2"></path>
-  <path d="m8 3 2 3" stroke-width="2"></path>
-  <path d="m16 3 -2 3" stroke-width="2"></path>
-  <path d="M9 13v-2" stroke-width="2"></path>
-  <path d="M15 11v2" stroke-width="2"></path>
-</svg>
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1756871816299" class="icon" viewBox="0 0 1084 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3388" xmlns:xlink="http://www.w3.org/1999/xlink" width="271" height="256"><path d="M896.43834 165.698h-62.34l54.57-54.57c23.43-23.37 23.43-70.17 0-93.54-23.37-23.37-70.17-23.37-93.54 0l-155.88 148.17H452.17034l-155.94-148.23c-23.43-23.37-70.17-23.37-93.54 0-23.37 23.43-23.43 70.17 0 93.54l54.57 54.57h-62.34A192.983 192.983 0 0 0 0.00934 360.607v420.899c0 116.97 85.71 202.68 194.91 202.68h693.75a192.983 192.983 0 0 0 194.85-194.85v-428.73c7.83-109.14-77.94-194.91-187.08-194.91z m54.63 615.809a69.869 69.869 0 0 1-70.17 70.17h-678.27a69.869 69.869 0 0 1-70.109-70.17v-413.13a69.869 69.869 0 0 1 70.17-70.17h678.21a69.869 69.869 0 0 1 70.17 70.17v413.19z m-608.039-342.96a69.869 69.869 0 0 0-70.23 70.17v70.17a69.869 69.869 0 0 0 70.17 70.17 69.869 69.869 0 0 0 70.23-70.17v-70.17a69.869 69.869 0 0 0-70.23-70.17z m405.36 0a69.869 69.869 0 0 0-70.23 70.17v70.17a69.869 69.869 0 0 0 70.17 70.17 69.869 69.869 0 0 0 70.23-70.17v-70.17a69.869 69.869 0 0 0-70.17-70.17z" p-id="3389" fill="#d4237a"></path></svg>
                         
                     </a>
                 </li>
@@ -105,13 +96,7 @@
                     >
                         
                         
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1756871620871" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9490" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256"><path d="M682.215454 981.446137c-25.532318 0-42.553863-17.021545-42.553864-42.553864v-165.960067c4.255386-34.043091-8.510773-59.575409-29.787704-80.852341-12.766159-12.766159-17.021545-29.787704-8.510773-42.553864 4.255386-17.021545 21.276932-25.532318 34.043091-29.787704 123.406204-12.766159 238.301635-55.320023 238.301635-255.323181 0-46.80925-17.021545-93.6185-51.064636-131.916976-12.766159-12.766159-12.766159-29.787704-8.510772-42.553864 12.766159-34.043091 12.766159-68.086182 4.255386-102.129272-21.276932 4.255386-55.320023 17.021545-110.640045 55.320022-8.510773 8.510773-21.276932 8.510773-34.043091 4.255387-89.363113-25.532318-187.236999-25.532318-276.600112 0-12.766159 4.255386-25.532318 4.255386-38.298477-4.255387C307.741455 104.836549 269.442978 92.07039 248.166047 87.815004c-8.510773 34.043091-8.510773 68.086182 4.255386 102.129272 4.255386 17.021545 4.255386 34.043091-8.510773 42.553864-34.043091 38.298477-51.064636 85.107727-51.064636 131.916976 0 200.003158 114.895431 242.557022 238.301635 255.323181 17.021545 0 29.787704 12.766159 34.043091 29.787704 4.255386 17.021545 0 34.043091-8.510773 42.553864-21.276932 21.276932-29.787704 46.80925-29.787704 76.596954v165.960068c0 25.532318-17.021545 42.553863-42.553863 42.553863s-42.553863-17.021545-42.553864-42.553863v-72.341568c-127.66159 21.276932-182.981613-51.064636-221.28009-97.873886-17.021545-21.276932-29.787704-38.298477-46.80925-42.553864-21.276932-4.255386-38.298477-29.787704-29.787704-51.064636 4.255386-21.276932 29.787704-38.298477 51.064636-29.787704 42.553863 12.766159 68.086182 42.553863 93.6185 72.341568 34.043091 46.80925 63.830795 80.852341 153.193908 63.830795v-4.255386c0-25.532318 4.255386-55.320023 12.766159-76.596955-119.150818-25.532318-246.812408-102.129272-246.812408-327.664748 0-63.830795 21.276932-123.406204 59.575409-170.215454-17.021545-59.575409-12.766159-114.895431 12.766159-170.215454 4.255386-12.766159 12.766159-21.276932 25.532318-25.532318 17.021545-4.255386 72.341568-12.766159 187.236999 59.575409 93.6185-21.276932 191.492386-21.276932 280.855499 0 110.640045-72.341568 170.215454-63.830795 187.236999-59.575409 12.766159 4.255386 21.276932 12.766159 25.532319 25.532318 21.276932 55.320023 25.532318 110.640045 12.766159 165.960067 38.298477 46.80925 59.575409 106.384659 59.575408 170.215454 0 242.557022-144.683136 306.387817-246.812408 331.920135 8.510773 25.532318 12.766159 55.320023 12.766159 80.852341V938.892273c0 25.532318-17.021545 42.553863-42.553863 42.553864z" p-id="9491" fill="#d4237a"></path></svg>
                         
                     </a>
                 </li>
@@ -316,7 +301,8 @@
     <footer class="article-time">
         
             <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <time class="article-time--published">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
   <circle cx="18" cy="18" r="4" />
@@ -324,10 +310,12 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">2025年08月28日</time>
-            </time>
-</div>
+</svg>2025年08月28日</time>
+                <span class="article-word-count">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                    文章共3338字
+                </span>
+            </div>
 			
         
 
@@ -344,14 +332,14 @@
     <section class="article-content">
     
     
-    <h1 id="0x00-前置">0x00 前置
-</h1><p>当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：<br>
+    <h1 id="0x00-前置">0x00 前置</h1>
+<p>当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：<br>
 我是谁？&ndash;主机身份与特权边界确认。<br>
 这是哪？&ndash;对目前机器处网络环境的拓扑结构进行分析和判断。<br>
 我在哪？&ndash;对目前机器所处伪造区域的判断。<br>
 谁在哪？&ndash;对比钱机器反防御技术识别网络中的安全监控节点。</p>
-<h1 id="0x01-要收集的信息">0x01 要收集的信息
-</h1><div class="highlight"><div class="chroma">
+<h1 id="0x01-要收集的信息">0x01 要收集的信息</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -441,9 +429,9 @@
 </span></span><span class="line"><span class="cl">......
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="0x02-windows信息收集">0x02 Windows信息收集
-</h1><h3 id="1-主机信息收集">1. 主机信息收集
-</h3><p>查看当前用户以及当前用户所在组，所拥有的权限。</p>
+</div><h1 id="0x02-windows信息收集">0x02 Windows信息收集</h1>
+<h3 id="1-主机信息收集">1. 主机信息收集</h3>
+<p>查看当前用户以及当前用户所在组，所拥有的权限。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -452,18 +440,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell whoami /all
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715000825.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="2-网卡和ip信息收集">2. 网卡和IP信息收集
-</h3><p>查看网卡等基本网络配置信息，主要留意Ethernet0以及Ethernet1，这个网卡，记录了可以通的网段信息</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715000825.png" alt="image.png"></p>
+<h3 id="2-网卡和ip信息收集">2. 网卡和IP信息收集</h3>
+<p>查看网卡等基本网络配置信息，主要留意Ethernet0以及Ethernet1，这个网卡，记录了可以通的网段信息</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -472,19 +451,10 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell ipconfig /all
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715001546.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715001546.png" alt="image.png"><br>
 可以看出当前是两个网卡，并且主DNS是一个域名（这里环境有问题，一般看DNS是一个域名，既是域环境。），一般来说只有域机器才会有域名显示，而在工作组下显示的是空：</p>
-<h3 id="3-查看系统详情信息">3. 查看系统详情信息
-</h3><p>可以查看网卡，系统，补丁信息</p>
+<h3 id="3-查看系统详情信息">3. 查看系统详情信息</h3>
+<p>可以查看网卡，系统，补丁信息</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -493,16 +463,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell systeminfo
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002249.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002249.png" alt="image.png"><br>
 我们可以通过该命令获得了系统的信息，就可以直接使用下面网站获取exp。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -513,28 +474,10 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>直接复制粘贴过来即可<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002637.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002708.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="4-查看操作系统和版本信息">4. 查看操作系统和版本信息
-</h3><div class="highlight"><div class="chroma">
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002637.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715002708.png" alt="image.png"></p>
+<h3 id="4-查看操作系统和版本信息">4. 查看操作系统和版本信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -548,18 +491,9 @@
 </span></span><span class="line"><span class="cl">shell systeminfo | findstr /B /C:&#34;OS 名称&#34; /C:&#34;OS 版本&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003206.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="5-查看系统体系结构">5. 查看系统体系结构
-</h3><p>检查系统架构（AMD64或者x86）-&gt;影响后续工具选择</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003206.png" alt="image.png"></p>
+<h3 id="5-查看系统体系结构">5. 查看系统体系结构</h3>
+<p>检查系统架构（AMD64或者x86）-&gt;影响后续工具选择</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -568,18 +502,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell echo %PROCESSOR_ARCHITECTURE%
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003409.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="6-主机路由信息">6. 主机路由信息
-</h3><p>可以查看网络目标，都是主机可以直接访问到的机器</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003409.png" alt="image.png"></p>
+<h3 id="6-主机路由信息">6. 主机路由信息</h3>
+<p>可以查看网络目标，都是主机可以直接访问到的机器</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -588,18 +513,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell route print
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003943.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="7-arp缓存信息">7. ARP缓存信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715003943.png" alt="image.png"></p>
+<h3 id="7-arp缓存信息">7. ARP缓存信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -607,18 +523,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell arp -a
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004046.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="8-dns缓存信息">8. DNS缓存信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004046.png" alt="image.png"></p>
+<h3 id="8-dns缓存信息">8. DNS缓存信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -626,18 +533,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell ipconfig /displaydns
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004213.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="9-host文件信息">9. Host文件信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004213.png" alt="image.png"></p>
+<h3 id="9-host文件信息">9. Host文件信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -645,18 +543,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell type C:\windows\System32\drivers\etc\hosts
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004319.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="10-端口连接信息">10. 端口连接信息
-</h3><p>可以查看当前主机的端口链接情况，一级当前主机与网络中的主机连接建立情况，不仅有公网主机还有内网主机。</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004319.png" alt="image.png"></p>
+<h3 id="10-端口连接信息">10. 端口连接信息</h3>
+<p>可以查看当前主机的端口链接情况，一级当前主机与网络中的主机连接建立情况，不仅有公网主机还有内网主机。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -665,18 +554,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell netstat -ano
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004540.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="11-会话连接">11. 会话连接
-</h3><p>可以查看主机与客户机之间的会话连接</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004540.png" alt="image.png"></p>
+<h3 id="11-会话连接">11. 会话连接</h3>
+<p>可以查看主机与客户机之间的会话连接</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -685,18 +565,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell net session
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004712.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="12-查看当前保存的登录凭证也能看到通的ip">12. 查看当前保存的登录凭证，也能看到通的ip
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004712.png" alt="image.png"></p>
+<h3 id="12-查看当前保存的登录凭证也能看到通的ip">12. 查看当前保存的登录凭证，也能看到通的ip</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -704,18 +575,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell cmdkey /l
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004813.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="13-查看当前主机开启的共享列表">13. 查看当前主机开启的共享列表
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004813.png" alt="image.png"></p>
+<h3 id="13-查看当前主机开启的共享列表">13. 查看当前主机开启的共享列表</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -723,18 +585,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell net share
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004915.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="14-远程相关信息">14. 远程相关信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715004915.png" alt="image.png"></p>
+<h3 id="14-远程相关信息">14. 远程相关信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -748,18 +601,9 @@
 </span></span><span class="line"><span class="cl">shell tasklist
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005059.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="15-查看当前主机与网络中的其他主机建立的共享链接">15. 查看当前主机与网络中的其他主机建立的共享链接
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005059.png" alt="image.png"></p>
+<h3 id="15-查看当前主机与网络中的其他主机建立的共享链接">15. 查看当前主机与网络中的其他主机建立的共享链接</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -767,18 +611,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell net use
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005226.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="16-查看主机进程信息">16. 查看主机进程信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005226.png" alt="image.png"></p>
+<h3 id="16-查看主机进程信息">16. 查看主机进程信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -787,18 +622,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以查看主机进程信息，并作出过滤进程路径，名称和pid。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005346.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="17-指定查看路径信息">17. 指定查看路径信息
-</h3><div class="highlight"><div class="chroma">
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005346.png" alt="image.png"></p>
+<h3 id="17-指定查看路径信息">17. 指定查看路径信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -806,18 +632,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell wmic process where Name=&#34;有道云笔记.exe&#34; get ExecutablePath
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005611.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="18-查看补丁信息">18. 查看补丁信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005611.png" alt="image.png"></p>
+<h3 id="18-查看补丁信息">18. 查看补丁信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -825,18 +642,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell wmic qfe get Caption,CSName,Description,HotFixID,InstalledOn
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005731.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="19-查看安装应用信息">19. 查看安装应用信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005731.png" alt="image.png"></p>
+<h3 id="19-查看安装应用信息">19. 查看安装应用信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -844,16 +652,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell wmic product get Caption,Version
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005846.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715005846.png" alt="image.png"><br>
 PS：在win10中，输入<code>wmic /?</code>会提示wmic已弃用，但在server2012R2,win7等版本可以正常使用<br>
 powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <div class="highlight"><div class="chroma">
@@ -864,8 +663,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Get-WinObject -class win32_product | Select-object -property name,version
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="20-查询本机服务">20. 查询本机服务
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="20-查询本机服务">20. 查询本机服务</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -873,18 +672,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell wmic server list brief
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715010339.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="21-查询目标主机上的杀毒软件">21. 查询目标主机上的杀毒软件
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715010339.png" alt="image.png"></p>
+<h3 id="21-查询目标主机上的杀毒软件">21. 查询目标主机上的杀毒软件</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -894,16 +684,7 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">或者：shell wmic process list brief
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715110942.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715110942.png" alt="image.png"><br>
 常见的杀软进程：</p>
 <div class="table-wrapper"><table>
   <thead>
@@ -963,16 +744,7 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell wmic /node:localhost /namespace:\\root\SecurityCenter2 path AntiVirusProduct Get DisplayName | findstr /V /B /C:displayName || echo No Antivirus installed
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112024.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112024.png" alt="image.png"><br>
 主动防御软件的安装路径</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -982,8 +754,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell wmic /namespace:\\root\SecurityCenter2 path antiVirusProduct Get displayName,productstate,pathtosignedproductexe
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="22-查看已启动的程序信息">22. 查看已启动的程序信息
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="22-查看已启动的程序信息">22. 查看已启动的程序信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -991,18 +763,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell wmic startup get command,caption
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112539.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="23-查看计划任务">23. 查看计划任务
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112539.png" alt="image.png"></p>
+<h3 id="23-查看计划任务">23. 查看计划任务</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1010,8 +773,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell schtasks /query /fo LISR /v
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="24-查看主机的开机时间">24. 查看主机的开机时间
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="24-查看主机的开机时间">24. 查看主机的开机时间</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1019,18 +782,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell net statistics workstation
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112823.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h1 id="0x04-探测网段存活">0x04 探测网段存活
-</h1><p>高速内网扫描</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715112823.png" alt="image.png"></p>
+<h1 id="0x04-探测网段存活">0x04 探测网段存活</h1>
+<p>高速内网扫描</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1049,8 +803,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里看好有没有杀软edr再用，不然就是自首，除非你能二开工具。</p>
-<h3 id="1-利用betbios快速探测内网">1. 利用betbios快速探测内网
-</h3><p>工具：Nbtscan</p>
+<h3 id="1-利用betbios快速探测内网">1. 利用betbios快速探测内网</h3>
+<p>工具：Nbtscan</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1060,16 +814,7 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用cs可以直接上传该脚本。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715140127.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715140127.png" alt="image.png"></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1078,18 +823,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell nbscan.exe 10.10.20.0/24
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715140608.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="2-通过arp扫描完整探测内网">2. 通过arp扫描完整探测内网
-</h3><p>下载地址：</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715140608.png" alt="image.png"></p>
+<h3 id="2-通过arp扫描完整探测内网">2. 通过arp扫描完整探测内网</h3>
+<p>下载地址：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1107,8 +843,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell arp.exe -t 10.10.20.0/24
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3-通过arpscan脚本">3. 通过ARPScan脚本
-</h3><p>下载地址：</p>
+</div><h3 id="3-通过arpscan脚本">3. 通过ARPScan脚本</h3>
+<p>下载地址：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1134,40 +870,13 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">powershell Invoke-ARPScan -CIDR 10.10.20.0/24
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142613.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142613.png" alt="image.png"><br>
 上传上去：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142630.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142630.png" alt="image.png"><br>
 执行该命令即可：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142703.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h1 id="0x05-针对件内容的信息搜集">0x05 针对⽂件内容的信息搜集
-</h1><p>当对内⽹束⼿⽆策的时候，⼊⼝机器上⾯说不定藏着突破⼝，翻找本地的⽂件和建⽴的⽹络连接就是⼿法<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142703.png" alt="image.png"></p>
+<h1 id="0x05-针对件内容的信息搜集">0x05 针对⽂件内容的信息搜集</h1>
+<p>当对内⽹束⼿⽆策的时候，⼊⼝机器上⾯说不定藏着突破⼝，翻找本地的⽂件和建⽴的⽹络连接就是⼿法<br>
 这⾥也提供⼀个⽂件内容敏感词的字典，需要可以⾃⼰去整理，如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1191,9 +900,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">sk-
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="0x06-配置信息收集">0x06 配置信息收集
-</h1><h3 id="1-web信息">1. web信息
-</h3><div class="highlight"><div class="chroma">
+</div><h1 id="0x06-配置信息收集">0x06 配置信息收集</h1>
+<h3 id="1-web信息">1. web信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1201,18 +910,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run netstat -ano
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142911.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="2-文档信息">2. 文档信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715142911.png" alt="image.png"></p>
+<h3 id="2-文档信息">2. 文档信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1222,18 +922,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">shell dir /a /s /b c:\*.doc
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715143756.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="3-查看最近打开的文档">3. 查看最近打开的文档
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715143756.png" alt="image.png"></p>
+<h3 id="3-查看最近打开的文档">3. 查看最近打开的文档</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1241,18 +932,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell dir %APPDATA%\Microsoft\Windows\Recent
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715143914.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h3 id="4-查看微信信息">4. 查看微信信息
-</h3><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715143914.png" alt="image.png"></p>
+<h3 id="4-查看微信信息">4. 查看微信信息</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1260,19 +942,10 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell dir /s /b c:\&#34;WeChat Files&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715144017.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h1 id="0x07-网络资产搜集">0x07 网络资产搜集
-</h1><h3 id="1-网络各种配置文件">1. 网络各种配置文件
-</h3><p>通常再行动中，入口点都在泛OA，致OA，通OA，用NC等等。<br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715144017.png" alt="image.png"></p>
+<h1 id="0x07-网络资产搜集">0x07 网络资产搜集</h1>
+<h3 id="1-网络各种配置文件">1. 网络各种配置文件</h3>
+<p>通常再行动中，入口点都在泛OA，致OA，通OA，用NC等等。<br>
 用NC解密：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1363,9 +1036,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">C</span><span class="o">:</span><span class="nx">\Users\XXX\AppData\Local</span>          <span class="c1">//用户软件信息【仅个人安装选项】
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="0x08-内网工具">0x08 内网工具
-</h1><h3 id="1-fscan">1. fscan
-</h3><div class="highlight"><div class="chroma">
+</div><h1 id="0x08-内网工具">0x08 内网工具</h1>
+<h3 id="1-fscan">1. fscan</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1417,8 +1090,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mysql.exe -i 10.10.20.0/24 -np -p 22,2222,3389,1433,3306,1521,5432,6379 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="2-kscan-轻量化全方位扫描器">2. Kscan-轻量化全方位扫描器
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="2-kscan-轻量化全方位扫描器">2. Kscan-轻量化全方位扫描器</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1428,8 +1101,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">https://github.com/lcvvvv/kscan
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3-dismap">3. dismap
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="3-dismap">3. dismap</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1439,16 +1112,7 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">https://github.com/zhzyker/dismap
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715150212.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715150212.png" alt="image.png"><br>
 原则就是：</p>
 <ol>
 <li>安静</li>
@@ -1456,9 +1120,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <li>尽量用正常的协议</li>
 <li>尽量用改造过的工具</li>
 </ol>
-<h1 id="0x09-密码凭证收集">0x09 密码凭证收集
-</h1><h3 id="1-主机密码">1. 主机密码
-</h3><div class="highlight"><div class="chroma">
+<h1 id="0x09-密码凭证收集">0x09 密码凭证收集</h1>
+<h3 id="1-主机密码">1. 主机密码</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1466,16 +1130,7 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell logonpasswords
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715150910.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250715150910.png" alt="image.png"></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1495,9 +1150,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">https://github.com/k8gege/Ladon
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="0x10-用户操作相关">0x10 用户操作相关
-</h1><h3 id="1-当前用户">1. 当前用户
-</h3><div class="highlight"><div class="chroma">
+</div><h1 id="0x10-用户操作相关">0x10 用户操作相关</h1>
+<h3 id="1-当前用户">1. 当前用户</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1509,8 +1164,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">shell echo %username%
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="2-收集用户信息">2. 收集用户信息
-</h3><p>查看⽤户名，查看⽤户信息</p>
+</div><h3 id="2-收集用户信息">2. 收集用户信息</h3>
+<p>查看⽤户名，查看⽤户信息</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1521,8 +1176,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">net user ⽤户名
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3-在线户">3. 在线⽤户
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="3-在线户">3. 在线⽤户</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1530,8 +1185,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell query user
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="4-查看域管">4. 查看域管
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="4-查看域管">4. 查看域管</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1539,8 +1194,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> shell net localgroup administrators
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="5-激活guest">5. 激活Guest
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="5-激活guest">5. 激活Guest</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1554,8 +1209,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">shell net localgroup administrators
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="6-激活administrator">6. 激活administrator
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="6-激活administrator">6. 激活administrator</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1565,8 +1220,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">shell net user Administrator P@ssw0rd123
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="7-创建户">7. 创建⽤户
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="7-创建户">7. 创建⽤户</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1576,8 +1231,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">shell net localgroup administrators ⽤户名 /add #将⽤户加到管理组
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="8-创建后户">8. 创建后⻔⽤户
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="8-创建后户">8. 创建后⻔⽤户</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1589,8 +1244,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">shell net localgroup administrators
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="0x11-查看防墙相关">0x11 查看防⽕墙相关
-</h1><div class="highlight"><div class="chroma">
+</div><h1 id="0x11-查看防墙相关">0x11 查看防⽕墙相关</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1598,8 +1253,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netsh firewall show config
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="关闭防墙">关闭防⽕墙
-</h3><div class="highlight"><div class="chroma">
+</div><h3 id="关闭防墙">关闭防⽕墙</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1620,16 +1275,7 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell netsh firewall show portopening
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717214640.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717214640.png" alt="image.png"><br>
 根据防⽕墙配置，⽬标主机已放⾏ TCP 7001 端⼝的⼊站流量（对应 WebLogic 服务端⼝）。我们可以利⽤这个开放端⼝进⾏ Beacon 连接 这仅表示：<br>
 添加防⽕墙规则:</p>
 <div class="highlight"><div class="chroma">
@@ -1666,9 +1312,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://github.com/iagox86/dnscat2
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="0x12-rdp操作相关">0x12 RDP操作相关
-</h1><h2 id="查看rdp端">查看RDP端⼝
-</h2><div class="highlight"><div class="chroma">
+</div><h1 id="0x12-rdp操作相关">0x12 RDP操作相关</h1>
+<h2 id="查看rdp端">查看RDP端⼝</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1676,19 +1322,10 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell reg query &#34;HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&#34; /v PortNumber
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133525.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133525.png" alt="image.png"><br>
 为16进制数0xd3d，转换为10进制就是3389</p>
-<h2 id="开放rdp服务">开放RDP服务
-</h2><div class="highlight"><div class="chroma">
+<h2 id="开放rdp服务">开放RDP服务</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1696,18 +1333,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell reg add &#34;HKLM\SYSTEM\CurrentControlSet\control\Terminal Server&#34; /v fDenyTSConnections /d 0 /t REG_DWORD /f
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133644.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h2 id="开放rdp端">开放RDP端⼝
-</h2><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133644.png" alt="image.png"></p>
+<h2 id="开放rdp端">开放RDP端⼝</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1715,18 +1343,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell netsh advfirewall firewall add rule name=&#34;Remote Desktop&#34; protocol=TCP dir=in localport=3389 action=allow
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133732.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h2 id="离线破解rdp连接密码">离线破解RDP连接密码
-</h2><p>查看是否存在凭证：</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133732.png" alt="image.png"></p>
+<h2 id="离线破解rdp连接密码">离线破解RDP连接密码</h2>
+<p>查看是否存在凭证：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1735,18 +1354,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell dir /a %userprofile%\AppData\Local\Microsoft\Credentials\*
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133858.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h2 id="获取wifi密码">获取WiFi密码
-</h2><p>查看连接过的Wifi名称：</p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722133858.png" alt="image.png"></p>
+<h2 id="获取wifi密码">获取WiFi密码</h2>
+<p>查看连接过的Wifi名称：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1755,16 +1365,7 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netsh wlan show profiles
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722134654.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722134654.png" alt="image.png"><br>
 如果乱码可以下载下来看</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1783,18 +1384,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netsh wlan show profile name=&#34;WIFI名称&#34; key=clear
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722134819.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h2 id="查看代理">查看代理
-</h2><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722134819.png" alt="image.png"></p>
+<h2 id="查看代理">查看代理</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1802,19 +1394,10 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shell reg query &#34;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722135014.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h1 id="0x13-志痕迹相关">0x13 ⽇志痕迹相关
-</h1><h2 id="清除事件志">清除事件⽇志
-</h2><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722135014.png" alt="image.png"></p>
+<h1 id="0x13-志痕迹相关">0x13 ⽇志痕迹相关</h1>
+<h2 id="清除事件志">清除事件⽇志</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1838,8 +1421,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">Application：应⽤程序事件
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="停志相关服务">停⽌⽇志相关服务
-</h2><div class="highlight"><div class="chroma">
+</div><h2 id="停志相关服务">停⽌⽇志相关服务</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1857,18 +1440,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">sc stop eventlog
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722135228.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h2 id="永久禁志服务">永久禁⽤⽇志服务
-</h2><div class="highlight"><div class="chroma">
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250722135228.png" alt="image.png"></p>
+<h2 id="永久禁志服务">永久禁⽤⽇志服务</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1876,8 +1450,8 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sc config EventLog start= disabled
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="志件覆盖">⽇志⽂件覆盖
-</h2><div class="highlight"><div class="chroma">
+</div><h2 id="志件覆盖">⽇志⽂件覆盖</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1893,9 +1467,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span><span class="line"><span class="cl">防⽌⽂件恢复⼯具提取⽇志
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="0x13-cs插件">0x13 CS插件
-</h1><h4 id="ola">OLa
-</h4><p>下载地址：</p>
+</div><h1 id="0x13-cs插件">0x13 CS插件</h1>
+<h4 id="ola">OLa</h4>
+<p>下载地址：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1905,18 +1479,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>cs2插件，直接可以在cs2中使用：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717212946.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h4 id="taowu">taowu
-</h4><p>下载地址：</p>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717212946.png" alt="image.png"></p>
+<h4 id="taowu">taowu</h4>
+<p>下载地址：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1926,18 +1491,9 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>cs2插件<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717213252.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
-<h4 id="lstar---aggressor">LSTAR - Aggressor
-</h4><p>下载地址：</p>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717213252.png" alt="image.png"></p>
+<h4 id="lstar---aggressor">LSTAR - Aggressor</h4>
+<p>下载地址：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1947,16 +1503,7 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>cs插件<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717213634.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></p>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250717213634.png" alt="image.png"></p>
 
 </section>
 
@@ -2233,13 +1780,13 @@ powershell中可代替该命令的是：<code>Get-WinObject</code>：</p>
 
 <style>
   @font-face {
-    font-family: 'AlibabaPuHuiTi';
-    src: url(http://localhost:1313/font/AlibabaPuHuiTi.ttf) format('truetype');
+    font-family: 'SFMono';
+    src: url(http://localhost:1313/font/SFMono.otf) format('truetype');
   }
 
   :root {
-    --base-font-family: 'AlibabaPuHuiTi';
-    --code-font-family: 'AlibabaPuHuiTi';
+    --base-font-family: 'SFMono';
+    --code-font-family: 'SFMono';
   }
 </style>
 

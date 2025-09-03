@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 前置知识\r需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 前置知识 需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n">
 <title>【内网】域环境搭建-01</title>
 
 <link rel='canonical' href='http://localhost:1313/p/%E5%86%85%E7%BD%91%E5%9F%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-01/'>
 
-<link rel="stylesheet" href="/scss/style.min.11207ff81409bbe9433b02843a9ded640f4a8e3b1a8a586bb557251116607463.css"><meta property='og:title' content="【内网】域环境搭建-01">
-<meta property='og:description' content="0x00 前置知识\r需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n">
+<link rel="stylesheet" href="/scss/style.min.e5c621ce00d10380fc9596e768851c5e9e91c8f1166ec3bff7818927c1c60bc4.css"><meta property='og:title' content="【内网】域环境搭建-01">
+<meta property='og:description' content="0x00 前置知识 需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n">
 <meta property='og:url' content='http://localhost:1313/p/%E5%86%85%E7%BD%91%E5%9F%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-01/'>
-<meta property='og:site_name' content='Slimer'>
+<meta property='og:site_name' content='SlimerのBlog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-08-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-27T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/1.webp' />
 <meta name="twitter:title" content="【内网】域环境搭建-01">
-<meta name="twitter:description" content="0x00 前置知识\r需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="0x00 前置知识 需要三个windows_server虚拟机。\n这里我使用2012做主域，只能上相兼容不能向下兼容。\n使用windows_server_2012做主域，就不能使用2008做子域了。\n这就可以看出一般主域的服务器版本很低。\n三台服务器分别为（域控）（子域）（辅域）\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/images/1.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -57,7 +57,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_1e84a80b7c36c5c6.png" width="300"
+                        <img src="/img/avatar_hu_1bd8e8462945ae7f.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -68,8 +68,8 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Slimer</a></h1>
-            <h2 class="site-description">中华人民共和国万岁</h2>
+            <h1 class="site-name"><a href="/">SlimerのBlog</a></h1>
+            <h2 class="site-description"></h2>
         </div>
     </header><ol class="menu-social">
             
@@ -82,16 +82,7 @@
                     >
                         
                         
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" id="Brand-Bilibili--Streamline-Tabler" height="24" width="24">
-  <desc>
-    Brand Bilibili Streamline Icon: https://streamlinehq.com
-  </desc>
-  <path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4H7a4 4 0 0 1 -4 -4v-6z" stroke-width="2"></path>
-  <path d="m8 3 2 3" stroke-width="2"></path>
-  <path d="m16 3 -2 3" stroke-width="2"></path>
-  <path d="M9 13v-2" stroke-width="2"></path>
-  <path d="M15 11v2" stroke-width="2"></path>
-</svg>
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1756871816299" class="icon" viewBox="0 0 1084 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3388" xmlns:xlink="http://www.w3.org/1999/xlink" width="271" height="256"><path d="M896.43834 165.698h-62.34l54.57-54.57c23.43-23.37 23.43-70.17 0-93.54-23.37-23.37-70.17-23.37-93.54 0l-155.88 148.17H452.17034l-155.94-148.23c-23.43-23.37-70.17-23.37-93.54 0-23.37 23.43-23.43 70.17 0 93.54l54.57 54.57h-62.34A192.983 192.983 0 0 0 0.00934 360.607v420.899c0 116.97 85.71 202.68 194.91 202.68h693.75a192.983 192.983 0 0 0 194.85-194.85v-428.73c7.83-109.14-77.94-194.91-187.08-194.91z m54.63 615.809a69.869 69.869 0 0 1-70.17 70.17h-678.27a69.869 69.869 0 0 1-70.109-70.17v-413.13a69.869 69.869 0 0 1 70.17-70.17h678.21a69.869 69.869 0 0 1 70.17 70.17v413.19z m-608.039-342.96a69.869 69.869 0 0 0-70.23 70.17v70.17a69.869 69.869 0 0 0 70.17 70.17 69.869 69.869 0 0 0 70.23-70.17v-70.17a69.869 69.869 0 0 0-70.23-70.17z m405.36 0a69.869 69.869 0 0 0-70.23 70.17v70.17a69.869 69.869 0 0 0 70.17 70.17 69.869 69.869 0 0 0 70.23-70.17v-70.17a69.869 69.869 0 0 0-70.17-70.17z" p-id="3389" fill="#d4237a"></path></svg>
                         
                     </a>
                 </li>
@@ -105,13 +96,7 @@
                     >
                         
                         
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1756871620871" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9490" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256"><path d="M682.215454 981.446137c-25.532318 0-42.553863-17.021545-42.553864-42.553864v-165.960067c4.255386-34.043091-8.510773-59.575409-29.787704-80.852341-12.766159-12.766159-17.021545-29.787704-8.510773-42.553864 4.255386-17.021545 21.276932-25.532318 34.043091-29.787704 123.406204-12.766159 238.301635-55.320023 238.301635-255.323181 0-46.80925-17.021545-93.6185-51.064636-131.916976-12.766159-12.766159-12.766159-29.787704-8.510772-42.553864 12.766159-34.043091 12.766159-68.086182 4.255386-102.129272-21.276932 4.255386-55.320023 17.021545-110.640045 55.320022-8.510773 8.510773-21.276932 8.510773-34.043091 4.255387-89.363113-25.532318-187.236999-25.532318-276.600112 0-12.766159 4.255386-25.532318 4.255386-38.298477-4.255387C307.741455 104.836549 269.442978 92.07039 248.166047 87.815004c-8.510773 34.043091-8.510773 68.086182 4.255386 102.129272 4.255386 17.021545 4.255386 34.043091-8.510773 42.553864-34.043091 38.298477-51.064636 85.107727-51.064636 131.916976 0 200.003158 114.895431 242.557022 238.301635 255.323181 17.021545 0 29.787704 12.766159 34.043091 29.787704 4.255386 17.021545 0 34.043091-8.510773 42.553864-21.276932 21.276932-29.787704 46.80925-29.787704 76.596954v165.960068c0 25.532318-17.021545 42.553863-42.553863 42.553863s-42.553863-17.021545-42.553864-42.553863v-72.341568c-127.66159 21.276932-182.981613-51.064636-221.28009-97.873886-17.021545-21.276932-29.787704-38.298477-46.80925-42.553864-21.276932-4.255386-38.298477-29.787704-29.787704-51.064636 4.255386-21.276932 29.787704-38.298477 51.064636-29.787704 42.553863 12.766159 68.086182 42.553863 93.6185 72.341568 34.043091 46.80925 63.830795 80.852341 153.193908 63.830795v-4.255386c0-25.532318 4.255386-55.320023 12.766159-76.596955-119.150818-25.532318-246.812408-102.129272-246.812408-327.664748 0-63.830795 21.276932-123.406204 59.575409-170.215454-17.021545-59.575409-12.766159-114.895431 12.766159-170.215454 4.255386-12.766159 12.766159-21.276932 25.532318-25.532318 17.021545-4.255386 72.341568-12.766159 187.236999 59.575409 93.6185-21.276932 191.492386-21.276932 280.855499 0 110.640045-72.341568 170.215454-63.830795 187.236999-59.575409 12.766159 4.255386 21.276932 12.766159 25.532319 25.532318 21.276932 55.320023 25.532318 110.640045 12.766159 165.960067 38.298477 46.80925 59.575409 106.384659 59.575408 170.215454 0 242.557022-144.683136 306.387817-246.812408 331.920135 8.510773 25.532318 12.766159 55.320023 12.766159 80.852341V938.892273c0 25.532318-17.021545 42.553863-42.553863 42.553864z" p-id="9491" fill="#d4237a"></path></svg>
                         
                     </a>
                 </li>
@@ -302,7 +287,8 @@
     <footer class="article-time">
         
             <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <time class="article-time--published">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
   <circle cx="18" cy="18" r="4" />
@@ -310,10 +296,12 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">2025年08月27日</time>
-            </time>
-</div>
+</svg>2025年08月27日</time>
+                <span class="article-word-count">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                    文章共1368字
+                </span>
+            </div>
 			
         
 
@@ -330,228 +318,57 @@
     <section class="article-content">
     
     
-    <h1 id="0x00-前置知识">0x00 前置知识
-</h1><p>需要三个windows_server虚拟机。<br>
+    <h1 id="0x00-前置知识">0x00 前置知识</h1>
+<p>需要三个windows_server虚拟机。<br>
 这里我使用2012做主域，只能上相兼容不能向下兼容。<br>
 使用windows_server_2012做主域，就不能使用2008做子域了。<br>
 这就可以看出一般<strong>主域的服务器版本很低</strong>。<br>
 三台服务器分别为（域控）（子域）（辅域）</p>
-<h1 id="0x01-主域的搭建">0x01 主域的搭建
-</h1><ol>
+<h1 id="0x01-主域的搭建">0x01 主域的搭建</h1>
+<ol>
 <li>修改网络配置为自定义的一个网段（192.16.100.1/24），为了确保都在同一网段。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143458.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143458.png" alt="image.png"></li>
 <li>关闭防火墙<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708142930.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708142930.png" alt="image.png"></li>
 <li>设置IP地址：192.168.100.100为域控的IP，后续DNS服务器地址就是192.168.100.100。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143717.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143717.png" alt="image.png"></li>
 <li>修改名称：此电脑-&gt;属性，修改名称为：DC，然后重启一下。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708144209.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708144312.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708144209.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708144312.png" alt="image.png"></li>
 <li>添加角色服务，Active Directory域服务和DNS服务器，安装好之后会自动重启一下即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143918.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708143918.png" alt="image.png"></li>
 <li>配置域环境，添加新林为：slimer.com后，进行等待，大约2分钟左右<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145202.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145202.png" alt="image.png"></li>
 <li>输入自己设置的密码即可（p-0p-0p-0..）<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145326.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145326.png" alt="image.png"></li>
 <li>下一步<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145441.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145441.png" alt="image.png"></li>
 <li>默认即可<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145504.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145504.png" alt="image.png"></li>
 <li>默认即可<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145555.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145555.png" alt="image.png"></li>
 <li>安装，然后重启一下，完成域控的搭建。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145715.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708145715.png" alt="image.png"></li>
 <li>重启完成后，将网卡重启一下，就可以看到域环境了。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150247.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150334.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150247.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150334.png" alt="image.png"></li>
 <li>这里会多出来一个域防火墙，记得给关了。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151341.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151341.png" alt="image.png"></li>
 </ol>
-<h1 id="0x02-子域的搭建">0x02 子域的搭建
-</h1><ol>
+<h1 id="0x02-子域的搭建">0x02 子域的搭建</h1>
+<ol>
 <li>关闭防火墙<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150448.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150448.png" alt="image.png"></li>
 <li>设置网卡为同一网段。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150556.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150556.png" alt="image.png"></li>
 <li>设置IP地址，DNS为域控的IP地址。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150708.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708150708.png" alt="image.png"></li>
 <li>修改</li>
 </ol>
 <ul>
 <li><input disabled="" type="checkbox"> 计算机名称为:RODCServer</li>
 <li><input disabled="" type="checkbox"> 隶属于slimer.com域<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102446.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102446.png" alt="image.png"></li>
 </ul>
 <ol start="5">
 <li>改：</li>
@@ -560,144 +377,45 @@
 <li><input disabled="" type="checkbox"> 计算机名改成administrator</li>
 <li><input disabled="" type="checkbox"> 密码为开机密码：p-0p-0p-0<br>
 重启查看一下是否成功连接到slimer.com域<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102537.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102642.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102907.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102537.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102642.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709102907.png" alt="image.png"></li>
 </ul>
 <ol start="6">
 <li>安装域环境，选好之后，直接下一步安装即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151223.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151223.png" alt="image.png"></li>
 <li>部署子域，新域名为：RODCServer。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151703.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250708151703.png" alt="image.png"></li>
 <li>换一下自己机器的凭据。</li>
 </ol>
 <ul>
 <li><input disabled="" type="checkbox"> 账号：administrator</li>
 <li><input disabled="" type="checkbox"> 密码：p-0p-0p-0<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103128.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103128.png" alt="image.png"><br>
 9.设置密码（满足复杂度）</li>
 <li><input disabled="" type="checkbox"> 密码：p-0p-0p-0..<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103415.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103415.png" alt="image.png"><br>
 10.一直下一步，直到安装即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103807.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709103807.png" alt="image.png"><br>
 11.在工具中找到 AD域和信任关系</li>
 <li><input disabled="" type="checkbox"> 就可以进行配置了，这里先这样后续再处理。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709105606.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709105606.png" alt="image.png"></li>
 </ul>
-<h1 id="0x03-辅域的搭建">0x03 辅域的搭建
-</h1><p>只读域控，辅助域控<br>
+<h1 id="0x03-辅域的搭建">0x03 辅域的搭建</h1>
+<p>只读域控，辅助域控<br>
 只读域控制器（Read-only Domian Controller，RODC）的AD DS数据库只可以被读取，不可以被修改，也就是说用户或应用程序无法直接修改RODC 的AD DS数据库。RODC的AD DS数据库内容只能够从其他可读写的域控制器复制过来。RODC主要设计给远程分公司网络来使用的，因为一般来说远程分公 司的网络规模比较小，用户人数较少，此网络的安全措施或许并不如总公司完备，也可能缺乏IT技术人员，因此采用RODC可避免因其AD DS数据库被破坏 影响整个AD DS环境。<br>
 辅助域控制器，在主域控不工作的事情下，辅助可以顶替他继续工作。<br>
 安装SUBDCServer（辅域）<br>
 注意：IP地址不要重复 要提前关闭防火墙</p>
 <ol>
 <li>修改IP（如上步骤）IP地址修改（与域控不同）但（首选DNS服务器选择域控IP）<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110139.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110139.png" alt="image.png"></li>
 <li>右击（这台电脑）然后点击（属性）再点击（更改配置）然后点击（更改）最后</li>
 </ol>
 <ul>
 <li><input disabled="" type="checkbox"> 计算机名改为（SUBDCServer）</li>
 <li><input disabled="" type="checkbox"> 属于选择（域）并添加为（slimer.com）<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110336.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110336.png" alt="image.png"></li>
 </ul>
 <ol start="3">
 <li>改</li>
@@ -705,95 +423,32 @@
 <ul>
 <li><input disabled="" type="checkbox"> 计算机名（administrator）</li>
 <li><input disabled="" type="checkbox"> 密码（开机密码）p-0p-0p-0<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110459.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709110459.png" alt="image.png"></li>
 </ul>
 <ol start="4">
 <li>添加该两个功能，直接默认安装即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112504.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112504.png" alt="image.png"></li>
 <li>将此服务器提升为域控制器即可。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112610.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112610.png" alt="image.png"></li>
 <li>点击 将域控制器添加到现有域 点击 更改 输入域控用户和密码</li>
 </ol>
 <ul>
 <li><input disabled="" type="checkbox"> 账户：administrator</li>
 <li><input disabled="" type="checkbox"> 密码：p-0p-0p-0<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112737.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112737.png" alt="image.png"></li>
 </ul>
 <ol start="4">
 <li>勾选域名系统服务器全局编录作为辅助域控输入密码（需要满足密码复杂性）</li>
 </ol>
 <ul>
 <li><input disabled="" type="checkbox"> 密码：p-0p-0p-0..<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112920.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709112920.png" alt="image.png"></li>
 </ul>
 <ol start="4">
 <li>复制自 选为 DC.slimer.com<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709113039.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709113039.png" alt="image.png"></li>
 <li>点击下一步 一直到 安装<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709113120.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image.png"
-	
-	
-></li>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250709113120.png" alt="image.png"></li>
 </ol>
 
 </section>
@@ -1033,13 +688,13 @@
 
 <style>
   @font-face {
-    font-family: 'AlibabaPuHuiTi';
-    src: url(http://localhost:1313/font/AlibabaPuHuiTi.ttf) format('truetype');
+    font-family: 'SFMono';
+    src: url(http://localhost:1313/font/SFMono.otf) format('truetype');
   }
 
   :root {
-    --base-font-family: 'AlibabaPuHuiTi';
-    --code-font-family: 'AlibabaPuHuiTi';
+    --base-font-family: 'SFMono';
+    --code-font-family: 'SFMono';
   }
 </style>
 

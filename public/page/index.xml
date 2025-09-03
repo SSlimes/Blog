@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Pages on Slimer</title>
+        <title>Pages on SlimerのBlog</title>
         <link>http://localhost:1313/page/</link>
-        <description>Recent content in Pages on Slimer</description>
+        <description>Recent content in Pages on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
@@ -22,26 +22,26 @@
         
         <guid>http://localhost:1313/%E5%85%B3%E4%BA%8E-about/</guid>
         <description>&lt;div class=&#34;about-container&#34;&gt;
-&lt;h2 id=&#34;-你好我是-slimer&#34;&gt;👋 你好，我是 Slimer
-&lt;/h2&gt;&lt;p&gt;欢迎来到我的个人博客！我是一名专注于网络安全领域的技术研究员和渗透测试工程师。&lt;/p&gt;
-&lt;h3 id=&#34;-专业领域&#34;&gt;🎯 专业领域
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;-你好我是-slimer&#34;&gt;👋 你好，我是 Slimer&lt;/h2&gt;
+&lt;p&gt;欢迎来到我的个人博客！我是一名专注于网络安全领域的技术研究员和渗透测试工程师。&lt;/p&gt;
+&lt;h3 id=&#34;-专业领域&#34;&gt;🎯 专业领域&lt;/h3&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Web安全攻防&lt;/strong&gt; - 深入研究各种Web漏洞的发现与防护&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;内网渗透测试&lt;/strong&gt; - 企业内网安全评估与红队演练&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;漏洞研究&lt;/strong&gt; - 关注最新安全漏洞，进行深度分析&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;安全工具开发&lt;/strong&gt; - 开发实用的安全工具和脚本&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;应急响应&lt;/strong&gt; - 安全事件分析与处置&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;-技术栈&#34;&gt;🛠️ 技术栈
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id=&#34;-技术栈&#34;&gt;🛠️ 技术栈&lt;/h3&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;编程语言&lt;/strong&gt;: Python, JavaScript, PHP, Java, C/C++&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;安全工具&lt;/strong&gt;: Burp Suite, Nmap, Metasploit, Cobalt Strike&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;操作系统&lt;/strong&gt;: Linux, Windows, macOS&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;云平台&lt;/strong&gt;: AWS, Azure, 阿里云&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;数据库&lt;/strong&gt;: MySQL, PostgreSQL, MongoDB&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;-学习与分享&#34;&gt;📚 学习与分享
-&lt;/h3&gt;&lt;p&gt;我热衷于技术分享，在这个博客中记录我的学习心得和实践经验：&lt;/p&gt;
+&lt;h3 id=&#34;-学习与分享&#34;&gt;📚 学习与分享&lt;/h3&gt;
+&lt;p&gt;我热衷于技术分享，在这个博客中记录我的学习心得和实践经验：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;🔍 &lt;strong&gt;渗透测试实战&lt;/strong&gt; - 分享真实的渗透测试案例&lt;/li&gt;
 &lt;li&gt;🎯 &lt;strong&gt;靶场练习&lt;/strong&gt; - 各种CTF和靶场的解题思路&lt;/li&gt;
@@ -49,25 +49,24 @@
 &lt;li&gt;🔧 &lt;strong&gt;工具使用&lt;/strong&gt; - 安全工具的使用技巧和开发经验&lt;/li&gt;
 &lt;li&gt;📖 &lt;strong&gt;技术研究&lt;/strong&gt; - 最新安全技术的研究与分析&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;-认证与荣誉&#34;&gt;🏆 认证与荣誉
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id=&#34;-认证与荣誉&#34;&gt;🏆 认证与荣誉&lt;/h3&gt;
+&lt;ul&gt;
 &lt;li&gt;持有多个网络安全相关认证&lt;/li&gt;
 &lt;li&gt;参与过多个企业级安全项目&lt;/li&gt;
 &lt;li&gt;在多个安全会议分享过研究成果&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;-联系方式&#34;&gt;📞 联系方式
-&lt;/h3&gt;&lt;p&gt;如果你对我的文章有任何疑问，或者想要交流技术问题，欢迎通过以下方式联系我：&lt;/p&gt;
+&lt;h3 id=&#34;-联系方式&#34;&gt;📞 联系方式&lt;/h3&gt;
+&lt;p&gt;如果你对我的文章有任何疑问，或者想要交流技术问题，欢迎通过以下方式联系我：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/SSlimes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;SSlimes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Bilibili&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://space.bilibili.com/274685458&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;个人空间&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: &lt;a href=&#34;https://github.com/SSlimes&#34;&gt;SSlimes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bilibili&lt;/strong&gt;: &lt;a href=&#34;https://space.bilibili.com/274685458&#34;&gt;个人空间&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;邮箱&lt;/strong&gt;: 通过GitHub或Bilibili私信联系&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;-关于这个博客&#34;&gt;💡 关于这个博客
-&lt;/h3&gt;&lt;p&gt;这个博客使用 &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Hugo&lt;/a&gt; 构建，采用 &lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;hugo-theme-stack&lt;/a&gt; 主题，并进行了个性化定制。&lt;/p&gt;
+&lt;h3 id=&#34;-关于这个博客&#34;&gt;💡 关于这个博客&lt;/h3&gt;
+&lt;p&gt;这个博客使用 &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; 构建，采用 &lt;a href=&#34;https://github.com/CaiJimmy/hugo-theme-stack&#34;&gt;hugo-theme-stack&lt;/a&gt; 主题，并进行了个性化定制。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;免责声明&lt;/strong&gt;: 本博客内容仅供学习和研究使用，请勿用于非法用途。所有技术分享都基于合法的安全测试环境。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
 &lt;div class=&#34;about-footer&#34;&gt;
 &lt;p&gt;感谢你的访问！希望我的分享能对你有所帮助 🚀&lt;/p&gt;
 &lt;/div&gt;
