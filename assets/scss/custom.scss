@@ -201,6 +201,217 @@
     }
   }
 }
+
+/* 近年归档特殊字体样式（包含当前年和下一年） */
+/* 主页归档区域 */
+.archives-group[id="2025"] .archives-date.section-title a,
+.archives-group[id="2026"] .archives-date.section-title a {
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  /* 优雅的蓝粉渐变 */
+  background: linear-gradient(135deg, #3a7bd5, #ff6b8b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease-in-out;
+  padding: 0.2em 0;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3a7bd5, #ff6b8b);
+    transition: width 0.3s ease;
+  }
+  
+  &:hover {
+    background: linear-gradient(135deg, #2c5daa, #ff4757);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: translateY(-2px) scale(1.03);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+    
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+/* 侧边栏归档小部件 */
+.widget.archives .archives-year a {
+  &[href*="2025"],
+  &[href*="2026"] {
+    /* 确保年份和文章数量垂直居中 */
+    display: flex;
+    align-items: center;
+    height: auto;
+    gap: 6px;
+    /* 为年份添加样式 */
+    span.year {
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      /* 优雅的蓝粉渐变 */
+      background: linear-gradient(135deg, #3a7bd5, #ff6b8b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      display: inline-block;
+    }
+    
+    /* 为文章数量添加样式 */
+    span.count {
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      /* 与年份匹配的蓝粉渐变 */
+      background: linear-gradient(135deg, #3a7bd5, #ff6b8b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      padding: 0 6px;
+      border-radius: 12px;
+      transition: all 0.3s ease-in-out;
+      /* 垂直居中 */
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+    }
+    
+    &:hover {
+      span.year {
+        background: linear-gradient(135deg, #2c5daa, #ff4757);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transform: translateY(-1px) scale(1.05);
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+      }
+      
+      span.count {
+        background: linear-gradient(135deg, #2c5daa, #ff4757);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transform: scale(1.1);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}
+
+/* 注意：每年年初时，请添加下一年份到上面的选择器中 */
+
+/*---------------------------------------右侧目录样式------------------------------------------*/
+/* 目录容器样式 */
+.widget--toc {
+  background-color: var(--card-background);
+  border-radius: 16px;
+  box-shadow: var(--shadow-l2);
+  padding: 20px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.widget--toc:hover {
+  box-shadow: var(--shadow-l3);
+}
+
+/* 目录标题样式 */
+.widget-title.section-title {
+  font-size: 2.0rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  text-transform: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 目录列表样式 */
+.widget--toc #TableOfContents {
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+
+.widget--toc #TableOfContents ul,
+.widget--toc #TableOfContents ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* 目录链接样式 */
+.widget--toc #TableOfContents a {
+  color: var(--card-text-color-main);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  margin: 2px 0;
+}
+
+.widget--toc #TableOfContents a:hover {
+  color: var(--accent-color);
+  background-color: rgba(var(--link-background-color), var(--link-background-opacity));
+  transform: translateX(3px);
+}
+
+/* 活动目录项样式 */
+.widget--toc #TableOfContents li.active-class > a {
+  color: var(--accent-color);
+  font-weight: 600;
+  background-color: rgba(var(--link-background-color), var(--link-background-opacity-hover));
+  border-left: 3px solid var(--accent-color);
+  padding-left: 12px;
+}
+
+/* 多级目录缩进 */
+.widget--toc #TableOfContents ul ul,
+.widget--toc #TableOfContents ol ol {
+  padding-left: 15px;
+  margin-top: 5px;
+}
+
+/* 目录滚动条样式 */
+.widget--toc {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.widget--toc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.widget--toc::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 3px;
+}
+
+.widget--toc::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+.widget--toc::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color-darker);
+}
+
 /*---------------------------------------链接页面------------------------------------------*/
 //链接页面//链接页面
 
@@ -791,7 +1002,7 @@ footer.site-footer {
 // 设置文章内容正文的字体大小
 .article-page .main-article .article-content {
   // 基础文字大小
-  font-size: 20px; // 可以根据需要调整这个值
+  font-size: 18px; // 可以根据需要调整这个值
   line-height: 2; // 调整行高以提高可读性
   
   // 段落样式
@@ -802,33 +1013,33 @@ footer.site-footer {
   
   // 标题样式
   h1, h2, h3, h4, h5, h6 {
-    line-height: 1.4; // 标题行高
+    line-height: 1.5; // 标题行高
     margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   
   h1 {
-    font-size: 2.8rem;
+    font-size: 3.0rem;
   }
   
   h2 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
   
   h3 {
-    font-size: 2rem;
+    font-size: 2.0rem;
   }
   
   h4 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   
   h5 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   
   h6 {
-    font-size: 1.4rem;
+    font-size: 1.0rem;
   }
   
   // 列表样式
@@ -885,7 +1096,7 @@ footer.site-footer {
         a {
             color: #ec4899; // 设置基础颜色
             transition: all 0.3s ease;
-            padding: 15px 15px; // 增加上下内边距，使菜单间距更大
+            padding: 10px 10px; // 增加上下内边距，使菜单间距更大
             border-radius: 6px;
             width: 100%;
             text-decoration: none;
@@ -922,7 +1133,7 @@ footer.site-footer {
             background-clip: text;
             color: transparent;
             display: inline;
-            font-weight: 600; // 字体加粗
+            font-weight: 800; // 字体加粗
         }
         
         a:hover span {
@@ -930,7 +1141,7 @@ footer.site-footer {
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 600; // 字体加粗
+            font-weight: 800; // 字体加粗
         }
         
         &.current a span {
@@ -938,7 +1149,7 @@ footer.site-footer {
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 700; // 活动状态字体更粗
+            font-weight: 900; // 活动状态字体更粗
         }
     }
 }
@@ -998,6 +1209,37 @@ footer.site-footer {
             background-clip: text !important; // 应用文本背景裁剪
         }
     }
+}
+
+// 主页面分类样式 - 与左侧导航菜单保持一致
+.tagCloud-tags a {
+    // 与左侧导航菜单相同的字体大小
+    font-size: 17px !important;
+    // 设置蓝粉色渐变效果（与左侧导航菜单相同）
+    background: linear-gradient(135deg, #60a5fa, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800; // 字体加粗
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin: 5px;
+    display: inline-block;
+}
+
+.tagCloud-tags a:hover {
+    // 悬停时更深的蓝粉色渐变（与左侧导航菜单相同）
+    background: linear-gradient(135deg, #3b82f6, #db2777);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800; // 字体加粗
+    transform: scale(1.05);
+}
+
+// 移除分类云原有的字体大小类影响
+.tagCloud-tags a[class^="font_size_"] {
+    font-size: 17px !important;
 }
 
 

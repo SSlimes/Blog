@@ -182,6 +182,7 @@ params:
         homepage:               # 首页显示的组件
             - type: search      # 搜索框
             - type: archives    # 归档组件
+            - type: categories  # 分类组件
 
         page:                   # 文章页面显示的组件
             - type: toc         # 文章目录组件
