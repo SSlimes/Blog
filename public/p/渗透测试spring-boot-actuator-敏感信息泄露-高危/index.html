@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 什么是Actuator Spring Boot Actuator 模块提供了健康检查，审计，指标收集，HTTP 跟踪等，是帮助我们监控和管理Spring Boot 应用的模块。这个模块采集应用的内部信息，展现给外部模块，可以查看应用配置的详细信息，例如自动化配置信息、创建的Spring beans信息、系统环境变量的配置信息以及Web请求的详细信息等。\n如果没有正确使用Actuator，可能造成信息泄露等严重的安全隐患（外部人员非授权访问Actuator端点）。其中heapdump作为Actuator组件最为危险的Web端点，heapdump因未授权访问被恶意人员获取后进行分析，可进一步获取敏感信息。\nSpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径也有差别，但现在多使用的SpringBoot版本为2.x，这篇文章只讲SpringBoo 2.x Actuator模块带来的信息泄露。\n">
 <title>【渗透测试】Spring Boot Actuator 敏感信息泄露-高危</title>
 
-<link rel='canonical' href='https://slimer.cn/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/'>
+<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/'>
 
-<link rel="stylesheet" href="/scss/style.min.63c8903661bca75aec9156fa440023e0cde1d50df83b8c89eaabb1a81670278e.css"><meta property='og:title' content="【渗透测试】Spring Boot Actuator 敏感信息泄露-高危">
+<link rel="stylesheet" href="/scss/style.min.699d591a8b6edc7dfab36bec98410d5acfb82ed718f6409590fd68b72a9346ac.css"><meta property='og:title' content="【渗透测试】Spring Boot Actuator 敏感信息泄露-高危">
 <meta property='og:description' content="0x00 什么是Actuator Spring Boot Actuator 模块提供了健康检查，审计，指标收集，HTTP 跟踪等，是帮助我们监控和管理Spring Boot 应用的模块。这个模块采集应用的内部信息，展现给外部模块，可以查看应用配置的详细信息，例如自动化配置信息、创建的Spring beans信息、系统环境变量的配置信息以及Web请求的详细信息等。\n如果没有正确使用Actuator，可能造成信息泄露等严重的安全隐患（外部人员非授权访问Actuator端点）。其中heapdump作为Actuator组件最为危险的Web端点，heapdump因未授权访问被恶意人员获取后进行分析，可进一步获取敏感信息。\nSpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径也有差别，但现在多使用的SpringBoot版本为2.x，这篇文章只讲SpringBoo 2.x Actuator模块带来的信息泄露。\n">
-<meta property='og:url' content='https://slimer.cn/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/'>
+<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='og:image' content='https://slimer.cn/images/27.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/27.webp' />
 <meta name="twitter:title" content="【渗透测试】Spring Boot Actuator 敏感信息泄露-高危">
 <meta name="twitter:description" content="0x00 什么是Actuator Spring Boot Actuator 模块提供了健康检查，审计，指标收集，HTTP 跟踪等，是帮助我们监控和管理Spring Boot 应用的模块。这个模块采集应用的内部信息，展现给外部模块，可以查看应用配置的详细信息，例如自动化配置信息、创建的Spring beans信息、系统环境变量的配置信息以及Web请求的详细信息等。\n如果没有正确使用Actuator，可能造成信息泄露等严重的安全隐患（外部人员非授权访问Actuator端点）。其中heapdump作为Actuator组件最为危险的Web端点，heapdump因未授权访问被恶意人员获取后进行分析，可进一步获取敏感信息。\nSpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径也有差别，但现在多使用的SpringBoot版本为2.x，这篇文章只讲SpringBoo 2.x Actuator模块带来的信息泄露。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://slimer.cn/images/27.webp' />
+    <meta name="twitter:image" content='http://localhost:1313/images/27.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -701,7 +701,7 @@ SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.310d38c99963e86c53c43232d9b04e101a98b09425c2fb12195e655db9e34368.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -715,7 +715,7 @@ SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径
 </script>
  <style>
     body {
-      background: url(https://slimer.cn/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -726,7 +726,7 @@ SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径
 <style>
   @font-face {
     font-family: 'pingfang';
-    src: url(https://slimer.cn/font/pingfang.ttf) format('truetype');
+    src: url(http://localhost:1313/font/pingfang.ttf) format('truetype');
   }
 
   :root {
@@ -735,7 +735,7 @@ SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径
   }
 </style>
 
-<script src=https://slimer.cn/background/sakura.js></script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 
     </body>

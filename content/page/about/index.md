@@ -71,17 +71,29 @@ menu:
 </div>
 
 <style>
+/* 全局容器样式 */
 .about-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 30px;
-  line-height: 1.7;
-  background: var(--card-background);
-  border-radius: 20px;
-  box-shadow: var(--shadow-l2);
+  padding: 40px;
+  line-height: 1.8;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 4px 20px rgba(255, 105, 180, 0.08);
   position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* 鼠标悬浮效果 */
+.about-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15), 0 6px 30px rgba(255, 105, 180, 0.12);
+}
+
+/* 顶部渐变装饰条 */
 .about-container::before {
   content: '';
   position: absolute;
@@ -89,10 +101,24 @@ menu:
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #ff69b4, #ff1493);
-  border-radius: 20px 20px 0 0;
+  background: linear-gradient(90deg, #ff69b4, #ff1493, #8a2be2);
+  border-radius: 24px 24px 0 0;
 }
 
+/* 装饰元素 */
+.about-container::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* 主要标题样式 */
 .about-container h2 {
   color: var(--accent-color);
   margin-top: 40px;
@@ -100,57 +126,108 @@ menu:
   font-size: 2.2em;
   font-weight: 700;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
+/* 第一个标题特殊样式 */
 .about-container h2:first-of-type {
   margin-top: 20px;
   color: #ff69b4;
   font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(90deg, #ff69b4, #ff1493, #8a2be2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-bottom: 10px;
 }
 
+/* 二级标题样式 */
 .about-container h3 {
   color: var(--card-text-color-main);
-  margin-top: 35px;
+  margin-top: 40px;
   margin-bottom: 20px;
-  font-size: 1.4em;
+  font-size: 1.5em;
   font-weight: 600;
+  position: relative;
+  z-index: 1;
+  padding-left: 15px;
+  border-left: 4px solid #ff69b4;
 }
 
+/* 列表样式 */
 .about-container ul {
   margin: 20px 0;
   padding-left: 20px;
+  position: relative;
+  z-index: 1;
 }
 
+/* 列表项样式 */
 .about-container li {
   margin: 12px 0;
-  padding: 8px 15px;
-  background: rgba(255, 105, 180, 0.05);
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.8);
   border-left: 3px solid #ff69b4;
-  border-radius: 0 8px 8px 0;
+  border-radius: 8px;
   color: var(--card-text-color-secondary);
   transition: all 0.3s ease;
+  list-style-type: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
 }
 
+/* 列表项装饰 */
+.about-container li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #ff69b4, #ff1493);
+  border-radius: 4px 0 0 4px;
+}
+
+/* 列表项悬停效果 */
 .about-container li:hover {
-  background: rgba(255, 105, 180, 0.1);
-  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateX(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* 段落样式 */
 .about-container p {
   color: var(--card-text-color-secondary);
   margin: 18px 0;
   font-size: 1.05em;
+  position: relative;
+  z-index: 1;
+  line-height: 1.8;
 }
 
+/* 引用样式 */
 .about-container blockquote {
   background: rgba(255, 105, 180, 0.1);
   border-left: 4px solid #ff69b4;
-  border-radius: 0 10px 10px 0;
+  border-radius: 12px;
   margin: 30px 0;
   padding: 25px 30px;
   box-shadow: var(--shadow-l1);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
 }
 
+/* 引用悬停效果 */
+.about-container blockquote:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* 引用段落样式 */
 .about-container blockquote p {
   margin: 0;
   font-weight: bold;
@@ -159,36 +236,148 @@ menu:
   line-height: 1.6;
 }
 
+/* 页脚样式 */
 .about-footer {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 60px;
   padding: 30px;
-  background: rgba(255, 105, 180, 0.1);
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(138, 43, 226, 0.1));
   border-radius: 15px;
-  box-shadow: var(--shadow-l1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
+/* 页脚段落样式 */
 .about-footer p {
   margin: 0;
   font-size: 1.2em;
   color: var(--accent-color);
   font-weight: 600;
+  background: linear-gradient(90deg, #ff69b4, #ff1493, #8a2be2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 链接样式 */
+.about-container a {
+  color: #ff69b4;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  padding: 0 2px;
+}
+
+/* 链接悬停效果 */
+.about-container a:hover {
+  color: #ff1493;
+}
+
+/* 链接下划线动画 */
+.about-container a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  transition: width 0.3s ease;
+}
+
+.about-container a:hover::after {
+  width: 100%;
+}
+
+/* 分隔线样式 */
+.about-container hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.3), transparent);
+  margin: 40px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* 专业领域和技术栈卡片网格布局 */
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 25px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* 技能卡片样式 */
+.skill-card {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* 技能卡片悬停效果 */
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* 技能卡片标题样式 */
+.skill-card h4 {
+  color: var(--card-text-color-main);
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+/* 技能卡片列表样式 */
+.skill-card ul {
+  margin: 0;
+  padding-left: 15px;
+}
+
+/* 技能卡片列表项样式 */
+.skill-card li {
+  margin: 8px 0;
+  padding: 6px 12px;
+  background: none;
+  border-left: 2px solid #ff69b4;
+  border-radius: 0 6px 6px 0;
+  box-shadow: none;
+}
+
+.skill-card li:hover {
+  transform: translateX(3px);
+  background: rgba(255, 105, 180, 0.05);
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
   .about-container {
-    padding: 20px;
-    margin: 10px;
-    border-radius: 15px;
+    padding: 25px;
+    margin: 15px;
+    border-radius: 20px;
   }
   
   .about-container h2 {
     font-size: 1.8em;
   }
   
+  .about-container h2:first-of-type {
+    font-size: 2em;
+  }
+  
   .about-container h3 {
-    font-size: 1.2em;
+    font-size: 1.3em;
+    margin-top: 30px;
   }
   
   .about-container blockquote {
@@ -197,6 +386,47 @@ menu:
   
   .about-footer {
     padding: 25px 20px;
+    margin-top: 40px;
+  }
+  
+  .about-skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skill-card {
+    padding: 20px;
   }
 }
+
+/* 暗色模式适配 */
+@media (prefers-color-scheme: dark) {
+  .about-container {
+    background: rgba(18, 18, 18, 0.9);
+    border: 1px solid rgba(40, 40, 40, 0.5);
+  }
+  
+  .about-container::after {
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.03) 0%, transparent 70%);
+  }
+  
+  .about-container li {
+    background: rgba(30, 30, 30, 0.8);
+    border-left: 3px solid #ff69b4;
+  }
+  
+  .about-footer {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.05), rgba(138, 43, 226, 0.05));
+    border: 1px solid rgba(40, 40, 40, 0.6);
+  }
+  
+  .skill-card {
+    background: rgba(30, 30, 30, 0.85);
+    border: 1px solid rgba(40, 40, 40, 0.6);
+  }
+  
+  .skill-card:hover {
+    background: rgba(30, 30, 30, 0.95);
+  }
+}
+</style>
 </style>

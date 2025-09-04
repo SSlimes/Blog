@@ -1215,31 +1215,178 @@ footer.site-footer {
 .tagCloud-tags a {
     // 与左侧导航菜单相同的字体大小
     font-size: 17px !important;
-    // 设置蓝粉色渐变效果（与左侧导航菜单相同）
-    background: linear-gradient(135deg, #60a5fa, #ec4899);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 800; // 字体加粗
-    transition: all 0.3s ease;
-    text-decoration: none;
-    margin: 5px;
-    display: inline-block;
+    // 设置鼠标悬停时的蓝粉色渐变效果
+    background: linear-gradient(135deg, #3b82f6, #db2777) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    font-weight: 800 !important; // 字体加粗
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    margin: 5px !important;
+    display: inline-block !important;
+    // 设置白色背景和圆角
+    background-color: white !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    padding: 8px 16px !important;
+    border-radius: 20px !important;
 }
 
 .tagCloud-tags a:hover {
-    // 悬停时更深的蓝粉色渐变（与左侧导航菜单相同）
-    background: linear-gradient(135deg, #3b82f6, #db2777);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 800; // 字体加粗
-    transform: scale(1.05);
+    // 悬停时略微调整效果，增加交互感
+    background: linear-gradient(135deg, #2563eb, #be185d) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    font-weight: 800 !important; // 字体加粗
+    transform: scale(1.05) !important;
+    text-shadow: 0 0 10px rgba(236, 72, 153, 0.3) !important;
+    // 确保没有背景和阴影
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
 // 移除分类云原有的字体大小类影响
 .tagCloud-tags a[class^="font_size_"] {
     font-size: 17px !important;
+}
+
+/*-------------------------------------------搜索框样式--------------------------------------------------*/
+.search-form {
+    position: relative;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.search-form.widget {
+    margin: 0;
+}
+
+.search-form p {
+    position: relative;
+    margin: 0;
+    width: 100%;
+}
+
+/* 移除标签动画效果，简化设计 */
+.search-form label {
+    display: none !important;
+}
+
+/* 简化输入框样式 */
+.search-form input {
+    padding: 30px 60px 30px 15px !important;
+    border-radius: 30px !important;
+    background-color: #f8fafc !important;
+    box-shadow: none !important;
+    color: #1e293b !important;
+    width: 100%;
+    border: 1px solid #e2e8f0 !important;
+    font-size: 1.5rem !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    transition: all 0.3s ease !important;
+}
+
+.search-form input:focus {
+    outline: 0 !important;
+    background-color: #ffffff !important;
+    border-color: #8b5cf6 !important;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
+}
+
+/* 简化按钮样式 */
+.search-form button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+    color: white !important;
+    border: none !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3) !important;
+}
+
+.search-form button:hover {
+    transform: translateY(-50%) scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4) !important;
+}
+
+.search-form button:active {
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* 搜索结果样式优化 */
+.search-result--title {
+    color: #1e293b !important;
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 2px solid #f1f5f9 !important;
+}
+
+.search-result--list article {
+    margin-bottom: 15px !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+    background-color: white !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.search-result--list article:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+.search-result--list .article-title {
+    color: #3b82f6 !important;
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+}
+
+.search-result--list .article-preview {
+    color: #64748b !important;
+    font-size: 1.4rem !important;
+    line-height: 1.6 !important;
+}
+
+.search-result--list .article-preview mark {
+    background-color: #fee2e2 !important;
+    color: #2563eb !important;
+    padding: 2px 5px !important;
+    border-radius: 4px !important;
+    font-weight: 500 !important;
+}/*---------------------------------------页脚样式调整-------------------------------------------*/
+footer.site-footer {
+    font-size: 1.6rem !important; // 保持字体大小
+    
+    .copyright {
+        background: linear-gradient(135deg, #60a5fa, #ec4899); // 与左侧导航栏一致的蓝粉色渐变
+        -webkit-background-clip: text; // 背景裁剪为文本
+        -webkit-text-fill-color: transparent; // 文本填充色透明
+        background-clip: text; // 兼容其他浏览器
+        text-fill-color: transparent; // 兼容其他浏览器
+        font-weight: bold !important;
+    }
+    
+    .runtime {
+        background: linear-gradient(135deg, #60a5fa, #ec4899); // 与左侧导航栏一致的蓝粉色渐变
+        -webkit-background-clip: text; // 背景裁剪为文本
+        -webkit-text-fill-color: transparent; // 文本填充色透明
+        background-clip: text; // 兼容其他浏览器
+        text-fill-color: transparent; // 兼容其他浏览器
+        font-size: 1.6rem !important; // 确保运行时间文本也使用相同的字体大小
+    }
 }
 
 

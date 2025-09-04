@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>渗透测试 on SlimerのBlog</title>
-        <link>https://slimer.cn/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
+        <link>http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
         <description>Recent content in 渗透测试 on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Tue, 02 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://slimer.cn/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 02 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行</title>
-        <link>https://slimer.cn/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</link>
+        <link>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</link>
         <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://slimer.cn/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</guid>
-        <description>&lt;img src="https://slimer.cn/images/29.webp" alt="Featured image of post 【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行" /&gt;&lt;h1 id=&#34;0x00-实验环境&#34;&gt;0x00 实验环境&lt;/h1&gt;
+        <guid>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</guid>
+        <description>&lt;img src="http://localhost:1313/images/29.webp" alt="Featured image of post 【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行" /&gt;&lt;h1 id=&#34;0x00-实验环境&#34;&gt;0x00 实验环境&lt;/h1&gt;
 &lt;p&gt;攻击机：Win 11&lt;br&gt;
 靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）&lt;br&gt;
 vulhub靶场下载地址：&lt;/p&gt;
@@ -121,11 +121,11 @@ ThinkPHP 2.x 已停止维护，漏洞无法通过零散修复彻底解决。&lt;
         </item>
         <item>
         <title>【渗透测试】Spring Boot Actuator 敏感信息泄露-高危</title>
-        <link>https://slimer.cn/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/</link>
         <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://slimer.cn/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/</guid>
-        <description>&lt;img src="https://slimer.cn/images/27.webp" alt="Featured image of post 【渗透测试】Spring Boot Actuator 敏感信息泄露-高危" /&gt;&lt;h1 id=&#34;0x00-什么是actuator&#34;&gt;0x00 什么是Actuator&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/27.webp" alt="Featured image of post 【渗透测试】Spring Boot Actuator 敏感信息泄露-高危" /&gt;&lt;h1 id=&#34;0x00-什么是actuator&#34;&gt;0x00 什么是Actuator&lt;/h1&gt;
 &lt;p&gt;Spring Boot Actuator 模块提供了健康检查，审计，指标收集，HTTP 跟踪等，是帮助我们监控和管理Spring Boot 应用的模块。这个模块采集应用的内部信息，展现给外部模块，可以查看应用配置的详细信息，例如自动化配置信息、创建的Spring beans信息、系统环境变量的配置信息以及Web请求的详细信息等。&lt;br&gt;
 如果没有正确使用Actuator，可能造成信息泄露等严重的安全隐患（外部人员非授权访问Actuator端点）。其中heapdump作为Actuator组件最为危险的Web端点，heapdump因未授权访问被恶意人员获取后进行分析，可进一步获取敏感信息。&lt;br&gt;
 SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径也有差别，但现在多使用的SpringBoot版本为2.x，这篇文章只讲SpringBoo 2.x Actuator模块带来的信息泄露。&lt;/p&gt;
