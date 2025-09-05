@@ -18,23 +18,6 @@
 }
 
 /*---------------------------------------代码块内化-------------------------------------------*/
-//---macOS风格的代码块
-.highlight {
-  border-radius: var(--card-border-radius);
-  max-width: 100% !important;
-  margin: 0 !important;
-  box-shadow: var(--shadow-l1) !important;
-}
-
-.highlight:before {
-  content: "";
-  display: block;
-  background: url(../icons/macOS-code-header.svg) no-repeat 0;
-  background-size: contain;
-  height: 18px;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
 // 代码块基础样式修改
 .highlight {
   max-width: 102% !important;
@@ -42,6 +25,8 @@
   padding: var(--card-padding);
   position: relative;
   border-radius: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   margin-left: -7px !important;
   margin-right: -12px;
   box-shadow: var(--shadow-l1) !important;

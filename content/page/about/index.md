@@ -6,7 +6,7 @@ aliases:
   - contact
 license: CC BY-NC-ND
 menu:
-    main: 
+    main:
         weight: -90
         params:
             icon: user
@@ -124,7 +124,6 @@ menu:
   margin-top: 40px;
   margin-bottom: 25px;
   font-size: 2.2em;
-  font-weight: 700;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -306,7 +305,7 @@ menu:
 .about-skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 25px;
   margin: 25px 0;
   position: relative;
   z-index: 1;
@@ -428,5 +427,4 @@ menu:
     background: rgba(30, 30, 30, 0.95);
   }
 }
-</style>
 </style>
