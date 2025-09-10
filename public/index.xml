@@ -7,7 +7,97 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Tue, 09 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 10 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【搬运】横向短信炸弹 &#43; 纵向短信炸弹 ≈ 任意用户登录</title>
+        <link>http://localhost:1313/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</guid>
+        <description>&lt;img src="http://localhost:1313/images/56.webp" alt="Featured image of post 【搬运】横向短信炸弹 &#43; 纵向短信炸弹 ≈ 任意用户登录" /&gt;&lt;p&gt;&lt;strong&gt;这里我主要记录一下，学习一下经验，侵权立删。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;复现过程&#34;&gt;复现过程&lt;/h1&gt;
+&lt;p&gt;开局一个纵向的短信炸弹，使用burp的Turbor并发插件，噼里啪啦给自己发了几十条短信。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/ec8567b67dc881fe13271dd838938642.png&#34; alt=&#34;ec8567b67dc881fe13271dd838938642.png&#34;&gt;&lt;br&gt;
+点开短信，发现了一个神奇的现象，通过并发操作发送的短信存在一定的可预测性，即前三位保持不变，变动后三位，有点意思～&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/82d031f4c23c54e51a5a70d5c5b35f6b.png&#34; alt=&#34;82d031f4c23c54e51a5a70d5c5b35f6b.png&#34;&gt;&lt;br&gt;
+众所周知，当系统存在纵向短信炸弹的时候，大概率也存在横向短信炸弹（这个逻辑反过来不太行，即存在横向短信炸弹，不一定存在纵向短信炸弹）。猜测应该并发的时候生成的短信可能都是前三位保持不变，变动后三位这个逻辑？那么思路清晰了，整一个横向+纵向结合的短信炸弹，给自己发送短信的同时也给其他手机发送短信，那不就能基本猜测出来验证码的前三位嘛，后三位，也基本都是挨在一起的，就算不挨在一起，总共也就1000个值，遍历一下就好啦～&lt;br&gt;
+准备一个1.txt文档，里面主要放置着自己的手机号，其中掺杂着一个测试手机号&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/8d9c1b7be0c37c53639a306de87292a9.png&#34; alt=&#34;8d9c1b7be0c37c53639a306de87292a9.png&#34;&gt;&lt;br&gt;
+使用Turbor并发插件，在telephone处设置%s的标记，然后在代码处，使用race的代码，并将代码改为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;for word in open(&amp;#34;/Users/xxx/Desktop/1.txt&amp;#34;):
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;engine.queue(target.req, word.rstrip())
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/60bdb11ab6f162c153f5ce642b39399c.png&#34; alt=&#34;60bdb11ab6f162c153f5ce642b39399c.png&#34;&gt;&lt;br&gt;
+点击攻击，成功发送短信。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/6b6b1ff7e52682ba4bbce4e59a6474b0.png&#34; alt=&#34;6b6b1ff7e52682ba4bbce4e59a6474b0.png&#34;&gt;&lt;br&gt;
+查看自己手机号上看到的短信内容，爆破一下18888888888手机号的后三位内容，成功爆破出来18888888888手机号的验证码，顺利把危害从短信炸弹升级成了任意用户登录&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/7acd5f8cae23ae37ea7a25f737d0b6b4.png&#34; alt=&#34;7acd5f8cae23ae37ea7a25f737d0b6b4.png&#34;&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>【渗透测试】通用弱密码&#43;弱用户名漏洞（高危）</title>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/57.webp" alt="Featured image of post 【渗透测试】通用弱密码&#43;弱用户名漏洞（高危）" /&gt;&lt;h1 id=&#34;漏洞url&#34;&gt;漏洞URL&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://xxxx/xx/xxx/xxx/login.html
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;风险详情&#34;&gt;风险详情&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;开发人员给多个账号设置了相同且简单易猜的密码 12345@qwert 。一方面，“相同密码” 的设置意味着只要攻击者获取到其中一个账号的密码，就能访问所有使用该密码的账号，扩大了攻击面；另一方面，“弱密码” 很容易被攻击者通过暴力破解、社工库查询等方式获取， 从而导致系统中大量用户数据面临泄露风险，如用户个人信息、业务数据等，还可能导致系统被恶意篡改、破坏，严重影响系统的安全性和业务的正常运行 。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;漏洞证明&#34;&gt;漏洞证明&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;根据提供的账号密码可以猜测系统使用的是弱口令+弱用户名进行认证。这里直接尝试用户+给出来的密码进行测试。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;发现几个用户可以使用该密码（123***rt）进行直接登录到系统。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250910142804.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;漏洞修复&#34;&gt;漏洞修复&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1、 要求用户设置高强度密码，密码长度至少 8 位以上，并且包含大写字母、小写字母、数字和特殊字符等多种字符类型。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2、 若是初始密码：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(1) 随机生成高强度密码（如 12 位：A8k#p2Q!x9Z3），切勿使用固定并且为弱口令密码。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(2) 初始密码生成后，超过 7 天未登录，失效。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3、 避免用 ceshi、test、admin、user 、姓名缩写等易猜名称作为用户名，建议采用 “业务前缀 + 随机字符” 的命名方式（如 test_8f2Dk、app_test_3xQ7），增加攻击者的猜测难度；
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）</title>
         <link>http://localhost:1313/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</link>
         <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>

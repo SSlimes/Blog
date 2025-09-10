@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/'>
 
-<link rel="stylesheet" href="/scss/style.min.f39e763cc24a12c32d2c857bf63a0ec538516751221b0253a741a1cb7486d60f.css"><meta property='og:title' content="【渗透测试】Spring Boot Actuator 敏感信息泄露-高危">
+<link rel="stylesheet" href="/scss/style.min.c5ac2d77cf0d1248f880bb26e1fd9ff742abb7b8875cf99ca11aefe20b8c3f09.css"><meta property='og:title' content="【渗透测试】Spring Boot Actuator 敏感信息泄露-高危">
 <meta property='og:description' content="0x00 什么是Actuator Spring Boot Actuator 模块提供了健康检查，审计，指标收集，HTTP 跟踪等，是帮助我们监控和管理Spring Boot 应用的模块。这个模块采集应用的内部信息，展现给外部模块，可以查看应用配置的详细信息，例如自动化配置信息、创建的Spring beans信息、系统环境变量的配置信息以及Web请求的详细信息等。\n如果没有正确使用Actuator，可能造成信息泄露等严重的安全隐患（外部人员非授权访问Actuator端点）。其中heapdump作为Actuator组件最为危险的Web端点，heapdump因未授权访问被恶意人员获取后进行分析，可进一步获取敏感信息。\nSpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径也有差别，但现在多使用的SpringBoot版本为2.x，这篇文章只讲SpringBoo 2.x Actuator模块带来的信息泄露。\n">
 <meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/'>
 <meta property='og:site_name' content='SlimerのBlog'>
@@ -549,6 +549,44 @@ SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径
             
                 
 <article class="has-image">
+    <a href="/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/56.webp" loading="lazy" data-key="" data-hash="/images/56.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【搬运】横向短信炸弹 &#43; 纵向短信炸弹 ≈ 任意用户登录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/57.webp" loading="lazy" data-key="" data-hash="/images/57.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【渗透测试】通用弱密码&#43;弱用户名漏洞（高危）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/">
         
         
@@ -561,6 +599,25 @@ SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径
 
         <div class="article-details">
             <h2 class="article-title">【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/knockout.js3.2.0%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/55.webp" loading="lazy" data-key="" data-hash="/images/55.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Knockout.js】3.2.0版本过低导致XSS漏洞（中危）</h2>
         </div>
     </a>
 </article>

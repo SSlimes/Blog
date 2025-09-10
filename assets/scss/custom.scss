@@ -25,8 +25,8 @@
   padding: var(--card-padding);
   position: relative;
   border-radius: 20px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: -7px !important;
   margin-right: -12px;
   box-shadow: var(--shadow-l1) !important;
@@ -578,48 +578,48 @@
   // 修改文章中各级标题的颜色
   h1 {
     color: #ff69b4 !important; // 粉色
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   h2 {
     color: #10b981 !important; // 绿色
-    margin-top: 1.3rem;
-    margin-bottom: 0.9rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   h3 {
     color: #f59e0b !important; // 橙色
-    margin-top: 1.1rem;
-    margin-bottom: 0.8rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   h4 {
     color: #8b5cf6 !important; // 紫色
-    margin-top: 1rem;
-    margin-bottom: 0.7rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   h5 {
     color: #ec4899 !important; // 粉色
-    margin-top: 0.9rem;
-    margin-bottom: 0.6rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   h6 {
     color: #6b7280 !important; // 灰色
-    margin-top: 0.8rem;
-    margin-bottom: 0.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   img {
     max-width: 96% !important;
     height: auto !important;
     border-radius: 8px;
-	
+    
 	// 增加图片与上下文字的间距
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   // 若图片被包在段落中，确保水平居中并保留左右自适应
@@ -631,8 +631,8 @@
 
   // figure（包含图片与说明）与正文的间距
   figure {
-    margin-top: 14px;
-    margin-bottom: 14px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 
@@ -993,14 +993,14 @@ footer.site-footer {
   // 段落样式
   p {
     font-size: inherit; // 继承父元素的字体大小
-    margin-bottom: 1.2rem; // 段落间距
+    margin-bottom: 20px; // 段落间距
   }
   
   // 标题样式
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.5; // 标题行高
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   h1 {
