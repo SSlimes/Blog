@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/'>
 
-<link rel="stylesheet" href="/scss/style.min.c5ac2d77cf0d1248f880bb26e1fd9ff742abb7b8875cf99ca11aefe20b8c3f09.css"><meta property='og:title' content="【渗透测试】通用弱密码+弱用户名漏洞（高危）">
+<link rel="stylesheet" href="/scss/style.min.3f80c356f93d6cdfe696883a3b8ecd0c4ad7670e02d4ec7b7c0fcf6cf9bbe703.css"><meta property='og:title' content="【渗透测试】通用弱密码+弱用户名漏洞（高危）">
 <meta property='og:description' content="漏洞URL 1 https://xxxx/xx/xxx/xxx/login.html 风险详情 1 开发人员给多个账号设置了相同且简单易猜的密码 12345@qwert 。一方面，“相同密码” 的设置意味着只要攻击者获取到其中一个账号的密码，就能访问所有使用该密码的账号，扩大了攻击面；另一方面，“弱密码” 很容易被攻击者通过暴力破解、社工库查询等方式获取， 从而导致系统中大量用户数据面临泄露风险，如用户个人信息、业务数据等，还可能导致系统被恶意篡改、破坏，严重影响系统的安全性和业务的正常运行 。 漏洞证明 1 2 3 根据提供的账号密码可以猜测系统使用的是弱口令+弱用户名进行认证。这里直接尝试用户+给出来的密码进行测试。 发现几个用户可以使用该密码（123***rt）进行直接登录到系统。 ">
 <meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/'>
 <meta property='og:site_name' content='SlimerのBlog'>
