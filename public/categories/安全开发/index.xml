@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>安全开发 on SlimerのBlog</title>
-        <link>http://localhost:1313/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/</link>
+        <link>http://localhost:1316/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/</link>
         <description>Recent content in 安全开发 on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Sat, 06 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 06 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1316/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>【GO】并发编程</title>
-        <link>http://localhost:1313/p/go%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
+        <link>http://localhost:1316/p/go%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
         <pubDate>Sat, 06 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/go%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</guid>
-        <description>&lt;img src="http://localhost:1313/images/51.webp" alt="Featured image of post 【GO】并发编程" /&gt;&lt;h1 id=&#34;0x01-协程&#34;&gt;0x01 协程&lt;/h1&gt;
+        <guid>http://localhost:1316/p/go%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</guid>
+        <description>&lt;img src="http://localhost:1316/images/51.webp" alt="Featured image of post 【GO】并发编程" /&gt;&lt;h1 id=&#34;0x01-协程&#34;&gt;0x01 协程&lt;/h1&gt;
 &lt;p&gt;什么是进程、线程、协程？？？？？？？？&lt;/p&gt;
 &lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;进程概念：&lt;/strong&gt;&lt;/p&gt;
@@ -469,11 +469,11 @@
         </item>
         <item>
         <title>【GO】基础语法</title>
-        <link>http://localhost:1313/p/go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+        <link>http://localhost:1316/p/go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
         <pubDate>Sat, 06 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
-        <description>&lt;img src="http://localhost:1313/images/50.webp" alt="Featured image of post 【GO】基础语法" /&gt;&lt;h1 id=&#34;0x01-认识函数&#34;&gt;0x01 认识函数&lt;/h1&gt;
+        <guid>http://localhost:1316/p/go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+        <description>&lt;img src="http://localhost:1316/images/50.webp" alt="Featured image of post 【GO】基础语法" /&gt;&lt;h1 id=&#34;0x01-认识函数&#34;&gt;0x01 认识函数&lt;/h1&gt;
 &lt;p&gt;语法最基础函数：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

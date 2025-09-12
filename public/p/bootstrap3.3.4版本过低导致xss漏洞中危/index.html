@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1316&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="漏洞URL 1 https://xxx/xx/xx/bootstrap/js/bootstrap.js 风险详情 1 攻击者利用脚本注入提供了“合法入口”（组件渲染逻辑未过滤 HTML 代码）。攻击门槛低，无需复杂技术，现成 payload 可直接利用。 漏洞证明 本次对下载bootstrap.js文件进行漏洞分析，使用我用AI写的POC进行测试：\nPOC下载地址：\n1 2 3 通过网盘分享的文件：Bootstrap-with-XSS-main.7z 链接: https://pan.baidu.com/s/1dO_x9WtgOVMtrCN4GC1sGA 提取码: ymyh --来自百度网盘超级会员v4的分享 test.html文件：\n">
 <title>【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）</title>
 
-<link rel='canonical' href='http://localhost:1313/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/'>
+<link rel='canonical' href='http://localhost:1316/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/'>
 
 <link rel="stylesheet" href="/scss/style.min.3f80c356f93d6cdfe696883a3b8ecd0c4ad7670e02d4ec7b7c0fcf6cf9bbe703.css"><meta property='og:title' content="【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）">
 <meta property='og:description' content="漏洞URL 1 https://xxx/xx/xx/bootstrap/js/bootstrap.js 风险详情 1 攻击者利用脚本注入提供了“合法入口”（组件渲染逻辑未过滤 HTML 代码）。攻击门槛低，无需复杂技术，现成 payload 可直接利用。 漏洞证明 本次对下载bootstrap.js文件进行漏洞分析，使用我用AI写的POC进行测试：\nPOC下载地址：\n1 2 3 通过网盘分享的文件：Bootstrap-with-XSS-main.7z 链接: https://pan.baidu.com/s/1dO_x9WtgOVMtrCN4GC1sGA 提取码: ymyh --来自百度网盘超级会员v4的分享 test.html文件：\n">
-<meta property='og:url' content='http://localhost:1313/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/'>
+<meta property='og:url' content='http://localhost:1316/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-09T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/54.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-09T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1316/images/54.webp' />
 <meta name="twitter:title" content="【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）">
 <meta name="twitter:description" content="漏洞URL 1 https://xxx/xx/xx/bootstrap/js/bootstrap.js 风险详情 1 攻击者利用脚本注入提供了“合法入口”（组件渲染逻辑未过滤 HTML 代码）。攻击门槛低，无需复杂技术，现成 payload 可直接利用。 漏洞证明 本次对下载bootstrap.js文件进行漏洞分析，使用我用AI写的POC进行测试：\nPOC下载地址：\n1 2 3 通过网盘分享的文件：Bootstrap-with-XSS-main.7z 链接: https://pan.baidu.com/s/1dO_x9WtgOVMtrCN4GC1sGA 提取码: ymyh --来自百度网盘超级会员v4的分享 test.html文件：\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/54.webp' />
+    <meta name="twitter:image" content='http://localhost:1316/images/54.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -666,18 +666,18 @@ POC下载地址：</p>
             
                 
 <article class="has-image">
-    <a href="/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%9E%E6%98%BE%E9%AB%98%E5%8D%B1/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/56.webp" loading="lazy" data-key="" data-hash="/images/56.webp"/>
+                    <img src="/images/64.webp" loading="lazy" data-key="" data-hash="/images/64.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【搬运】横向短信炸弹 &#43; 纵向短信炸弹 ≈ 任意用户登录</h2>
+            <h2 class="article-title">【渗透测试】手机验证码回显（高危）</h2>
         </div>
     </a>
 </article>
@@ -685,18 +685,18 @@ POC下载地址：</p>
             
                 
 <article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/57.webp" loading="lazy" data-key="" data-hash="/images/57.webp"/>
+                    <img src="/images/70.webp" loading="lazy" data-key="" data-hash="/images/70.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【渗透测试】通用弱密码&#43;弱用户名漏洞（高危）</h2>
+            <h2 class="article-title">【渗透测试】支付收获地址越权</h2>
         </div>
     </a>
 </article>
@@ -704,18 +704,18 @@ POC下载地址：</p>
             
                 
 <article class="has-image">
-    <a href="/p/knockout.js3.2.0%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5re/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/55.webp" loading="lazy" data-key="" data-hash="/images/55.webp"/>
+                    <img src="/images/68.webp" loading="lazy" data-key="" data-hash="/images/68.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【Knockout.js】3.2.0版本过低导致XSS漏洞（中危）</h2>
+            <h2 class="article-title">【渗透测试】支付漏洞四舍五入re</h2>
         </div>
     </a>
 </article>
@@ -723,18 +723,18 @@ POC下载地址：</p>
             
                 
 <article class="has-image">
-    <a href="/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0html%E5%B5%8C%E5%A5%97xss%E8%AF%AD%E5%8F%A5/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/29.webp" loading="lazy" data-key="" data-hash="/images/29.webp"/>
+                    <img src="/images/66.webp" loading="lazy" data-key="" data-hash="/images/66.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行</h2>
+            <h2 class="article-title">【渗透测试】文件上传html嵌套xss语句</h2>
         </div>
     </a>
 </article>
@@ -742,18 +742,18 @@ POC下载地址：</p>
             
                 
 <article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/27.webp" loading="lazy" data-key="" data-hash="/images/27.webp"/>
+                    <img src="/images/65.webp" loading="lazy" data-key="" data-hash="/images/65.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【渗透测试】Spring Boot Actuator 敏感信息泄露-高危</h2>
+            <h2 class="article-title">【渗透测试】统一认证系统的挖掘方法1</h2>
         </div>
     </a>
 </article>
@@ -763,7 +763,7 @@ POC下载地址：</p>
     </div>
 </aside>
 
-     
+    
     
         
     
@@ -908,7 +908,7 @@ POC下载地址：</p>
 </script>
  <style>
     body {
-      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1316/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -919,7 +919,7 @@ POC下载地址：</p>
 <style>
   @font-face {
     font-family: 'pingfang';
-    src: url(http://localhost:1313/font/pingfang.ttf) format('truetype');
+    src: url(http://localhost:1316/font/pingfang.ttf) format('truetype');
   }
 
   :root {
@@ -928,7 +928,7 @@ POC下载地址：</p>
   }
 </style>
 
-<script src=http://localhost:1313/background/sakura.js></script>
+<script src=http://localhost:1316/background/sakura.js></script>
 
 
     </body>

@@ -5,6 +5,7 @@ aliases:
   - about-us
   - contact
 license: CC BY-NC-ND
+toc: false
 menu:
     main:
         weight: -90
