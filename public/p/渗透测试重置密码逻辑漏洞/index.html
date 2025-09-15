@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="复现 如果遇到重置密码是分几步走的（比如先验证验证码是否正确，然后再让你改密码）， 这种可以注意验证验证码的响应数据包\n像这里， 响应包没有出现任何可校验的信息，比如token，sign之类的， 百分之90存在重置任意用户的漏洞\n输入别人账户，直接修改验证的响应包，进入页面重置即可\n">
 <title>【渗透测试】重置密码逻辑漏洞</title>
 
-<link rel='canonical' href='http://localhost:1314/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/'>
+<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/'>
 
 <link rel="stylesheet" href="/scss/style.min.3f80c356f93d6cdfe696883a3b8ecd0c4ad7670e02d4ec7b7c0fcf6cf9bbe703.css"><meta property='og:title' content="【渗透测试】重置密码逻辑漏洞">
 <meta property='og:description' content="复现 如果遇到重置密码是分几步走的（比如先验证验证码是否正确，然后再让你改密码）， 这种可以注意验证验证码的响应数据包\n像这里， 响应包没有出现任何可校验的信息，比如token，sign之类的， 百分之90存在重置任意用户的漏洞\n输入别人账户，直接修改验证的响应包，进入页面重置即可\n">
-<meta property='og:url' content='http://localhost:1314/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/'>
+<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1314/images/67.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/67.webp' />
 <meta name="twitter:title" content="【渗透测试】重置密码逻辑漏洞">
 <meta name="twitter:description" content="复现 如果遇到重置密码是分几步走的（比如先验证验证码是否正确，然后再让你改密码）， 这种可以注意验证验证码的响应数据包\n像这里， 响应包没有出现任何可校验的信息，比如token，sign之类的， 百分之90存在重置任意用户的漏洞\n输入别人账户，直接修改验证的响应包，进入页面重置即可\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1314/images/67.webp' />
+    <meta name="twitter:image" content='http://localhost:1313/images/67.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -365,6 +365,44 @@
             
                 
 <article class="has-image">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/70.webp" loading="lazy" data-key="" data-hash="/images/70.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【渗透测试】支付收获地址越权</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5re/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/68.webp" loading="lazy" data-key="" data-hash="/images/68.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【渗透测试】支付漏洞四舍五入re</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0html%E5%B5%8C%E5%A5%97xss%E8%AF%AD%E5%8F%A5/">
         
         
@@ -396,44 +434,6 @@
 
         <div class="article-details">
             <h2 class="article-title">【渗透测试】统一认证系统的挖掘方法1</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%82%AE%E4%BB%B6%E8%BD%B0%E7%82%B8%E4%B8%AD%E5%8D%B1/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/63.webp" loading="lazy" data-key="" data-hash="/images/63.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【渗透测试】邮件轰炸（中危）</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/56.webp" loading="lazy" data-key="" data-hash="/images/56.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【搬运】横向短信炸弹 &#43; 纵向短信炸弹 ≈ 任意用户登录</h2>
         </div>
     </a>
 </article>
@@ -588,7 +588,7 @@
 </script>
  <style>
     body {
-      background: url(http://localhost:1314/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -599,7 +599,7 @@
 <style>
   @font-face {
     font-family: 'pingfang';
-    src: url(http://localhost:1314/font/pingfang.ttf) format('truetype');
+    src: url(http://localhost:1313/font/pingfang.ttf) format('truetype');
   }
 
   :root {
@@ -608,7 +608,7 @@
   }
 </style>
 
-<script src=http://localhost:1314/background/sakura.js></script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 
     </body>
