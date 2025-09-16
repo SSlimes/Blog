@@ -132,6 +132,24 @@
 </description>
         </item>
         <item>
+        <title>【渗透测试】爆破支付密码</title>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%88%86%E7%A0%B4%E6%94%AF%E4%BB%98%E5%AF%86%E7%A0%81/</link>
+        <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%88%86%E7%A0%B4%E6%94%AF%E4%BB%98%E5%AF%86%E7%A0%81/</guid>
+        <description>&lt;img src="http://localhost:1313/images/75.webp" alt="Featured image of post 【渗透测试】爆破支付密码" /&gt;&lt;h1 id=&#34;案例介绍&#34;&gt;案例介绍&lt;/h1&gt;
+&lt;p&gt;某金融项目的一个爆破支付密码的进而进行修改支付密码案例&lt;/p&gt;
+&lt;h1 id=&#34;案例&#34;&gt;案例&lt;/h1&gt;
+&lt;p&gt;该用户中心的修改密码功能，该功能会先去验证当前交易密码输入得是否正确，如果正确就进行修改密码的操作，不正常则返回密码错误，而且该处并没有进行限制修改次数。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250916150852.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+查看一下错误的返回包&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250916150910.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+使用 burp 进行爆破&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250916150930.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+该种类漏洞，收录可能会有一些比如需要爆破次数需要达到 2w 类似的要求。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【春秋云境】CVE-2023-1313复现</title>
         <link>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2023-1313%E5%A4%8D%E7%8E%B0/</link>
         <pubDate>Sun, 14 Sep 2025 00:00:00 +0000</pubDate>
