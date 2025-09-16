@@ -8,12 +8,12 @@
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
         <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>【渗透测试】CVE-2024-36104复现</title>
-        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95cve-2024-36104%E5%A4%8D%E7%8E%B0/</link>
+        <title>【春秋云境】CVE-2024-36104复现</title>
+        <link>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-36104%E5%A4%8D%E7%8E%B0/</link>
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95cve-2024-36104%E5%A4%8D%E7%8E%B0/</guid>
-        <description>&lt;img src="http://localhost:1313/images/74.webp" alt="Featured image of post 【渗透测试】CVE-2024-36104复现" /&gt;&lt;h1 id=&#34;靶标介绍&#34;&gt;靶标介绍：&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-36104%E5%A4%8D%E7%8E%B0/</guid>
+        <description>&lt;img src="http://localhost:1313/images/74.webp" alt="Featured image of post 【春秋云境】CVE-2024-36104复现" /&gt;&lt;h1 id=&#34;靶标介绍&#34;&gt;靶标介绍：&lt;/h1&gt;
 &lt;p&gt;Apache OFBiz 目录遍历致代码执行漏洞，攻击者可构造恶意请求控制服务器。&lt;br&gt;
 该平台存在路径遍历漏洞，其成因是未对用户输入的 contextPath 参数进行充分验证。这使得未授权的攻击者能够通过精心构造的恶意请求绕过认证机制，进而访问系统中本应受保护的敏感接口，最终可能引发任意代码执行的严重后果。&lt;/p&gt;
 &lt;h1 id=&#34;漏洞影响版本&#34;&gt;漏洞影响版本&lt;/h1&gt;
