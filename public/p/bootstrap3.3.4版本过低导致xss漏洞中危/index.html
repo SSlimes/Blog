@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1316&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="漏洞URL 1 https://xxx/xx/xx/bootstrap/js/bootstrap.js 风险详情 1 攻击者利用脚本注入提供了“合法入口”（组件渲染逻辑未过滤 HTML 代码）。攻击门槛低，无需复杂技术，现成 payload 可直接利用。 漏洞证明 本次对下载bootstrap.js文件进行漏洞分析，使用我用AI写的POC进行测试：\nPOC下载地址：\n1 2 3 通过网盘分享的文件：Bootstrap-with-XSS-main.7z 链接: https://pan.baidu.com/s/1dO_x9WtgOVMtrCN4GC1sGA 提取码: ymyh --来自百度网盘超级会员v4的分享 test.html文件：\n">
 <title>【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）</title>
 
-<link rel='canonical' href='http://localhost:1316/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/'>
+<link rel='canonical' href='http://localhost:1313/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/'>
 
 <link rel="stylesheet" href="/scss/style.min.3bc9fe2ea60209296765cf9e97ef22521b3ade60b59c2717f8d93403d92c6b4b.css"><meta property='og:title' content="【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）">
 <meta property='og:description' content="漏洞URL 1 https://xxx/xx/xx/bootstrap/js/bootstrap.js 风险详情 1 攻击者利用脚本注入提供了“合法入口”（组件渲染逻辑未过滤 HTML 代码）。攻击门槛低，无需复杂技术，现成 payload 可直接利用。 漏洞证明 本次对下载bootstrap.js文件进行漏洞分析，使用我用AI写的POC进行测试：\nPOC下载地址：\n1 2 3 通过网盘分享的文件：Bootstrap-with-XSS-main.7z 链接: https://pan.baidu.com/s/1dO_x9WtgOVMtrCN4GC1sGA 提取码: ymyh --来自百度网盘超级会员v4的分享 test.html文件：\n">
-<meta property='og:url' content='http://localhost:1316/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/'>
+<meta property='og:url' content='http://localhost:1313/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-09T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1316/images/54.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-09T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/54.webp' />
 <meta name="twitter:title" content="【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）">
 <meta name="twitter:description" content="漏洞URL 1 https://xxx/xx/xx/bootstrap/js/bootstrap.js 风险详情 1 攻击者利用脚本注入提供了“合法入口”（组件渲染逻辑未过滤 HTML 代码）。攻击门槛低，无需复杂技术，现成 payload 可直接利用。 漏洞证明 本次对下载bootstrap.js文件进行漏洞分析，使用我用AI写的POC进行测试：\nPOC下载地址：\n1 2 3 通过网盘分享的文件：Bootstrap-with-XSS-main.7z 链接: https://pan.baidu.com/s/1dO_x9WtgOVMtrCN4GC1sGA 提取码: ymyh --来自百度网盘超级会员v4的分享 test.html文件：\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1316/images/54.webp' />
+    <meta name="twitter:image" content='http://localhost:1313/images/54.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -908,7 +908,7 @@ POC下载地址：</p>
 </script>
  <style>
     body {
-      background: url(http://localhost:1316/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -919,7 +919,7 @@ POC下载地址：</p>
 <style>
   @font-face {
     font-family: 'pingfang';
-    src: url(http://localhost:1316/font/pingfang.ttf) format('truetype');
+    src: url(http://localhost:1313/font/pingfang.ttf) format('truetype');
   }
 
   :root {
@@ -928,7 +928,7 @@ POC下载地址：</p>
   }
 </style>
 
-<script src=http://localhost:1316/background/sakura.js></script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 
     </body>

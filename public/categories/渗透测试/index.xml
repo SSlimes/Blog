@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>渗透测试 on SlimerのBlog</title>
-        <link>http://localhost:1316/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
+        <link>http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
         <description>Recent content in 渗透测试 on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1316/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>【渗透测试】任意用户登录（高危）</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E9%AB%98%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E9%AB%98%E5%8D%B1/</link>
         <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E9%AB%98%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/71.webp" alt="Featured image of post 【渗透测试】任意用户登录（高危）" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E9%AB%98%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/71.webp" alt="Featured image of post 【渗透测试】任意用户登录（高危）" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
 &lt;p&gt;看了一眼请求包 在小程序中他是这样子登录的&lt;br&gt;
 &lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250915130445.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 根据个人测试的经验来说..这里关键的就是unionId&lt;br&gt;
@@ -29,11 +29,11 @@
         </item>
         <item>
         <title>【渗透测试】任意用户注册（高危）</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E9%AB%98%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E9%AB%98%E5%8D%B1/</link>
         <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E9%AB%98%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/72.webp" alt="Featured image of post 【渗透测试】任意用户注册（高危）" /&gt;&lt;p&gt;&lt;strong&gt;短信验证码和手机号未绑定导致任意用户注册&lt;/strong&gt;&lt;/p&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E9%AB%98%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/72.webp" alt="Featured image of post 【渗透测试】任意用户注册（高危）" /&gt;&lt;p&gt;&lt;strong&gt;短信验证码和手机号未绑定导致任意用户注册&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;A&lt;/strong&gt;手机号码注册且发送的验证码可让&lt;strong&gt;B，C，D&lt;/strong&gt;的手机号码使用且注册成功。&lt;br&gt;
 手机号码&lt;/p&gt;
@@ -54,11 +54,11 @@
         </item>
         <item>
         <title>【渗透测试】手机验证码回显（高危）</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%9E%E6%98%BE%E9%AB%98%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%9E%E6%98%BE%E9%AB%98%E5%8D%B1/</link>
         <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%9E%E6%98%BE%E9%AB%98%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/64.webp" alt="Featured image of post 【渗透测试】手机验证码回显（高危）" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%9E%E6%98%BE%E9%AB%98%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/64.webp" alt="Featured image of post 【渗透测试】手机验证码回显（高危）" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -81,11 +81,11 @@
         </item>
         <item>
         <title>【渗透测试】统一认证系统的挖掘方法1</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/</link>
         <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/</guid>
-        <description>&lt;img src="http://localhost:1316/images/65.webp" alt="Featured image of post 【渗透测试】统一认证系统的挖掘方法1" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/</guid>
+        <description>&lt;img src="http://localhost:1313/images/65.webp" alt="Featured image of post 【渗透测试】统一认证系统的挖掘方法1" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
 &lt;h2 id=&#34;步骤一&#34;&gt;步骤一&lt;/h2&gt;
 &lt;p&gt;挖掘一些业务的时候，很多系统都会放在一个统一认证中去访问，你只有登录统一认证才能去访问某个系统，那么当我们在挖掘的时候，遇见这样的环境怎么办呢？&lt;br&gt;
 当然是最简单的修改返回包查看是否可以未授权查看内容，当然很多时候都是白给，但是我们还是要尝试一下撒。&lt;br&gt;
@@ -105,11 +105,11 @@
         </item>
         <item>
         <title>【渗透测试】文件上传html嵌套xss语句</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0html%E5%B5%8C%E5%A5%97xss%E8%AF%AD%E5%8F%A5/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0html%E5%B5%8C%E5%A5%97xss%E8%AF%AD%E5%8F%A5/</link>
         <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0html%E5%B5%8C%E5%A5%97xss%E8%AF%AD%E5%8F%A5/</guid>
-        <description>&lt;img src="http://localhost:1316/images/66.webp" alt="Featured image of post 【渗透测试】文件上传html嵌套xss语句" /&gt;&lt;h1 id=&#34;0x01-漏洞描述&#34;&gt;0x01 漏洞描述&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0html%E5%B5%8C%E5%A5%97xss%E8%AF%AD%E5%8F%A5/</guid>
+        <description>&lt;img src="http://localhost:1313/images/66.webp" alt="Featured image of post 【渗透测试】文件上传html嵌套xss语句" /&gt;&lt;h1 id=&#34;0x01-漏洞描述&#34;&gt;0x01 漏洞描述&lt;/h1&gt;
 &lt;p&gt;在我们文件上传的时候很有很可能会遇见无法上传马子的情况，我相信很多人在这个时候都会直接不管这一个上传点，然后在企业src里面这样的上传点可以试试上传一个html文件配合xss语句，导致一个挂黑页弹窗的危害，在众测里面达到了中危的标准&lt;/p&gt;
 &lt;h1 id=&#34;0x02-漏洞测试工具&#34;&gt;0x02 漏洞测试工具&lt;/h1&gt;
 &lt;p&gt;Burp  html配合xss语句的文件&lt;/p&gt;
@@ -164,11 +164,11 @@
         </item>
         <item>
         <title>【渗透测试】邮件轰炸（中危）</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%82%AE%E4%BB%B6%E8%BD%B0%E7%82%B8%E4%B8%AD%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%82%AE%E4%BB%B6%E8%BD%B0%E7%82%B8%E4%B8%AD%E5%8D%B1/</link>
         <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%82%AE%E4%BB%B6%E8%BD%B0%E7%82%B8%E4%B8%AD%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/63.webp" alt="Featured image of post 【渗透测试】邮件轰炸（中危）" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%82%AE%E4%BB%B6%E8%BD%B0%E7%82%B8%E4%B8%AD%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/63.webp" alt="Featured image of post 【渗透测试】邮件轰炸（中危）" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -203,11 +203,11 @@
         </item>
         <item>
         <title>【渗透测试】越权撤回（高危）</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E8%B6%8A%E6%9D%83%E6%92%A4%E5%9B%9E%E9%AB%98%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E8%B6%8A%E6%9D%83%E6%92%A4%E5%9B%9E%E9%AB%98%E5%8D%B1/</link>
         <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E8%B6%8A%E6%9D%83%E6%92%A4%E5%9B%9E%E9%AB%98%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/69.webp" alt="Featured image of post 【渗透测试】越权撤回（高危）" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E8%B6%8A%E6%9D%83%E6%92%A4%E5%9B%9E%E9%AB%98%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/69.webp" alt="Featured image of post 【渗透测试】越权撤回（高危）" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912152606.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 这里我们可以看到，在评论这里，有自己的发言，和别人的评论。我们点击回复，随便输入，然后点击发送，抓包，就可以看到别人的comment_id:&lt;br&gt;
 &lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912152622.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
@@ -232,11 +232,11 @@
         </item>
         <item>
         <title>【渗透测试】支付漏洞四舍五入re</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5re/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5re/</link>
         <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5re/</guid>
-        <description>&lt;img src="http://localhost:1316/images/68.webp" alt="Featured image of post 【渗透测试】支付漏洞四舍五入re" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5re/</guid>
+        <description>&lt;img src="http://localhost:1313/images/68.webp" alt="Featured image of post 【渗透测试】支付漏洞四舍五入re" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;挖洞是一个需要思维的，而不是一成不变的模仿，做到举一反三，赏金还愁什么呢，在星球刚创立的时候我们就发布了四舍五入的支付漏洞，大家在挖掘的时候，看见的特征点就是自己的钱包的0.00的时候就要想到这个漏洞，但是也要学会变通。&lt;/p&gt;
 &lt;h1 id=&#34;0x01发现过程&#34;&gt;0X01:发现过程：&lt;/h1&gt;
 &lt;p&gt;我某天乱逛的时候看见了一个和某宝差不多可以购买J金的项目，然后就随手下载了app，打开一个，发现钱包余额是0.00的字眼，我随手充值了1.01 ,1.005,1.05但是最后充值都是很正确的。&lt;br&gt;
@@ -259,11 +259,11 @@
         </item>
         <item>
         <title>【渗透测试】支付收获地址越权</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/</link>
         <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/</guid>
-        <description>&lt;img src="http://localhost:1316/images/70.webp" alt="Featured image of post 【渗透测试】支付收获地址越权" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/</guid>
+        <description>&lt;img src="http://localhost:1313/images/70.webp" alt="Featured image of post 【渗透测试】支付收获地址越权" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;在我挖掘漏洞的时候，其实越权是普遍存在，一个get请求中的显眼参数，一个post请求中不明显的参数，这些都是需要我们去思考的。&lt;/p&gt;
 &lt;h1 id=&#34;0x01-身份鉴权不严的挖法&#34;&gt;0x01 身份鉴权不严的挖法&lt;/h1&gt;
 &lt;p&gt; 身份鉴权不严（原理就不解释了）这个漏洞点可以说存在整个web站点的任何一个地方，所以我们挖漏洞的时候，&lt;strong&gt;一定要养成保存数据包的习惯，这是我们挖越权很重要的思路，再者就是A页面不存在越权，但是保不准B页面就不存在越权，所以我们在挖掘的时候，不要放过任何地方，总而言之就是：善于观察参数&lt;/strong&gt;&lt;/p&gt;
@@ -282,11 +282,11 @@
         </item>
         <item>
         <title>【渗透测试】重置密码逻辑漏洞</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</guid>
-        <description>&lt;img src="http://localhost:1316/images/67.webp" alt="Featured image of post 【渗透测试】重置密码逻辑漏洞" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</guid>
+        <description>&lt;img src="http://localhost:1313/images/67.webp" alt="Featured image of post 【渗透测试】重置密码逻辑漏洞" /&gt;&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
 &lt;p&gt;如果遇到重置密码是分几步走的（比如先验证验证码是否正确，然后再让你改密码）， 这种可以注意验证验证码的响应数据包&lt;br&gt;
 &lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912151604.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
 像这里， 响应包没有出现任何可校验的信息，比如token，sign之类的， 百分之90存在重置任意用户的漏洞&lt;br&gt;
@@ -297,11 +297,11 @@
         </item>
         <item>
         <title>【搬运】横向短信炸弹 &#43; 纵向短信炸弹 ≈ 任意用户登录</title>
-        <link>http://localhost:1316/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</link>
+        <link>http://localhost:1313/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</guid>
-        <description>&lt;img src="http://localhost:1316/images/56.webp" alt="Featured image of post 【搬运】横向短信炸弹 &#43; 纵向短信炸弹 ≈ 任意用户登录" /&gt;&lt;p&gt;&lt;strong&gt;这里我主要记录一下，学习一下经验，侵权立删。&lt;/strong&gt;&lt;/p&gt;
+        <guid>http://localhost:1313/p/%E6%90%AC%E8%BF%90%E6%A8%AA%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9--%E7%BA%B5%E5%90%91%E7%9F%AD%E4%BF%A1%E7%82%B8%E5%BC%B9-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</guid>
+        <description>&lt;img src="http://localhost:1313/images/56.webp" alt="Featured image of post 【搬运】横向短信炸弹 &#43; 纵向短信炸弹 ≈ 任意用户登录" /&gt;&lt;p&gt;&lt;strong&gt;这里我主要记录一下，学习一下经验，侵权立删。&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;复现过程&#34;&gt;复现过程&lt;/h1&gt;
 &lt;p&gt;开局一个纵向的短信炸弹，使用burp的Turbor并发插件，噼里啪啦给自己发了几十条短信。&lt;br&gt;
 &lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/ec8567b67dc881fe13271dd838938642.png&#34; alt=&#34;ec8567b67dc881fe13271dd838938642.png&#34;&gt;&lt;br&gt;
@@ -330,11 +330,11 @@
         </item>
         <item>
         <title>【渗透测试】通用弱密码&#43;弱用户名漏洞（高危）</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/57.webp" alt="Featured image of post 【渗透测试】通用弱密码&#43;弱用户名漏洞（高危）" /&gt;&lt;h1 id=&#34;漏洞url&#34;&gt;漏洞URL&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/57.webp" alt="Featured image of post 【渗透测试】通用弱密码&#43;弱用户名漏洞（高危）" /&gt;&lt;h1 id=&#34;漏洞url&#34;&gt;漏洞URL&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -387,11 +387,11 @@
         </item>
         <item>
         <title>【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）</title>
-        <link>http://localhost:1316/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</link>
         <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/54.webp" alt="Featured image of post 【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）" /&gt;&lt;h1 id=&#34;漏洞url&#34;&gt;漏洞URL&lt;/h1&gt;
+        <guid>http://localhost:1313/p/bootstrap3.3.4%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/54.webp" alt="Featured image of post 【Bootstrap】3.3.4版本过低导致XSS漏洞（中危）" /&gt;&lt;h1 id=&#34;漏洞url&#34;&gt;漏洞URL&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -719,11 +719,11 @@ POC下载地址：&lt;/p&gt;
         </item>
         <item>
         <title>【Knockout.js】3.2.0版本过低导致XSS漏洞（中危）</title>
-        <link>http://localhost:1316/p/knockout.js3.2.0%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/knockout.js3.2.0%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</link>
         <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/knockout.js3.2.0%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/55.webp" alt="Featured image of post 【Knockout.js】3.2.0版本过低导致XSS漏洞（中危）" /&gt;&lt;h1 id=&#34;漏洞url&#34;&gt;漏洞URL&lt;/h1&gt;
+        <guid>http://localhost:1313/p/knockout.js3.2.0%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E5%AF%BC%E8%87%B4xss%E6%BC%8F%E6%B4%9E%E4%B8%AD%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/55.webp" alt="Featured image of post 【Knockout.js】3.2.0版本过低导致XSS漏洞（中危）" /&gt;&lt;h1 id=&#34;漏洞url&#34;&gt;漏洞URL&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1062,11 +1062,11 @@ POC下载地址：&lt;/p&gt;
         </item>
         <item>
         <title>【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行</title>
-        <link>http://localhost:1316/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</link>
+        <link>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</link>
         <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</guid>
-        <description>&lt;img src="http://localhost:1316/images/29.webp" alt="Featured image of post 【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行" /&gt;&lt;h1 id=&#34;0x00-实验环境&#34;&gt;0x00 实验环境&lt;/h1&gt;
+        <guid>http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</guid>
+        <description>&lt;img src="http://localhost:1313/images/29.webp" alt="Featured image of post 【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行" /&gt;&lt;h1 id=&#34;0x00-实验环境&#34;&gt;0x00 实验环境&lt;/h1&gt;
 &lt;p&gt;攻击机：Win 11&lt;br&gt;
 靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）&lt;br&gt;
 vulhub靶场下载地址：&lt;/p&gt;
@@ -1174,11 +1174,11 @@ ThinkPHP 2.x 已停止维护，漏洞无法通过零散修复彻底解决。&lt;
         </item>
         <item>
         <title>【渗透测试】Spring Boot Actuator 敏感信息泄露-高危</title>
-        <link>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/</link>
+        <link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/</link>
         <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1316/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/</guid>
-        <description>&lt;img src="http://localhost:1316/images/27.webp" alt="Featured image of post 【渗透测试】Spring Boot Actuator 敏感信息泄露-高危" /&gt;&lt;h1 id=&#34;0x00-什么是actuator&#34;&gt;0x00 什么是Actuator&lt;/h1&gt;
+        <guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95spring-boot-actuator-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E9%AB%98%E5%8D%B1/</guid>
+        <description>&lt;img src="http://localhost:1313/images/27.webp" alt="Featured image of post 【渗透测试】Spring Boot Actuator 敏感信息泄露-高危" /&gt;&lt;h1 id=&#34;0x00-什么是actuator&#34;&gt;0x00 什么是Actuator&lt;/h1&gt;
 &lt;p&gt;Spring Boot Actuator 模块提供了健康检查，审计，指标收集，HTTP 跟踪等，是帮助我们监控和管理Spring Boot 应用的模块。这个模块采集应用的内部信息，展现给外部模块，可以查看应用配置的详细信息，例如自动化配置信息、创建的Spring beans信息、系统环境变量的配置信息以及Web请求的详细信息等。&lt;br&gt;
 如果没有正确使用Actuator，可能造成信息泄露等严重的安全隐患（外部人员非授权访问Actuator端点）。其中heapdump作为Actuator组件最为危险的Web端点，heapdump因未授权访问被恶意人员获取后进行分析，可进一步获取敏感信息。&lt;br&gt;
 SpringBoot 1.x 和 2.x 的 Actuator模块设置有差别，访问功能的路径也有差别，但现在多使用的SpringBoot版本为2.x，这篇文章只讲SpringBoo 2.x Actuator模块带来的信息泄露。&lt;/p&gt;
