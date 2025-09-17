@@ -3,19 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-09-16T00:00:00+00:00</lastmod>
+    <lastmod>2025-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95cve-2024-36104%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2025-09-16T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2023-38836%E5%A4%8D%E7%8E%B0/</loc>
+    <lastmod>2025-09-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-09-16T00:00:00+00:00</lastmod>
+    <lastmod>2025-09-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2025-09-16T00:00:00+00:00</lastmod>
+    <lastmod>2025-09-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</loc>
+    <lastmod>2025-09-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-36104%E5%A4%8D%E7%8E%B0/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%88%86%E7%A0%B4%E6%94%AF%E4%BB%98%E5%AF%86%E7%A0%81/</loc>
+    <lastmod>2025-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2025-09-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2023-1313%E5%A4%8D%E7%8E%B0/</loc>
     <lastmod>2025-09-14T00:00:00+00:00</lastmod>
@@ -24,9 +33,6 @@
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E9%AB%98%E5%8D%B1/</loc>
-    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/</loc>
@@ -270,6 +276,8 @@
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
+  </url><url>
+    <loc>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</loc>
   </url><url>
     <loc>http://localhost:1313/%E5%85%B3%E4%BA%8E-about/</loc>
   </url><url>

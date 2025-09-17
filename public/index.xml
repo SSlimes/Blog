@@ -7,7 +7,44 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 17 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【春秋云境】CVE-2023-38836复现</title>
+        <link>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2023-38836%E5%A4%8D%E7%8E%B0/</link>
+        <pubDate>Wed, 17 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2023-38836%E5%A4%8D%E7%8E%B0/</guid>
+        <description>&lt;img src="http://localhost:1313/images/76.webp" alt="Featured image of post 【春秋云境】CVE-2023-38836复现" /&gt;&lt;h1 id=&#34;0x01-靶标介绍&#34;&gt;0x01 靶标介绍&lt;/h1&gt;
+&lt;p&gt;BoidCMS v.2.0.0 存在文件上传漏洞，远程攻击者可通过添加 GIF 头部绕过 MIME 类型检查，执行任意代码。&lt;/p&gt;
+&lt;h1 id=&#34;0x02-影响范围&#34;&gt;0x02 影响范围&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;BoidCMS &amp;lt;=2.0.0&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x03-漏洞复现&#34;&gt;0x03 漏洞复现&lt;/h1&gt;
+&lt;p&gt;首先来到admin页面，使用bs爆破，得到账号密码&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250917131217.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+Media页面可以上传文件，尝试上传文件&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250917132015.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+文件类型不被支持，我们先上传一个正常文件&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250917132031.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+进行抓包，然后编辑重放&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250917132047.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+将文件名更改为php后缀，在文件头下面添加payload&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php @eval($_POST[&amp;#39;cmd&amp;#39;]);?&amp;gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php system(&amp;#34;cat /flag&amp;#34;);?&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250917132113.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+刷新可以看到上传成功&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250917132132.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+回显得到flag&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250917132148.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【春秋云境】CVE-2024-36104复现</title>
         <link>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-36104%E5%A4%8D%E7%8E%B0/</link>
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
