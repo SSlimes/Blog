@@ -985,23 +985,59 @@ footer.site-footer {
 }
 /*-------------------------------------------文章内容字体大小---------------------------------------------*/
 // 设置文章内容正文的字体大小
-.article-page .main-article .article-content {
-  // 基础文字大小
-  font-size: 18px; // 可以根据需要调整这个值
-  line-height: 2; // 调整行高以提高可读性
-  
-  // 段落样式
+body.article-page .container.main-container .article-content {
+  // 重置所有元素的默认边距
   p {
-    font-size: inherit; // 继承父元素的字体大小
-    margin-bottom: 15px; // 段落间距
+    margin: 20px 0 !important; // 统一段落上下间距
+    line-height: 1.8 !important;
+    padding: 0 !important;
   }
   
-  // 标题样式
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.5; // 标题行高
-    margin-top: 15px;
-    margin-bottom: 15px;
+  // 隐藏多余的br标签
+  br {
+    display: none !important;
   }
+  
+  // 调整标题间距
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 20px !important; // 统一标题上下间距
+    margin-bottom: 20px !important;
+  }
+  
+  // 精确控制所有图片的间距
+  img {
+    margin: 20px 0 !important; // 统一图片上下间距
+    padding: 0 !important;
+    display: block !important;
+    line-height: 0 !important; // 消除行高影响
+  }
+  
+  // 确保p标签内的图片间距一致
+  p img {
+    margin: 20px 0 !important; // 统一p标签内图片上下间距
+    padding: 0 !important;
+    display: block !important;
+    line-height: 0 !important;
+  }
+  
+  // 调整代码块的间距
+  .highlight {
+    margin: 20px 0 !important; // 统一代码块上下间距
+    padding: 20px !important;
+  }
+  
+  // 调整链接的间距
+  a {
+    line-height: 1.2 !important;
+  }
+  
+  // 确保文章内容区域内没有额外的间距影响
+  * {
+    box-sizing: border-box;
+  }
+  
+  // 保留原有的字体大小设置
+  font-size: 18px;
   
   h1 {
     font-size: 3.0rem;
@@ -1025,22 +1061,6 @@ footer.site-footer {
   
   h6 {
     font-size: 1.0rem;
-  }
-  
-  // 列表样式
-  ul, ol {
-    font-size: inherit;
-    margin-bottom: 1.2rem;
-  }
-  
-  li {
-    margin-bottom: 0.5rem;
-  }
-  
-  // 引用块样式
-  blockquote {
-    font-size: inherit;
-    line-height: 1.7;
   }
 }
 
