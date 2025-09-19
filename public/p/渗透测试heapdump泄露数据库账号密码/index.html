@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="复现 步骤一 挖掘一些业务的时候，很多系统都会放在一个统一认证中去访问，你只有登录统一认证才能去访问某个系统，那么当我们在挖掘的时候，遇见这样的环境怎么办呢？\n当然是最简单的修改返回包查看是否可以未授权查看内容，当然很多时候都是白给，但是我们还是要尝试一下撒。\n当我们扫描出xxxx.com存在一个子域名，我们去访问站点http://stde.xxxx.com发现他要跳转到一个统一认证的页面，此时我们进行抓包对每一个数据包进行分析：\n每一次放包都会自动跳转，但是发现该数据包时，我将箭头所指的{}删掉，发现就可以进入系统卡死在功能点页面，因为页面只有功能点没有数据，我就继续点击功能点\n点击任意功能点继续抓包：出现如图的数据包的时候将401，提示我们需要先登录才能进行访问\n">
-<title>【渗透测试】统一认证系统的挖掘方法1</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="开局一个报告，怎么说呢，护网期间被打穿了，不过庆幸的是不是我们负责的网站。没有任何责任，哈哈哈哈\n，话不多说，上过程。\n过程 首先一个heapdump的连接\n">
+<title>【渗透测试】heapdump泄露数据库账号密码</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/'>
+<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95heapdump%E6%B3%84%E9%9C%B2%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/'>
 
-<link rel="stylesheet" href="/scss/style.min.d80f6490896f3b042d97b22aa87a9b3c09fb79a68e3815911ca4aaeb85131587.css"><meta property='og:title' content="【渗透测试】统一认证系统的挖掘方法1">
-<meta property='og:description' content="复现 步骤一 挖掘一些业务的时候，很多系统都会放在一个统一认证中去访问，你只有登录统一认证才能去访问某个系统，那么当我们在挖掘的时候，遇见这样的环境怎么办呢？\n当然是最简单的修改返回包查看是否可以未授权查看内容，当然很多时候都是白给，但是我们还是要尝试一下撒。\n当我们扫描出xxxx.com存在一个子域名，我们去访问站点http://stde.xxxx.com发现他要跳转到一个统一认证的页面，此时我们进行抓包对每一个数据包进行分析：\n每一次放包都会自动跳转，但是发现该数据包时，我将箭头所指的{}删掉，发现就可以进入系统卡死在功能点页面，因为页面只有功能点没有数据，我就继续点击功能点\n点击任意功能点继续抓包：出现如图的数据包的时候将401，提示我们需要先登录才能进行访问\n">
-<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/'>
+<link rel="stylesheet" href="/scss/style.min.d80f6490896f3b042d97b22aa87a9b3c09fb79a68e3815911ca4aaeb85131587.css"><meta property='og:title' content="【渗透测试】heapdump泄露数据库账号密码">
+<meta property='og:description' content="开局一个报告，怎么说呢，护网期间被打穿了，不过庆幸的是不是我们负责的网站。没有任何责任，哈哈哈哈\n，话不多说，上过程。\n过程 首先一个heapdump的连接\n">
+<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95heapdump%E6%B3%84%E9%9C%B2%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/65.webp' />
-<meta name="twitter:title" content="【渗透测试】统一认证系统的挖掘方法1">
-<meta name="twitter:description" content="复现 步骤一 挖掘一些业务的时候，很多系统都会放在一个统一认证中去访问，你只有登录统一认证才能去访问某个系统，那么当我们在挖掘的时候，遇见这样的环境怎么办呢？\n当然是最简单的修改返回包查看是否可以未授权查看内容，当然很多时候都是白给，但是我们还是要尝试一下撒。\n当我们扫描出xxxx.com存在一个子域名，我们去访问站点http://stde.xxxx.com发现他要跳转到一个统一认证的页面，此时我们进行抓包对每一个数据包进行分析：\n每一次放包都会自动跳转，但是发现该数据包时，我将箭头所指的{}删掉，发现就可以进入系统卡死在功能点页面，因为页面只有功能点没有数据，我就继续点击功能点\n点击任意功能点继续抓包：出现如图的数据包的时候将401，提示我们需要先登录才能进行访问\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/65.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-19T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/78.webp' />
+<meta name="twitter:title" content="【渗透测试】heapdump泄露数据库账号密码">
+<meta name="twitter:description" content="开局一个报告，怎么说呢，护网期间被打穿了，不过庆幸的是不是我们负责的网站。没有任何责任，哈哈哈哈\n，话不多说，上过程。\n过程 首先一个heapdump的连接\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/78.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -232,7 +232,7 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#复现">复现</a></li>
+    <li><a href="#过程">过程</a></li>
   </ul>
 </nav>
         </div>
@@ -247,9 +247,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/">
+            <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95heapdump%E6%B3%84%E9%9C%B2%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/">
                 
-                    <img src="/images/65.webp" loading="lazy" alt="Featured image of post 【渗透测试】统一认证系统的挖掘方法1" />
+                    <img src="/images/78.webp" loading="lazy" alt="Featured image of post 【渗透测试】heapdump泄露数据库账号密码" />
                 
             </a>
         </div>
@@ -269,7 +269,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/">【渗透测试】统一认证系统的挖掘方法1</a>
+            <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95heapdump%E6%B3%84%E9%9C%B2%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/">【渗透测试】heapdump泄露数据库账号密码</a>
         </h2>
     
         
@@ -293,10 +293,10 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>2025年09月12日</time>
+</svg>2025年09月19日</time>
                 <span class="article-word-count">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                    文章共387字
+                    文章共311字
                 </span>
             </div>
 			
@@ -315,22 +315,45 @@
     <section class="article-content">
     
     
-    <h1 id="复现">复现</h1>
-<h2 id="步骤一">步骤一</h2>
-<p>挖掘一些业务的时候，很多系统都会放在一个统一认证中去访问，你只有登录统一认证才能去访问某个系统，那么当我们在挖掘的时候，遇见这样的环境怎么办呢？<br>
-当然是最简单的修改返回包查看是否可以未授权查看内容，当然很多时候都是白给，但是我们还是要尝试一下撒。<br>
-当我们扫描出xxxx.com存在一个子域名，我们去访问站点http://stde.xxxx.com发现他要跳转到一个统一认证的页面，此时我们进行抓包对每一个数据包进行分析：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912141920.png" alt="image.png"><br>
-每一次放包都会自动跳转，但是发现该数据包时，我将箭头所指的{}删掉，发现就可以进入系统卡死在功能点页面，因为页面只有功能点没有数据，我就继续点击功能点<br>
-点击任意功能点继续抓包：出现如图的数据包的时候将401，提示我们需要先登录才能进行访问<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912141940.png" alt="image.png"></p>
-<h2 id="步骤二">步骤二</h2>
-<p>常规操作，将401改为200，发现居然成功访问数据：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912142000.png" alt="image.png"><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912142004.png" alt="image.png"></p>
-<h2 id="步骤三">步骤三</h2>
-<p>可以发现整个站点功能点都可以用这个方法查看数据:<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250912142013.png" alt="image.png"></p>
+    <p>开局一个报告，怎么说呢，护网期间被打穿了，不过庆幸的是不是我们负责的网站。没有任何责任，哈哈哈哈<br>
+，话不多说，上过程。</p>
+<h1 id="过程">过程</h1>
+<p>首先一个heapdump的连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://xxxx:8888/admin/actuator/heapdump
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250919102858.png" alt="image.png"><br>
+经过分析，泄露的信息总结一下（每个文件泄露的信息都是不一样的，这时候就要看运气了）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="err">数据库账号密码：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="n">MySQL</span><span class="w"> </span><span class="err">用户名：</span><span class="n">xxxx</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="n">MySQL</span><span class="w"> </span><span class="err">密码：</span><span class="n">xxxx</span><span class="err">（明文泄露）</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="err">数据库地址：</span><span class="o">`</span><span class="n">xxxx</span><span class="o">-</span><span class="n">mysql</span><span class="p">:</span><span class="mi">3306</span><span class="o">`</span><span class="err">（服务名</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="err">端口）</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="err">数据库名：</span><span class="o">`</span><span class="n">xxxx</span><span class="o">`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Spring</span><span class="w"> </span><span class="n">Security</span><span class="w"> </span><span class="err">默认用户密码：</span><span class="o">`</span><span class="mi">84</span><span class="n">acxxxxx2c</span><span class="o">`</span><span class="err">（明文）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">这个可以直接用</span><span class="n">user</span><span class="o">/</span><span class="err">默认用户密码进行登录试一下，绝对有惊喜。</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>就这两个信息有用，可以直接对服务器进行攻击。<br>
+这里尝试了一下，发现数据库可以直接进行连接，就离谱。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250919103103.png" alt="image.png"></p>
 
 </section>
 
@@ -352,25 +375,6 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95heapdump%E6%B3%84%E9%9C%B2%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/78.webp" loading="lazy" data-key="" data-hash="/images/78.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【渗透测试】heapdump泄露数据库账号密码</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -443,6 +447,25 @@
 
         <div class="article-details">
             <h2 class="article-title">【渗透测试】任意用户登录（高危）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%9E%E6%98%BE%E9%AB%98%E5%8D%B1/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/64.webp" loading="lazy" data-key="" data-hash="/images/64.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【渗透测试】手机验证码回显（高危）</h2>
         </div>
     </a>
 </article>
