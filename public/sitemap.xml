@@ -8,6 +8,12 @@
     <loc>http://localhost:1313/p/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1java%E5%9F%BA%E7%A1%80-%E5%8F%98%E9%87%8F/</loc>
     <lastmod>2025-09-19T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/p/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1java%E5%9F%BA%E7%A1%80-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2025-09-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-4956%E5%A4%8D%E7%8E%B0/</loc>
+    <lastmod>2025-09-19T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95heapdump%E6%B3%84%E9%9C%B2%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/</loc>
     <lastmod>2025-09-19T00:00:00+00:00</lastmod>
   </url><url>
@@ -15,6 +21,9 @@
     <lastmod>2025-09-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
+    <lastmod>2025-09-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</loc>
     <lastmod>2025-09-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</loc>
@@ -27,9 +36,6 @@
     <lastmod>2025-09-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2023-38836%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2025-09-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/</loc>
     <lastmod>2025-09-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-36104%E5%A4%8D%E7%8E%B0/</loc>

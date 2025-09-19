@@ -993,9 +993,26 @@ body.article-page .container.main-container .article-content {
     padding: 0 !important;
   }
   
-  // 隐藏多余的br标签
+  // 控制br标签显示方式
   br {
+    display: inline !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  // 防止代码块中的br标签导致间距问题
+  .highlight br {
     display: none !important;
+  }
+  
+  // 精确控制图片后面的br标签间距
+  img + br {
+    display: none !important;
+  }
+  
+  p > img {
+    margin-bottom: 5px !important;
   }
   
   // 调整标题间距
@@ -1004,12 +1021,13 @@ body.article-page .container.main-container .article-content {
     margin-bottom: 20px !important;
   }
   
-  // 精确控制所有图片的间距
+  // 精确控制所有图片的间距，解决图片下方多一行的问题
   img {
     margin: 20px 0 !important; // 统一图片上下间距
     padding: 0 !important;
     display: block !important;
     line-height: 0 !important; // 消除行高影响
+    vertical-align: bottom !important; // 防止图片下方出现额外空间
   }
   
   // 确保p标签内的图片间距一致
@@ -1018,6 +1036,7 @@ body.article-page .container.main-container .article-content {
     padding: 0 !important;
     display: block !important;
     line-height: 0 !important;
+    vertical-align: bottom !important; // 防止图片下方出现额外空间
   }
   
   // 调整代码块的间距
