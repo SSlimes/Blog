@@ -16,6 +16,14 @@
         <description>&lt;img src="http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7.webp" alt="Featured image of post 工具" /&gt;</description>
         </item>
         <item>
+        <title>游戏</title>
+        <link>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/</link>
+        <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/%E6%B8%B8%E6%88%8F.webp" alt="Featured image of post 游戏" /&gt;</description>
+        </item>
+        <item>
         <title>红队</title>
         <link>http://localhost:1313/categories/%E7%BA%A2%E9%98%9F/</link>
         <pubDate>Mon, 22 Sep 2025 00:00:00 +0000</pubDate>
@@ -86,14 +94,6 @@
         
         <guid>http://localhost:1313/categories/%E5%85%B6%E4%BB%96/</guid>
         <description>&lt;img src="http://localhost:1313/categories/%E5%85%B6%E4%BB%96/%E5%85%B6%E4%BB%96.webp" alt="Featured image of post 其他" /&gt;</description>
-        </item>
-        <item>
-        <title>游戏</title>
-        <link>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/</link>
-        <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/%E6%B8%B8%E6%88%8F.webp" alt="Featured image of post 游戏" /&gt;</description>
         </item>
         
     </channel>

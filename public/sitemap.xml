@@ -8,6 +8,9 @@
     <loc>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</loc>
     <lastmod>2025-09-24T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/p/%E5%B7%A5%E5%85%B7teamspeak3%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2025-09-24T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-09-24T00:00:00+00:00</lastmod>
   </url><url>
@@ -15,6 +18,9 @@
     <lastmod>2025-09-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2025-09-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/</loc>
     <lastmod>2025-09-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</loc>
@@ -225,9 +231,6 @@
     <lastmod>2025-08-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/p/%E6%B8%B8%E6%88%8Fcs2_cfg%E6%96%87%E4%BB%B6-%E4%B8%AA%E4%BA%BA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88/</loc>
-    <lastmod>2025-08-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F/</loc>
     <lastmod>2025-08-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/p/%E9%9D%B6%E5%9C%BAsql-labs-less-6-14/</loc>
