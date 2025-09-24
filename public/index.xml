@@ -7,7 +7,130 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Mon, 22 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 24 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【工具】BurpSuite插件推荐合集</title>
+        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</link>
+        <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</guid>
+        <description>&lt;img src="http://localhost:1313/images/83.webp" alt="Featured image of post 【工具】BurpSuite插件推荐合集" /&gt;&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
+&lt;p&gt;BurpSuite是渗透测试人员常用的安全工具，它提供了一个功能&lt;strong&gt;扩展&lt;/strong&gt;，也就是插件。在这个功能里面可以安装许多功能性插件，从而达到如虎添翼的效果。&lt;br&gt;
+但是BurpSuite的扩展存在一个问题，就是插件安装过多会导致&lt;strong&gt;卡顿、内存溢出&lt;/strong&gt;等。所以插件的选择就显得十分重要！本文就笔者本人的经验，推荐一些不错的BurpSuite插件，达到即实用又兼顾性能的效果！&lt;/p&gt;
+&lt;h1 id=&#34;插件安装&#34;&gt;插件安装&lt;/h1&gt;
+&lt;p&gt;在推荐插件之前，先讲述一下如何安装插件，我们一般下载的插件是一个扩展名为&lt;code&gt;.jar&lt;/code&gt;的文件。&lt;br&gt;
+安装方式：打开BurpSuite -&amp;gt; 扩展 -&amp;gt; 添加 -&amp;gt; 选择文件 -&amp;gt; 安装&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924144437.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;插件推荐&#34;&gt;插件推荐&lt;/h1&gt;
+&lt;h2 id=&#34;hae&#34;&gt;HAE&lt;/h2&gt;
+&lt;p&gt;Github下载：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/gh0stkey/HaE/releases/tag/4.3.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;HAE可以发现HTTP数据包的相关重要信息，能够&lt;strong&gt;有效减少&lt;/strong&gt;测试时间，将更多精力集中在&lt;strong&gt;有价值且有意义&lt;/strong&gt;的报文上，从而&lt;strong&gt;提高漏洞挖掘效率&lt;/strong&gt;。&lt;br&gt;
+安装完插件后，使用Burpsuite代理访问一些网页产生一些HTTP数据包，在BurpSuite模块代理 -&amp;gt; HTTP记录里面，即可发现一些被特殊标记的数据包！例如：&lt;strong&gt;Shiro、Swagger UI、Ueditor、身份证、IP地址等等&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924145816.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;burpapifinder&#34;&gt;BurpAPIFinder&lt;/h2&gt;
+&lt;p&gt;Github下载&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/shuanx/BurpAPIFinder/releases/tag/v2.0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;攻防演练过程中，我们通常会用浏览器访问一些资产，但很多未授权/敏感信息/越权隐匿在已访问接口过html、JS文件等，通过该BurpAPIFinder插件我们可以：&lt;br&gt;
+1、发现通过某接口可以进行未授权/越权获取到所有的账号密码、私钥、凭证&lt;br&gt;
+2、发现通过某接口可以枚举用户信息、密码修改、用户创建接口&lt;br&gt;
+3、发现登陆后台网址&lt;br&gt;
+4、发现在html、JS中泄漏账号密码或者云主机的Access Key和SecretKey&lt;br&gt;
+5、自动提取js、html中路径进行访问，也支持自定义父路径访问 …&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150127.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;burpfingerprint&#34;&gt;BurpFingerPrint&lt;/h2&gt;
+&lt;p&gt;Github下载&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/shuanx/BurpFingerPrint/releases/tag/v1.5
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;攻击过程中，我们通常会用浏览器访问一些资产，该BurpSuite插件实现被动指纹识别+网站提取链接+OA爆破，可帮助我们发现更多资产。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150459.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;rvscan&#34;&gt;RVScan&lt;/h2&gt;
+&lt;p&gt;Github下载&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/XF-FS/RVScan/releases/tag/RVScan2.4
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;核心功能&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;📊 实时监控&lt;/strong&gt; – 扫描进度和结果实时显示&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🔍 被动扫描&lt;/strong&gt; – 自动检测敏感路径和接口通过对访问接口递归对每一层路径进行路径探测，探测是否存在敏感信息漏洞接口
+&lt;ul&gt;
+&lt;li&gt;💡 访问/admin/auth/api，递归探测会访问/&lt;em&gt;、/admin/&lt;/em&gt;、/admin/auth/&lt;em&gt;、/admin/auth/api/&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;💡 一般可探测出如Swagger接口、登陆后台、漏洞路径、配置文件、spring env等泄露信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🎯 指纹识别&lt;/strong&gt; – 支持关键词、favicon hash等多种识别方法
+&lt;ul&gt;
+&lt;li&gt;💡 通过识别访问接口是否存在指定指纹，判断指纹信息，功能参考Ehole&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🚀 路径绕过&lt;/strong&gt; – 内置多种绕过技术和payload&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;⚡ 多线程扫描&lt;/strong&gt; – 可配置并发数和速率限制&lt;br&gt;
+举个例子：比如在 &lt;strong&gt;&lt;code&gt;https://get-shell.com/&lt;/code&gt;&lt;/strong&gt; 这个网站下面有WEB备份文件 &lt;strong&gt;&lt;code&gt;root.zip&lt;/code&gt;&lt;/strong&gt;，那么当插件被动检测开启的时候，即可通过内置规则进行匹配，然后展示在VulDisplay界面。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150627.png&#34; alt=&#34;image.png&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;tsojanscan&#34;&gt;TsojanScan&lt;/h2&gt;
+&lt;p&gt;Github下载&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/Tsojan/TsojanScan/releases/tag/v1.4.6
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;TsojanScan是一个集成的BurpSuite漏洞探测插件，它会以最少的数据包请求来准确检测各漏洞存在与否，你只需要这一个足矣，其他的单个漏洞扫描插件就可以卸载了。包含了：&lt;strong&gt;Nacos、SpringBoot、Log4j、Shiro、Fastjson、Weblogic、ThinkPHP、SQLI等主动/被动扫描。&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150851.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;autorize&#34;&gt;Autorize&lt;/h2&gt;
+&lt;p&gt;下载方式：&lt;strong&gt;BurpSuite -&amp;gt; 扩展 -&amp;gt; BApp商店 -&amp;gt; Autorize -&amp;gt; 安装&lt;/strong&gt;&lt;br&gt;
+autorize是一个可以发现未授权漏洞的工具，举个例子：有一个接口例如 &lt;strong&gt;&lt;code&gt;https://get-shell.com/api/adduser&lt;/code&gt;&lt;/strong&gt; ，这个接口的本意是留给管理员权限（高权限）使用，普通用户（低权限）无法使用，但是如果这个接口没有做鉴权处理，导致了低权限用户也可以使用，那么这就是一个&lt;strong&gt;未授权访问漏洞&lt;/strong&gt;。&lt;br&gt;
+而这个插件就可以发现这个问题，**需要在插件页面的右面窗口放入低权限用户（未登录）状态下的&lt;code&gt;cookie&lt;/code&gt;&lt;strong&gt;或者点击&lt;/strong&gt;&lt;code&gt;Fetch Cookies Filters&lt;/code&gt;&lt;strong&gt;自动填充获取最近获得的Cookie，然后点击&lt;/strong&gt;&lt;code&gt;Autorize is off&lt;/code&gt;**开启检测，插件会有三种状态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;绕过（Bypassed）！- 红色（可能存在未授权）&lt;/li&gt;
+&lt;li&gt;强制执行！- 绿色（不存在未授权）&lt;/li&gt;
+&lt;li&gt;强制执行???（请配置强制检测器） – 黄色&lt;br&gt;
+根据需要，重点查看**&lt;code&gt;绕过（Bypassed）！- 红色（可能存在未授权）&lt;/code&gt;，如果这是一个高权限API或者一个高权限的页面，在去掉cookie后仍然可以访问，那么这就是一个未授权漏洞！&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150950.png&#34; alt=&#34;image.png&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;xia_yue-瞎越&#34;&gt;xia_Yue (瞎越)&lt;/h2&gt;
+&lt;p&gt;Github下载&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/smxiazi/xia_Yue/releases/tag/1.4
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;本质上与上面的Autorize是同样类型的插件，是一个可以发现未授权漏洞的工具，举个例子：有一个接口例如 &lt;strong&gt;&lt;code&gt;https://get-shell.com/api/adduser&lt;/code&gt;&lt;/strong&gt; ，这个接口的本意是留给管理员权限（高权限）使用，普通用户（低权限）无法使用，但是如果这个接口没有做鉴权处理，导致了低权限用户也可以使用，那么这就是一个&lt;strong&gt;未授权访问漏洞&lt;/strong&gt;。&lt;br&gt;
+使用的时候需要在插件右面替换一下低权限的token。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924151046.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【资产收集】ENScan_Go-信息收集工具</title>
         <link>http://localhost:1313/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Mon, 22 Sep 2025 00:00:00 +0000</pubDate>
