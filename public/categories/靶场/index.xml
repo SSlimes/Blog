@@ -7,7 +7,60 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Fri, 19 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 28 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E9%9D%B6%E5%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【极核GetShell靶场】SSH - 密码爆破</title>
+        <link>http://localhost:1313/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BAssh-%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/</link>
+        <pubDate>Sun, 28 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BAssh-%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/</guid>
+        <description>&lt;img src="http://localhost:1313/images/86.webp" alt="Featured image of post 【极核GetShell靶场】SSH - 密码爆破" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928112134.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;漏洞科普&#34;&gt;漏洞科普&lt;/h1&gt;
+&lt;p&gt;SSH爆破攻击是一种通过自动化工具（如Hydra、Medusa等）对SSH服务进行大规模密码猜测的攻击手段，其核心原理是利用预先设定的用户名和密码字典或暴力生成的字符组合，对目标服务器的SSH端口（通常是22端口）发起高频次登录尝试，直到找到正确的凭据。攻击者常采用分布式策略，通过多IP并发请求绕过单点封禁限制，并利用弱密码或默认账户（如root、admin）进行针对性破解。&lt;br&gt;
+这种攻击的危害主要体现在三个方面：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;​&lt;strong&gt;​系统安全风险​&lt;/strong&gt;​：一旦成功，攻击者可完全控制目标服务器，执行恶意操作（如窃取数据、植入后门或勒索软件），甚至将服务器纳入僵尸网络用于DDoS攻击或加密货币挖矿。&lt;/li&gt;
+&lt;li&gt;​&lt;strong&gt;​资源消耗​&lt;/strong&gt;​：高频次登录尝试会占用大量CPU、内存和带宽资源，导致服务器性能下降甚至服务中断。&lt;/li&gt;
+&lt;li&gt;​&lt;strong&gt;​隐蔽性威胁​&lt;/strong&gt;​：大量失败登录日志可能掩盖真实攻击事件，而成功入侵后植入的隐藏计划任务（如定时反弹Shell）会长期维持权限，进一步扩大攻击面。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;靶机实战&#34;&gt;靶机实战&lt;/h1&gt;
+&lt;p&gt;首先开启实例，获取入口，获取的地址+端口为&lt;strong&gt;SSH服务&lt;/strong&gt;，并非WEB服务！&lt;br&gt;
+在Kali（Linux）下可以使用 &lt;strong&gt;&lt;code&gt;hydra&lt;/code&gt;&lt;/strong&gt; 工具进行服务密码爆破，通过靶机信息已知默认用户为 &lt;strong&gt;&lt;code&gt;user&lt;/code&gt;&lt;/strong&gt;，使用如下命令进行服务密码爆破，可以获取到密码为：&lt;strong&gt;&lt;code&gt;123456&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 示例
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hydra&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;l&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;user&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;P&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;home&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;slimer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;桌面&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;rockyou&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;txt&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ssh&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;node&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hackhub&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;shell&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;59313&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 使用方法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hydra&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;l&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;用户名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;P&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;字典路径&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;协议头&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;://&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;目标地址和端口&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928112640.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+在Windows上可以借助 &lt;a href=&#34;https://get-shell.com/2388.html&#34;&gt;无影TscanPlus&lt;/a&gt; 工具中的密码破解模块进行服务密码爆破&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928112732.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+修改SSH端口号，将地址填入后即可开始爆破，可以获取到密码为：&lt;strong&gt;&lt;code&gt;123456&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928113148.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+使用题目信息给出的用户名和爆破获取到的密码：&lt;strong&gt;&lt;code&gt;user / 123456&lt;/code&gt;&lt;/strong&gt; 进行SSH登录。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928113005.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+登录后为普通用户，然后使用 &lt;strong&gt;&lt;code&gt;sudo -i&lt;/code&gt;&lt;/strong&gt; 进行提权后，查看根目录 flag文件 即可获取flag。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250928113105.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+flag:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GetShell{d433d242-ac32-4c56-93b8-5c00fe0d8b25}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>【春秋云境】CVE-2024-4956复现</title>
         <link>http://localhost:1313/p/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83cve-2024-4956%E5%A4%8D%E7%8E%B0/</link>
         <pubDate>Fri, 19 Sep 2025 00:00:00 +0000</pubDate>
