@@ -3,18 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-10-14T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2025-10-14T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/p/minio%E4%BA%91%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%94%BB%E5%87%BB%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-10-14T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2025-10-14T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/%E7%BA%A2%E9%98%9F/</loc>
+    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
     <lastmod>2025-10-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>

