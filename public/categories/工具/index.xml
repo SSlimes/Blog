@@ -1,725 +1,652 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>工具 on SlimerのBlog</title>
-        <link>http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/</link>
-        <description>Recent content in 工具 on SlimerのBlog</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <copyright>Slimer</copyright>
-        <lastBuildDate>Fri, 10 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>【CVE-2025-32463】Linux sudo chroot 本地提权</title>
-        <link>http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/</link>
-        <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/</guid>
-        <description>&lt;img src="http://localhost:1313/images/91.webp" alt="Featured image of post 【CVE-2025-32463】Linux sudo chroot 本地提权" /&gt;&lt;h1 id=&#34;0x01-简介&#34;&gt;0x01 简介&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;sudo chroot&lt;/code&gt;是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。&lt;code&gt;sudo&lt;/code&gt;用于获取管理员权限，而 &lt;code&gt;chroot&lt;/code&gt;（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过 &lt;code&gt;sudo chroot&lt;/code&gt;进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，&lt;code&gt;sudo chroot&lt;/code&gt;提供了一种灵活且安全的方式来管理和操作 Linux 系统。&lt;/p&gt;
-&lt;h1 id=&#34;0x02-漏洞描述&#34;&gt;0x02 漏洞描述&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;漏洞编号：CVE-2025-32463&lt;/strong&gt;&lt;br&gt;
-这是一个严重的本地提权漏洞，该漏洞 CVSS 评分为 7.8，属于高危漏洞。该漏洞允许本地低权限用户通过特制的恶意 &lt;code&gt;chroot&lt;/code&gt;环境触发动态库加载，从而以 root 权限执行任意代码。攻击者可以利用 &lt;code&gt;sudo&lt;/code&gt;的 &lt;code&gt;-R&lt;/code&gt;（即 &lt;code&gt;--chroot&lt;/code&gt;）选项，诱骗 &lt;code&gt;sudo&lt;/code&gt;使用用户指定的根目录加载恶意共享库。问题根源在于 &lt;code&gt;sudo&lt;/code&gt;在读取 &lt;code&gt;sudoers&lt;/code&gt;配置文件之前，就开始在用户控制的 &lt;code&gt;chroot&lt;/code&gt;环境中解析路径。&lt;/p&gt;
-&lt;h1 id=&#34;0x03-利用条件&#34;&gt;0x03 利用条件&lt;/h1&gt;
-&lt;h2 id=&#34;1-影响版本&#34;&gt;1) 影响版本&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;sudo --version&lt;/code&gt;若输出的版本信息在 1.9.14 至 1.9.17 之间&lt;br&gt;
-1.9.14 &amp;lt;= sudo &amp;lt;= 1.9.17&lt;br&gt;
-1.8 系列及更早版本不受影响，因为它们不包含 chroot 功能。 在特定配置或发行版中，即使该版本早于官方公告，潜在的不安全行为仍可能被利用。&lt;/p&gt;
-&lt;h2 id=&#34;2-权限要求&#34;&gt;2) 权限要求&lt;/h2&gt;
-&lt;p&gt;普通用户&lt;/p&gt;
-&lt;h2 id=&#34;3-其他条件&#34;&gt;3) 其他条件&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt;版本要能使用 &lt;code&gt;--chroot&lt;/code&gt;功能&lt;/p&gt;
-&lt;h1 id=&#34;0x04-环境搭建&#34;&gt;0x04 环境搭建&lt;/h1&gt;
-&lt;p&gt;作者已尝试在 ubuntu-22.04.5-desktop-amd64 以及 ubuntu-18.04.6-desktop-amd64 复现过，均以失败告终，最后在 kali-linux-2024.1-amd64 上复现成功，后面又测试了几个系统，确认 &lt;strong&gt;Fedora 41 Server&lt;/strong&gt; 以及 &lt;strong&gt;Ubuntu 24.04-1&lt;/strong&gt; 也可被攻击。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;去官网下载 sudo 是漏洞版本内的 Linux ISO，这里以 2024 年第一版的 Kali 为例子。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://old.kali.org/kali-images/kali-2024.1/
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;然后就是在 VMware 上配置 Kali 虚拟机了，这一系列过程就不赘述了。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;0x05-漏洞复现&#34;&gt;0x05 漏洞复现&lt;/h1&gt;
-&lt;p&gt;POC：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;通过网盘分享的文件：CVE-2025-32463_chwoot-main.zip
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;链接: https://pan.baidu.com/s/1Qkb8ohhQPdwNope5RxZ11w 提取码: ynwk 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--来自百度网盘超级会员v4的分享
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251010154955.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x06-修复建议&#34;&gt;0x06 修复建议&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;安全更新&lt;/li&gt;
-&lt;li&gt;目前官方已发布安全更新，建议用户尽快升级至最新版本：sudo &amp;gt;= 1.9.17p1&lt;/li&gt;
-&lt;li&gt;官方补丁&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- https://www.sudo.ws/security/advisories/host_any/
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- https://www.sudo.ws/security/advisories/chroot_bug
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;临时处置&lt;/li&gt;
-&lt;li&gt;在环境中搜索任何使用了 Host 或 Host_Alias 选项的内容。检查 &lt;code&gt;/etc/sudoers&lt;/code&gt;中定义的所有 Sudo 规则以及 &lt;code&gt;/etc/sudoers.d&lt;/code&gt;下的文件。如果 Sudo 规则存储在 LDAP 中，请使用 ldapsearch 等工具转储这些规则。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;参考链接&#34;&gt;参考链接&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://ubuntu.com/security/CVE-2025-32463
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://nvd.nist.gov/vuln/detail/CVE-2025-32463
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-        </item>
-        <item>
-        <title>【工具】BurpSuite插件推荐合集</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</link>
-        <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</guid>
-        <description>&lt;img src="http://localhost:1313/images/83.webp" alt="Featured image of post 【工具】BurpSuite插件推荐合集" /&gt;&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
-&lt;p&gt;BurpSuite是渗透测试人员常用的安全工具，它提供了一个功能&lt;strong&gt;扩展&lt;/strong&gt;，也就是插件。在这个功能里面可以安装许多功能性插件，从而达到如虎添翼的效果。&lt;br&gt;
-但是BurpSuite的扩展存在一个问题，就是插件安装过多会导致&lt;strong&gt;卡顿、内存溢出&lt;/strong&gt;等。所以插件的选择就显得十分重要！本文就笔者本人的经验，推荐一些不错的BurpSuite插件，达到即实用又兼顾性能的效果！&lt;/p&gt;
-&lt;h1 id=&#34;插件安装&#34;&gt;插件安装&lt;/h1&gt;
-&lt;p&gt;在推荐插件之前，先讲述一下如何安装插件，我们一般下载的插件是一个扩展名为&lt;code&gt;.jar&lt;/code&gt;的文件。&lt;br&gt;
-安装方式：打开BurpSuite -&amp;gt; 扩展 -&amp;gt; 添加 -&amp;gt; 选择文件 -&amp;gt; 安装&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924144437.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;插件推荐&#34;&gt;插件推荐&lt;/h1&gt;
-&lt;h2 id=&#34;hae&#34;&gt;HAE&lt;/h2&gt;
-&lt;p&gt;Github下载：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/gh0stkey/HaE/releases/tag/4.3.1
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;HAE可以发现HTTP数据包的相关重要信息，能够&lt;strong&gt;有效减少&lt;/strong&gt;测试时间，将更多精力集中在&lt;strong&gt;有价值且有意义&lt;/strong&gt;的报文上，从而&lt;strong&gt;提高漏洞挖掘效率&lt;/strong&gt;。&lt;br&gt;
-安装完插件后，使用Burpsuite代理访问一些网页产生一些HTTP数据包，在BurpSuite模块代理 -&amp;gt; HTTP记录里面，即可发现一些被特殊标记的数据包！例如：&lt;strong&gt;Shiro、Swagger UI、Ueditor、身份证、IP地址等等&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924145816.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;burpapifinder&#34;&gt;BurpAPIFinder&lt;/h2&gt;
-&lt;p&gt;Github下载&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/shuanx/BurpAPIFinder/releases/tag/v2.0
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;攻防演练过程中，我们通常会用浏览器访问一些资产，但很多未授权/敏感信息/越权隐匿在已访问接口过html、JS文件等，通过该BurpAPIFinder插件我们可以：&lt;br&gt;
-1、发现通过某接口可以进行未授权/越权获取到所有的账号密码、私钥、凭证&lt;br&gt;
-2、发现通过某接口可以枚举用户信息、密码修改、用户创建接口&lt;br&gt;
-3、发现登陆后台网址&lt;br&gt;
-4、发现在html、JS中泄漏账号密码或者云主机的Access Key和SecretKey&lt;br&gt;
-5、自动提取js、html中路径进行访问，也支持自定义父路径访问 …&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150127.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;burpfingerprint&#34;&gt;BurpFingerPrint&lt;/h2&gt;
-&lt;p&gt;Github下载&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/shuanx/BurpFingerPrint/releases/tag/v1.5
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;攻击过程中，我们通常会用浏览器访问一些资产，该BurpSuite插件实现被动指纹识别+网站提取链接+OA爆破，可帮助我们发现更多资产。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150459.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;rvscan&#34;&gt;RVScan&lt;/h2&gt;
-&lt;p&gt;Github下载&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/XF-FS/RVScan/releases/tag/RVScan2.4
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;核心功能&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;📊 实时监控&lt;/strong&gt; – 扫描进度和结果实时显示&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;🔍 被动扫描&lt;/strong&gt; – 自动检测敏感路径和接口通过对访问接口递归对每一层路径进行路径探测，探测是否存在敏感信息漏洞接口
-&lt;ul&gt;
-&lt;li&gt;💡 访问/admin/auth/api，递归探测会访问/&lt;em&gt;、/admin/&lt;/em&gt;、/admin/auth/&lt;em&gt;、/admin/auth/api/&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;💡 一般可探测出如Swagger接口、登陆后台、漏洞路径、配置文件、spring env等泄露信息&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;🎯 指纹识别&lt;/strong&gt; – 支持关键词、favicon hash等多种识别方法
-&lt;ul&gt;
-&lt;li&gt;💡 通过识别访问接口是否存在指定指纹，判断指纹信息，功能参考Ehole&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;🚀 路径绕过&lt;/strong&gt; – 内置多种绕过技术和payload&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;⚡ 多线程扫描&lt;/strong&gt; – 可配置并发数和速率限制&lt;br&gt;
-举个例子：比如在 &lt;strong&gt;&lt;code&gt;https://get-shell.com/&lt;/code&gt;&lt;/strong&gt; 这个网站下面有WEB备份文件 &lt;strong&gt;&lt;code&gt;root.zip&lt;/code&gt;&lt;/strong&gt;，那么当插件被动检测开启的时候，即可通过内置规则进行匹配，然后展示在VulDisplay界面。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150627.png&#34; alt=&#34;image.png&#34;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;tsojanscan&#34;&gt;TsojanScan&lt;/h2&gt;
-&lt;p&gt;Github下载&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/Tsojan/TsojanScan/releases/tag/v1.4.6
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;TsojanScan是一个集成的BurpSuite漏洞探测插件，它会以最少的数据包请求来准确检测各漏洞存在与否，你只需要这一个足矣，其他的单个漏洞扫描插件就可以卸载了。包含了：&lt;strong&gt;Nacos、SpringBoot、Log4j、Shiro、Fastjson、Weblogic、ThinkPHP、SQLI等主动/被动扫描。&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150851.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;autorize&#34;&gt;Autorize&lt;/h2&gt;
-&lt;p&gt;下载方式：&lt;strong&gt;BurpSuite -&amp;gt; 扩展 -&amp;gt; BApp商店 -&amp;gt; Autorize -&amp;gt; 安装&lt;/strong&gt;&lt;br&gt;
-autorize是一个可以发现未授权漏洞的工具，举个例子：有一个接口例如 &lt;strong&gt;&lt;code&gt;https://get-shell.com/api/adduser&lt;/code&gt;&lt;/strong&gt; ，这个接口的本意是留给管理员权限（高权限）使用，普通用户（低权限）无法使用，但是如果这个接口没有做鉴权处理，导致了低权限用户也可以使用，那么这就是一个&lt;strong&gt;未授权访问漏洞&lt;/strong&gt;。&lt;br&gt;
-而这个插件就可以发现这个问题，**需要在插件页面的右面窗口放入低权限用户（未登录）状态下的&lt;code&gt;cookie&lt;/code&gt;&lt;strong&gt;或者点击&lt;/strong&gt;&lt;code&gt;Fetch Cookies Filters&lt;/code&gt;&lt;strong&gt;自动填充获取最近获得的Cookie，然后点击&lt;/strong&gt;&lt;code&gt;Autorize is off&lt;/code&gt;**开启检测，插件会有三种状态：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;绕过（Bypassed）！- 红色（可能存在未授权）&lt;/li&gt;
-&lt;li&gt;强制执行！- 绿色（不存在未授权）&lt;/li&gt;
-&lt;li&gt;强制执行???（请配置强制检测器） – 黄色&lt;br&gt;
-根据需要，重点查看**&lt;code&gt;绕过（Bypassed）！- 红色（可能存在未授权）&lt;/code&gt;，如果这是一个高权限API或者一个高权限的页面，在去掉cookie后仍然可以访问，那么这就是一个未授权漏洞！&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150950.png&#34; alt=&#34;image.png&#34;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;xia_yue-瞎越&#34;&gt;xia_Yue (瞎越)&lt;/h2&gt;
-&lt;p&gt;Github下载&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/smxiazi/xia_Yue/releases/tag/1.4
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;本质上与上面的Autorize是同样类型的插件，是一个可以发现未授权漏洞的工具，举个例子：有一个接口例如 &lt;strong&gt;&lt;code&gt;https://get-shell.com/api/adduser&lt;/code&gt;&lt;/strong&gt; ，这个接口的本意是留给管理员权限（高权限）使用，普通用户（低权限）无法使用，但是如果这个接口没有做鉴权处理，导致了低权限用户也可以使用，那么这就是一个&lt;strong&gt;未授权访问漏洞&lt;/strong&gt;。&lt;br&gt;
-使用的时候需要在插件右面替换一下低权限的token。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924151046.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>【资产收集】ENScan_Go-信息收集工具</title>
-        <link>http://localhost:1313/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</link>
-        <pubDate>Mon, 22 Sep 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</guid>
-        <description>&lt;img src="http://localhost:1313/images/82.webp" alt="Featured image of post 【资产收集】ENScan_Go-信息收集工具" /&gt;&lt;h1 id=&#34;0x00-项目地址&#34;&gt;0x00 项目地址&lt;/h1&gt;
-&lt;p&gt;项目为狼组团队的师傅开发，废话不多说，以下是项目地址：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/wgpsec/ENScan_GO
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121249.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;我的是windows系统，直接下载这个即可。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121310.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-文件下载解压仅有exe文件&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121420.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x01-使用&#34;&gt;0x01 使用&lt;/h1&gt;
-&lt;p&gt;初次使用需要初始化&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.\enscan-v1.3.1-windows-amd64.exe -v
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121505.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-生成&lt;code&gt;config.yaml&lt;/code&gt;配置文件&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121551.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-以爱企查为例导入cookie&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;链接：https://aiqicha.baidu.com/  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;（注意：默认查询为aiqicha.baidu.com，请勿使用 aiqicha.com）
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这里最好使用抓包工具进行抓取：&lt;br&gt;
-爱企查的cookie&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923122433.png&#34; alt=&#34;&#34;&gt;&lt;br&gt;
-天眼查的cookie&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923122924.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-然后直接运行，即可！&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; .\enscan-v1.3.1-windows-amd64.exe -n &amp;#34;汉堡王（上海）餐饮有限公司&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923124222.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>【工具】Swagger 未授权检测工具</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7swagger-%E6%9C%AA%E6%8E%88%E6%9D%83%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
-        <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7swagger-%E6%9C%AA%E6%8E%88%E6%9D%83%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
-        <description>&lt;img src="http://localhost:1313/images/61.webp" alt="Featured image of post 【工具】Swagger 未授权检测工具" /&gt;&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
-&lt;p&gt;用于探测 Swagger/OpenAPI 文档并尝试未授权访问接口，辅助安全自查。识别 swagger-ui 页面、swagger-resources 入口、Swagger 1.x/V2/V3 文档，在谨慎策略下对接口进行 GET/POST 探测并生成 Excel 报告。&lt;/p&gt;
-&lt;h1 id=&#34;下载地址&#34;&gt;下载地址&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/mk4no1/SwaggerAH
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;快速开始&#34;&gt;快速开始&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 单目标扫描（自动识别入口类型：swagger-ui / api-docs / swagger-resources）
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python swagger.py -u https://example.com/swagger-ui/index.html
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 忽略文档内 servers，强制使用初始域名（遇到内网域名或IP直接使用此参数）
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python swagger.py -u https://example.com/v3/api-docs --force-domain
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 批量扫描（每行一个 URL）
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# urls.txt:
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# https://a.com/v3/api-docs
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# https://b.com/swagger-ui/index.html
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python swagger.py -f urls.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;红框或者error忽略即可&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911132342.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911132354.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911132402.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911132408.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;安装与依赖&#34;&gt;安装与依赖&lt;/h1&gt;
-&lt;p&gt;Python 3（本人Python 3.10.11）&lt;br&gt;
-依赖安装：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install requests loguru selenium openpyxl urllib3
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;使用说明&#34;&gt;使用说明&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;常用参数&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;-u, --url&lt;/code&gt;：单个目标（支持 swagger-ui、api-docs、swagger-resources）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-f, --file&lt;/code&gt;：批量目标文件（逐行 URL）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--force-domain&lt;/code&gt;：忽略文档内 &lt;code&gt;servers&lt;/code&gt;，强制使用初始域名&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;请求与参数策略（宁可漏报也不可误删误改）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;仅尝试 &lt;code&gt;GET&lt;/code&gt;、&lt;code&gt;POST&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;自动填充占位参数：
-&lt;ul&gt;
-&lt;li&gt;path 参数：用占位值替换路径变量（数字就填充1，字母填充a）&lt;/li&gt;
-&lt;li&gt;query 参数：填充简单占位值&lt;/li&gt;
-&lt;li&gt;body(JSON)：按 schema 尝试生成示例&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;命中高风险关键字的 URL 自动跳过&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;报告说明&#34;&gt;报告说明&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;扫描结束生成 &lt;code&gt;YYYYMMDDHHMM_xxx.xlsx&lt;/code&gt;：
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;所有API&lt;/code&gt;：记录发现的所有路径，标注“调用/过滤”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;已调用API&lt;/code&gt;：记录请求方法、URL、参数、状态码、截断后的响应&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;已过滤API&lt;/code&gt;：记录被策略拦截的接口与原因。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        </item>
-        <item>
-        <title>【工具】acunetix_25.5.250613157 破解-安装</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7acunetix_25.5.250613157-%E7%A0%B4%E8%A7%A3-%E5%AE%89%E8%A3%85/</link>
-        <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7acunetix_25.5.250613157-%E7%A0%B4%E8%A7%A3-%E5%AE%89%E8%A3%85/</guid>
-        <description>&lt;img src="http://localhost:1313/images/20.webp" alt="Featured image of post 【工具】acunetix_25.5.250613157 破解-安装" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言：&lt;/h1&gt;
-&lt;p&gt;Acunetix Premium 是一种 Web 应用程序安全解决方案，用于管理多个网站、Web 应用程序和 API 的安全。集成功能允许您自动化 DevOps 和问题管理基础架构。&lt;/p&gt;
-&lt;h1 id=&#34;更新内容&#34;&gt;更新内容：&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;改进
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;添加正则表达式以增强对 Django 应用程序中堆栈跟踪泄露的检测
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;改进了对使用弱密钥签名的 JWT 的检测
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;为暴露的 nginx.conf 和 .htaccess 文件添加了新的安全检查，以增强漏洞检测
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;添加了 LDAP 注入检测
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;增加了对 PII（个人身份信息）泄露漏洞的检测
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;JSON 响应中数据库连接字符串的新检测，以提高敏感数据暴露覆盖率
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;扫描仪已更新，支持从 Linux 使用 NTLM 身份验证扫描目标
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;更新了秘密令牌检测以增加覆盖范围
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;更新了 JSON 字段中的 DB 连接检测
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;更新了 DeepScan 以提取更多道具
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;添加了新的检查来检测原型污染（服务器端）
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;更新了 dompurify 以检测更多漏洞
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;更新了基于 dom 漏洞的 iframe 注入检测
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;更新了 XPath 注入以获得更好的覆盖范围了
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;修复了 Cleo Harmony/VLTrader/LexiCom RCE 检测的误报问题
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;修正了“Scripts\WebApps\drupal_3.script”中的版本比较逻辑
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;安全检查
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;为弱 ViewState 密钥添加了新的安全检查
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;添加了新的检查以检测 PAN-OS XSS ( CVE-2025-0133 )
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;添加了一项新检查，用于检测 Citrix NetScaler 内存泄露 (CitrixBleed 2) ( CVE-2025-5777 )
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;漏洞数据库（VDB）版本升级至20250708
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;更新了开放重定向以增加覆盖范围
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;为 API 添加了 JWT 身份验证绕过
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;添加了 SAP NetWeaver Visual Composer 无限制文件上传 ( CVE-2025-31324 )
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;增加了对 Craft CMS 远程代码执行 ( CVE-2025-32432 )的检测
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;添加了对缺失的 X-Content-Type-Options 标头的检查
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;检测 Craft CMS 远程代码执行漏洞 ( CVE-2025-32432 )
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;下载&#34;&gt;下载：&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;通过网盘分享的文件：Acunetix-v25.5.250613157.zip.apk
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;链接: https://pan.baidu.com/s/18gN5FnJ6KedX8ej1giI7pw 提取码: sk4s 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--来自百度网盘超级会员v4的分享
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;记得删除&lt;code&gt;.apk&lt;/code&gt;,然后直接解压zip文件即可。&lt;/p&gt;
-&lt;h1 id=&#34;安装&#34;&gt;安装：&lt;/h1&gt;
-&lt;p&gt;Download Zip File, password is on our post&lt;br&gt;
-建议： 安装完成后， 先登录一次账号在停止服务， 执行下面操作&lt;br&gt;
-在安装工具之前， 添加到 hosts 文件中 C:\Windows\System32\drivers\etc\hosts&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 erp.acunetix.com
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 erp.acunetix.com.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 erp.acunetix.com 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 erp.acunetix.com.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 discovery-service.invicti.com 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 discovery-service.invicti.com. 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 discovery-service.invicti.com
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 discovery-service.invicti.com.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 cdn.pendo.io 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 cdn.pendo.io. 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 cdn.pendo.io
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 cdn.pendo.io.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 bxss.me 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 bxss.me. 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 bxss.me
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 bxss.me.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 jwtsigner.invicti.com 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 jwtsigner.invicti.com. 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 jwtsigner.invicti.com
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 jwtsigner.invicti.com.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 sca.acunetix.com 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 sca.acunetix.com. 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 sca.acunetix.com
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;::1 sca.acunetix.com.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;192.178.49.174 telemetry.invicti.com 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;192.178.49.174 telemetry.invicti.com. 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2607:f8b0:402a:80a::200e telemetry.invicti.com 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2607:f8b0:402a:80a::200e telemetry.invicti.com.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204308.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-安装后， 让我们停止它的服务调用服务工具:(使用菜单或打开任务管理器， 转到服务选项卡)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Acunetix&lt;/li&gt;
-&lt;li&gt;Acunetix Database&lt;br&gt;
-管理员运行停止服务&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204338.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-或者使用命令停止&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net stop &amp;#34;Acunetix Supervisor&amp;#34; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net stop &amp;#34;Acunetix Database&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204407.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-替换文件 wvsc.exe&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C:\Program Files (x86)\Acunetix\25.1.250204093
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204427.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-移动两个文件&lt;br&gt;
-license_info.Json 文件和 wa_data.dat 文件到&lt;br&gt;
-C:\ProgramData\Acunetix\shared\license 目录替换将 C:/ProgramData/Acunetix/shared/license/整个文件夹设置为只读&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204508.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-安装完成后登录发现需要证书， 不能扫描， 先停止服务， 将 license 下文件全部删除， 复制license_info.Json 文件和 wa_data.dat 文件进去设置只读， 再次启动服务&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204529.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-Now let&amp;rsquo;s restart acunetix:&lt;br&gt;
-重启服务， 成功（再次启动 Acunetix 两个服务）&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204559.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-Acunetix&lt;br&gt;
-Acunetix Database&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204616.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204627.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-Now login back to application, and you should be able to use it :)&lt;br&gt;
-Enjoy（完成）&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>【工具】OneForAll子域名收集工具的使用</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7oneforall%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
-        <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7oneforall%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-        <description>&lt;img src="http://localhost:1313/images/4.webp" alt="Featured image of post 【工具】OneForAll子域名收集工具的使用" /&gt;&lt;h1 id=&#34;1-下载地址&#34;&gt;1. 下载地址：&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/shmilylty/OneForAll
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;2-使用&#34;&gt;2. 使用：&lt;/h1&gt;
-&lt;p&gt;首先把requirements.txt下载下来。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pip&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;requirements&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;txt&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后直接使用即可&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;python&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exe&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;oneforall&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;py&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;target&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;xiyoupark&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828150938.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-结果会导出到results文件夹下。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828150949.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>【工具】windows server 2003安装部署</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7windows-server-2003%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</link>
-        <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7windows-server-2003%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</guid>
-        <description>&lt;img src="http://localhost:1313/images/5.webp" alt="Featured image of post 【工具】windows server 2003安装部署" /&gt;&lt;h1 id=&#34;部署安装网址&#34;&gt;部署安装网址：&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://blog.csdn.net/weixin_45950429/article/details/107069404
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;下载地址&#34;&gt;下载地址：&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;通过网盘分享的文件：WindowsServer 2003.iso
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;链接: https://pan.baidu.com/s/1_VmXyNxI5kyouSAMjMl5wQ 提取码: 1234 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--来自百度网盘超级会员v2的分享
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;步骤一&#34;&gt;步骤一：&lt;/h1&gt;
-&lt;p&gt;打开VMware,点击我的主页，点击创建新的虚拟机：&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828151903.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828151927.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-这里选择稍后安装操作系统，然后点击“下一步”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828151941.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-客户机操作系统选择“Microsoft Windows(W)&amp;quot;，版本的话，你下载的是什么版本你就安装什么版本，我最前面发的是Windows Server 2003 Standard Edition版本的额，也就是32位的。然后点击”下一步”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152000.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-虚拟机名称，我这里就默认了，位置一定要自己选择，把它放在内存空间充足的磁盘。&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152011.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-这里你可以默认40GB，我避免要做的东西多，所以设了“60GB”，下面选择“将虚拟磁盘拆分成多个文件（M），然后点击下一步&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152023.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-点击自定义硬件，里面的打印机极少用，可以选择移除，然后点击CD，浏览放入映像文件&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152036.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-点击关闭之后会自动回到这页，点击“完成”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152046.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-完成之后就会生成一个虚拟机&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152057.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;步骤二&#34;&gt;步骤二：&lt;/h1&gt;
-&lt;p&gt;放入镜像之后的安装过程&lt;br&gt;
-点击“开启此虚拟机&amp;quot;,随后就会进入这个页面，开始等待&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152148.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-点击&amp;quot;Enter&amp;quot;键进行安装，再等待&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152156.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-点击选择”用NTFS文件系统格式化磁盘分区（快），随后点击&amp;quot;Enter&amp;quot;键继续&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152210.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-安装格式化，等待&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152224.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-等待&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152233.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-出现这个画面，点击“下一步”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152243.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-点击我接受这个协议，点击“下一步”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152255.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-继续等待，出现这个画面，点击“下一步”，自定义输入名称，点击“下一步”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152309.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152316.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-这里服务器修改为“500”，然后点击“下一步”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152326.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;一定记得设置自己记得住的密码，等一下安装好后开机需要使用&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152334.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-默认点击下一步，等待&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152342.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-出现这个画面，点击“典型设置”，点击“下一步”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152352.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-选择“不，此计算机不在网络上，或者再没有域的网络上，把此计算机作为下面工作组的一个成员（W)&amp;quot;, 点击”下一步“&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152402.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;步骤三&#34;&gt;步骤三：&lt;/h1&gt;
-&lt;p&gt;出现这个画面时，点击&amp;quot;完成”，随后点击“是”&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152412.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-“x&amp;quot;掉&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152421.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-在 开始–我的电脑–属性-自动更新–点击关闭自动更新(T)&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152431.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;完成&#34;&gt;完成&lt;/h1&gt;
-&lt;p&gt;你可以在桌面点击右键–属性–设置–修改分辨率即可修改屏幕大小&lt;br&gt;
-&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152440.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
-结束完成！！！&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>工具 on SlimerのBlog</title><link>http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/</link><description>Recent content in 工具 on SlimerのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Slimer</copyright><lastBuildDate>Fri, 10 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml"/><item><title>【CVE-2025-32463】Linux sudo chroot 本地提权</title><link>http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/</link><pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/</guid><description>&lt;img src="http://localhost:1313/images/91.webp" alt="Featured image of post 【CVE-2025-32463】Linux sudo chroot 本地提权" />&lt;h1 id="0x01-简介">0x01 简介&lt;/h1>
+&lt;p>&lt;code>sudo chroot&lt;/code>是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。&lt;code>sudo&lt;/code>用于获取管理员权限，而 &lt;code>chroot&lt;/code>（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过 &lt;code>sudo chroot&lt;/code>进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，&lt;code>sudo chroot&lt;/code>提供了一种灵活且安全的方式来管理和操作 Linux 系统。&lt;/p>
+&lt;h1 id="0x02-漏洞描述">0x02 漏洞描述&lt;/h1>
+&lt;p>&lt;strong>漏洞编号：CVE-2025-32463&lt;/strong>&lt;br>
+这是一个严重的本地提权漏洞，该漏洞 CVSS 评分为 7.8，属于高危漏洞。该漏洞允许本地低权限用户通过特制的恶意 &lt;code>chroot&lt;/code>环境触发动态库加载，从而以 root 权限执行任意代码。攻击者可以利用 &lt;code>sudo&lt;/code>的 &lt;code>-R&lt;/code>（即 &lt;code>--chroot&lt;/code>）选项，诱骗 &lt;code>sudo&lt;/code>使用用户指定的根目录加载恶意共享库。问题根源在于 &lt;code>sudo&lt;/code>在读取 &lt;code>sudoers&lt;/code>配置文件之前，就开始在用户控制的 &lt;code>chroot&lt;/code>环境中解析路径。&lt;/p>
+&lt;h1 id="0x03-利用条件">0x03 利用条件&lt;/h1>
+&lt;h2 id="1-影响版本">1) 影响版本&lt;/h2>
+&lt;p>&lt;code>sudo --version&lt;/code>若输出的版本信息在 1.9.14 至 1.9.17 之间&lt;br>
+1.9.14 &amp;lt;= sudo &amp;lt;= 1.9.17&lt;br>
+1.8 系列及更早版本不受影响，因为它们不包含 chroot 功能。 在特定配置或发行版中，即使该版本早于官方公告，潜在的不安全行为仍可能被利用。&lt;/p>
+&lt;h2 id="2-权限要求">2) 权限要求&lt;/h2>
+&lt;p>普通用户&lt;/p>
+&lt;h2 id="3-其他条件">3) 其他条件&lt;/h2>
+&lt;p>&lt;code>sudo&lt;/code>版本要能使用 &lt;code>--chroot&lt;/code>功能&lt;/p>
+&lt;h1 id="0x04-环境搭建">0x04 环境搭建&lt;/h1>
+&lt;p>作者已尝试在 ubuntu-22.04.5-desktop-amd64 以及 ubuntu-18.04.6-desktop-amd64 复现过，均以失败告终，最后在 kali-linux-2024.1-amd64 上复现成功，后面又测试了几个系统，确认 &lt;strong>Fedora 41 Server&lt;/strong> 以及 &lt;strong>Ubuntu 24.04-1&lt;/strong> 也可被攻击。&lt;/p>
+&lt;ul>
+&lt;li>去官网下载 sudo 是漏洞版本内的 Linux ISO，这里以 2024 年第一版的 Kali 为例子。&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://old.kali.org/kali-images/kali-2024.1/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>然后就是在 VMware 上配置 Kali 虚拟机了，这一系列过程就不赘述了。&lt;/li>
+&lt;/ul>
+&lt;h1 id="0x05-漏洞复现">0x05 漏洞复现&lt;/h1>
+&lt;p>POC：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">通过网盘分享的文件：CVE-2025-32463_chwoot-main.zip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">链接: https://pan.baidu.com/s/1Qkb8ohhQPdwNope5RxZ11w 提取码: ynwk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--来自百度网盘超级会员v4的分享
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251010154955.png" alt="image.png">&lt;/p>
+&lt;h1 id="0x06-修复建议">0x06 修复建议&lt;/h1>
+&lt;ul>
+&lt;li>安全更新&lt;/li>
+&lt;li>目前官方已发布安全更新，建议用户尽快升级至最新版本：sudo &amp;gt;= 1.9.17p1&lt;/li>
+&lt;li>官方补丁&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- https://www.sudo.ws/security/advisories/host_any/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- https://www.sudo.ws/security/advisories/chroot_bug
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>临时处置&lt;/li>
+&lt;li>在环境中搜索任何使用了 Host 或 Host_Alias 选项的内容。检查 &lt;code>/etc/sudoers&lt;/code>中定义的所有 Sudo 规则以及 &lt;code>/etc/sudoers.d&lt;/code>下的文件。如果 Sudo 规则存储在 LDAP 中，请使用 ldapsearch 等工具转储这些规则。&lt;/li>
+&lt;/ul>
+&lt;h1 id="参考链接">参考链接&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://ubuntu.com/security/CVE-2025-32463
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://nvd.nist.gov/vuln/detail/CVE-2025-32463
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>【工具】BurpSuite插件推荐合集</title><link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</link><pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</guid><description>&lt;img src="http://localhost:1313/images/83.webp" alt="Featured image of post 【工具】BurpSuite插件推荐合集" />&lt;h1 id="概述">概述&lt;/h1>
+&lt;p>BurpSuite是渗透测试人员常用的安全工具，它提供了一个功能&lt;strong>扩展&lt;/strong>，也就是插件。在这个功能里面可以安装许多功能性插件，从而达到如虎添翼的效果。&lt;br>
+但是BurpSuite的扩展存在一个问题，就是插件安装过多会导致&lt;strong>卡顿、内存溢出&lt;/strong>等。所以插件的选择就显得十分重要！本文就笔者本人的经验，推荐一些不错的BurpSuite插件，达到即实用又兼顾性能的效果！&lt;/p>
+&lt;h1 id="插件安装">插件安装&lt;/h1>
+&lt;p>在推荐插件之前，先讲述一下如何安装插件，我们一般下载的插件是一个扩展名为&lt;code>.jar&lt;/code>的文件。&lt;br>
+安装方式：打开BurpSuite -&amp;gt; 扩展 -&amp;gt; 添加 -&amp;gt; 选择文件 -&amp;gt; 安装&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924144437.png" alt="image.png">&lt;/p>
+&lt;h1 id="插件推荐">插件推荐&lt;/h1>
+&lt;h2 id="hae">HAE&lt;/h2>
+&lt;p>Github下载：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/gh0stkey/HaE/releases/tag/4.3.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>HAE可以发现HTTP数据包的相关重要信息，能够&lt;strong>有效减少&lt;/strong>测试时间，将更多精力集中在&lt;strong>有价值且有意义&lt;/strong>的报文上，从而&lt;strong>提高漏洞挖掘效率&lt;/strong>。&lt;br>
+安装完插件后，使用Burpsuite代理访问一些网页产生一些HTTP数据包，在BurpSuite模块代理 -&amp;gt; HTTP记录里面，即可发现一些被特殊标记的数据包！例如：&lt;strong>Shiro、Swagger UI、Ueditor、身份证、IP地址等等&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924145816.png" alt="image.png">&lt;/p>
+&lt;h2 id="burpapifinder">BurpAPIFinder&lt;/h2>
+&lt;p>Github下载&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/shuanx/BurpAPIFinder/releases/tag/v2.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>攻防演练过程中，我们通常会用浏览器访问一些资产，但很多未授权/敏感信息/越权隐匿在已访问接口过html、JS文件等，通过该BurpAPIFinder插件我们可以：&lt;br>
+1、发现通过某接口可以进行未授权/越权获取到所有的账号密码、私钥、凭证&lt;br>
+2、发现通过某接口可以枚举用户信息、密码修改、用户创建接口&lt;br>
+3、发现登陆后台网址&lt;br>
+4、发现在html、JS中泄漏账号密码或者云主机的Access Key和SecretKey&lt;br>
+5、自动提取js、html中路径进行访问，也支持自定义父路径访问 …&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150127.png" alt="image.png">&lt;/p>
+&lt;h2 id="burpfingerprint">BurpFingerPrint&lt;/h2>
+&lt;p>Github下载&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/shuanx/BurpFingerPrint/releases/tag/v1.5
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>攻击过程中，我们通常会用浏览器访问一些资产，该BurpSuite插件实现被动指纹识别+网站提取链接+OA爆破，可帮助我们发现更多资产。&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150459.png" alt="image.png">&lt;/p>
+&lt;h2 id="rvscan">RVScan&lt;/h2>
+&lt;p>Github下载&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/XF-FS/RVScan/releases/tag/RVScan2.4
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>核心功能&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>📊 实时监控&lt;/strong> – 扫描进度和结果实时显示&lt;/li>
+&lt;li>&lt;strong>🔍 被动扫描&lt;/strong> – 自动检测敏感路径和接口通过对访问接口递归对每一层路径进行路径探测，探测是否存在敏感信息漏洞接口
+&lt;ul>
+&lt;li>💡 访问/admin/auth/api，递归探测会访问/&lt;em>、/admin/&lt;/em>、/admin/auth/&lt;em>、/admin/auth/api/&lt;/em>&lt;/li>
+&lt;li>💡 一般可探测出如Swagger接口、登陆后台、漏洞路径、配置文件、spring env等泄露信息&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>🎯 指纹识别&lt;/strong> – 支持关键词、favicon hash等多种识别方法
+&lt;ul>
+&lt;li>💡 通过识别访问接口是否存在指定指纹，判断指纹信息，功能参考Ehole&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>🚀 路径绕过&lt;/strong> – 内置多种绕过技术和payload&lt;/li>
+&lt;li>&lt;strong>⚡ 多线程扫描&lt;/strong> – 可配置并发数和速率限制&lt;br>
+举个例子：比如在 &lt;strong>&lt;code>https://get-shell.com/&lt;/code>&lt;/strong> 这个网站下面有WEB备份文件 &lt;strong>&lt;code>root.zip&lt;/code>&lt;/strong>，那么当插件被动检测开启的时候，即可通过内置规则进行匹配，然后展示在VulDisplay界面。&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150627.png" alt="image.png">&lt;/li>
+&lt;/ul>
+&lt;h2 id="tsojanscan">TsojanScan&lt;/h2>
+&lt;p>Github下载&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/Tsojan/TsojanScan/releases/tag/v1.4.6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>TsojanScan是一个集成的BurpSuite漏洞探测插件，它会以最少的数据包请求来准确检测各漏洞存在与否，你只需要这一个足矣，其他的单个漏洞扫描插件就可以卸载了。包含了：&lt;strong>Nacos、SpringBoot、Log4j、Shiro、Fastjson、Weblogic、ThinkPHP、SQLI等主动/被动扫描。&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150851.png" alt="image.png">&lt;/p>
+&lt;h2 id="autorize">Autorize&lt;/h2>
+&lt;p>下载方式：&lt;strong>BurpSuite -&amp;gt; 扩展 -&amp;gt; BApp商店 -&amp;gt; Autorize -&amp;gt; 安装&lt;/strong>&lt;br>
+autorize是一个可以发现未授权漏洞的工具，举个例子：有一个接口例如 &lt;strong>&lt;code>https://get-shell.com/api/adduser&lt;/code>&lt;/strong> ，这个接口的本意是留给管理员权限（高权限）使用，普通用户（低权限）无法使用，但是如果这个接口没有做鉴权处理，导致了低权限用户也可以使用，那么这就是一个&lt;strong>未授权访问漏洞&lt;/strong>。&lt;br>
+而这个插件就可以发现这个问题，**需要在插件页面的右面窗口放入低权限用户（未登录）状态下的&lt;code>cookie&lt;/code>&lt;strong>或者点击&lt;/strong>&lt;code>Fetch Cookies Filters&lt;/code>&lt;strong>自动填充获取最近获得的Cookie，然后点击&lt;/strong>&lt;code>Autorize is off&lt;/code>**开启检测，插件会有三种状态：&lt;/p>
+&lt;ul>
+&lt;li>绕过（Bypassed）！- 红色（可能存在未授权）&lt;/li>
+&lt;li>强制执行！- 绿色（不存在未授权）&lt;/li>
+&lt;li>强制执行???（请配置强制检测器） – 黄色&lt;br>
+根据需要，重点查看**&lt;code>绕过（Bypassed）！- 红色（可能存在未授权）&lt;/code>，如果这是一个高权限API或者一个高权限的页面，在去掉cookie后仍然可以访问，那么这就是一个未授权漏洞！&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924150950.png" alt="image.png">&lt;/li>
+&lt;/ul>
+&lt;h2 id="xia_yue-瞎越">xia_Yue (瞎越)&lt;/h2>
+&lt;p>Github下载&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/smxiazi/xia_Yue/releases/tag/1.4
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>本质上与上面的Autorize是同样类型的插件，是一个可以发现未授权漏洞的工具，举个例子：有一个接口例如 &lt;strong>&lt;code>https://get-shell.com/api/adduser&lt;/code>&lt;/strong> ，这个接口的本意是留给管理员权限（高权限）使用，普通用户（低权限）无法使用，但是如果这个接口没有做鉴权处理，导致了低权限用户也可以使用，那么这就是一个&lt;strong>未授权访问漏洞&lt;/strong>。&lt;br>
+使用的时候需要在插件右面替换一下低权限的token。&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250924151046.png" alt="image.png">&lt;/p></description></item><item><title>【资产收集】ENScan_Go-信息收集工具</title><link>http://localhost:1313/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</link><pubDate>Mon, 22 Sep 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</guid><description>&lt;img src="http://localhost:1313/images/82.webp" alt="Featured image of post 【资产收集】ENScan_Go-信息收集工具" />&lt;h1 id="0x00-项目地址">0x00 项目地址&lt;/h1>
+&lt;p>项目为狼组团队的师傅开发，废话不多说，以下是项目地址：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/wgpsec/ENScan_GO
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121249.png" alt="image.png">&lt;/p>
+&lt;p>我的是windows系统，直接下载这个即可。&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121310.png" alt="image.png">&lt;br>
+文件下载解压仅有exe文件&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121420.png" alt="image.png">&lt;/p>
+&lt;h1 id="0x01-使用">0x01 使用&lt;/h1>
+&lt;p>初次使用需要初始化&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.\enscan-v1.3.1-windows-amd64.exe -v
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121505.png" alt="image.png">&lt;br>
+生成&lt;code>config.yaml&lt;/code>配置文件&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923121551.png" alt="image.png">&lt;br>
+以爱企查为例导入cookie&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">链接：https://aiqicha.baidu.com/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">（注意：默认查询为aiqicha.baidu.com，请勿使用 aiqicha.com）
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里最好使用抓包工具进行抓取：&lt;br>
+爱企查的cookie&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923122433.png" alt="">&lt;br>
+天眼查的cookie&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923122924.png" alt="image.png">&lt;br>
+然后直接运行，即可！&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> .\enscan-v1.3.1-windows-amd64.exe -n &amp;#34;汉堡王（上海）餐饮有限公司&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250923124222.png" alt="image.png">&lt;/p></description></item><item><title>【工具】Swagger 未授权检测工具</title><link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7swagger-%E6%9C%AA%E6%8E%88%E6%9D%83%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link><pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7swagger-%E6%9C%AA%E6%8E%88%E6%9D%83%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid><description>&lt;img src="http://localhost:1313/images/61.webp" alt="Featured image of post 【工具】Swagger 未授权检测工具" />&lt;h1 id="介绍">介绍&lt;/h1>
+&lt;p>用于探测 Swagger/OpenAPI 文档并尝试未授权访问接口，辅助安全自查。识别 swagger-ui 页面、swagger-resources 入口、Swagger 1.x/V2/V3 文档，在谨慎策略下对接口进行 GET/POST 探测并生成 Excel 报告。&lt;/p>
+&lt;h1 id="下载地址">下载地址&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/mk4no1/SwaggerAH
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="快速开始">快速开始&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 单目标扫描（自动识别入口类型：swagger-ui / api-docs / swagger-resources）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python swagger.py -u https://example.com/swagger-ui/index.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 忽略文档内 servers，强制使用初始域名（遇到内网域名或IP直接使用此参数）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python swagger.py -u https://example.com/v3/api-docs --force-domain
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 批量扫描（每行一个 URL）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># urls.txt:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># https://a.com/v3/api-docs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># https://b.com/swagger-ui/index.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python swagger.py -f urls.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>红框或者error忽略即可&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911132342.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911132354.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911132402.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250911132408.png" alt="image.png">&lt;/p>
+&lt;h1 id="安装与依赖">安装与依赖&lt;/h1>
+&lt;p>Python 3（本人Python 3.10.11）&lt;br>
+依赖安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">pip install requests loguru selenium openpyxl urllib3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="使用说明">使用说明&lt;/h1>
+&lt;ul>
+&lt;li>
+&lt;p>常用参数&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>-u, --url&lt;/code>：单个目标（支持 swagger-ui、api-docs、swagger-resources）&lt;/li>
+&lt;li>&lt;code>-f, --file&lt;/code>：批量目标文件（逐行 URL）&lt;/li>
+&lt;li>&lt;code>--force-domain&lt;/code>：忽略文档内 &lt;code>servers&lt;/code>，强制使用初始域名&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>请求与参数策略（宁可漏报也不可误删误改）&lt;/p>
+&lt;ul>
+&lt;li>仅尝试 &lt;code>GET&lt;/code>、&lt;code>POST&lt;/code>&lt;/li>
+&lt;li>自动填充占位参数：
+&lt;ul>
+&lt;li>path 参数：用占位值替换路径变量（数字就填充1，字母填充a）&lt;/li>
+&lt;li>query 参数：填充简单占位值&lt;/li>
+&lt;li>body(JSON)：按 schema 尝试生成示例&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>命中高风险关键字的 URL 自动跳过&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="报告说明">报告说明&lt;/h1>
+&lt;ul>
+&lt;li>扫描结束生成 &lt;code>YYYYMMDDHHMM_xxx.xlsx&lt;/code>：
+&lt;ul>
+&lt;li>&lt;code>所有API&lt;/code>：记录发现的所有路径，标注“调用/过滤”&lt;/li>
+&lt;li>&lt;code>已调用API&lt;/code>：记录请求方法、URL、参数、状态码、截断后的响应&lt;/li>
+&lt;li>&lt;code>已过滤API&lt;/code>：记录被策略拦截的接口与原因。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>【工具】acunetix_25.5.250613157 破解-安装</title><link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7acunetix_25.5.250613157-%E7%A0%B4%E8%A7%A3-%E5%AE%89%E8%A3%85/</link><pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7acunetix_25.5.250613157-%E7%A0%B4%E8%A7%A3-%E5%AE%89%E8%A3%85/</guid><description>&lt;img src="http://localhost:1313/images/20.webp" alt="Featured image of post 【工具】acunetix_25.5.250613157 破解-安装" />&lt;h1 id="前言">前言：&lt;/h1>
+&lt;p>Acunetix Premium 是一种 Web 应用程序安全解决方案，用于管理多个网站、Web 应用程序和 API 的安全。集成功能允许您自动化 DevOps 和问题管理基础架构。&lt;/p>
+&lt;h1 id="更新内容">更新内容：&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">改进
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加正则表达式以增强对 Django 应用程序中堆栈跟踪泄露的检测
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">改进了对使用弱密钥签名的 JWT 的检测
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">为暴露的 nginx.conf 和 .htaccess 文件添加了新的安全检查，以增强漏洞检测
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加了 LDAP 注入检测
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">增加了对 PII（个人身份信息）泄露漏洞的检测
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">JSON 响应中数据库连接字符串的新检测，以提高敏感数据暴露覆盖率
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">扫描仪已更新，支持从 Linux 使用 NTLM 身份验证扫描目标
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">更新了秘密令牌检测以增加覆盖范围
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">更新了 JSON 字段中的 DB 连接检测
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">更新了 DeepScan 以提取更多道具
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加了新的检查来检测原型污染（服务器端）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">更新了 dompurify 以检测更多漏洞
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">更新了基于 dom 漏洞的 iframe 注入检测
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">更新了 XPath 注入以获得更好的覆盖范围了
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">修复了 Cleo Harmony/VLTrader/LexiCom RCE 检测的误报问题
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">修正了“Scripts\WebApps\drupal_3.script”中的版本比较逻辑
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">安全检查
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">为弱 ViewState 密钥添加了新的安全检查
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加了新的检查以检测 PAN-OS XSS ( CVE-2025-0133 )
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加了一项新检查，用于检测 Citrix NetScaler 内存泄露 (CitrixBleed 2) ( CVE-2025-5777 )
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">漏洞数据库（VDB）版本升级至20250708
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">更新了开放重定向以增加覆盖范围
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">为 API 添加了 JWT 身份验证绕过
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加了 SAP NetWeaver Visual Composer 无限制文件上传 ( CVE-2025-31324 )
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">增加了对 Craft CMS 远程代码执行 ( CVE-2025-32432 )的检测
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加了对缺失的 X-Content-Type-Options 标头的检查
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">检测 Craft CMS 远程代码执行漏洞 ( CVE-2025-32432 )
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="下载">下载：&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">通过网盘分享的文件：Acunetix-v25.5.250613157.zip.apk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">链接: https://pan.baidu.com/s/18gN5FnJ6KedX8ej1giI7pw 提取码: sk4s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--来自百度网盘超级会员v4的分享
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>记得删除&lt;code>.apk&lt;/code>,然后直接解压zip文件即可。&lt;/p>
+&lt;h1 id="安装">安装：&lt;/h1>
+&lt;p>Download Zip File, password is on our post&lt;br>
+建议： 安装完成后， 先登录一次账号在停止服务， 执行下面操作&lt;br>
+在安装工具之前， 添加到 hosts 文件中 C:\Windows\System32\drivers\etc\hosts&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">127.0.0.1 erp.acunetix.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 erp.acunetix.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 erp.acunetix.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 erp.acunetix.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 discovery-service.invicti.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 discovery-service.invicti.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 discovery-service.invicti.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 discovery-service.invicti.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 cdn.pendo.io
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 cdn.pendo.io.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 cdn.pendo.io
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 cdn.pendo.io.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 bxss.me
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 bxss.me.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 bxss.me
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 bxss.me.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 jwtsigner.invicti.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 jwtsigner.invicti.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 jwtsigner.invicti.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 jwtsigner.invicti.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 sca.acunetix.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1 sca.acunetix.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 sca.acunetix.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">::1 sca.acunetix.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">192.178.49.174 telemetry.invicti.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">192.178.49.174 telemetry.invicti.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2607:f8b0:402a:80a::200e telemetry.invicti.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2607:f8b0:402a:80a::200e telemetry.invicti.com.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204308.png" alt="image.png">&lt;br>
+安装后， 让我们停止它的服务调用服务工具:(使用菜单或打开任务管理器， 转到服务选项卡)&lt;/p>
+&lt;ul>
+&lt;li>Acunetix&lt;/li>
+&lt;li>Acunetix Database&lt;br>
+管理员运行停止服务&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204338.png" alt="image.png">&lt;br>
+或者使用命令停止&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">net stop &amp;#34;Acunetix Supervisor&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net stop &amp;#34;Acunetix Database&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204407.png" alt="image.png">&lt;br>
+替换文件 wvsc.exe&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">C:\Program Files (x86)\Acunetix\25.1.250204093
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204427.png" alt="image.png">&lt;br>
+移动两个文件&lt;br>
+license_info.Json 文件和 wa_data.dat 文件到&lt;br>
+C:\ProgramData\Acunetix\shared\license 目录替换将 C:/ProgramData/Acunetix/shared/license/整个文件夹设置为只读&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204508.png" alt="image.png">&lt;br>
+安装完成后登录发现需要证书， 不能扫描， 先停止服务， 将 license 下文件全部删除， 复制license_info.Json 文件和 wa_data.dat 文件进去设置只读， 再次启动服务&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204529.png" alt="image.png">&lt;br>
+Now let&amp;rsquo;s restart acunetix:&lt;br>
+重启服务， 成功（再次启动 Acunetix 两个服务）&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204559.png" alt="image.png">&lt;br>
+Acunetix&lt;br>
+Acunetix Database&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204616.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250831204627.png" alt="image.png">&lt;br>
+Now login back to application, and you should be able to use it :)&lt;br>
+Enjoy（完成）&lt;/p></description></item><item><title>【工具】OneForAll子域名收集工具的使用</title><link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7oneforall%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7oneforall%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</guid><description>&lt;img src="http://localhost:1313/images/4.webp" alt="Featured image of post 【工具】OneForAll子域名收集工具的使用" />&lt;h1 id="1-下载地址">1. 下载地址：&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/shmilylty/OneForAll
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="2-使用">2. 使用：&lt;/h1>
+&lt;p>首先把requirements.txt下载下来。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">pip&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">r&lt;/span> &lt;span class="o">.&lt;/span>\&lt;span class="n">requirements&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">txt&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后直接使用即可&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">python&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exe&lt;/span> &lt;span class="o">.&lt;/span>\&lt;span class="n">oneforall&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="n">xiyoupark&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">com&lt;/span> &lt;span class="n">run&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828150938.png" alt="image.png">&lt;br>
+结果会导出到results文件夹下。&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828150949.png" alt="image.png">&lt;/p></description></item><item><title>【工具】windows server 2003安装部署</title><link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7windows-server-2003%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7windows-server-2003%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</guid><description>&lt;img src="http://localhost:1313/images/5.webp" alt="Featured image of post 【工具】windows server 2003安装部署" />&lt;h1 id="部署安装网址">部署安装网址：&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/weixin_45950429/article/details/107069404
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="下载地址">下载地址：&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">通过网盘分享的文件：WindowsServer 2003.iso
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">链接: https://pan.baidu.com/s/1_VmXyNxI5kyouSAMjMl5wQ 提取码: 1234
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--来自百度网盘超级会员v2的分享
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="步骤一">步骤一：&lt;/h1>
+&lt;p>打开VMware,点击我的主页，点击创建新的虚拟机：&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828151903.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828151927.png" alt="image.png">&lt;br>
+这里选择稍后安装操作系统，然后点击“下一步”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828151941.png" alt="image.png">&lt;br>
+客户机操作系统选择“Microsoft Windows(W)&amp;quot;，版本的话，你下载的是什么版本你就安装什么版本，我最前面发的是Windows Server 2003 Standard Edition版本的额，也就是32位的。然后点击”下一步”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152000.png" alt="image.png">&lt;br>
+虚拟机名称，我这里就默认了，位置一定要自己选择，把它放在内存空间充足的磁盘。&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152011.png" alt="image.png">&lt;br>
+这里你可以默认40GB，我避免要做的东西多，所以设了“60GB”，下面选择“将虚拟磁盘拆分成多个文件（M），然后点击下一步&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152023.png" alt="image.png">&lt;br>
+点击自定义硬件，里面的打印机极少用，可以选择移除，然后点击CD，浏览放入映像文件&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152036.png" alt="image.png">&lt;br>
+点击关闭之后会自动回到这页，点击“完成”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152046.png" alt="image.png">&lt;br>
+完成之后就会生成一个虚拟机&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152057.png" alt="image.png">&lt;/p>
+&lt;h1 id="步骤二">步骤二：&lt;/h1>
+&lt;p>放入镜像之后的安装过程&lt;br>
+点击“开启此虚拟机&amp;quot;,随后就会进入这个页面，开始等待&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152148.png" alt="image.png">&lt;br>
+点击&amp;quot;Enter&amp;quot;键进行安装，再等待&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152156.png" alt="image.png">&lt;br>
+点击选择”用NTFS文件系统格式化磁盘分区（快），随后点击&amp;quot;Enter&amp;quot;键继续&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152210.png" alt="image.png">&lt;br>
+安装格式化，等待&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152224.png" alt="image.png">&lt;br>
+等待&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152233.png" alt="image.png">&lt;br>
+出现这个画面，点击“下一步”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152243.png" alt="image.png">&lt;br>
+点击我接受这个协议，点击“下一步”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152255.png" alt="image.png">&lt;br>
+继续等待，出现这个画面，点击“下一步”，自定义输入名称，点击“下一步”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152309.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152316.png" alt="image.png">&lt;br>
+这里服务器修改为“500”，然后点击“下一步”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152326.png" alt="image.png">&lt;/p>
+&lt;p>一定记得设置自己记得住的密码，等一下安装好后开机需要使用&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152334.png" alt="image.png">&lt;br>
+默认点击下一步，等待&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152342.png" alt="image.png">&lt;br>
+出现这个画面，点击“典型设置”，点击“下一步”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152352.png" alt="image.png">&lt;br>
+选择“不，此计算机不在网络上，或者再没有域的网络上，把此计算机作为下面工作组的一个成员（W)&amp;quot;, 点击”下一步“&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152402.png" alt="image.png">&lt;/p>
+&lt;h1 id="步骤三">步骤三：&lt;/h1>
+&lt;p>出现这个画面时，点击&amp;quot;完成”，随后点击“是”&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152412.png" alt="image.png">&lt;br>
+“x&amp;quot;掉&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152421.png" alt="image.png">&lt;br>
+在 开始–我的电脑–属性-自动更新–点击关闭自动更新(T)&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152431.png" alt="image.png">&lt;/p>
+&lt;h1 id="完成">完成&lt;/h1>
+&lt;p>你可以在桌面点击右键–属性–设置–修改分辨率即可修改屏幕大小&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20250828152440.png" alt="image.png">&lt;br>
+结束完成！！！&lt;/p></description></item></channel></rss>

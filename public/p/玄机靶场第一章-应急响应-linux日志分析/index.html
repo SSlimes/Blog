@@ -1,1028 +1,183 @@
-<!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="简介 1 2 账号root密码linuxrz ssh root@IP 1.有多少IP在爆破主机ssh的root帐号，如果有多个使用&quot;,&ldquo;分割\n2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割\n3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割\n4.登陆成功的IP共爆破了多少次\n5.黑客登陆主机后新建了一个后门用户，用户名是多少\n">
-<title>【玄机靶场】第一章 应急响应- Linux日志分析</title>
-
-<link rel='canonical' href='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/'>
-
-<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【玄机靶场】第一章 应急响应- Linux日志分析">
-<meta property='og:description' content="简介 1 2 账号root密码linuxrz ssh root@IP 1.有多少IP在爆破主机ssh的root帐号，如果有多个使用&quot;,&ldquo;分割\n2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割\n3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割\n4.登陆成功的IP共爆破了多少次\n5.黑客登陆主机后新建了一个后门用户，用户名是多少\n">
-<meta property='og:url' content='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/'>
-<meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-05T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/42.webp' />
-<meta name="twitter:title" content="【玄机靶场】第一章 应急响应- Linux日志分析">
-<meta name="twitter:description" content="简介 1 2 账号root密码linuxrz ssh root@IP 1.有多少IP在爆破主机ssh的root帐号，如果有多个使用&quot;,&ldquo;分割\n2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割\n3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割\n4.登陆成功的IP共爆破了多少次\n5.黑客登陆主机后新建了一个后门用户，用户名是多少\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/42.webp' />
-    <link rel="shortcut icon" href="/favicon.ico" />
-
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            localStorage.setItem(colorSchemeKey, "auto");
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        
-            
-            <figure class="site-avatar">
-                <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avatar_hu_1bd8e8462945ae7f.png" width="300"
-                            height="300" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
-                </a>
-                
-            </figure>
-            
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">SlimerのBlog</a></h1>
-            <h2 class="site-description"></h2>
-        </div>
-    </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://space.bilibili.com/274685458?spm_id_from=333.1007.0.0'
-                        target="_blank"
-                        title="bilibili"
-                        rel="me"
-                    >
-                        
-                        
-                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1756871816299" class="icon" viewBox="0 0 1084 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3388" xmlns:xlink="http://www.w3.org/1999/xlink" width="271" height="256"><path d="M896.43834 165.698h-62.34l54.57-54.57c23.43-23.37 23.43-70.17 0-93.54-23.37-23.37-70.17-23.37-93.54 0l-155.88 148.17H452.17034l-155.94-148.23c-23.43-23.37-70.17-23.37-93.54 0-23.37 23.43-23.43 70.17 0 93.54l54.57 54.57h-62.34A192.983 192.983 0 0 0 0.00934 360.607v420.899c0 116.97 85.71 202.68 194.91 202.68h693.75a192.983 192.983 0 0 0 194.85-194.85v-428.73c7.83-109.14-77.94-194.91-187.08-194.91z m54.63 615.809a69.869 69.869 0 0 1-70.17 70.17h-678.27a69.869 69.869 0 0 1-70.109-70.17v-413.13a69.869 69.869 0 0 1 70.17-70.17h678.21a69.869 69.869 0 0 1 70.17 70.17v413.19z m-608.039-342.96a69.869 69.869 0 0 0-70.23 70.17v70.17a69.869 69.869 0 0 0 70.17 70.17 69.869 69.869 0 0 0 70.23-70.17v-70.17a69.869 69.869 0 0 0-70.23-70.17z m405.36 0a69.869 69.869 0 0 0-70.23 70.17v70.17a69.869 69.869 0 0 0 70.17 70.17 69.869 69.869 0 0 0 70.23-70.17v-70.17a69.869 69.869 0 0 0-70.17-70.17z" p-id="3389" fill="#d4237a"></path></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://github.com/SSlimes'
-                        target="_blank"
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
-                        
-                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1756871620871" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9490" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256"><path d="M682.215454 981.446137c-25.532318 0-42.553863-17.021545-42.553864-42.553864v-165.960067c4.255386-34.043091-8.510773-59.575409-29.787704-80.852341-12.766159-12.766159-17.021545-29.787704-8.510773-42.553864 4.255386-17.021545 21.276932-25.532318 34.043091-29.787704 123.406204-12.766159 238.301635-55.320023 238.301635-255.323181 0-46.80925-17.021545-93.6185-51.064636-131.916976-12.766159-12.766159-12.766159-29.787704-8.510772-42.553864 12.766159-34.043091 12.766159-68.086182 4.255386-102.129272-21.276932 4.255386-55.320023 17.021545-110.640045 55.320022-8.510773 8.510773-21.276932 8.510773-34.043091 4.255387-89.363113-25.532318-187.236999-25.532318-276.600112 0-12.766159 4.255386-25.532318 4.255386-38.298477-4.255387C307.741455 104.836549 269.442978 92.07039 248.166047 87.815004c-8.510773 34.043091-8.510773 68.086182 4.255386 102.129272 4.255386 17.021545 4.255386 34.043091-8.510773 42.553864-34.043091 38.298477-51.064636 85.107727-51.064636 131.916976 0 200.003158 114.895431 242.557022 238.301635 255.323181 17.021545 0 29.787704 12.766159 34.043091 29.787704 4.255386 17.021545 0 34.043091-8.510773 42.553864-21.276932 21.276932-29.787704 46.80925-29.787704 76.596954v165.960068c0 25.532318-17.021545 42.553863-42.553863 42.553863s-42.553863-17.021545-42.553864-42.553863v-72.341568c-127.66159 21.276932-182.981613-51.064636-221.28009-97.873886-17.021545-21.276932-29.787704-38.298477-46.80925-42.553864-21.276932-4.255386-38.298477-29.787704-29.787704-51.064636 4.255386-21.276932 29.787704-38.298477 51.064636-29.787704 42.553863 12.766159 68.086182 42.553863 93.6185 72.341568 34.043091 46.80925 63.830795 80.852341 153.193908 63.830795v-4.255386c0-25.532318 4.255386-55.320023 12.766159-76.596955-119.150818-25.532318-246.812408-102.129272-246.812408-327.664748 0-63.830795 21.276932-123.406204 59.575409-170.215454-17.021545-59.575409-12.766159-114.895431 12.766159-170.215454 4.255386-12.766159 12.766159-21.276932 25.532318-25.532318 17.021545-4.255386 72.341568-12.766159 187.236999 59.575409 93.6185-21.276932 191.492386-21.276932 280.855499 0 110.640045-72.341568 170.215454-63.830795 187.236999-59.575409 12.766159 4.255386 21.276932 12.766159 25.532319 25.532318 21.276932 55.320023 25.532318 110.640045 12.766159 165.960067 38.298477 46.80925 59.575409 106.384659 59.575408 170.215454 0 242.557022-144.683136 306.387817-246.812408 331.920135 8.510773 25.532318 12.766159 55.320023 12.766159 80.852341V938.892273c0 25.532318-17.021545 42.553863-42.553863 42.553864z" p-id="9491" fill="#d4237a"></path></svg>
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>主页 | Home</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/%E5%85%B3%E4%BA%8E-about/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-</svg>
-
-
-
-                
-                <span>关于 | About</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>归档 | Archives</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>搜索 | Search</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/%E9%93%BE%E6%8E%A5-links/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
-  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
-</svg>
-
-
-
-                
-                <span>链接 | Links</span>
-            </a>
-        </li>
-        
-        <li class="menu-bottom-section">
-            <ol class="menu">
-
-                
-            </ol>
-        </li>
-    </ol>
-</aside>
-
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">目录</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ul>
-    <li><a href="#简介">简介</a></li>
-    <li><a href="#开启靶场">开启靶场</a></li>
-    <li><a href="#过程">过程</a></li>
-    <li><a href="#总结">总结</a></li>
-  </ul>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
-            <main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">
-                
-                    <img src="/images/42.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第一章 应急响应- Linux日志分析" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            <a href="/categories/%E9%9D%B6%E5%9C%BA/" style="background-color: #9b2226; color: #f5ebe0;">
-                靶场
-            </a>
-        
-            <a href="/categories/%E8%93%9D%E9%98%9F/" style="background-color: #0077b6; color: #ffffff;">
-                蓝队
-            </a>
-        
-		
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">【玄机靶场】第一章 应急响应- Linux日志分析</a>
-        </h2>
-    
-        
-    </div>
-
-    
-    
-    
-	
-    
-	
-    <footer class="article-time">
-        
-            <div>
-                <time class="article-time--published">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>2025年09月05日</time>
-                <span class="article-word-count">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                    文章共3072字
-                </span>
-            </div>
-			
-        
-
-        
-    </footer>
-    
-
-    
-	
-</div>
-
-</header>
-
-    <section class="article-content">
-    
-    
-    <h1 id="简介">简介</h1>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">账号root密码linuxrz</span>
-</span></span><span class="line"><span class="cl"><span class="nx">ssh</span> <span class="nx">root</span><span class="o">@</span><span class="nx">IP</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>1.有多少IP在爆破主机ssh的root帐号，如果有多个使用&quot;,&ldquo;分割<br>
-2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割<br>
-3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割<br>
-4.登陆成功的IP共爆破了多少次<br>
-5.黑客登陆主机后新建了一个后门用户，用户名是多少</p>
-<h1 id="开启靶场">开启靶场</h1>
-<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319212211.png" alt="Pasted image 20250319212211"></p>
-<h1 id="过程">过程</h1>
-<h2 id="flag1">flag1</h2>
-<p><strong>1.有多少IP在爆破主机ssh的root帐号，如果有多个使用&rdquo;,&ldquo;分割</strong><br>
-首先肯定是先找到日志的位置，一般来说，SSH登录尝试会记录在 <code>/var/log/auth.log.1</code>（这是固定的）<br>
-接着那既然是爆破，那肯定会有很多失败的次数对吧？<br>
-逻辑基本就是上面这样，如果日志少一些那还好，可以一条条进行分析，日志多的话那可能还要进行筛选；<br>
-命令如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Failed password for root&#34;</span> <span class="o">|</span> <span class="nx">awk</span> <span class="s1">&#39;{print $11}&#39;</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">|</span> <span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span> <span class="o">|</span> <span class="nx">more</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>可以看出已给出三个地址：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319212440.png" alt="Pasted image 20250319212440"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">root</span><span class="o">@</span><span class="nx">ip</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">6</span><span class="o">:/</span><span class="k">var</span><span class="o">/</span><span class="nx">log</span><span class="c1"># cat auth.log.1 | grep -a &#34;Failed password for root&#34; | awk &#39;{print $11}&#39; | sort | uniq -c | sort -nr | more
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="mi">4</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">200.2</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">200.32</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">200.31</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>flag：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">flag</span><span class="p">{</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">200.2</span><span class="p">,</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">200.31</span><span class="p">,</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">200.32</span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="flag2">flag2</h2>
-<p><strong>2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割</strong><br>
-其实思路也很简单，那既然上面我们都已经得到三个IP了，最多的次数4次，不用想肯定最可疑啊，直接提交就是：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Accepted &#34;</span> <span class="o">|</span> <span class="nx">awk</span> <span class="s1">&#39;{print $11}&#39;</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">|</span> <span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span> <span class="o">|</span> <span class="nx">more</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><blockquote>
-<p>简单来说就是分析<code>auth.log.1</code>日志文件，提取出所有包含&quot;Accepted &ldquo;字符串的行，然后使用<code>awk</code>命令提取每行的第11个字段（通常这个字段表示远程IP地址），之后对这些IP地址进行排序和统计，最后按照数量的降序排列，并通过<code>more</code>命令分页显示结果。</p></blockquote>
-<p>这个命令链条通过以下步骤统计每个IP地址成功登录的次数：</p>
-<ol>
-<li>读取日志文件并筛选出成功登录的记录。</li>
-<li>提取记录中的IP地址。</li>
-<li>对IP地址进行排序、去重和计数。</li>
-<li>按登录次数降序排列并逐页显示结果。<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319212812.png" alt="Pasted image 20250319212812"></li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">root</span><span class="o">@</span><span class="nx">ip</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">6</span><span class="o">:/</span><span class="k">var</span><span class="o">/</span><span class="nx">log</span><span class="c1"># cat auth.log.1 | grep -a &#34;Accepted &#34; | awk &#39;{print $11}&#39; | sort | uniq -c | sort -nr | more
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="mi">2</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">200.2</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>flag2</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{192.168.200.2}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="flag3">flag3</h2>
-<p><strong>3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割</strong><br>
-那做这这种的思路是什么？<br>
-那首先我们得了解什么是<strong>爆破用户名字典</strong>？<br>
-简单来说指黑客在进行暴力破解攻击时使用的一系列用户名列表。黑客通过自动化工具逐个尝试这些用户名，结合常见或默认密码，试图找到有效的登录凭据。这个过程被称为“字典攻击”或“暴力破解攻击”。<br>
-具体操作步骤；</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Failed password&#34;</span> <span class="o">|</span> <span class="nx">perl</span> <span class="o">-</span><span class="nx">e</span> <span class="s1">&#39;while($_=&lt;&gt;){ /for(.*?) from/; print &#34;$1\n&#34;;}&#39;</span><span class="o">|</span><span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span><span class="o">|</span><span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319213127.png" alt="Pasted image 20250319213127"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">root</span><span class="o">@</span><span class="nx">ip</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">6</span><span class="o">:/</span><span class="k">var</span><span class="o">/</span><span class="nx">log</span><span class="c1"># cat auth.log.1 | grep -a &#34;Failed password&#34; | perl -e &#39;while($_=&lt;&gt;){ /for(.*?) from/; print &#34;$1\n&#34;;}&#39;|uniq -c|sort -nr
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="mi">5</span>  <span class="nx">invalid</span> <span class="nx">user</span> <span class="nx">user</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">5</span>  <span class="nx">invalid</span> <span class="nx">user</span> <span class="nx">hello</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">5</span>  <span class="nx">invalid</span> <span class="nx">user</span> 
-</span></span><span class="line"><span class="cl">      <span class="mi">4</span>  <span class="nx">root</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span>  <span class="nx">root</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span>  <span class="nx">root</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span>  <span class="nx">invalid</span> <span class="nx">user</span> <span class="nx">test3</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span>  <span class="nx">invalid</span> <span class="nx">user</span> <span class="nx">test2</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span>  <span class="nx">invalid</span> <span class="nx">user</span> <span class="nx">test1</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>flag3</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">flag</span><span class="p">{</span><span class="nx">user</span><span class="p">,</span><span class="nx">hello</span><span class="p">,</span><span class="nx">root</span><span class="p">,</span><span class="nx">test3</span><span class="p">,</span><span class="nx">test2</span><span class="p">,</span><span class="nx">test1</span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="flag4">flag4</h2>
-<p><strong>4.成功登录 root 用户的 ip 一共爆破了多少次</strong></p>
-<blockquote>
-<p>这个就更简单了，其实也和上面第一题重复了，因为问题问：有多少IP在爆破主机ssh的root账号？这里又问成功登录 root 用户的 ip 一共爆破了多少次？而且前面我们在统计IP的时候就已经顺便把次数统计出来了，所以PASS，这里没什么好说的；</p></blockquote>
-<p>（命令还是第一题的命令，这里只是重复一下，不在多做解释）</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Failed password for root&#34;</span> <span class="o">|</span> <span class="nx">awk</span> <span class="s1">&#39;{print $11}&#39;</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">|</span> <span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span> <span class="o">|</span> <span class="nx">more</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319213422.png" alt="Pasted image 20250319213422"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">root</span><span class="o">@</span><span class="nx">ip</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">6</span><span class="o">:/</span><span class="k">var</span><span class="o">/</span><span class="nx">log</span><span class="c1"># cat auth.log.1 | grep -a &#34;Failed password for root&#34; | awk &#39;{print $11}&#39; | sort | uniq -c | sort -nr | more
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="mi">4</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">200.2</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">200.32</span>
-</span></span><span class="line"><span class="cl">      <span class="mi">1</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">200.31</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>flag4</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{4}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="flag5">flag5</h2>
-<p><strong>5.黑客登陆主机后新建了一个后门用户，用户名是多少</strong><br>
-这个又是一个新的知识点，问我们黑客登陆主机后新建了一个后门用户，用户名是多少？<br>
-那这种我们怎么操作呢？（其实基本也就是这五个步骤）<br>
-<strong>步骤1</strong>：确定日志文件<br>
-通常与用户登录和用户管理活动相关的日志文件是 <code>/var/log/auth.log</code> 或其备份文件如 <code>/var/log/auth.log.1</code>。<br>
-<strong>步骤2</strong>：搜索创建用户的关键字<br>
-使用 <code>grep</code> 命令搜索与创建用户相关的关键字，如 <code>new user</code>。这样可以找到所有新建用户的日志条目。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nx">log</span><span class="o">/</span><span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;new user&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319213702.png" alt="Pasted image 20250319213702"><br>
-此命令会列出所有包含 <code>new user</code> 的日志行，这些行通常记录了用户创建的详细信息。<br>
-<strong>步骤3</strong>：提取新用户信息<br>
-从日志中提取新用户的详细信息，包括用户名、创建时间等。<br>
-例如，假设你得到了如下输出：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">Jan</span> <span class="mi">12</span> <span class="mi">10</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">15</span> <span class="nx">server</span> <span class="nx">useradd</span><span class="p">[</span><span class="mi">1234</span><span class="p">]</span><span class="o">:</span> <span class="k">new</span> <span class="nx">user</span><span class="o">:</span> <span class="nx">name</span><span class="o">=</span><span class="nx">testuser</span><span class="p">,</span> <span class="nx">UID</span><span class="o">=</span><span class="mi">1001</span><span class="p">,</span> <span class="nx">GID</span><span class="o">=</span><span class="mi">1001</span><span class="p">,</span> <span class="nx">home</span><span class="o">=/</span><span class="nx">home</span><span class="o">/</span><span class="nx">testuser</span><span class="p">,</span> <span class="nx">shell</span><span class="o">=/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">bash</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>这条日志显示了创建的新用户 <code>testuser</code>。<br>
-<strong>步骤4</strong>：分析执行上下文<br>
-确认新用户的创建是否由合法用户执行，或是否有可疑的远程登录记录。<br>
-可以使用以下命令查找所有用户登录的情况，以确定是否有可疑的登录行为：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">grep</span> <span class="s2">&#34;Accepted&#34;</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nx">log</span><span class="o">/</span><span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>步骤5</strong>：进一步确认<br>
-结合其他日志文件，如 <code>/var/log/syslog</code>，查看是否有异常的命令执行或系统变更。<br>
-flag</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{test2}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 id="总结">总结</h1>
-<ol>
-<li><strong>有多少IP在爆破主机ssh的root帐号:</strong><br>
-命令：</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Accepted &#34;</span> <span class="o">|</span> <span class="nx">awk</span> <span class="s1">&#39;{print $11}&#39;</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">|</span> <span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span> <span class="o">|</span> <span class="nx">more</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>命令解释</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`cat`</span> <span class="nx">命令用于显示 </span><span class="sb">`auth.log.1`</span> <span class="nx">文件的内容。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">这里 </span><span class="sb">`auth.log.1`</span> <span class="nx">是一个日志文件，通常是系统日志的备份文件。</span>
-</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="o">|:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">管道符号，用于将前一个命令的输出作为下一个命令的输入。</span>
-</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Failed password for root&#34;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">grep 命令用于在输入中搜索包含特定模式的行。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="o">-</span><span class="nx">a 选项表示将文件内容视为文本文件（此选项通常在处理二进制文件时使用，但对于纯文本文件，可以省略）。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`&#34;Failed password for root&#34;`</span> <span class="nx">是搜索模式，即查找所有包含</span><span class="s2">&#34;Failed password for root&#34;</span><span class="nx">的行，这些行表示尝试登录root用户的失败尝试。</span>
-</span></span><span class="line"><span class="cl"><span class="mf">4.</span> <span class="nx">awk</span> <span class="s1">&#39;{print $11}&#39;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`awk`</span> <span class="nx">是一个文本处理工具，用于按字段处理文本。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`{print $11}`</span> <span class="nx">表示打印每行的第11个字段。假设日志格式为标准格式，第11个字段通常是IP地址。</span>
-</span></span><span class="line"><span class="cl"><span class="mf">5.</span> <span class="nx">sort</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`sort`</span> <span class="nx">命令用于对输入行进行排序。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">这里是对提取的IP地址进行排序。</span>
-</span></span><span class="line"><span class="cl"><span class="mf">6.</span> <span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`uniq`</span> <span class="nx">命令用于删除重复的行。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`-c`</span> <span class="nx">选项表示对每个唯一的行计数，即统计每个IP地址的出现次数。</span>
-</span></span><span class="line"><span class="cl"><span class="mf">7.</span> <span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`sort`</span> <span class="nx">命令再次用于排序。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`-n`</span> <span class="nx">选项表示按数值进行排序。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`-r`</span> <span class="nx">选项表示按降序排序。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">组合起来，即按出现次数从高到低排序。</span>
-</span></span><span class="line"><span class="cl"><span class="mf">8.</span> <span class="nx">more</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`more`</span> <span class="nx">命令用于分页显示输出。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">由于输出可能很长，</span><span class="sb">`more`</span> <span class="nx">命令允许用户逐页查看结果。</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="2">
-<li><strong>ssh爆破成功登陆的IP是多少？</strong><br>
-命令：</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Accepted &#34;</span> <span class="o">|</span> <span class="nx">awk</span> <span class="s1">&#39;{print $11}&#39;</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">|</span> <span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span> <span class="o">|</span> <span class="nx">more</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>命令解释：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">	<span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Accepted &#34;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">作用：在日志文件中查找包含“Accepted</span> <span class="nx">”的行。这些行记录了成功的SSH登录事件。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`-a`</span><span class="nx">选项：通常用于处理二进制文件时将其视为文本文件，这里一般可以忽略，因为</span><span class="sb">`auth.log.1`</span><span class="nx">应该是纯文本文件</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="3">
-<li><strong>爆破用户名字典是什么？</strong><br>
-命令：</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Failed password&#34;</span> <span class="o">|</span><span class="nx">perl</span> <span class="o">-</span><span class="nx">e</span> <span class="s1">&#39;while($_=&lt;&gt;){ /for(.*?) from/; print &#34;$1\n&#34;;}&#39;</span><span class="o">|</span><span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span><span class="o">|</span><span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>命令解释：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">-</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Failed password&#34;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">作用：在日志文件中查找包含“Failed</span> <span class="nx">password”的行。这些行记录了SSH登录失败的事件。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`-a`</span><span class="nx">选项：通常用于处理二进制文件时将其视为文本文件，这里一般可以忽略，因为</span><span class="sb">`auth.log.1`</span><span class="nx">应该是纯文本文件。</span>
-</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="nx">perl</span> <span class="o">-</span><span class="nx">e</span> <span class="s1">&#39;while($_=&lt;&gt;){ /for(.*?) from/; print &#34;$1\n&#34;;}&#39;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">作用：使用Perl脚本从每一行提取出失败登录尝试的用户名。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`while($_=&lt;&gt;)`</span><span class="nx">：逐行读取输入。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`/for(.*?) from/`</span><span class="nx">：使用正则表达式匹配模式“for</span> <span class="p">[</span><span class="nx">username</span><span class="p">]</span> <span class="nx">from”，其中</span><span class="sb">`[username]`</span><span class="nx">是登录尝试的用户名。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`print &#34;$1\n&#34;`</span><span class="nx">：将提取的用户名打印出来。</span>
-</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nx">作用：对提取出的用户名进行去重并计数。每个唯一的用户名会与其出现的次数一起输出。</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="sb">`-c`</span><span class="nx">选项：在每个唯一项的前面显示出现次数。</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="4">
-<li><strong>成功登录 root 用户的 ip 一共爆破了多少次？</strong><br>
-代码：</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">cat</span> <span class="nx">auth</span><span class="o">.</span><span class="nx">log</span><span class="o">.</span><span class="mi">1</span> <span class="o">|</span> <span class="nx">grep</span> <span class="o">-</span><span class="nx">a</span> <span class="s2">&#34;Failed password for root&#34;</span> <span class="o">|</span> <span class="nx">awk</span> <span class="s1">&#39;{print $11}&#39;</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">|</span> <span class="nx">uniq</span> <span class="o">-</span><span class="nx">c</span> <span class="o">|</span> <span class="nx">sort</span> <span class="o">-</span><span class="nx">nr</span> <span class="o">|</span> <span class="nx">more</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>这个就不解释了，跟第一步一样。<br>
-5. <strong>黑客登陆主机后新建了一个后门用户，用户名是多少？</strong><br>
-命令：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat auth.log.1 |grep -a &#34;new user&#34;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>命令解释：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">简单来说就是在 grep 命令中</span>
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="nx">a 选项的作用是将文件视为文本文件处理，即使文件可能包含一些二进制数据。</span>
-</span></span><span class="line"><span class="cl"><span class="nx">通常，grep 会将二进制文件视为二进制数据而不是文本数据，并可能不会显示预期的结果。</span>
-</span></span><span class="line"><span class="cl"><span class="nx">使用 </span><span class="o">-</span><span class="nx">a 选项可以确保 grep 按文本模式处理文件中的内容。</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</section>
-
-
-    <footer class="article-footer">
-    
-
-    </footer>
-
-
-    
-</article>
-
-    
-
-    
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">相关文章</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90-iis%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/41.webp" loading="lazy" data-key="" data-hash="/images/41.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】日志分析-IIS日志分析</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-webshell%E6%9F%A5%E6%9D%80/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/43.webp" loading="lazy" data-key="" data-hash="/images/43.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第一章 应急响应- webshell查杀</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90-apache%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/44.webp" loading="lazy" data-key="" data-hash="/images/44.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第二章 日志分析- apache日志分析</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%94%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-evtx%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/46.webp" loading="lazy" data-key="" data-hash="/images/46.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第五章 Windows 实战-evtx文件分析</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/45.webp" loading="lazy" data-key="" data-hash="/images/45.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第五章 linux实战-黑链</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
-
-    
-    
-        
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2024 - 
-        
-        2025 Slimer
-    </section>
-        
-    <section class="runtime" style="margin-top:8px;font-size:1.3rem">
-        <span id="site-runtime">站点已运行计算中...</span>
-    </section>
-    <script>
-      (function(){
-        var sinceStr = '2025-08-25T00:00:00'.replace('T',' ').replace('t',' ');
-        var start = new Date(sinceStr);
-        function update(){
-          var now = new Date();
-          var diff = Math.max(0, now - start);
-          var days = Math.floor(diff / (24*60*60*1000));
-          var hours = Math.floor((diff % (24*60*60*1000)) / (60*60*1000));
-          var mins = Math.floor((diff % (60*60*1000)) / (60*1000));
-          var secs = Math.floor((diff % (60*1000)) / 1000);
-          var el = document.getElementById('site-runtime');
-          if(el){ el.textContent = '站点已运行 ' + days + ' 天 ' + hours + ' 小时 ' + mins + ' 分 ' + secs + ' 秒'; }
-        }
-        update();
-        setInterval(update, 1000);
-      })();
-    </script>
-    
-	
-    <section class="powerby">
-        
-        
-        
-    </section>
-</footer>
-
-
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
-
-            </main>
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.310d38c99963e86c53c43232d9b04e101a98b09425c2fb12195e655db9e34368.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
- <style>
-    body {
-      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
-      background-size: cover;
-      background-attachment: fixed;
-      backdrop-filter: blur(50px);
-      -webkit-backdrop-filter: blur(50px);  
-    }
-  </style>
-
-<style>
-  @font-face {
-    font-family: 'youyuan';
-    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
-  }
-
-  :root {
-    --base-font-family: 'youyuan';
-    --code-font-family: 'youyuan';
-  }
-</style>
-
-<script src=http://localhost:1313/background/sakura.js></script>
-
-
-    </body>
-</html>
+<!doctype html><html lang=zh-cn dir=ltr><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content='简介 1 2 账号root密码linuxrz ssh root@IP 1.有多少IP在爆破主机ssh的root帐号，如果有多个使用",&ldquo;分割\n2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割\n3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割\n4.登陆成功的IP共爆破了多少次\n5.黑客登陆主机后新建了一个后门用户，用户名是多少\n'><title>【玄机靶场】第一章 应急响应- Linux日志分析</title><link rel=canonical href=http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/><link rel=stylesheet href=/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css><meta property='og:title' content="【玄机靶场】第一章 应急响应- Linux日志分析"><meta property='og:description' content='简介 1 2 账号root密码linuxrz ssh root@IP 1.有多少IP在爆破主机ssh的root帐号，如果有多个使用",&ldquo;分割\n2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割\n3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割\n4.登陆成功的IP共爆破了多少次\n5.黑客登陆主机后新建了一个后门用户，用户名是多少\n'><meta property='og:url' content='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/'><meta property='og:site_name' content='SlimerのBlog'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2025-09-05T00:00:00+00:00'><meta property='article:modified_time' content='2025-09-05T00:00:00+00:00'><meta property='og:image' content='http://localhost:1313/images/42.webp'><meta name=twitter:title content="【玄机靶场】第一章 应急响应- Linux日志分析"><meta name=twitter:description content='简介 1 2 账号root密码linuxrz ssh root@IP 1.有多少IP在爆破主机ssh的root帐号，如果有多个使用",&ldquo;分割\n2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割\n3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割\n4.登陆成功的IP共爆破了多少次\n5.黑客登陆主机后新建了一个后门用户，用户名是多少\n'><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='http://localhost:1313/images/42.webp'><link rel="shortcut icon" href=/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_1bd8e8462945ae7f.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>SlimerのBlog</a></h1><h2 class=site-description></h2></div></header><ol class=menu-social><li><a href='https://space.bilibili.com/274685458?spm_id_from=333.1007.0.0' target=_blank title=bilibili rel=me><!doctype html><svg t="1756871816299" class="icon" viewBox="0 0 1084 1024" p-id="3388" xmlns:xlink="http://www.w3.org/1999/xlink" width="271" height="256"><path d="M896.43834 165.698h-62.34l54.57-54.57c23.43-23.37 23.43-70.17.0-93.54-23.37-23.37-70.17-23.37-93.54.0l-155.88 148.17h-187.078l-155.94-148.23c-23.43-23.37-70.17-23.37-93.54.0-23.37 23.43-23.43 70.17.0 93.54l54.57 54.57h-62.34A192.983 192.983.0 00.00934 360.607v420.899c0 116.97 85.71 202.68 194.91 202.68h693.75a192.983 192.983.0 00194.85-194.85v-428.73c7.83-109.14-77.94-194.91-187.08-194.91zm54.63 615.809a69.869 69.869.0 01-70.17 70.17h-678.27a69.869 69.869.0 01-70.109-70.17v-413.13a69.869 69.869.0 0170.17-70.17h678.21a69.869 69.869.0 0170.17 70.17v413.19zm-608.039-342.96a69.869 69.869.0 00-70.23 70.17v70.17a69.869 69.869.0 0070.17 70.17 69.869 69.869.0 0070.23-70.17v-70.17a69.869 69.869.0 00-70.23-70.17zm405.36.0a69.869 69.869.0 00-70.23 70.17v70.17a69.869 69.869.0 0070.17 70.17 69.869 69.869.0 0070.23-70.17v-70.17a69.869 69.869.0 00-70.17-70.17z" p-id="3389" fill="#d4237a"/></svg></a></li><li><a href=https://github.com/SSlimes target=_blank title=GitHub rel=me><!doctype html><svg t="1756871620871" class="icon" viewBox="0 0 1024 1024" p-id="9490" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256"><path d="M682.215454 981.446137c-25.532318.0-42.553863-17.021545-42.553864-42.553864V772.932206c4.255386-34.043091-8.510773-59.575409-29.787704-80.852341-12.766159-12.766159-17.021545-29.787704-8.510773-42.553864 4.255386-17.021545 21.276932-25.532318 34.043091-29.787704 123.406204-12.766159 238.301635-55.320023 238.301635-255.323181.0-46.80925-17.021545-93.6185-51.064636-131.916976-12.766159-12.766159-12.766159-29.787704-8.510772-42.553864 12.766159-34.043091 12.766159-68.086182 4.255386-102.129272-21.276932 4.255386-55.320023 17.021545-110.640045 55.320022-8.510773 8.510773-21.276932 8.510773-34.043091 4.255387-89.363113-25.532318-187.236999-25.532318-276.600112.0-12.766159 4.255386-25.532318 4.255386-38.298477-4.255387C307.741455 104.836549 269.442978 92.07039 248.166047 87.815004c-8.510773 34.043091-8.510773 68.086182 4.255386 102.129272 4.255386 17.021545 4.255386 34.043091-8.510773 42.553864-34.043091 38.298477-51.064636 85.107727-51.064636 131.916976.0 200.003158 114.895431 242.557022 238.301635 255.323181 17.021545.0 29.787704 12.766159 34.043091 29.787704 4.255386 17.021545.0 34.043091-8.510773 42.553864-21.276932 21.276932-29.787704 46.80925-29.787704 76.596954v165.960068c0 25.532318-17.021545 42.553863-42.553863 42.553863s-42.553863-17.021545-42.553864-42.553863v-72.341568c-127.66159 21.276932-182.981613-51.064636-221.28009-97.873886-17.021545-21.276932-29.787704-38.298477-46.80925-42.553864-21.276932-4.255386-38.298477-29.787704-29.787704-51.064636 4.255386-21.276932 29.787704-38.298477 51.064636-29.787704 42.553863 12.766159 68.086182 42.553863 93.6185 72.341568 34.043091 46.80925 63.830795 80.852341 153.193908 63.830795v-4.255386c0-25.532318 4.255386-55.320023 12.766159-76.596955-119.150818-25.532318-246.812408-102.129272-246.812408-327.664748.0-63.830795 21.276932-123.406204 59.575409-170.215454-17.021545-59.575409-12.766159-114.895431 12.766159-170.215454 4.255386-12.766159 12.766159-21.276932 25.532318-25.532318 17.021545-4.255386 72.341568-12.766159 187.236999 59.575409 93.6185-21.276932 191.492386-21.276932 280.855499.0 110.640045-72.341568 170.215454-63.830795 187.236999-59.575409 12.766159 4.255386 21.276932 12.766159 25.532319 25.532318 21.276932 55.320023 25.532318 110.640045 12.766159 165.960067 38.298477 46.80925 59.575409 106.384659 59.575408 170.215454.0 242.557022-144.683136 306.387817-246.812408 331.920135 8.510773 25.532318 12.766159 55.320023 12.766159 80.852341V938.892273c0 25.532318-17.021545 42.553863-42.553863 42.553864z" p-id="9491" fill="#d4237a"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页 | Home</span></a></li><li><a href=/%E5%85%B3%E4%BA%8E-about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于 | About</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档 | Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索 | Search</span></a></li><li><a href=/%E9%93%BE%E6%8E%A5-links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接 | Links</span></a></li><li class=menu-bottom-section><ol class=menu></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ul><li><a href=#简介>简介</a></li><li><a href=#开启靶场>开启靶场</a></li><li><a href=#过程>过程</a></li><li><a href=#总结>总结</a></li></ul></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/><img src=/images/42.webp loading=lazy alt="Featured image of post 【玄机靶场】第一章 应急响应- Linux日志分析"></a></div><div class=article-details><header class=article-category><a href=/categories/%E9%9D%B6%E5%9C%BA/ style=background-color:#9b2226;color:#f5ebe0>靶场
+</a><a href=/categories/%E8%93%9D%E9%98%9F/ style=background-color:#0077b6;color:#fff>蓝队</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-linux%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/>【玄机靶场】第一章 应急响应- Linux日志分析</a></h2></div><footer class=article-time><div><time class=article-time--published><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>2025年09月05日</time>
+<span class=article-word-count><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6A2 2 0 004 4v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+文章共3072字</span></div></footer></div></header><section class=article-content><h1 id=简介>简介</h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>账号root密码linuxrz</span>
+</span></span><span class=line><span class=cl><span class=nx>ssh</span> <span class=nx>root</span><span class=o>@</span><span class=nx>IP</span>
+</span></span></code></pre></td></tr></table></div></div><p>1.有多少IP在爆破主机ssh的root帐号，如果有多个使用",&ldquo;分割<br>2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割<br>3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割<br>4.登陆成功的IP共爆破了多少次<br>5.黑客登陆主机后新建了一个后门用户，用户名是多少</p><h1 id=开启靶场>开启靶场</h1><p><img src=https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319212211.png alt="Pasted image 20250319212211"></p><h1 id=过程>过程</h1><h2 id=flag1>flag1</h2><p><strong>1.有多少IP在爆破主机ssh的root帐号，如果有多个使用&rdquo;,&ldquo;分割</strong><br>首先肯定是先找到日志的位置，一般来说，SSH登录尝试会记录在 <code>/var/log/auth.log.1</code>（这是固定的）<br>接着那既然是爆破，那肯定会有很多失败的次数对吧？<br>逻辑基本就是上面这样，如果日志少一些那还好，可以一条条进行分析，日志多的话那可能还要进行筛选；<br>命令如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Failed password for root&#34;</span> <span class=o>|</span> <span class=nx>awk</span> <span class=s1>&#39;{print $11}&#39;</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>|</span> <span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span> <span class=o>|</span> <span class=nx>more</span>
+</span></span></code></pre></td></tr></table></div></div><p>可以看出已给出三个地址：<br><img src=https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319212440.png alt="Pasted image 20250319212440"></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>root</span><span class=o>@</span><span class=nx>ip</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>0</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>6</span><span class=o>:/</span><span class=k>var</span><span class=o>/</span><span class=nx>log</span><span class=c1># cat auth.log.1 | grep -a &#34;Failed password for root&#34; | awk &#39;{print $11}&#39; | sort | uniq -c | sort -nr | more
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=mi>4</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>200.2</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>200.32</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>200.31</span>
+</span></span></code></pre></td></tr></table></div></div><p>flag：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>flag</span><span class=p>{</span><span class=mf>192.168</span><span class=o>.</span><span class=mf>200.2</span><span class=p>,</span><span class=mf>192.168</span><span class=o>.</span><span class=mf>200.31</span><span class=p>,</span><span class=mf>192.168</span><span class=o>.</span><span class=mf>200.32</span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=flag2>flag2</h2><p><strong>2.ssh爆破成功登陆的IP是多少，如果有多个使用&rdquo;,&ldquo;分割</strong><br>其实思路也很简单，那既然上面我们都已经得到三个IP了，最多的次数4次，不用想肯定最可疑啊，直接提交就是：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Accepted &#34;</span> <span class=o>|</span> <span class=nx>awk</span> <span class=s1>&#39;{print $11}&#39;</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>|</span> <span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span> <span class=o>|</span> <span class=nx>more</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>简单来说就是分析<code>auth.log.1</code>日志文件，提取出所有包含"Accepted &ldquo;字符串的行，然后使用<code>awk</code>命令提取每行的第11个字段（通常这个字段表示远程IP地址），之后对这些IP地址进行排序和统计，最后按照数量的降序排列，并通过<code>more</code>命令分页显示结果。</p></blockquote><p>这个命令链条通过以下步骤统计每个IP地址成功登录的次数：</p><ol><li>读取日志文件并筛选出成功登录的记录。</li><li>提取记录中的IP地址。</li><li>对IP地址进行排序、去重和计数。</li><li>按登录次数降序排列并逐页显示结果。<br><img src=https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319212812.png alt="Pasted image 20250319212812"></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>root</span><span class=o>@</span><span class=nx>ip</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>0</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>6</span><span class=o>:/</span><span class=k>var</span><span class=o>/</span><span class=nx>log</span><span class=c1># cat auth.log.1 | grep -a &#34;Accepted &#34; | awk &#39;{print $11}&#39; | sort | uniq -c | sort -nr | more
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=mi>2</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>200.2</span>
+</span></span></code></pre></td></tr></table></div></div><p>flag2</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>flag{192.168.200.2}
+</span></span></code></pre></td></tr></table></div></div><h2 id=flag3>flag3</h2><p><strong>3.爆破用户名字典是什么？如果有多个使用&rdquo;,&ldquo;分割</strong><br>那做这这种的思路是什么？<br>那首先我们得了解什么是<strong>爆破用户名字典</strong>？<br>简单来说指黑客在进行暴力破解攻击时使用的一系列用户名列表。黑客通过自动化工具逐个尝试这些用户名，结合常见或默认密码，试图找到有效的登录凭据。这个过程被称为“字典攻击”或“暴力破解攻击”。<br>具体操作步骤；</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Failed password&#34;</span> <span class=o>|</span> <span class=nx>perl</span> <span class=o>-</span><span class=nx>e</span> <span class=s1>&#39;while($_=&lt;&gt;){ /for(.*?) from/; print &#34;$1\n&#34;;}&#39;</span><span class=o>|</span><span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span><span class=o>|</span><span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319213127.png alt="Pasted image 20250319213127"></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>root</span><span class=o>@</span><span class=nx>ip</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>0</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>6</span><span class=o>:/</span><span class=k>var</span><span class=o>/</span><span class=nx>log</span><span class=c1># cat auth.log.1 | grep -a &#34;Failed password&#34; | perl -e &#39;while($_=&lt;&gt;){ /for(.*?) from/; print &#34;$1\n&#34;;}&#39;|uniq -c|sort -nr
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=mi>5</span>  <span class=nx>invalid</span> <span class=nx>user</span> <span class=nx>user</span>
+</span></span><span class=line><span class=cl>      <span class=mi>5</span>  <span class=nx>invalid</span> <span class=nx>user</span> <span class=nx>hello</span>
+</span></span><span class=line><span class=cl>      <span class=mi>5</span>  <span class=nx>invalid</span> <span class=nx>user</span> 
+</span></span><span class=line><span class=cl>      <span class=mi>4</span>  <span class=nx>root</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span>  <span class=nx>root</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span>  <span class=nx>root</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span>  <span class=nx>invalid</span> <span class=nx>user</span> <span class=nx>test3</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span>  <span class=nx>invalid</span> <span class=nx>user</span> <span class=nx>test2</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span>  <span class=nx>invalid</span> <span class=nx>user</span> <span class=nx>test1</span>
+</span></span></code></pre></td></tr></table></div></div><p>flag3</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>flag</span><span class=p>{</span><span class=nx>user</span><span class=p>,</span><span class=nx>hello</span><span class=p>,</span><span class=nx>root</span><span class=p>,</span><span class=nx>test3</span><span class=p>,</span><span class=nx>test2</span><span class=p>,</span><span class=nx>test1</span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=flag4>flag4</h2><p><strong>4.成功登录 root 用户的 ip 一共爆破了多少次</strong></p><blockquote><p>这个就更简单了，其实也和上面第一题重复了，因为问题问：有多少IP在爆破主机ssh的root账号？这里又问成功登录 root 用户的 ip 一共爆破了多少次？而且前面我们在统计IP的时候就已经顺便把次数统计出来了，所以PASS，这里没什么好说的；</p></blockquote><p>（命令还是第一题的命令，这里只是重复一下，不在多做解释）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Failed password for root&#34;</span> <span class=o>|</span> <span class=nx>awk</span> <span class=s1>&#39;{print $11}&#39;</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>|</span> <span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span> <span class=o>|</span> <span class=nx>more</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319213422.png alt="Pasted image 20250319213422"></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>root</span><span class=o>@</span><span class=nx>ip</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>0</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>6</span><span class=o>:/</span><span class=k>var</span><span class=o>/</span><span class=nx>log</span><span class=c1># cat auth.log.1 | grep -a &#34;Failed password for root&#34; | awk &#39;{print $11}&#39; | sort | uniq -c | sort -nr | more
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=mi>4</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>200.2</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>200.32</span>
+</span></span><span class=line><span class=cl>      <span class=mi>1</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>200.31</span>
+</span></span></code></pre></td></tr></table></div></div><p>flag4</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>flag{4}
+</span></span></code></pre></td></tr></table></div></div><h2 id=flag5>flag5</h2><p><strong>5.黑客登陆主机后新建了一个后门用户，用户名是多少</strong><br>这个又是一个新的知识点，问我们黑客登陆主机后新建了一个后门用户，用户名是多少？<br>那这种我们怎么操作呢？（其实基本也就是这五个步骤）<br><strong>步骤1</strong>：确定日志文件<br>通常与用户登录和用户管理活动相关的日志文件是 <code>/var/log/auth.log</code> 或其备份文件如 <code>/var/log/auth.log.1</code>。<br><strong>步骤2</strong>：搜索创建用户的关键字<br>使用 <code>grep</code> 命令搜索与创建用户相关的关键字，如 <code>new user</code>。这样可以找到所有新建用户的日志条目。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=nx>log</span><span class=o>/</span><span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;new user&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/Pasted%20image%2020250319213702.png alt="Pasted image 20250319213702"><br>此命令会列出所有包含 <code>new user</code> 的日志行，这些行通常记录了用户创建的详细信息。<br><strong>步骤3</strong>：提取新用户信息<br>从日志中提取新用户的详细信息，包括用户名、创建时间等。<br>例如，假设你得到了如下输出：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>Jan</span> <span class=mi>12</span> <span class=mi>10</span><span class=o>:</span><span class=mi>32</span><span class=o>:</span><span class=mi>15</span> <span class=nx>server</span> <span class=nx>useradd</span><span class=p>[</span><span class=mi>1234</span><span class=p>]</span><span class=o>:</span> <span class=k>new</span> <span class=nx>user</span><span class=o>:</span> <span class=nx>name</span><span class=o>=</span><span class=nx>testuser</span><span class=p>,</span> <span class=nx>UID</span><span class=o>=</span><span class=mi>1001</span><span class=p>,</span> <span class=nx>GID</span><span class=o>=</span><span class=mi>1001</span><span class=p>,</span> <span class=nx>home</span><span class=o>=/</span><span class=nx>home</span><span class=o>/</span><span class=nx>testuser</span><span class=p>,</span> <span class=nx>shell</span><span class=o>=/</span><span class=nx>bin</span><span class=o>/</span><span class=nx>bash</span>
+</span></span></code></pre></td></tr></table></div></div><p>这条日志显示了创建的新用户 <code>testuser</code>。<br><strong>步骤4</strong>：分析执行上下文<br>确认新用户的创建是否由合法用户执行，或是否有可疑的远程登录记录。<br>可以使用以下命令查找所有用户登录的情况，以确定是否有可疑的登录行为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>grep</span> <span class=s2>&#34;Accepted&#34;</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=nx>log</span><span class=o>/</span><span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>步骤5</strong>：进一步确认<br>结合其他日志文件，如 <code>/var/log/syslog</code>，查看是否有异常的命令执行或系统变更。<br>flag</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>flag{test2}
+</span></span></code></pre></td></tr></table></div></div><h1 id=总结>总结</h1><ol><li><strong>有多少IP在爆破主机ssh的root帐号:</strong><br>命令：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Accepted &#34;</span> <span class=o>|</span> <span class=nx>awk</span> <span class=s1>&#39;{print $11}&#39;</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>|</span> <span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span> <span class=o>|</span> <span class=nx>more</span>
+</span></span></code></pre></td></tr></table></div></div><p>命令解释</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=mf>1.</span> <span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`cat`</span> <span class=nx>命令用于显示 </span><span class=sb>`auth.log.1`</span> <span class=nx>文件的内容。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>这里 </span><span class=sb>`auth.log.1`</span> <span class=nx>是一个日志文件，通常是系统日志的备份文件。</span>
+</span></span><span class=line><span class=cl><span class=mf>2.</span> <span class=o>|:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>管道符号，用于将前一个命令的输出作为下一个命令的输入。</span>
+</span></span><span class=line><span class=cl><span class=mf>3.</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Failed password for root&#34;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>grep 命令用于在输入中搜索包含特定模式的行。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=o>-</span><span class=nx>a 选项表示将文件内容视为文本文件（此选项通常在处理二进制文件时使用，但对于纯文本文件，可以省略）。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`&#34;Failed password for root&#34;`</span> <span class=nx>是搜索模式，即查找所有包含</span><span class=s2>&#34;Failed password for root&#34;</span><span class=nx>的行，这些行表示尝试登录root用户的失败尝试。</span>
+</span></span><span class=line><span class=cl><span class=mf>4.</span> <span class=nx>awk</span> <span class=s1>&#39;{print $11}&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`awk`</span> <span class=nx>是一个文本处理工具，用于按字段处理文本。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`{print $11}`</span> <span class=nx>表示打印每行的第11个字段。假设日志格式为标准格式，第11个字段通常是IP地址。</span>
+</span></span><span class=line><span class=cl><span class=mf>5.</span> <span class=nx>sort</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`sort`</span> <span class=nx>命令用于对输入行进行排序。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>这里是对提取的IP地址进行排序。</span>
+</span></span><span class=line><span class=cl><span class=mf>6.</span> <span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`uniq`</span> <span class=nx>命令用于删除重复的行。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`-c`</span> <span class=nx>选项表示对每个唯一的行计数，即统计每个IP地址的出现次数。</span>
+</span></span><span class=line><span class=cl><span class=mf>7.</span> <span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`sort`</span> <span class=nx>命令再次用于排序。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`-n`</span> <span class=nx>选项表示按数值进行排序。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`-r`</span> <span class=nx>选项表示按降序排序。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>组合起来，即按出现次数从高到低排序。</span>
+</span></span><span class=line><span class=cl><span class=mf>8.</span> <span class=nx>more</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`more`</span> <span class=nx>命令用于分页显示输出。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>由于输出可能很长，</span><span class=sb>`more`</span> <span class=nx>命令允许用户逐页查看结果。</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=2><li><strong>ssh爆破成功登陆的IP是多少？</strong><br>命令：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Accepted &#34;</span> <span class=o>|</span> <span class=nx>awk</span> <span class=s1>&#39;{print $11}&#39;</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>|</span> <span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span> <span class=o>|</span> <span class=nx>more</span>
+</span></span></code></pre></td></tr></table></div></div><p>命令解释：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl>	<span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Accepted &#34;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>作用：在日志文件中查找包含“Accepted</span> <span class=nx>”的行。这些行记录了成功的SSH登录事件。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`-a`</span><span class=nx>选项：通常用于处理二进制文件时将其视为文本文件，这里一般可以忽略，因为</span><span class=sb>`auth.log.1`</span><span class=nx>应该是纯文本文件</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=3><li><strong>爆破用户名字典是什么？</strong><br>命令：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Failed password&#34;</span> <span class=o>|</span><span class=nx>perl</span> <span class=o>-</span><span class=nx>e</span> <span class=s1>&#39;while($_=&lt;&gt;){ /for(.*?) from/; print &#34;$1\n&#34;;}&#39;</span><span class=o>|</span><span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span><span class=o>|</span><span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span>
+</span></span></code></pre></td></tr></table></div></div><p>命令解释：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=o>-</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Failed password&#34;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>作用：在日志文件中查找包含“Failed</span> <span class=nx>password”的行。这些行记录了SSH登录失败的事件。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`-a`</span><span class=nx>选项：通常用于处理二进制文件时将其视为文本文件，这里一般可以忽略，因为</span><span class=sb>`auth.log.1`</span><span class=nx>应该是纯文本文件。</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=nx>perl</span> <span class=o>-</span><span class=nx>e</span> <span class=s1>&#39;while($_=&lt;&gt;){ /for(.*?) from/; print &#34;$1\n&#34;;}&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>作用：使用Perl脚本从每一行提取出失败登录尝试的用户名。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`while($_=&lt;&gt;)`</span><span class=nx>：逐行读取输入。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`/for(.*?) from/`</span><span class=nx>：使用正则表达式匹配模式“for</span> <span class=p>[</span><span class=nx>username</span><span class=p>]</span> <span class=nx>from”，其中</span><span class=sb>`[username]`</span><span class=nx>是登录尝试的用户名。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`print &#34;$1\n&#34;`</span><span class=nx>：将提取的用户名打印出来。</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=nx>作用：对提取出的用户名进行去重并计数。每个唯一的用户名会与其出现的次数一起输出。</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=sb>`-c`</span><span class=nx>选项：在每个唯一项的前面显示出现次数。</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=4><li><strong>成功登录 root 用户的 ip 一共爆破了多少次？</strong><br>代码：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>cat</span> <span class=nx>auth</span><span class=o>.</span><span class=nx>log</span><span class=o>.</span><span class=mi>1</span> <span class=o>|</span> <span class=nx>grep</span> <span class=o>-</span><span class=nx>a</span> <span class=s2>&#34;Failed password for root&#34;</span> <span class=o>|</span> <span class=nx>awk</span> <span class=s1>&#39;{print $11}&#39;</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>|</span> <span class=nx>uniq</span> <span class=o>-</span><span class=nx>c</span> <span class=o>|</span> <span class=nx>sort</span> <span class=o>-</span><span class=nx>nr</span> <span class=o>|</span> <span class=nx>more</span>
+</span></span></code></pre></td></tr></table></div></div><p>这个就不解释了，跟第一步一样。<br>5. <strong>黑客登陆主机后新建了一个后门用户，用户名是多少？</strong><br>命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cat auth.log.1 |grep -a &#34;new user&#34;
+</span></span></code></pre></td></tr></table></div></div><p>命令解释：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>简单来说就是在 grep 命令中</span>
+</span></span><span class=line><span class=cl><span class=o>-</span><span class=nx>a 选项的作用是将文件视为文本文件处理，即使文件可能包含一些二进制数据。</span>
+</span></span><span class=line><span class=cl><span class=nx>通常，grep 会将二进制文件视为二进制数据而不是文本数据，并可能不会显示预期的结果。</span>
+</span></span><span class=line><span class=cl><span class=nx>使用 </span><span class=o>-</span><span class=nx>a 选项可以确保 grep 按文本模式处理文件中的内容。</span>
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90-iis%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/><div class=article-image><img src=/images/41.webp loading=lazy data-key data-hash=/images/41.webp></div><div class=article-details><h2 class=article-title>【玄机靶场】日志分析-IIS日志分析</h2></div></a></article><article class=has-image><a href=/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-webshell%E6%9F%A5%E6%9D%80/><div class=article-image><img src=/images/43.webp loading=lazy data-key data-hash=/images/43.webp></div><div class=article-details><h2 class=article-title>【玄机靶场】第一章 应急响应- webshell查杀</h2></div></a></article><article class=has-image><a href=/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90-apache%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/><div class=article-image><img src=/images/44.webp loading=lazy data-key data-hash=/images/44.webp></div><div class=article-details><h2 class=article-title>【玄机靶场】第二章 日志分析- apache日志分析</h2></div></a></article><article class=has-image><a href=/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%94%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-evtx%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/><div class=article-image><img src=/images/46.webp loading=lazy data-key data-hash=/images/46.webp></div><div class=article-details><h2 class=article-title>【玄机靶场】第五章 Windows 实战-evtx文件分析</h2></div></a></article><article class=has-image><a href=/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE/><div class=article-image><img src=/images/45.webp loading=lazy data-key data-hash=/images/45.webp></div><div class=article-details><h2 class=article-title>【玄机靶场】第五章 linux实战-黑链</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2024 -
+2025 Slimer</section><section class=runtime style=margin-top:8px;font-size:1.3rem><span id=site-runtime>站点已运行计算中...</span></section><script>(function(){var t="2025-08-25T00:00:00".replace("T"," ").replace("t"," "),n=new Date(t);function e(){var s=new Date,e=Math.max(0,s-n),o=Math.floor(e/(24*60*60*1e3)),i=Math.floor(e%(24*60*60*1e3)/(60*60*1e3)),a=Math.floor(e%(60*60*1e3)/(60*1e3)),r=Math.floor(e%(60*1e3)/1e3),t=document.getElementById("site-runtime");t&&(t.textContent="站点已运行 "+o+" 天 "+i+" 小时 "+a+" 分 "+r+" 秒")}e(),setInterval(e,1e3)})()</script><section class=powerby></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.310d38c99963e86c53c43232d9b04e101a98b09425c2fb12195e655db9e34368.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><style>body{background:url(http://localhost:1313/background/bz.webp)no-repeat 50% 0;background-size:cover;background-attachment:fixed;backdrop-filter:blur(50px);-webkit-backdrop-filter:blur(50px)}</style><style>@font-face{font-family:youyuan;src:url(http://localhost:1313/font/youyuan.woff2)format('truetype')}:root{--base-font-family:'youyuan';--code-font-family:'youyuan'}</style><script src=http://localhost:1313/background/sakura.js></script></body></html>

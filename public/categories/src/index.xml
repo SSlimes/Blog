@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SRC on SlimerのBlog</title><link>http://localhost:1313/categories/src/</link><description>Recent content in SRC on SlimerのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Slimer</copyright><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/src/index.xml" rel="self" type="application/rss+xml"/><item><title>【SRC】phone参数值修改导致信息泄露</title><link>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/96.webp" alt="Featured image of post 【SRC】phone参数值修改导致信息泄露" />&lt;h1 id="xxx助手phone参数">xxx助手（phone参数）&lt;/h1>
+&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115436.png" alt="image.png">&lt;br>
+&lt;strong>接口&lt;/strong>*：已发货&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115455.png" alt="image.png">&lt;br>
+&lt;strong>使用bp进行动态劫持&lt;/strong>&lt;br>
+1：点击已发货，在bp的http history中查看包的信息&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115525.png" alt="image.png">&lt;br>
+2：选择一个包，查看详细信息&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115551.png" alt="image.png">&lt;br>
+3：发送至调试模块&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017095358.png" alt="image.png">&lt;br>
+Openid:微信给小小程序发送的身份凭证&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115634.png" alt="image.png">&lt;br>
+4:依次删除里面的参数，点击send，查看reponse数据是否发生变化。最终确定是phone的参数对应决定数据变化&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115658.png" alt="image.png">&lt;br>
+比如在phone位置参数1，会收到大量信息（模糊搜索）&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115732.png" alt="image.png">&lt;/p></description></item></channel></rss>
