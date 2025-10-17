@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SRC on SlimerのBlog</title><link>http://localhost:1313/categories/src/</link><description>Recent content in SRC on SlimerのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Slimer</copyright><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/src/index.xml" rel="self" type="application/rss+xml"/><item><title>【SRC】phone参数值修改导致信息泄露</title><link>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/96.webp" alt="Featured image of post 【SRC】phone参数值修改导致信息泄露" />&lt;h1 id="xxx助手phone参数">xxx助手（phone参数）&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SRC on SlimerのBlog</title><link>http://localhost:1313/categories/src/</link><description>Recent content in SRC on SlimerのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Slimer</copyright><lastBuildDate>Fri, 17 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/src/index.xml" rel="self" type="application/rss+xml"/><item><title>【SRC】接口越权访问敏感信息</title><link>http://localhost:1313/p/src%E6%8E%A5%E5%8F%A3%E8%B6%8A%E6%9D%83%E8%AE%BF%E9%97%AE%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF/</link><pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/src%E6%8E%A5%E5%8F%A3%E8%B6%8A%E6%9D%83%E8%AE%BF%E9%97%AE%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF/</guid><description>&lt;img src="http://localhost:1313/images/98.webp" alt="Featured image of post 【SRC】接口越权访问敏感信息" />&lt;h1 id="xx大学教育培训中心">xx大学教育培训中心&lt;/h1>
+&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120534.png" alt="image.png">&lt;br>
+1：登入进去获得cookie&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120610.png" alt="image.png">&lt;br>
+2:点击某个包，然后复制host地址，在浏览器里进行访问&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094206.png" alt="image.png">&lt;br>
+3：点击进入管理平台&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094247.png" alt="image.png">&lt;br>
+4：输入信息，抓包，并查看它的返回包。&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094311.png" alt="image.png">&lt;br>
+5：将code改为200,点击forward&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094338.png" alt="image.png">&lt;br>
+6:发现没成功&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094403.png" alt="image.png">&lt;br>
+7：使用findsomething获得路径&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094419.png" alt="image.png">&lt;br>
+8：使用bp批量跑&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094444.png" alt="image.png">&lt;br>
+使用小程序时它自带cookie&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094518.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094531.png" alt="image.png">&lt;br>
+10：取消URL编码&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094546.png" alt="image.png">&lt;br>
+11：开始批量扫描&lt;br>
+&lt;strong>(先点击add,复制findsomething里面获得的路径，粘贴进去，然后点击paste即可）&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094604.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094610.png" alt="image.png">&lt;br>
+12：点击特定接口,比如list,获得以下response信息&lt;br>
+&lt;strong>（其他的信息都是客户端发送给服务器时，封装的数据）&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094634.png" alt="image.png">&lt;br>
+13：打开资源管理器，复制特殊的js,然后用fofa搜索具有相同js信息的网站&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094652.png" alt="">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094720.png" alt="image.png">&lt;br>
+14：依次点击进去，全部是同一套系统&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094734.png" alt="">&lt;br>
+15：然后测试相同接口，进行漏洞复现&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094803.png" alt="image.png">&lt;br>
+将上面的接口路径拼接到地址后面&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017094959.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】目录猜测导致信息泄露案例</title><link>http://localhost:1313/p/src%E7%9B%AE%E5%BD%95%E7%8C%9C%E6%B5%8B%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%A1%88%E4%BE%8B/</link><pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/src%E7%9B%AE%E5%BD%95%E7%8C%9C%E6%B5%8B%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%A1%88%E4%BE%8B/</guid><description>&lt;img src="http://localhost:1313/images/97.webp" alt="Featured image of post 【SRC】目录猜测导致信息泄露案例" />&lt;h1 id="xxx创业担保贷款猜测目录名词">xxx创业担保贷款（猜测目录名词）&lt;/h1>
+&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115909.png" alt="image.png">&lt;br>
+1：点击下面的几个按钮，查看拦截包的特征，根据下面的blade，得知它使用的blade开发框架&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115931.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115954.png" alt="image.png">&lt;br>
+&lt;strong>接口&lt;/strong>：我的申请，我的授权，个人认证&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120028.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120048.png" alt="image.png">&lt;br>
+&lt;strong>1：发送至调试模块，修改接口名称&lt;/strong>&lt;br>
+（以下是开发常用的接口）&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120118.png" alt="image.png">&lt;br>
+&lt;strong>2：修改接口数&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120149.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120207.png" alt="image.png">&lt;br>
+&lt;strong>3：复制链接，浏览器访问&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120230.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120300.png" alt="image.png">&lt;br>
+&lt;strong>3：查看其他类似界面，进行漏洞复现&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120329.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120344.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】小程序Swagger接口未授权-导致信息泄露</title><link>http://localhost:1313/p/src%E5%B0%8F%E7%A8%8B%E5%BA%8Fswagger%E6%8E%A5%E5%8F%A3%E6%9C%AA%E6%8E%88%E6%9D%83-%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/src%E5%B0%8F%E7%A8%8B%E5%BA%8Fswagger%E6%8E%A5%E5%8F%A3%E6%9C%AA%E6%8E%88%E6%9D%83-%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/99.webp" alt="Featured image of post 【SRC】小程序Swagger接口未授权-导致信息泄露" />&lt;h1 id="xx服务平台">xx服务平台&lt;/h1>
+&lt;p>使用小程序登录&lt;br>
+&lt;strong>1：反复点击下面的数据包，获得数据包&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130405.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130422.png" alt="image.png">&lt;br>
+&lt;strong>2：获得host信息，在浏览器访问web界面&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130446.png" alt="image.png">&lt;br>
+(该界面是spring-boot经典报错界面）&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130510.png" alt="image.png">&lt;br>
+&lt;strong>3：对它进行目录扫描，得到swagger-resources&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130531.png" alt="image.png">&lt;br>
+&lt;strong>4:选择一个url路径进行访问&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130556.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130615.png" alt="image.png">&lt;br>
+&lt;strong>5：将该路径放到插件里面查看&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130633.png" alt="image.png">&lt;br>
+&lt;strong>6：界面中包括sys，得知它的框架很可能是jeecg&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130646.png" alt="image.png">&lt;br>
+&lt;strong>7:选择一个接口，如获取组织默认密码，输入id参数&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130657.png" alt="image.png">&lt;br>
+&lt;strong>8：输入参数以后，它告诉你没有登录，可以使用小程序进行尝试&lt;/strong>&lt;br>
+&lt;strong>（因为小程序有cookie）&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130720.png" alt="image.png">&lt;br>
+&lt;strong>9：将接口粘贴到小程序包的对应位置&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130740.png" alt="image.png">&lt;br>
+&lt;strong>10：成功查出信息&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130803.png" alt="image.png">&lt;br>
+&lt;strong>11：其他的接口也是如此&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130818.png" alt="image.png">&lt;br>
+&lt;strong>云环境&lt;/strong>&lt;br>
+&lt;strong>12：云接口（oss）&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130847.png" alt="image.png">&lt;br>
+&lt;strong>13：复制路径，用swagger访问&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130904.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130913.png" alt="image.png">&lt;br>
+&lt;strong>获得系统日志接口&lt;/strong>&lt;br>
+&lt;strong>14：复制路径，到bp访问&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130937.png" alt="image.png">&lt;br>
+&lt;strong>15：修改为post请求方式&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131000.png" alt="">&lt;br>
+&lt;strong>16：注意content-type为以下格式，然后发包，查看数据&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131027.png" alt="image.png">&lt;br>
+&lt;strong>17:获得日志文件的路径后，使用文件下载接口对日志进行下载，在该路径的name处拼接日志路径即可&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131047.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131058.png" alt="image.png">&lt;br>
+&lt;strong>18：在访问该路径的时候开启bp的拦截功能&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131113.png" alt="image.png">&lt;br>
+&lt;strong>19：将小程序的身份验证client-key和Authorization输入进去&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131128.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131145.png" alt="image.png">&lt;br>
+&lt;strong>20:发包（forward）,应该是修复了所以报错&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131159.png" alt="image.png">&lt;br>
+&lt;strong>21：然后在日志文件中找敏感内容&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131213.png" alt="image.png">&lt;br>
+&lt;strong>22：搜索关键词shxxxl.cn,找到后台界面&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131232.png" alt="image.png">&lt;br>
+&lt;strong>23：尝试弱口令，或者尝试之前查出的密码登录一下&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131300.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】phone参数值修改导致信息泄露</title><link>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/96.webp" alt="Featured image of post 【SRC】phone参数值修改导致信息泄露" />&lt;h1 id="xxx助手phone参数">xxx助手（phone参数）&lt;/h1>
 &lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115436.png" alt="image.png">&lt;br>
 &lt;strong>接口&lt;/strong>*：已发货&lt;br>
 &lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115455.png" alt="image.png">&lt;br>

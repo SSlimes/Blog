@@ -1,0 +1,65 @@
+---
+title: 【SRC】小程序Swagger接口未授权-导致信息泄露
+date: 2025-10-17
+categories:
+  - SRC
+image: images/99.webp
+---
+# xx服务平台
+使用小程序登录
+**1：反复点击下面的数据包，获得数据包**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130405.png)
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130422.png)
+**2：获得host信息，在浏览器访问web界面**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130446.png)
+(该界面是spring-boot经典报错界面）
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130510.png)
+**3：对它进行目录扫描，得到swagger-resources**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130531.png)
+**4:选择一个url路径进行访问**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130556.png)
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130615.png)
+**5：将该路径放到插件里面查看**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130633.png)
+**6：界面中包括sys，得知它的框架很可能是jeecg**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130646.png)
+**7:选择一个接口，如获取组织默认密码，输入id参数**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130657.png)
+**8：输入参数以后，它告诉你没有登录，可以使用小程序进行尝试**
+**（因为小程序有cookie）**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130720.png)
+**9：将接口粘贴到小程序包的对应位置**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130740.png)
+**10：成功查出信息**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130803.png)
+**11：其他的接口也是如此**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130818.png)
+**云环境**
+**12：云接口（oss）**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130847.png)
+**13：复制路径，用swagger访问**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130904.png)
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130913.png)
+**获得系统日志接口**
+**14：复制路径，到bp访问**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130937.png)
+**15：修改为post请求方式**
+![](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131000.png)
+**16：注意content-type为以下格式，然后发包，查看数据**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131027.png)
+**17:获得日志文件的路径后，使用文件下载接口对日志进行下载，在该路径的name处拼接日志路径即可**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131047.png)
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131058.png)
+**18：在访问该路径的时候开启bp的拦截功能**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131113.png)
+**19：将小程序的身份验证client-key和Authorization输入进去**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131128.png)
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131145.png)
+**20:发包（forward）,应该是修复了所以报错**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131159.png)
+**21：然后在日志文件中找敏感内容**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131213.png)
+**22：搜索关键词shxxxl.cn,找到后台界面**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131232.png)
+**23：尝试弱口令，或者尝试之前查出的密码登录一下**
+![image.png](https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131300.png)
