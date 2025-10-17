@@ -55,7 +55,32 @@
 &lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120300.png" alt="image.png">&lt;br>
 &lt;strong>3：查看其他类似界面，进行漏洞复现&lt;/strong>&lt;br>
 &lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120329.png" alt="image.png">&lt;br>
-&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120344.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】小程序Swagger接口未授权-导致信息泄露</title><link>http://localhost:1313/p/src%E5%B0%8F%E7%A8%8B%E5%BA%8Fswagger%E6%8E%A5%E5%8F%A3%E6%9C%AA%E6%8E%88%E6%9D%83-%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/src%E5%B0%8F%E7%A8%8B%E5%BA%8Fswagger%E6%8E%A5%E5%8F%A3%E6%9C%AA%E6%8E%88%E6%9D%83-%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/99.webp" alt="Featured image of post 【SRC】小程序Swagger接口未授权-导致信息泄露" />&lt;h1 id="xx服务平台">xx服务平台&lt;/h1>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016120344.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】微信一键登录之session key三要素</title><link>http://localhost:1313/p/src%E5%BE%AE%E4%BF%A1%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B9%8Bsession-key%E4%B8%89%E8%A6%81%E7%B4%A0/</link><pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/src%E5%BE%AE%E4%BF%A1%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B9%8Bsession-key%E4%B8%89%E8%A6%81%E7%B4%A0/</guid><description>&lt;img src="http://localhost:1313/images/100.webp" alt="Featured image of post 【SRC】微信一键登录之session key三要素" />&lt;h1 id="xx招聘">xx招聘&lt;/h1>
+&lt;p>&lt;strong>1：点击微信登录——一键关联手机号&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131659.png" alt="image.png">&lt;br>
+&lt;strong>2：依次点击数据包，发现session key三要素&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131732.png" alt="image.png">&lt;br>
+&lt;strong>3：有以下三要素&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sessionkey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">encrytedData
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iv
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131827.png" alt="image.png">&lt;br>
+&lt;strong>4:打开wx_sessionkey_crypt.exe工具&lt;/strong>&lt;br>
+&lt;strong>5：在之前的操作中我们已经拿到了后台，获得了大量的手机号&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131852.png" alt="image.png">&lt;br>
+&lt;strong>6：使用工具将三要素输入进去，点击解密&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131910.png" alt="image.png">&lt;br>
+&lt;strong>7：把手机号替换成被别人的，然后加密&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131921.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】小程序Swagger接口未授权-导致信息泄露</title><link>http://localhost:1313/p/src%E5%B0%8F%E7%A8%8B%E5%BA%8Fswagger%E6%8E%A5%E5%8F%A3%E6%9C%AA%E6%8E%88%E6%9D%83-%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/src%E5%B0%8F%E7%A8%8B%E5%BA%8Fswagger%E6%8E%A5%E5%8F%A3%E6%9C%AA%E6%8E%88%E6%9D%83-%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/99.webp" alt="Featured image of post 【SRC】小程序Swagger接口未授权-导致信息泄露" />&lt;h1 id="xx服务平台">xx服务平台&lt;/h1>
 &lt;p>使用小程序登录&lt;br>
 &lt;strong>1：反复点击下面的数据包，获得数据包&lt;/strong>&lt;br>
 &lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017130405.png" alt="image.png">&lt;br>
@@ -112,7 +137,92 @@
 &lt;strong>22：搜索关键词shxxxl.cn,找到后台界面&lt;/strong>&lt;br>
 &lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131232.png" alt="image.png">&lt;br>
 &lt;strong>23：尝试弱口令，或者尝试之前查出的密码登录一下&lt;/strong>&lt;br>
-&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131300.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】phone参数值修改导致信息泄露</title><link>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/96.webp" alt="Featured image of post 【SRC】phone参数值修改导致信息泄露" />&lt;h1 id="xxx助手phone参数">xxx助手（phone参数）&lt;/h1>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017131300.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】jeecg框架-导致敏感信息泄露</title><link>http://localhost:1313/p/srcjeecg%E6%A1%86%E6%9E%B6-%E5%AF%BC%E8%87%B4%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcjeecg%E6%A1%86%E6%9E%B6-%E5%AF%BC%E8%87%B4%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/101.webp" alt="Featured image of post 【SRC】jeecg框架-导致敏感信息泄露" />&lt;h1 id="案例xxx实验小学">案例：xxx实验小学&lt;/h1>
+&lt;p>（&lt;strong>特定目录访问swagger&lt;/strong>）&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132256.png" alt="image.png">&lt;/p>
+&lt;h2 id="目录一">目录一&lt;/h2>
+&lt;p>&lt;strong>1：输入手机号和密码（随意输），然后抓包&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132314.png" alt="image.png">&lt;br>
+&lt;strong>2：复制host界面，访问web信息&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132332.png" alt="image.png">&lt;br>
+&lt;strong>3：然后拼接jeecg的目录接口，/jeecg-boot/v2/api-docs?group=后台接口&lt;/strong>&lt;br>
+&lt;strong>Jeecg-boot/druid/login.html&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132404.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132436.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132446.png" alt="image.png">&lt;/p>
+&lt;h2 id="目录二">目录二：&lt;/h2>
+&lt;p>&lt;strong>1：在jeecg-boot后面接上actuator,获得后续的大量接口&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132531.png" alt="image.png">&lt;br>
+&lt;strong>2：将第一个案例中的/jeecg-boot/v2/api-docs粘贴bp中，发包，选择一个特定接口&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132554.png" alt="image.png">&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">/jeecg-boot/sys/formFile/add
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>3:将get请求方式改为post请求方式，然后把content-type的格式改为json&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132616.png" alt="image.png">&lt;br>
+&lt;strong>4:使用jeecg-boot/actuator/httptrace获得access-token&lt;/strong>&lt;br>
+&lt;strong>(会保留一些用户登录的token信息）&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132741.png" alt="image.png">&lt;br>
+&lt;strong>5:将token输入swagger的接口中成功访问,比如打jeecg的rce接口：&lt;/strong>&lt;br>
+将下面的请求参数也一并复制的数据包里面（post）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{&amp;#34;dbsource&amp;#34;:&amp;#34;&amp;#34;,&amp;#34;sql&amp;#34;:&amp;#34;select &amp;#39;&amp;lt;#assign value=\&amp;#34;freemarker.template.utility.Execute\&amp;#34;?
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">new()&amp;gt;${value(\&amp;#34;echo 123k1msns\&amp;#34;)}&amp;#39;&amp;#34;,&amp;#34;tableName&amp;#34;:&amp;#34;test_demo);&amp;#34;&amp;#34;pageNo&amp;#34;:1,&amp;#34;pagesize&amp;#34;:10}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132827.png" alt="image.png">&lt;br>
+Jeecg-boot/jmreport/loadTableData&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132850.png" alt="image.png">&lt;br>
+放到最后&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017132943.png" alt="image.png">&lt;br>
+&lt;strong>6：输入指令比如whoami&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133005.png" alt="image.png">&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133028.png" alt="image.png">&lt;br>
+&lt;strong>7:又或者下面的接口/jeecg-boot/sys/role/list，也只有获得了Access-Token才可以成功访问&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133055.png" alt="image.png">&lt;br>
+&lt;strong>8:访问后获得普通教师的id,使用添加用户的接口添加user用户&lt;/strong>&lt;br>
+&lt;strong>接口： /server/sys/user/add&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133130.png" alt="image.png">&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;selectedroles&amp;#34;:&amp;#34;1680133311360319489&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;createBy&amp;#34;:&amp;#34;admin&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;userIdentity&amp;#34;:&amp;#34;1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;username&amp;#34;:&amp;#34;test12345&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;password&amp;#34;:&amp;#34;test12345&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;confirmpassword&amp;#34;:&amp;#34;test12345&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;realname&amp;#34;:&amp;#34;test12345&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>9:修改用户名和密码，发包，添加成功&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133208.png" alt="image.png">&lt;br>
+&lt;strong>10：在登录界面输入用户名和密码，登录成功&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133223.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】phone参数值修改导致信息泄露</title><link>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcphone%E5%8F%82%E6%95%B0%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AF%BC%E8%87%B4%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid><description>&lt;img src="http://localhost:1313/images/96.webp" alt="Featured image of post 【SRC】phone参数值修改导致信息泄露" />&lt;h1 id="xxx助手phone参数">xxx助手（phone参数）&lt;/h1>
 &lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115436.png" alt="image.png">&lt;br>
 &lt;strong>接口&lt;/strong>*：已发货&lt;br>
 &lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251016115455.png" alt="image.png">&lt;br>
@@ -291,7 +401,35 @@ Openid:微信给小小程序发送的身份凭证&lt;br>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">如果你仔细的情况下可以观察到：SERVER_TIME=$(curl -s -I &amp;#34;[http://127.0.0.1:9000&amp;#34;](http://125.34.90.154:9000/&amp;#34;) | grep -i &amp;#34;date:&amp;#34; | cut -d&amp;#39;:&amp;#39; -f2- | sed &amp;#39;s/^ *//&amp;#39;); sudo date -s &amp;#34;$SERVER_TIME&amp;#34; 前面无论如何都是这种命令，因为帮助我们绕过，后面只需跟&amp;amp;&amp;amp; 然后mc基础命令即可。
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015164235.png" alt="image.png">&lt;/p></description></item><item><title>【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</title><link>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</link><pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</guid><description>&lt;img src="http://localhost:1313/images/94.webp" alt="Featured image of post 【CVE-2020-17518】Apache Flink任意文件上传漏洞复现" />&lt;h1 id="0x00-漏洞描述">0x00 漏洞描述&lt;/h1>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251015164235.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】API分配漏洞及红队思路</title><link>http://localhost:1313/p/srcapi%E5%88%86%E9%85%8D%E6%BC%8F%E6%B4%9E%E5%8F%8A%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/</link><pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcapi%E5%88%86%E9%85%8D%E6%BC%8F%E6%B4%9E%E5%8F%8A%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/</guid><description>&lt;img src="http://localhost:1313/images/102.webp" alt="Featured image of post 【SRC】API分配漏洞及红队思路" />&lt;h1 id="案例xxx馆通">案例：xxx馆通&lt;/h1>
+&lt;p>&lt;strong>1：点击我的——授权用户信息——手机号一键登录&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133823.png" alt="image.png">&lt;br>
+&lt;strong>观察数据包&lt;/strong>&lt;br>
+&lt;strong>2：观察数据包，根据findOpenid得知，它是寻找该用户的openid,另外还得到了session_key&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133858.png" alt="image.png">&lt;br>
+&lt;strong>3:观察第二个数据包为登录数据包，小程序拿到openid后,用它登录进去，然后返回了access_token&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017133934.png" alt="image.png">&lt;/p>
+&lt;h2 id="思路1">思路1：&lt;/h2>
+&lt;p>&lt;strong>在openid处输入admin，尝试返回管理员的access_token&lt;/strong>&lt;/p>
+&lt;h3 id="做法">做法：&lt;/h3>
+&lt;p>&lt;strong>将openid后面的值改为admin,发包，如果成功，说明就是&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017134031.png" alt="image.png">&lt;br>
+&lt;strong>这里除了admin外，其他的都可以获得access_token&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017134056.png" alt="image.png">&lt;/p>
+&lt;h2 id="思路2">思路2：&lt;/h2>
+&lt;h3 id="做法-1">做法&lt;/h3>
+&lt;p>&lt;strong>观察下面的数据包得到了encryptData和iv,至此我们已经得到了登录三要素，在获得网址的手机号信息之后可以实现任意用户登录&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017134142.png" alt="image.png">&lt;/p>
+&lt;h2 id="思路3">思路3：&lt;/h2>
+&lt;p>猜测路径，访问敏感数据&lt;br>
+&lt;strong>1：随意点击下面的几个按钮&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017134233.png" alt="image.png">&lt;br>
+&lt;strong>2：查看数据包&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017134255.png" alt="image.png">&lt;br>
+&lt;strong>3：试图将上面的接口中的userResult改为list,如果post不行，就改为get请求方式&lt;/strong>&lt;br>
+&lt;strong>（它提示需要管理员权限，说明有接口，但缺乏一些东西）&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251017134316.png" alt="image.png">&lt;br>
+&lt;strong>4:如果上面的登录数据包中得到了admin的access_token，就可以把authorizaton的值给替换掉，就可以成功看到所有信息了&lt;/strong>&lt;/p></description></item><item><title>【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</title><link>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</link><pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</guid><description>&lt;img src="http://localhost:1313/images/94.webp" alt="Featured image of post 【CVE-2020-17518】Apache Flink任意文件上传漏洞复现" />&lt;h1 id="0x00-漏洞描述">0x00 漏洞描述&lt;/h1>
 &lt;p>Apache &lt;a href="https://so.csdn.net/so/search?q=Flink&amp;amp;spm=1001.2101.3001.7020">Flink&lt;/a> 是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。&lt;br>
 编号：CVE-2020-17518&lt;br>
 Flink 1.5.1引入了REST API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。&lt;/p>
