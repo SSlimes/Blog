@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>渗透测试 on SlimerのBlog</title><link>http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link><description>Recent content in 渗透测试 on SlimerのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Slimer</copyright><lastBuildDate>Tue, 14 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml"/><item><title>【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</title><link>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</link><pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</guid><description>&lt;img src="http://localhost:1313/images/94.webp" alt="Featured image of post 【CVE-2020-17518】Apache Flink任意文件上传漏洞复现" />&lt;h1 id="0x00-漏洞描述">0x00 漏洞描述&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>渗透测试 on SlimerのBlog</title><link>http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link><description>Recent content in 渗透测试 on SlimerのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Slimer</copyright><lastBuildDate>Wed, 22 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml"/><item><title>【渗透测试】开放重定向</title><link>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%BC%80%E6%94%BE%E9%87%8D%E5%AE%9A%E5%90%91/</link><pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%BC%80%E6%94%BE%E9%87%8D%E5%AE%9A%E5%90%91/</guid><description>&lt;img src="http://localhost:1313/images/105.webp" alt="Featured image of post 【渗透测试】开放重定向" />&lt;h1 id="0x00-漏洞级别">0x00 漏洞级别&lt;/h1>
+&lt;p>中危&lt;/p>
+&lt;h1 id="0x01-漏洞及风险描述">0x01 漏洞及风险描述&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">攻击者可以通过service 参数篡改参数值，将用户重定向到恶意域名让用户访问，从而实施钓鱼、诈骗或窃取敏感信息等攻击。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="0x02-漏洞复现">0x02 漏洞复现&lt;/h1>
+&lt;p>在 CAS 认证体系中，service 参数通常用于指定用户完成操作（如登录、登出）后跳转的目标地址。&lt;br>
+例如：&lt;br>
+登录时，service 可能指定 “登录成功后返回的业务系统页面”；&lt;br>
+登出时，service 可能指定 “登出后跳转的页面”（如业务系统首页、退出提示页）。&lt;br>
+而登出接口（/cas/logout）的service通过构造：service=https://www.baidu.com/ 登出后跳转到百度首页。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">GET /cas/logout?_eventId=next&amp;amp;service=https://www.baidu.com/&amp;amp;ts=1761184472555 HTTP/1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Accept-Encoding: gzip,deflate,br
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host: xxxx.cn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Connection: Keep-alive
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024141515.png" alt="image.png">&lt;/p>
+&lt;h1 id="0x03-修复建议">0x03 修复建议&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">1、配白名单校验：在 CAS 服务器配置中，仅允许 service 参数指向预定义的可信域名（如企业内部业务系统域名），拒绝任何未在白名单中的地址。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2、限制为相对路径：若业务允许，强制 service 参数使用相对路径（如 /home），而非绝对路径（http://xxx）。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">过滤危险前缀：严格过滤 service 参数中的 http://、https://、// 等可能指向外部域名的前缀。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</title><link>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</link><pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</guid><description>&lt;img src="http://localhost:1313/images/94.webp" alt="Featured image of post 【CVE-2020-17518】Apache Flink任意文件上传漏洞复现" />&lt;h1 id="0x00-漏洞描述">0x00 漏洞描述&lt;/h1>
 &lt;p>Apache &lt;a href="https://so.csdn.net/so/search?q=Flink&amp;amp;spm=1001.2101.3001.7020">Flink&lt;/a> 是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。&lt;br>
 编号：CVE-2020-17518&lt;br>
 Flink 1.5.1引入了REST API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。&lt;/p>

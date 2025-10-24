@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SRC on SlimerのBlog</title><link>http://localhost:1313/categories/src/</link><description>Recent content in SRC on SlimerのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Slimer</copyright><lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/src/index.xml" rel="self" type="application/rss+xml"/><item><title>【SRC】xx图书馆漏洞挖掘的过程</title><link>http://localhost:1313/p/srcxx%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B/</link><pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcxx%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B/</guid><description>&lt;img src="http://localhost:1313/images/103.webp" alt="Featured image of post 【SRC】xx图书馆漏洞挖掘的过程" />&lt;h1 id="0x00-资产收集">0x00 资产收集&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SRC on SlimerのBlog</title><link>http://localhost:1313/categories/src/</link><description>Recent content in SRC on SlimerのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Slimer</copyright><lastBuildDate>Tue, 21 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/src/index.xml" rel="self" type="application/rss+xml"/><item><title>【SRC】任意用户登录</title><link>http://localhost:1313/p/src%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</link><pubDate>Tue, 21 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/src%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/</guid><description>&lt;img src="http://localhost:1313/images/104.webp" alt="Featured image of post 【SRC】任意用户登录" />&lt;h1 id="0x00-实现原理">0x00 实现原理&lt;/h1>
+&lt;p>将生成的openid改为别人的。&lt;/p>
+&lt;h1 id="0x01-案例">0x01 案例&lt;/h1>
+&lt;p>xxx校友资源服务平台&lt;/p>
+&lt;h1 id="0x02-复现">0x02 复现&lt;/h1>
+&lt;p>&lt;strong>1：输入用户名和验证码登录&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024121926.png" alt="image.png">&lt;br>
+&lt;strong>观察一键登录的数据包&lt;/strong>&lt;br>
+&lt;strong>2：第一个数据包是获得手机号，生成openid&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024121955.png" alt="image.png">&lt;br>
+&lt;strong>3：第二个数据包就是获得手机号和openid,进行登录&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024122020.png" alt="image.png">&lt;br>
+&lt;strong>根据观察的数据包，构想渗透思路&lt;/strong>&lt;br>
+&lt;strong>4：只需获得用户的手机号即可登录他人的账户&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024122056.png" alt="image.png">&lt;br>
+&lt;strong>5：使用bp，查看与手机号相关的数据包即可&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024122123.png" alt="image.png">&lt;br>
+&lt;strong>6：获得别人的手机号之后，进行base64加密，然后传入phone参数后面，得到该账号的openid&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024122143.png" alt="image.png">&lt;br>
+&lt;strong>7:对该openid进行base64解码&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024122155.png" alt="image.png">&lt;br>
+&lt;strong>8：重新登录，抓包，将该openid粘贴到对应数据包的位置，成功登录他人账户&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024122210.png" alt="image.png">&lt;br>
+&lt;strong>不断点击forward，替换openid，发包即可&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024122238.png" alt="image.png">&lt;br>
+&lt;strong>9：持续发包，成功登录他人账户&lt;/strong>&lt;br>
+&lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251024122255.png" alt="image.png">&lt;/p></description></item><item><title>【SRC】xx图书馆漏洞挖掘的过程</title><link>http://localhost:1313/p/srcxx%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B/</link><pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/p/srcxx%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B/</guid><description>&lt;img src="http://localhost:1313/images/103.webp" alt="Featured image of post 【SRC】xx图书馆漏洞挖掘的过程" />&lt;h1 id="0x00-资产收集">0x00 资产收集&lt;/h1>
 &lt;p>首先使用fofa收集一下信息：&lt;br>
 &lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251020111100.png" alt="image.png">&lt;br>
 &lt;img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251020111128.png" alt="image.png">&lt;/p>
