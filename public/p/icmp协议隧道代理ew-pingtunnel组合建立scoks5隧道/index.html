@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=34908&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ew+pingtunnel组合建立scoks5隧道 介绍 1 2 3 EarthWorm是一款用于开启 SOCKS v5 代理服务的工具，基于标准 C 开发，可提供多平台间的转接通讯，用于复杂网络环境下的数据转发。 Pingtunnel 是一种通过 ICMP 发送 TCP/UDP 流量的工具。其是最流行的一款ICMP代理工具，提供对tcp/udp/sock5流量伪装成icmp流量进行转发的功能。 需要root或者administrator/system权限。 环境 A攻击机器：windows11（自己的电脑）（10.10.10.131）\nB代理机器（VPS，服务端）：kali（10.10.10.133）\nC跳板机器：windwos Server 2012（已攻入的服务器）（20.20.20.134，10.10.10.135）\nD目标机器：centos 7（20.20.20.130）（搭建了一个小皮靶场）\n">
 <title>【ICMP协议隧道代理】ew&#43;pingtunnel组合建立scoks5隧道</title>
 
-<link rel='canonical' href='http://localhost:1313/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/'>
+<link rel='canonical' href='http://localhost:34908/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【ICMP协议隧道代理】ew+pingtunnel组合建立scoks5隧道">
 <meta property='og:description' content="ew+pingtunnel组合建立scoks5隧道 介绍 1 2 3 EarthWorm是一款用于开启 SOCKS v5 代理服务的工具，基于标准 C 开发，可提供多平台间的转接通讯，用于复杂网络环境下的数据转发。 Pingtunnel 是一种通过 ICMP 发送 TCP/UDP 流量的工具。其是最流行的一款ICMP代理工具，提供对tcp/udp/sock5流量伪装成icmp流量进行转发的功能。 需要root或者administrator/system权限。 环境 A攻击机器：windows11（自己的电脑）（10.10.10.131）\nB代理机器（VPS，服务端）：kali（10.10.10.133）\nC跳板机器：windwos Server 2012（已攻入的服务器）（20.20.20.134，10.10.10.135）\nD目标机器：centos 7（20.20.20.130）（搭建了一个小皮靶场）\n">
-<meta property='og:url' content='http://localhost:1313/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/'>
+<meta property='og:url' content='http://localhost:34908/p/icmp%E5%8D%8F%E8%AE%AE%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86ew-pingtunnel%E7%BB%84%E5%90%88%E5%BB%BA%E7%AB%8Bscoks5%E9%9A%A7%E9%81%93/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/62.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:34908/images/62.webp' />
 <meta name="twitter:title" content="【ICMP协议隧道代理】ew+pingtunnel组合建立scoks5隧道">
 <meta name="twitter:description" content="ew+pingtunnel组合建立scoks5隧道 介绍 1 2 3 EarthWorm是一款用于开启 SOCKS v5 代理服务的工具，基于标准 C 开发，可提供多平台间的转接通讯，用于复杂网络环境下的数据转发。 Pingtunnel 是一种通过 ICMP 发送 TCP/UDP 流量的工具。其是最流行的一款ICMP代理工具，提供对tcp/udp/sock5流量伪装成icmp流量进行转发的功能。 需要root或者administrator/system权限。 环境 A攻击机器：windows11（自己的电脑）（10.10.10.131）\nB代理机器（VPS，服务端）：kali（10.10.10.133）\nC跳板机器：windwos Server 2012（已攻入的服务器）（20.20.20.134，10.10.10.135）\nD目标机器：centos 7（20.20.20.130）（搭建了一个小皮靶场）\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/62.webp' />
+    <meta name="twitter:image" content='http://localhost:34908/images/62.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -681,7 +681,7 @@ D目标机器：centos 7（<strong>20.20.20.130</strong>）（搭建了一个小
 </script>
  <style>
     body {
-      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:34908/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -692,7 +692,7 @@ D目标机器：centos 7（<strong>20.20.20.130</strong>）（搭建了一个小
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:34908/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -701,7 +701,7 @@ D目标机器：centos 7（<strong>20.20.20.130</strong>）（搭建了一个小
   }
 </style>
 
-<script src=http://localhost:1313/background/sakura.js></script>
+<script src=http://localhost:34908/background/sakura.js></script>
 
 
     </body>

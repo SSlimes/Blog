@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>工具 on SlimerのBlog</title>
-        <link>http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:34908/categories/%E5%B7%A5%E5%85%B7/</link>
         <description>Recent content in 工具 on SlimerのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Fri, 10 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 10 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:34908/categories/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>【CVE-2025-32463】Linux sudo chroot 本地提权</title>
-        <link>http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/</link>
+        <link>http://localhost:34908/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/</link>
         <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/</guid>
-        <description>&lt;img src="http://localhost:1313/images/91.webp" alt="Featured image of post 【CVE-2025-32463】Linux sudo chroot 本地提权" /&gt;&lt;h1 id=&#34;0x01-简介&#34;&gt;0x01 简介&lt;/h1&gt;
+        <guid>http://localhost:34908/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/</guid>
+        <description>&lt;img src="http://localhost:34908/images/91.webp" alt="Featured image of post 【CVE-2025-32463】Linux sudo chroot 本地提权" /&gt;&lt;h1 id=&#34;0x01-简介&#34;&gt;0x01 简介&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;sudo chroot&lt;/code&gt;是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。&lt;code&gt;sudo&lt;/code&gt;用于获取管理员权限，而 &lt;code&gt;chroot&lt;/code&gt;（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过 &lt;code&gt;sudo chroot&lt;/code&gt;进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，&lt;code&gt;sudo chroot&lt;/code&gt;提供了一种灵活且安全的方式来管理和操作 Linux 系统。&lt;/p&gt;
 &lt;h1 id=&#34;0x02-漏洞描述&#34;&gt;0x02 漏洞描述&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;漏洞编号：CVE-2025-32463&lt;/strong&gt;&lt;br&gt;
@@ -93,11 +93,11 @@
         </item>
         <item>
         <title>【工具】BurpSuite插件推荐合集</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</link>
+        <link>http://localhost:34908/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</link>
         <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</guid>
-        <description>&lt;img src="http://localhost:1313/images/83.webp" alt="Featured image of post 【工具】BurpSuite插件推荐合集" /&gt;&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
+        <guid>http://localhost:34908/p/%E5%B7%A5%E5%85%B7burpsuite%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E5%90%88%E9%9B%86/</guid>
+        <description>&lt;img src="http://localhost:34908/images/83.webp" alt="Featured image of post 【工具】BurpSuite插件推荐合集" /&gt;&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
 &lt;p&gt;BurpSuite是渗透测试人员常用的安全工具，它提供了一个功能&lt;strong&gt;扩展&lt;/strong&gt;，也就是插件。在这个功能里面可以安装许多功能性插件，从而达到如虎添翼的效果。&lt;br&gt;
 但是BurpSuite的扩展存在一个问题，就是插件安装过多会导致&lt;strong&gt;卡顿、内存溢出&lt;/strong&gt;等。所以插件的选择就显得十分重要！本文就笔者本人的经验，推荐一些不错的BurpSuite插件，达到即实用又兼顾性能的效果！&lt;/p&gt;
 &lt;h1 id=&#34;插件安装&#34;&gt;插件安装&lt;/h1&gt;
@@ -216,11 +216,11 @@ autorize是一个可以发现未授权漏洞的工具，举个例子：有一个
         </item>
         <item>
         <title>【资产收集】ENScan_Go-信息收集工具</title>
-        <link>http://localhost:1313/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:34908/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Mon, 22 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</guid>
-        <description>&lt;img src="http://localhost:1313/images/82.webp" alt="Featured image of post 【资产收集】ENScan_Go-信息收集工具" /&gt;&lt;h1 id=&#34;0x00-项目地址&#34;&gt;0x00 项目地址&lt;/h1&gt;
+        <guid>http://localhost:34908/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/</guid>
+        <description>&lt;img src="http://localhost:34908/images/82.webp" alt="Featured image of post 【资产收集】ENScan_Go-信息收集工具" /&gt;&lt;h1 id=&#34;0x00-项目地址&#34;&gt;0x00 项目地址&lt;/h1&gt;
 &lt;p&gt;项目为狼组团队的师傅开发，废话不多说，以下是项目地址：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -278,11 +278,11 @@ autorize是一个可以发现未授权漏洞的工具，举个例子：有一个
         </item>
         <item>
         <title>【工具】Swagger 未授权检测工具</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7swagger-%E6%9C%AA%E6%8E%88%E6%9D%83%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:34908/p/%E5%B7%A5%E5%85%B7swagger-%E6%9C%AA%E6%8E%88%E6%9D%83%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7swagger-%E6%9C%AA%E6%8E%88%E6%9D%83%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
-        <description>&lt;img src="http://localhost:1313/images/61.webp" alt="Featured image of post 【工具】Swagger 未授权检测工具" /&gt;&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
+        <guid>http://localhost:34908/p/%E5%B7%A5%E5%85%B7swagger-%E6%9C%AA%E6%8E%88%E6%9D%83%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
+        <description>&lt;img src="http://localhost:34908/images/61.webp" alt="Featured image of post 【工具】Swagger 未授权检测工具" /&gt;&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
 &lt;p&gt;用于探测 Swagger/OpenAPI 文档并尝试未授权访问接口，辅助安全自查。识别 swagger-ui 页面、swagger-resources 入口、Swagger 1.x/V2/V3 文档，在谨慎策略下对接口进行 GET/POST 探测并生成 Excel 报告。&lt;/p&gt;
 &lt;h1 id=&#34;下载地址&#34;&gt;下载地址&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -383,11 +383,11 @@ autorize是一个可以发现未授权漏洞的工具，举个例子：有一个
         </item>
         <item>
         <title>【工具】acunetix_25.5.250613157 破解-安装</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7acunetix_25.5.250613157-%E7%A0%B4%E8%A7%A3-%E5%AE%89%E8%A3%85/</link>
+        <link>http://localhost:34908/p/%E5%B7%A5%E5%85%B7acunetix_25.5.250613157-%E7%A0%B4%E8%A7%A3-%E5%AE%89%E8%A3%85/</link>
         <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7acunetix_25.5.250613157-%E7%A0%B4%E8%A7%A3-%E5%AE%89%E8%A3%85/</guid>
-        <description>&lt;img src="http://localhost:1313/images/20.webp" alt="Featured image of post 【工具】acunetix_25.5.250613157 破解-安装" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言：&lt;/h1&gt;
+        <guid>http://localhost:34908/p/%E5%B7%A5%E5%85%B7acunetix_25.5.250613157-%E7%A0%B4%E8%A7%A3-%E5%AE%89%E8%A3%85/</guid>
+        <description>&lt;img src="http://localhost:34908/images/20.webp" alt="Featured image of post 【工具】acunetix_25.5.250613157 破解-安装" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言：&lt;/h1&gt;
 &lt;p&gt;Acunetix Premium 是一种 Web 应用程序安全解决方案，用于管理多个网站、Web 应用程序和 API 的安全。集成功能允许您自动化 DevOps 和问题管理基础架构。&lt;/p&gt;
 &lt;h1 id=&#34;更新内容&#34;&gt;更新内容：&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -595,11 +595,11 @@ Enjoy（完成）&lt;/p&gt;
         </item>
         <item>
         <title>【工具】OneForAll子域名收集工具的使用</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7oneforall%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+        <link>http://localhost:34908/p/%E5%B7%A5%E5%85%B7oneforall%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7oneforall%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-        <description>&lt;img src="http://localhost:1313/images/4.webp" alt="Featured image of post 【工具】OneForAll子域名收集工具的使用" /&gt;&lt;h1 id=&#34;1-下载地址&#34;&gt;1. 下载地址：&lt;/h1&gt;
+        <guid>http://localhost:34908/p/%E5%B7%A5%E5%85%B7oneforall%E5%AD%90%E5%9F%9F%E5%90%8D%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+        <description>&lt;img src="http://localhost:34908/images/4.webp" alt="Featured image of post 【工具】OneForAll子域名收集工具的使用" /&gt;&lt;h1 id=&#34;1-下载地址&#34;&gt;1. 下载地址：&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -634,11 +634,11 @@ Enjoy（完成）&lt;/p&gt;
         </item>
         <item>
         <title>【工具】windows server 2003安装部署</title>
-        <link>http://localhost:1313/p/%E5%B7%A5%E5%85%B7windows-server-2003%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</link>
+        <link>http://localhost:34908/p/%E5%B7%A5%E5%85%B7windows-server-2003%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%B7%A5%E5%85%B7windows-server-2003%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</guid>
-        <description>&lt;img src="http://localhost:1313/images/5.webp" alt="Featured image of post 【工具】windows server 2003安装部署" /&gt;&lt;h1 id=&#34;部署安装网址&#34;&gt;部署安装网址：&lt;/h1&gt;
+        <guid>http://localhost:34908/p/%E5%B7%A5%E5%85%B7windows-server-2003%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</guid>
+        <description>&lt;img src="http://localhost:34908/images/5.webp" alt="Featured image of post 【工具】windows server 2003安装部署" /&gt;&lt;h1 id=&#34;部署安装网址&#34;&gt;部署安装网址：&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1

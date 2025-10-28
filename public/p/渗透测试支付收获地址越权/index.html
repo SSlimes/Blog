@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=34908&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 在我挖掘漏洞的时候，其实越权是普遍存在，一个get请求中的显眼参数，一个post请求中不明显的参数，这些都是需要我们去思考的。\n0x01 身份鉴权不严的挖法 身份鉴权不严（原理就不解释了）这个漏洞点可以说存在整个web站点的任何一个地方，所以我们挖漏洞的时候，一定要养成保存数据包的习惯，这是我们挖越权很重要的思路，再者就是A页面不存在越权，但是保不准B页面就不存在越权，所以我们在挖掘的时候，不要放过任何地方，总而言之就是：善于观察参数\n">
 <title>【渗透测试】支付收获地址越权</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/'>
+<link rel='canonical' href='http://localhost:34908/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【渗透测试】支付收获地址越权">
 <meta property='og:description' content="前言 在我挖掘漏洞的时候，其实越权是普遍存在，一个get请求中的显眼参数，一个post请求中不明显的参数，这些都是需要我们去思考的。\n0x01 身份鉴权不严的挖法 身份鉴权不严（原理就不解释了）这个漏洞点可以说存在整个web站点的任何一个地方，所以我们挖漏洞的时候，一定要养成保存数据包的习惯，这是我们挖越权很重要的思路，再者就是A页面不存在越权，但是保不准B页面就不存在越权，所以我们在挖掘的时候，不要放过任何地方，总而言之就是：善于观察参数\n">
-<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/'>
+<meta property='og:url' content='http://localhost:34908/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%94%AF%E4%BB%98%E6%94%B6%E8%8E%B7%E5%9C%B0%E5%9D%80%E8%B6%8A%E6%9D%83/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/70.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:34908/images/70.webp' />
 <meta name="twitter:title" content="【渗透测试】支付收获地址越权">
 <meta name="twitter:description" content="前言 在我挖掘漏洞的时候，其实越权是普遍存在，一个get请求中的显眼参数，一个post请求中不明显的参数，这些都是需要我们去思考的。\n0x01 身份鉴权不严的挖法 身份鉴权不严（原理就不解释了）这个漏洞点可以说存在整个web站点的任何一个地方，所以我们挖漏洞的时候，一定要养成保存数据包的习惯，这是我们挖越权很重要的思路，再者就是A页面不存在越权，但是保不准B页面就不存在越权，所以我们在挖掘的时候，不要放过任何地方，总而言之就是：善于观察参数\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/70.webp' />
+    <meta name="twitter:image" content='http://localhost:34908/images/70.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -599,7 +599,7 @@
 </script>
  <style>
     body {
-      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:34908/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -610,7 +610,7 @@
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:34908/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -619,7 +619,7 @@
   }
 </style>
 
-<script src=http://localhost:1313/background/sakura.js></script>
+<script src=http://localhost:34908/background/sakura.js></script>
 
 
     </body>

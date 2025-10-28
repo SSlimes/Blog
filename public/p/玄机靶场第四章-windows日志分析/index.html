@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=34908&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="简介 服务器场景操作系统 Windows7\n服务器账号密码：winlog/winlog123\n连接端口为：ip:3389\n按照题目提示可以根据系统功能分析，或桌面工具进行辅助分析\n注意：远控软件内IP为虚拟IP，如在进行进程中没有找到相关外连，应该是由于连接超时造成的断开了，重启环境服务器或软件即可继续对外发起请求，请见谅\n注意：题目中shell如需在本地分析，提前关闭杀毒软件，会被杀掉，非免杀\n注意：winlog用户在操作关于系统权限功能时，一定要使用管理员权限打开工具再去执行\n如：cmd直接打开则可能无法进行操作系统权限性操作，需右击cmd-使用管理员权限打开，才可以，其它工具也如此\n">
 <title>【玄机靶场】第四章-windows日志分析</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/'>
+<link rel='canonical' href='http://localhost:34908/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【玄机靶场】第四章-windows日志分析">
 <meta property='og:description' content="简介 服务器场景操作系统 Windows7\n服务器账号密码：winlog/winlog123\n连接端口为：ip:3389\n按照题目提示可以根据系统功能分析，或桌面工具进行辅助分析\n注意：远控软件内IP为虚拟IP，如在进行进程中没有找到相关外连，应该是由于连接超时造成的断开了，重启环境服务器或软件即可继续对外发起请求，请见谅\n注意：题目中shell如需在本地分析，提前关闭杀毒软件，会被杀掉，非免杀\n注意：winlog用户在操作关于系统权限功能时，一定要使用管理员权限打开工具再去执行\n如：cmd直接打开则可能无法进行操作系统权限性操作，需右击cmd-使用管理员权限打开，才可以，其它工具也如此\n">
-<meta property='og:url' content='http://localhost:1313/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/'>
+<meta property='og:url' content='http://localhost:34908/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-05T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/39.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-05T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:34908/images/39.webp' />
 <meta name="twitter:title" content="【玄机靶场】第四章-windows日志分析">
 <meta name="twitter:description" content="简介 服务器场景操作系统 Windows7\n服务器账号密码：winlog/winlog123\n连接端口为：ip:3389\n按照题目提示可以根据系统功能分析，或桌面工具进行辅助分析\n注意：远控软件内IP为虚拟IP，如在进行进程中没有找到相关外连，应该是由于连接超时造成的断开了，重启环境服务器或软件即可继续对外发起请求，请见谅\n注意：题目中shell如需在本地分析，提前关闭杀毒软件，会被杀掉，非免杀\n注意：winlog用户在操作关于系统权限功能时，一定要使用管理员权限打开工具再去执行\n如：cmd直接打开则可能无法进行操作系统权限性操作，需右击cmd-使用管理员权限打开，才可以，其它工具也如此\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/39.webp' />
+    <meta name="twitter:image" content='http://localhost:34908/images/39.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -840,7 +840,7 @@ flag:</li>
 </script>
  <style>
     body {
-      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:34908/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -851,7 +851,7 @@ flag:</li>
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:34908/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -860,7 +860,7 @@ flag:</li>
   }
 </style>
 
-<script src=http://localhost:1313/background/sakura.js></script>
+<script src=http://localhost:34908/background/sakura.js></script>
 
 
     </body>
