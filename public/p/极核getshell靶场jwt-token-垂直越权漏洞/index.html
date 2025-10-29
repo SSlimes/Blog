@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=34908&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="靶机信息 可以通过访问极核官方靶场开启靶机实验：极核靶场\u00a0-&gt; 渗透测试靶场 -&gt; JWT Token – 垂直越权漏洞\n漏洞科普 JWT Token垂直越权漏洞的核心在于服务端未正确验证令牌的签名或内容，导致攻击者可通过篡改Payload中的权限字段（如用户角色）非法提升权限。例如，当服务端未校验签名时，攻击者可直接将普通用户的sub字段（如wiener）修改为admin，或修改sysadmin字段为管理员标识（如Y），从而绕过身份认证，访问管理员专属功能（如管理面板删除用户）。此外，若系统仅依赖客户端提供的未加密字段（如userInfo）进行权限判断，攻击者伪造管理员令牌后可直接获得系统最高权限。该漏洞的修复需严格校验签名、限制敏感字段修改，并确保权限与令牌内容的一致性。\n">
 <title>【极核GetShell靶场】JWT Token 垂直越权漏洞</title>
 
-<link rel='canonical' href='http://localhost:34908/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BAjwt-token-%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E/'>
+<link rel='canonical' href='http://localhost:1313/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BAjwt-token-%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【极核GetShell靶场】JWT Token 垂直越权漏洞">
 <meta property='og:description' content="靶机信息 可以通过访问极核官方靶场开启靶机实验：极核靶场\u00a0-&gt; 渗透测试靶场 -&gt; JWT Token – 垂直越权漏洞\n漏洞科普 JWT Token垂直越权漏洞的核心在于服务端未正确验证令牌的签名或内容，导致攻击者可通过篡改Payload中的权限字段（如用户角色）非法提升权限。例如，当服务端未校验签名时，攻击者可直接将普通用户的sub字段（如wiener）修改为admin，或修改sysadmin字段为管理员标识（如Y），从而绕过身份认证，访问管理员专属功能（如管理面板删除用户）。此外，若系统仅依赖客户端提供的未加密字段（如userInfo）进行权限判断，攻击者伪造管理员令牌后可直接获得系统最高权限。该漏洞的修复需严格校验签名、限制敏感字段修改，并确保权限与令牌内容的一致性。\n">
-<meta property='og:url' content='http://localhost:34908/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BAjwt-token-%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E/'>
+<meta property='og:url' content='http://localhost:1313/p/%E6%9E%81%E6%A0%B8getshell%E9%9D%B6%E5%9C%BAjwt-token-%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-28T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:34908/images/88.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-28T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/88.webp' />
 <meta name="twitter:title" content="【极核GetShell靶场】JWT Token 垂直越权漏洞">
 <meta name="twitter:description" content="靶机信息 可以通过访问极核官方靶场开启靶机实验：极核靶场\u00a0-&gt; 渗透测试靶场 -&gt; JWT Token – 垂直越权漏洞\n漏洞科普 JWT Token垂直越权漏洞的核心在于服务端未正确验证令牌的签名或内容，导致攻击者可通过篡改Payload中的权限字段（如用户角色）非法提升权限。例如，当服务端未校验签名时，攻击者可直接将普通用户的sub字段（如wiener）修改为admin，或修改sysadmin字段为管理员标识（如Y），从而绕过身份认证，访问管理员专属功能（如管理面板删除用户）。此外，若系统仅依赖客户端提供的未加密字段（如userInfo）进行权限判断，攻击者伪造管理员令牌后可直接获得系统最高权限。该漏洞的修复需严格校验签名、限制敏感字段修改，并确保权限与令牌内容的一致性。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:34908/images/88.webp' />
+    <meta name="twitter:image" content='http://localhost:1313/images/88.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -639,7 +639,7 @@
 </script>
  <style>
     body {
-      background: url(http://localhost:34908/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -650,7 +650,7 @@
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:34908/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -659,7 +659,7 @@
   }
 </style>
 
-<script src=http://localhost:34908/background/sakura.js></script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 
     </body>

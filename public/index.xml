@@ -7,7 +7,88 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Tue, 28 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 29 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【APP抓包】逍遥模拟器&#43;burp实现APP抓包</title>
+        <link>http://localhost:1313/p/app%E6%8A%93%E5%8C%85%E9%80%8D%E9%81%A5%E6%A8%A1%E6%8B%9F%E5%99%A8-burp%E5%AE%9E%E7%8E%B0app%E6%8A%93%E5%8C%85/</link>
+        <pubDate>Wed, 29 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/app%E6%8A%93%E5%8C%85%E9%80%8D%E9%81%A5%E6%A8%A1%E6%8B%9F%E5%99%A8-burp%E5%AE%9E%E7%8E%B0app%E6%8A%93%E5%8C%85/</guid>
+        <description>&lt;img src="http://localhost:1313/images/111.webp" alt="Featured image of post 【APP抓包】逍遥模拟器&#43;burp实现APP抓包" /&gt;&lt;h1 id=&#34;0x00-burp证书配置&#34;&gt;0x00 burp证书配置&lt;/h1&gt;
+&lt;p&gt;步骤一：首先导出burp的CA证书&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135228.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤二：导出CA证书&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135241.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤三：选择&lt;code&gt;Certificate in DER format&lt;/code&gt;格式&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135256.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+保存到桌面&lt;br&gt;
+步骤四：然后打开kali虚拟机，用虚拟机.0结尾的文件&lt;br&gt;
+导入1.der进kali里面&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl x509 -inform DER -in 1.der -out bp.pem
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl x509 -inform PEM -subject_hash_old -in bp.pem | head -1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat bp.pem &amp;gt; 9a5ba575.0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135430.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤五：生成之后，拉出来备用。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135456.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x01-逍遥模拟器配置&#34;&gt;0x01 逍遥模拟器配置&lt;/h1&gt;
+&lt;p&gt;下载地址：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://www.xyaz.cn/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;版本选择：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029134705.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤一：系统设置中，需要把磁盘共享改成独立系统磁盘&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029134814.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤二：root模式打开。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029134840.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤三：进入设置连续点击&lt;strong&gt;版本号&lt;/strong&gt;进入开发者模式&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029134915.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤四：进入开发者模式后需要将USB调试打开。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135020.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤五：然后进入该逍遥模拟器的安装文件夹&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135135.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+步骤六：将&lt;strong&gt;9a5ba575.0&lt;/strong&gt;文件拉到该目录&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135545.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+输入以下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adb.exe connect 127.0.0.1:21503
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adb root
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adb remount
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adb push 9a5ba575.0 /system/etc/security/cacerts/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135638.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+在模拟器的设置中找到信任的凭据，找到证书。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135818.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x03-设置代理&#34;&gt;0x03 设置代理&lt;/h1&gt;
+&lt;p&gt;这里最好是使用你的网卡地址，如果是无线就用无线。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135901.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这里和burp的地址保持一致即可。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251029135944.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+就可以看到抓到模拟器的包了，相要抓到APP和模拟器的包下载微信和APP直接打开就行。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【Java代码审计】Web开发基础与容器</title>
         <link>http://localhost:1313/p/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1web%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%AE%B9%E5%99%A8/</link>
         <pubDate>Tue, 28 Oct 2025 00:00:00 +0000</pubDate>
