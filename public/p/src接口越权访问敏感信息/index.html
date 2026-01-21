@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=29366&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="xx大学教育培训中心 1：登入进去获得cookie\n2:点击某个包，然后复制host地址，在浏览器里进行访问\n3：点击进入管理平台\n4：输入信息，抓包，并查看它的返回包。\n5：将code改为200,点击forward\n6:发现没成功\n7：使用findsomething获得路径\n8：使用bp批量跑\n使用小程序时它自带cookie\n10：取消URL编码\n11：开始批量扫描\n(先点击add,复制findsomething里面获得的路径，粘贴进去，然后点击paste即可）\n12：点击特定接口,比如list,获得以下response信息\n（其他的信息都是客户端发送给服务器时，封装的数据）\n13：打开资源管理器，复制特殊的js,然后用fofa搜索具有相同js信息的网站\n14：依次点击进去，全部是同一套系统\n15：然后测试相同接口，进行漏洞复现\n将上面的接口路径拼接到地址后面\n">
 <title>【SRC】接口越权访问敏感信息</title>
 
-<link rel='canonical' href='http://localhost:1313/p/src%E6%8E%A5%E5%8F%A3%E8%B6%8A%E6%9D%83%E8%AE%BF%E9%97%AE%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF/'>
+<link rel='canonical' href='http://localhost:29366/p/src%E6%8E%A5%E5%8F%A3%E8%B6%8A%E6%9D%83%E8%AE%BF%E9%97%AE%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【SRC】接口越权访问敏感信息">
 <meta property='og:description' content="xx大学教育培训中心 1：登入进去获得cookie\n2:点击某个包，然后复制host地址，在浏览器里进行访问\n3：点击进入管理平台\n4：输入信息，抓包，并查看它的返回包。\n5：将code改为200,点击forward\n6:发现没成功\n7：使用findsomething获得路径\n8：使用bp批量跑\n使用小程序时它自带cookie\n10：取消URL编码\n11：开始批量扫描\n(先点击add,复制findsomething里面获得的路径，粘贴进去，然后点击paste即可）\n12：点击特定接口,比如list,获得以下response信息\n（其他的信息都是客户端发送给服务器时，封装的数据）\n13：打开资源管理器，复制特殊的js,然后用fofa搜索具有相同js信息的网站\n14：依次点击进去，全部是同一套系统\n15：然后测试相同接口，进行漏洞复现\n将上面的接口路径拼接到地址后面\n">
-<meta property='og:url' content='http://localhost:1313/p/src%E6%8E%A5%E5%8F%A3%E8%B6%8A%E6%9D%83%E8%AE%BF%E9%97%AE%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF/'>
+<meta property='og:url' content='http://localhost:29366/p/src%E6%8E%A5%E5%8F%A3%E8%B6%8A%E6%9D%83%E8%AE%BF%E9%97%AE%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-17T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/98.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-17T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:29366/images/98.webp' />
 <meta name="twitter:title" content="【SRC】接口越权访问敏感信息">
 <meta name="twitter:description" content="xx大学教育培训中心 1：登入进去获得cookie\n2:点击某个包，然后复制host地址，在浏览器里进行访问\n3：点击进入管理平台\n4：输入信息，抓包，并查看它的返回包。\n5：将code改为200,点击forward\n6:发现没成功\n7：使用findsomething获得路径\n8：使用bp批量跑\n使用小程序时它自带cookie\n10：取消URL编码\n11：开始批量扫描\n(先点击add,复制findsomething里面获得的路径，粘贴进去，然后点击paste即可）\n12：点击特定接口,比如list,获得以下response信息\n（其他的信息都是客户端发送给服务器时，封装的数据）\n13：打开资源管理器，复制特殊的js,然后用fofa搜索具有相同js信息的网站\n14：依次点击进去，全部是同一套系统\n15：然后测试相同接口，进行漏洞复现\n将上面的接口路径拼接到地址后面\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/98.webp' />
+    <meta name="twitter:image" content='http://localhost:29366/images/98.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -397,6 +397,25 @@
             
                 
 <article class="has-image">
+    <a href="/p/pocapache-struts-xml%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9Ecve-2025-68493/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/115.webp" loading="lazy" data-key="" data-hash="/images/115.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【POC】Apache Struts XML外部实体注入漏洞(CVE-2025-68493)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/src%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/">
         
         
@@ -447,25 +466,6 @@
 
         <div class="article-details">
             <h2 class="article-title">【SRC】小程序Swagger接口未授权-导致信息泄露</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/src%E5%BE%AE%E4%BF%A1%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E4%B9%8Bsession-key%E4%B8%89%E8%A6%81%E7%B4%A0/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/100.webp" loading="lazy" data-key="" data-hash="/images/100.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【SRC】微信一键登录之session key三要素</h2>
         </div>
     </a>
 </article>
@@ -620,7 +620,7 @@
 </script>
  <style>
     body {
-      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:29366/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -631,7 +631,7 @@
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:29366/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -640,7 +640,7 @@
   }
 </style>
 
-<script src=http://localhost:1313/background/sakura.js></script>
+<script src=http://localhost:29366/background/sakura.js></script>
 
 
     </body>

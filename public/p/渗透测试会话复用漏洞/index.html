@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=29366&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x01 漏洞级别 高危\n0x02 漏洞及风险描述 攻击者可利用未失效的会话，无需重新登录即可访问用户账号。\n账户退出后，再次访问该网站，依然是登录态。证明如下：\n再次访问该网站http://xxxx.com/\n发现无需任何凭证依然可以进行登录。\n解码JWT，发现并没有配置签发时间和服务端校验。\n">
 <title>【渗透测试】会话复用漏洞</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BC%9A%E8%AF%9D%E5%A4%8D%E7%94%A8%E6%BC%8F%E6%B4%9E/'>
+<link rel='canonical' href='http://localhost:29366/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BC%9A%E8%AF%9D%E5%A4%8D%E7%94%A8%E6%BC%8F%E6%B4%9E/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【渗透测试】会话复用漏洞">
 <meta property='og:description' content="0x01 漏洞级别 高危\n0x02 漏洞及风险描述 攻击者可利用未失效的会话，无需重新登录即可访问用户账号。\n账户退出后，再次访问该网站，依然是登录态。证明如下：\n再次访问该网站http://xxxx.com/\n发现无需任何凭证依然可以进行登录。\n解码JWT，发现并没有配置签发时间和服务端校验。\n">
-<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BC%9A%E8%AF%9D%E5%A4%8D%E7%94%A8%E6%BC%8F%E6%B4%9E/'>
+<meta property='og:url' content='http://localhost:29366/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BC%9A%E8%AF%9D%E5%A4%8D%E7%94%A8%E6%BC%8F%E6%B4%9E/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/112.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:29366/images/112.webp' />
 <meta name="twitter:title" content="【渗透测试】会话复用漏洞">
 <meta name="twitter:description" content="0x01 漏洞级别 高危\n0x02 漏洞及风险描述 攻击者可利用未失效的会话，无需重新登录即可访问用户账号。\n账户退出后，再次访问该网站，依然是登录态。证明如下：\n再次访问该网站http://xxxx.com/\n发现无需任何凭证依然可以进行登录。\n解码JWT，发现并没有配置签发时间和服务端校验。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/112.webp' />
+    <meta name="twitter:image" content='http://localhost:29366/images/112.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -355,6 +355,25 @@
             
                 
 <article class="has-image">
+    <a href="/p/pocapache-struts-xml%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9Ecve-2025-68493/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/115.webp" loading="lazy" data-key="" data-hash="/images/115.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【POC】Apache Struts XML外部实体注入漏洞(CVE-2025-68493)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/app%E6%8A%93%E5%8C%85%E9%80%8D%E9%81%A5%E6%A8%A1%E6%8B%9F%E5%99%A8-burp%E5%AE%9E%E7%8E%B0app%E6%8A%93%E5%8C%85/">
         
         
@@ -424,25 +443,6 @@
 
         <div class="article-details">
             <h2 class="article-title">【渗透测试】启用不安全的SSL协议</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95cors-%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93%E6%BC%8F%E6%B4%9E/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/106.webp" loading="lazy" data-key="" data-hash="/images/106.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【渗透测试】CORS 配置不当漏洞</h2>
         </div>
     </a>
 </article>
@@ -597,7 +597,7 @@
 </script>
  <style>
     body {
-      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:29366/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -608,7 +608,7 @@
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:29366/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -617,7 +617,7 @@
   }
 </style>
 
-<script src=http://localhost:1313/background/sakura.js></script>
+<script src=http://localhost:29366/background/sakura.js></script>
 
 
     </body>
