@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=29366&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 实验环境 攻击机：Win 11\n靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）\nvulhub靶场下载地址：\n1 https://vulhub.org/zh#/environments/thinkphp/2-rce/ 部署：\n1 2 3 cd vulhub-master/thinkphp/2-rce docker-compose up -d docker ps ">
 <title>【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行</title>
 
-<link rel='canonical' href='http://localhost:29366/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/'>
+<link rel='canonical' href='http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行">
 <meta property='og:description' content="0x00 实验环境 攻击机：Win 11\n靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）\nvulhub靶场下载地址：\n1 https://vulhub.org/zh#/environments/thinkphp/2-rce/ 部署：\n1 2 3 cd vulhub-master/thinkphp/2-rce docker-compose up -d docker ps ">
-<meta property='og:url' content='http://localhost:29366/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/'>
+<meta property='og:url' content='http://localhost:1313/p/thinkphp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0thinkphp-2.x-%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:29366/images/29.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/29.webp' />
 <meta name="twitter:title" content="【Thinkphp漏洞复现】ThinkPHP 2.x-任意代码执行">
 <meta name="twitter:description" content="0x00 实验环境 攻击机：Win 11\n靶机也可作为攻击机：Ubuntu20 （docker搭建的vulhub靶场）\nvulhub靶场下载地址：\n1 https://vulhub.org/zh#/environments/thinkphp/2-rce/ 部署：\n1 2 3 cd vulhub-master/thinkphp/2-rce docker-compose up -d docker ps "><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:29366/images/29.webp' />
+    <meta name="twitter:image" content='http://localhost:1313/images/29.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -696,7 +696,7 @@ ThinkPHP 2.x 已停止维护，漏洞无法通过零散修复彻底解决。<str
 </script>
  <style>
     body {
-      background: url(http://localhost:29366/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -707,7 +707,7 @@ ThinkPHP 2.x 已停止维护，漏洞无法通过零散修复彻底解决。<str
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:29366/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -716,7 +716,7 @@ ThinkPHP 2.x 已停止维护，漏洞无法通过零散修复彻底解决。<str
   }
 </style>
 
-<script src=http://localhost:29366/background/sakura.js></script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 
     </body>

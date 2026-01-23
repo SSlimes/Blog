@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=29366&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="漏洞URL 1 https://xxxx/xx/xxx/xxx/login.html 风险详情 1 开发人员给多个账号设置了相同且简单易猜的密码 12345@qwert 。一方面，“相同密码” 的设置意味着只要攻击者获取到其中一个账号的密码，就能访问所有使用该密码的账号，扩大了攻击面；另一方面，“弱密码” 很容易被攻击者通过暴力破解、社工库查询等方式获取， 从而导致系统中大量用户数据面临泄露风险，如用户个人信息、业务数据等，还可能导致系统被恶意篡改、破坏，严重影响系统的安全性和业务的正常运行 。 漏洞证明 1 2 3 根据提供的账号密码可以猜测系统使用的是弱口令+弱用户名进行认证。这里直接尝试用户+给出来的密码进行测试。 发现几个用户可以使用该密码（123***rt）进行直接登录到系统。 ">
 <title>【渗透测试】通用弱密码&#43;弱用户名漏洞（高危）</title>
 
-<link rel='canonical' href='http://localhost:29366/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/'>
+<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【渗透测试】通用弱密码+弱用户名漏洞（高危）">
 <meta property='og:description' content="漏洞URL 1 https://xxxx/xx/xxx/xxx/login.html 风险详情 1 开发人员给多个账号设置了相同且简单易猜的密码 12345@qwert 。一方面，“相同密码” 的设置意味着只要攻击者获取到其中一个账号的密码，就能访问所有使用该密码的账号，扩大了攻击面；另一方面，“弱密码” 很容易被攻击者通过暴力破解、社工库查询等方式获取， 从而导致系统中大量用户数据面临泄露风险，如用户个人信息、业务数据等，还可能导致系统被恶意篡改、破坏，严重影响系统的安全性和业务的正常运行 。 漏洞证明 1 2 3 根据提供的账号密码可以猜测系统使用的是弱口令+弱用户名进行认证。这里直接尝试用户+给出来的密码进行测试。 发现几个用户可以使用该密码（123***rt）进行直接登录到系统。 ">
-<meta property='og:url' content='http://localhost:29366/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/'>
+<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%80%9A%E7%94%A8%E5%BC%B1%E5%AF%86%E7%A0%81-%E5%BC%B1%E7%94%A8%E6%88%B7%E5%90%8D%E6%BC%8F%E6%B4%9E%E9%AB%98%E5%8D%B1/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-10T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:29366/images/57.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-10T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/57.webp' />
 <meta name="twitter:title" content="【渗透测试】通用弱密码+弱用户名漏洞（高危）">
 <meta name="twitter:description" content="漏洞URL 1 https://xxxx/xx/xxx/xxx/login.html 风险详情 1 开发人员给多个账号设置了相同且简单易猜的密码 12345@qwert 。一方面，“相同密码” 的设置意味着只要攻击者获取到其中一个账号的密码，就能访问所有使用该密码的账号，扩大了攻击面；另一方面，“弱密码” 很容易被攻击者通过暴力破解、社工库查询等方式获取， 从而导致系统中大量用户数据面临泄露风险，如用户个人信息、业务数据等，还可能导致系统被恶意篡改、破坏，严重影响系统的安全性和业务的正常运行 。 漏洞证明 1 2 3 根据提供的账号密码可以猜测系统使用的是弱口令+弱用户名进行认证。这里直接尝试用户+给出来的密码进行测试。 发现几个用户可以使用该密码（123***rt）进行直接登录到系统。 "><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:29366/images/57.webp' />
+    <meta name="twitter:image" content='http://localhost:1313/images/57.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -633,7 +633,7 @@
 </script>
  <style>
     body {
-      background: url(http://localhost:29366/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -644,7 +644,7 @@
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:29366/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -653,7 +653,7 @@
   }
 </style>
 
-<script src=http://localhost:29366/background/sakura.js></script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 
     </body>

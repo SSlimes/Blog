@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=29366&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 资产收集 首先使用fofa收集一下信息：\n0x01 复现 1：首先查看findsomething里面的路径有哪些\n2：访问某个特定的路径，将上面的网址复制到txt文本里面后，尝试访问这些路径\n3：输入特定信息，查看是否返回信息(如果发现它是空白界面就可以尝试参数fuzz)\n4：使用arjun对参数进行fuzz\n5:获得以下参数\n使用nmap探索它的系统，由查询结果得出它是windows的\n在 Nmap 中，参数 -Pn 的作用是\u200c完全跳过主机发现阶段\u200c，默认所有目标主机在线并直接进行端口扫描\n7：存在file可知，可能存在任意文件下载\n8：使用bp进行抓包\n9：在网上搜索一些windows的配置文件路径，放到txt文件里\n10：使用爆破模块对指定位置file的参数值处进行fuzz(如果要加../../的话，直接在数据包里写更好一点)\n">
 <title>【SRC】xx图书馆漏洞挖掘的过程</title>
 
-<link rel='canonical' href='http://localhost:29366/p/srcxx%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B/'>
+<link rel='canonical' href='http://localhost:1313/p/srcxx%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【SRC】xx图书馆漏洞挖掘的过程">
 <meta property='og:description' content="0x00 资产收集 首先使用fofa收集一下信息：\n0x01 复现 1：首先查看findsomething里面的路径有哪些\n2：访问某个特定的路径，将上面的网址复制到txt文本里面后，尝试访问这些路径\n3：输入特定信息，查看是否返回信息(如果发现它是空白界面就可以尝试参数fuzz)\n4：使用arjun对参数进行fuzz\n5:获得以下参数\n使用nmap探索它的系统，由查询结果得出它是windows的\n在 Nmap 中，参数 -Pn 的作用是\u200c完全跳过主机发现阶段\u200c，默认所有目标主机在线并直接进行端口扫描\n7：存在file可知，可能存在任意文件下载\n8：使用bp进行抓包\n9：在网上搜索一些windows的配置文件路径，放到txt文件里\n10：使用爆破模块对指定位置file的参数值处进行fuzz(如果要加../../的话，直接在数据包里写更好一点)\n">
-<meta property='og:url' content='http://localhost:29366/p/srcxx%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B/'>
+<meta property='og:url' content='http://localhost:1313/p/srcxx%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%9A%84%E8%BF%87%E7%A8%8B/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-20T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:29366/images/103.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-20T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/103.webp' />
 <meta name="twitter:title" content="【SRC】xx图书馆漏洞挖掘的过程">
 <meta name="twitter:description" content="0x00 资产收集 首先使用fofa收集一下信息：\n0x01 复现 1：首先查看findsomething里面的路径有哪些\n2：访问某个特定的路径，将上面的网址复制到txt文本里面后，尝试访问这些路径\n3：输入特定信息，查看是否返回信息(如果发现它是空白界面就可以尝试参数fuzz)\n4：使用arjun对参数进行fuzz\n5:获得以下参数\n使用nmap探索它的系统，由查询结果得出它是windows的\n在 Nmap 中，参数 -Pn 的作用是\u200c完全跳过主机发现阶段\u200c，默认所有目标主机在线并直接进行端口扫描\n7：存在file可知，可能存在任意文件下载\n8：使用bp进行抓包\n9：在网上搜索一些windows的配置文件路径，放到txt文件里\n10：使用爆破模块对指定位置file的参数值处进行fuzz(如果要加../../的话，直接在数据包里写更好一点)\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:29366/images/103.webp' />
+    <meta name="twitter:image" content='http://localhost:1313/images/103.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -651,7 +651,7 @@
 </script>
  <style>
     body {
-      background: url(http://localhost:29366/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -662,7 +662,7 @@
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:29366/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -671,7 +671,7 @@
   }
 </style>
 
-<script src=http://localhost:29366/background/sakura.js></script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 
     </body>

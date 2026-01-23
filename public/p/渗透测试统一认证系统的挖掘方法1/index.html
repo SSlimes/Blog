@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=29366&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="复现 步骤一 挖掘一些业务的时候，很多系统都会放在一个统一认证中去访问，你只有登录统一认证才能去访问某个系统，那么当我们在挖掘的时候，遇见这样的环境怎么办呢？\n当然是最简单的修改返回包查看是否可以未授权查看内容，当然很多时候都是白给，但是我们还是要尝试一下撒。\n当我们扫描出xxxx.com存在一个子域名，我们去访问站点http://stde.xxxx.com发现他要跳转到一个统一认证的页面，此时我们进行抓包对每一个数据包进行分析：\n每一次放包都会自动跳转，但是发现该数据包时，我将箭头所指的{}删掉，发现就可以进入系统卡死在功能点页面，因为页面只有功能点没有数据，我就继续点击功能点\n点击任意功能点继续抓包：出现如图的数据包的时候将401，提示我们需要先登录才能进行访问\n">
 <title>【渗透测试】统一认证系统的挖掘方法1</title>
 
-<link rel='canonical' href='http://localhost:29366/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/'>
+<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/'>
 
 <link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【渗透测试】统一认证系统的挖掘方法1">
 <meta property='og:description' content="复现 步骤一 挖掘一些业务的时候，很多系统都会放在一个统一认证中去访问，你只有登录统一认证才能去访问某个系统，那么当我们在挖掘的时候，遇见这样的环境怎么办呢？\n当然是最简单的修改返回包查看是否可以未授权查看内容，当然很多时候都是白给，但是我们还是要尝试一下撒。\n当我们扫描出xxxx.com存在一个子域名，我们去访问站点http://stde.xxxx.com发现他要跳转到一个统一认证的页面，此时我们进行抓包对每一个数据包进行分析：\n每一次放包都会自动跳转，但是发现该数据包时，我将箭头所指的{}删掉，发现就可以进入系统卡死在功能点页面，因为页面只有功能点没有数据，我就继续点击功能点\n点击任意功能点继续抓包：出现如图的数据包的时候将401，提示我们需要先登录才能进行访问\n">
-<meta property='og:url' content='http://localhost:29366/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/'>
+<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%96%E6%8E%98%E6%96%B9%E6%B3%951/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:29366/images/65.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-12T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/65.webp' />
 <meta name="twitter:title" content="【渗透测试】统一认证系统的挖掘方法1">
 <meta name="twitter:description" content="复现 步骤一 挖掘一些业务的时候，很多系统都会放在一个统一认证中去访问，你只有登录统一认证才能去访问某个系统，那么当我们在挖掘的时候，遇见这样的环境怎么办呢？\n当然是最简单的修改返回包查看是否可以未授权查看内容，当然很多时候都是白给，但是我们还是要尝试一下撒。\n当我们扫描出xxxx.com存在一个子域名，我们去访问站点http://stde.xxxx.com发现他要跳转到一个统一认证的页面，此时我们进行抓包对每一个数据包进行分析：\n每一次放包都会自动跳转，但是发现该数据包时，我将箭头所指的{}删掉，发现就可以进入系统卡死在功能点页面，因为页面只有功能点没有数据，我就继续点击功能点\n点击任意功能点继续抓包：出现如图的数据包的时候将401，提示我们需要先登录才能进行访问\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:29366/images/65.webp' />
+    <meta name="twitter:image" content='http://localhost:1313/images/65.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -597,7 +597,7 @@
 </script>
  <style>
     body {
-      background: url(http://localhost:29366/background/bz.webp) no-repeat center top;
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
       background-size: cover;
       background-attachment: fixed;
       backdrop-filter: blur(50px);
@@ -608,7 +608,7 @@
 <style>
   @font-face {
     font-family: 'youyuan';
-    src: url(http://localhost:29366/font/youyuan.woff2) format('truetype');
+    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
   }
 
   :root {
@@ -617,7 +617,7 @@
   }
 </style>
 
-<script src=http://localhost:29366/background/sakura.js></script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 
     </body>
