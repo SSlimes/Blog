@@ -7,7 +7,37 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Wed, 21 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/src/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 26 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/src/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【SRC】Webpack利用及工具下载</title>
+        <link>http://localhost:1313/p/srcwebpack%E5%88%A9%E7%94%A8%E5%8F%8A%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD/</link>
+        <pubDate>Mon, 26 Jan 2026 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/srcwebpack%E5%88%A9%E7%94%A8%E5%8F%8A%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD/</guid>
+        <description>&lt;img src="http://localhost:1313/images/117.webp" alt="Featured image of post 【SRC】Webpack利用及工具下载" /&gt;&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
+&lt;p&gt;Webpack 是一款&lt;strong&gt;前端静态模块打包工具&lt;/strong&gt;，核心作用是将前端项目中分散的各类资源（JavaScript、CSS、图片、字体等）视为&lt;strong&gt;模块&lt;/strong&gt;，通过分析模块间的依赖关系，将其按规则打包合并为浏览器可直接识别的静态文件（如 bundle.js、bundle.css 等），解决前端项目资源分散、依赖复杂、浏览器兼容性差等问题，是现代前端工程化的核心工具之一。&lt;/p&gt;
+&lt;h1 id=&#34;利用&#34;&gt;利用&lt;/h1&gt;
+&lt;p&gt;1：当我们打开插件时，会发现存在webpack&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260126112703.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+2:正常情况下，后台会存在webpack目录&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260126112723.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+3：使用专业的工具packerfuzzer.py提取漏洞&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260126112742.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+4：它会自动生成word文档&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260126112806.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+5：得出敏感信息泄露&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260126112832.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;工具地址&#34;&gt;工具地址&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/rtcatc/Packer-Fuzzer
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>【SRC】Druid monitor页面之未授权登录</title>
         <link>http://localhost:1313/p/srcdruid-monitor%E9%A1%B5%E9%9D%A2%E4%B9%8B%E6%9C%AA%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95/</link>
         <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
