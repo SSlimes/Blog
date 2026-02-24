@@ -7,7 +7,81 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Mon, 26 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 24 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【SRC】访客预约敏感信息泄露</title>
+        <link>http://localhost:1313/p/src%E8%AE%BF%E5%AE%A2%E9%A2%84%E7%BA%A6%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</link>
+        <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/src%E8%AE%BF%E5%AE%A2%E9%A2%84%E7%BA%A6%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/</guid>
+        <description>&lt;img src="http://localhost:1313/images/118.webp" alt="Featured image of post 【SRC】访客预约敏感信息泄露" /&gt;&lt;h1 id=&#34;案例一&#34;&gt;案例一&lt;/h1&gt;
+&lt;p&gt;在小程序处进行测试&lt;br&gt;
+&lt;strong&gt;在填写信息处存在上传图片，可以尝试Xss。&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224125945.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;点击进去，在bp的历史记录里抓包&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130105.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130116.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;在bp抓的数据包中存在经典的id号，（水平越权），查看别人数据&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130141.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;修改id值，可以查看别人的访客数据&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130206.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;案例二&#34;&gt;案例二&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;填完数据之后，抓包依然存在id&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130246.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;点击进去，查看数据包，修改id数值&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130316.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130346.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;案例三&#34;&gt;案例三&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;点击访客进入&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130411.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;再点击进校来访&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130429.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;点击搜索，将name的数值删除为空&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130529.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;案例四&#34;&gt;案例四&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;点击添加进校人员&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130830.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;在上传图片位置，上传一张图片&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130851.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;查看数据包得知它的上传路径，根据特征得出它上传到云里面了&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130907.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;在浏览器里进行访问，然后一步一步的删除内容&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130935.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;删到一定程度，便会显示所有内容&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130958.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;访问路径，敏感信息拿到&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224131026.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
+&lt;p&gt;以上4个案例都是基于修改ID参数信息进行的越权操作。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>【SRC】如何从小程序获取登录密码</title>
+        <link>http://localhost:1313/p/src%E5%A6%82%E4%BD%95%E4%BB%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81/</link>
+        <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/src%E5%A6%82%E4%BD%95%E4%BB%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81/</guid>
+        <description>&lt;img src="http://localhost:1313/images/119.webp" alt="Featured image of post 【SRC】如何从小程序获取登录密码" /&gt;&lt;p&gt;&lt;strong&gt;在注册账号处注册用户。&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133147.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;使用注册的账号登录，显示没有权限&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133219.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;扫小程序&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133237.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;猜测接口&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133253.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;登录小程序后，猜测接口，获取信息&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133315.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133354.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;尝试用这个来登录web界面&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133407.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;写入参数size&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133428.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;试一下：/user/page&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133455.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;将小程序的接口拼接到web界面里面，发包尝试获得数据&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224133544.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【SRC】Webpack利用及工具下载</title>
         <link>http://localhost:1313/p/srcwebpack%E5%88%A9%E7%94%A8%E5%8F%8A%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD/</link>
         <pubDate>Mon, 26 Jan 2026 00:00:00 +0000</pubDate>

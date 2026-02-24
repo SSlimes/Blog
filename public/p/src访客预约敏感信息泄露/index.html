@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="蓝队">
-<title>Category: 蓝队 - SlimerのBlog</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="案例一 在小程序处进行测试\n在填写信息处存在上传图片，可以尝试Xss。\n点击进去，在bp的历史记录里抓包\n在bp抓的数据包中存在经典的id号，（水平越权），查看别人数据\n修改id值，可以查看别人的访客数据\n">
+<title>【SRC】访客预约敏感信息泄露</title>
 
-<link rel='canonical' href='http://localhost:1313/categories/%E8%93%9D%E9%98%9F/'>
+<link rel='canonical' href='http://localhost:1313/p/src%E8%AE%BF%E5%AE%A2%E9%A2%84%E7%BA%A6%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/'>
 
-<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="Category: 蓝队 - SlimerのBlog">
-<meta property='og:description' content="蓝队">
-<meta property='og:url' content='http://localhost:1313/categories/%E8%93%9D%E9%98%9F/'>
+<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【SRC】访客预约敏感信息泄露">
+<meta property='og:description' content="案例一 在小程序处进行测试\n在填写信息处存在上传图片，可以尝试Xss。\n点击进去，在bp的历史记录里抓包\n在bp抓的数据包中存在经典的id号，（水平越权），查看别人数据\n修改id值，可以查看别人的访客数据\n">
+<meta property='og:url' content='http://localhost:1313/p/src%E8%AE%BF%E5%AE%A2%E9%A2%84%E7%BA%A6%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-02-24T00:00:00&#43;00:00 '/><meta property='og:image' content='http://localhost:1313/categories/%E8%93%9D%E9%98%9F/%E8%93%9D%E9%98%9F.webp' />
-<meta name="twitter:title" content="Category: 蓝队 - SlimerのBlog">
-<meta name="twitter:description" content="蓝队"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/categories/%E8%93%9D%E9%98%9F/%E8%93%9D%E9%98%9F.webp' /><link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/categories/%E8%93%9D%E9%98%9F/index.xml">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-02-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-02-24T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/118.webp' />
+<meta name="twitter:title" content="【SRC】访客预约敏感信息泄露">
+<meta name="twitter:description" content="案例一 在小程序处进行测试\n在填写信息处存在上传图片，可以尝试Xss。\n点击进去，在bp的历史记录里抓包\n在bp抓的数据包中存在经典的id号，（水平越权），查看别人数据\n修改id值，可以查看别人的访客数据\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/118.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
-    <body class="">
+    <body class="
+    article-page
+    ">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
@@ -211,69 +213,10 @@
     <aside class="sidebar right-sidebar sticky">
         
             
-                <form action="/search/" class="search-form widget" >
-        <p>
-            <label>搜索</label>
-            <input name="keyword" required placeholder="输入关键词..." />
-        
-            <button title="搜索">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-            </button>
-        </p>
-    </form>
-            
-        
-            
-                <section class="widget archives">
+                
+    <section class="widget archives">
         <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">归档</h2>
-
-        
-        
-        
-        
-        
-        <div class="widget-archive--list">
-            <div class="archives-year">
-                    <a href="/archives/#2026">
-                        
-                            <span class="year">2026</span>
-                            <span class="count">6</span>
-                        
-                    </a> 
-                </div>
-            <div class="archives-year">
-                    <a href="/archives/#2025">
-                        
-                            <span class="year">2025</span>
-                            <span class="count">113</span>
-                        
-                    </a> 
-                </div>
-            
-        </div>
-    </section>
-            
-        
-            
-                <section class="widget tagCloud">
-    <div class="widget-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <line x1="5" y1="9" x2="19" y2="9" />
   <line x1="5" y1="15" x2="19" y2="15" />
@@ -283,53 +226,21 @@
 
 
 
-    </div>
-    <h2 class="widget-title section-title">分类</h2>
-
-    <div class="tagCloud-tags">
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
         
-            <a href="/categories/%E9%9D%B6%E5%9C%BA/" class="font_size_38">
-                靶场
-            </a>
-        
-            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" class="font_size_31">
-                渗透测试
-            </a>
-        
-            <a href="/categories/%E7%BA%A2%E9%98%9F/" class="font_size_18">
-                红队
-            </a>
-        
-            <a href="/categories/%E8%93%9D%E9%98%9F/" class="font_size_18">
-                蓝队
-            </a>
-        
-            <a href="/categories/src/" class="font_size_14">
-                SRC
-            </a>
-        
-            <a href="/categories/web%E6%94%BB%E9%98%B2/" class="font_size_13">
-                Web攻防
-            </a>
-        
-            <a href="/categories/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2/" class="font_size_10">
-                内网攻防
-            </a>
-        
-            <a href="/categories/%E5%85%B6%E4%BB%96/" class="font_size_9">
-                其他
-            </a>
-        
-            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="font_size_8">
-                工具
-            </a>
-        
-            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="font_size_6">
-                代码审计
-            </a>
-        
-    </div>
-</section>
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#案例一">案例一</a></li>
+    <li><a href="#案例二">案例二</a></li>
+    <li><a href="#案例三">案例三</a></li>
+    <li><a href="#案例四">案例四</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
 
             
         
@@ -337,215 +248,243 @@
 
 
             <main class="main full-width">
-    <header>
-        <h3 class="section-title">
-            
-                Categories
-            
-        </h3>
-
-        <div class="section-card">
-            <div class="section-details">
-                <h3 class="section-count">18 个页面</h3>
-                <h1 class="section-term">蓝队</h1>
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/src%E8%AE%BF%E5%AE%A2%E9%A2%84%E7%BA%A6%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/">
                 
-                    <h2 class="section-description">蓝队</h2>
+                    <img src="/images/118.webp" loading="lazy" alt="Featured image of post 【SRC】访客预约敏感信息泄露" />
                 
-            </div>
-                <div class="section-image">
-                    <img src="/categories/%E8%93%9D%E9%98%9F/%E8%93%9D%E9%98%9F_hu_87b895cfd5d10c6f.webp" 
-                            width="120"
-                            height="120" 
-                            loading="lazy">
-                    
-                </div>
-            
+            </a>
         </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/src/" style="background-color: #d97706; color: #fffbeb;">
+                SRC
+            </a>
+        
+		
     </header>
     
-    <section class="article-list--compact">
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/src%E8%AE%BF%E5%AE%A2%E9%A2%84%E7%BA%A6%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/">【SRC】访客预约敏感信息泄露</a>
+        </h2>
+    
         
-            <article class="article-compact">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90-java01-nacos/">
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第八章 内存马分析-java01-nacos</h2>
-            <footer class="article-time">
-                <time datetime='2025-09-05T00:00:00Z'>2025年09月05日</time>
+    </div>
+
+    
+    
+    
+	
+    
+	
+    <footer class="article-time">
+        
+            <div>
+                <time class="article-time--published">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>2026年02月24日</time>
                 <span class="article-word-count">
-                    文章共915字
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                    文章共293字
                 </span>
-            </footer>
-        </div>
-            <div class="article-image">
-                
-                    <img src="/images/47.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第八章 内存马分析-java01-nacos" />
-                
             </div>
-        
-    </a>
-</article>
-        
-            <article class="article-compact">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90-apache%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第二章 日志分析- apache日志分析</h2>
-            <footer class="article-time">
-                <time datetime='2025-09-05T00:00:00Z'>2025年09月05日</time>
-                <span class="article-word-count">
-                    文章共972字
-                </span>
-            </footer>
-        </div>
-            <div class="article-image">
-                
-                    <img src="/images/44.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第二章 日志分析- apache日志分析" />
-                
-            </div>
-        
-    </a>
-</article>
-        
-            <article class="article-compact">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90-%E5%B0%8F%E7%8E%8B%E5%85%AC%E5%8F%B8%E6%94%B6%E5%88%B0%E7%9A%84%E9%92%93%E9%B1%BC%E9%82%AE%E4%BB%B6/">
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第六章 流量特征分析-小王公司收到的钓鱼邮件</h2>
-            <footer class="article-time">
-                <time datetime='2025-09-05T00:00:00Z'>2025年09月05日</time>
-                <span class="article-word-count">
-                    文章共379字
-                </span>
-            </footer>
-        </div>
-            <div class="article-image">
-                
-                    <img src="/images/48.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第六章 流量特征分析-小王公司收到的钓鱼邮件" />
-                
-            </div>
-        
-    </a>
-</article>
-        
-            <article class="article-compact">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90-%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第六章 流量特征分析-蚁剑流量分析</h2>
-            <footer class="article-time">
-                <time datetime='2025-09-05T00:00:00Z'>2025年09月05日</time>
-                <span class="article-word-count">
-                    文章共1323字
-                </span>
-            </footer>
-        </div>
-            <div class="article-image">
-                
-                    <img src="/images/49.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第六章 流量特征分析-蚁剑流量分析" />
-                
-            </div>
-        
-    </a>
-</article>
-        
-            <article class="article-compact">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-%E5%90%91%E6%97%A5%E8%91%B5/">
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第四章 windows 实战-向日葵</h2>
-            <footer class="article-time">
-                <time datetime='2025-09-05T00:00:00Z'>2025年09月05日</time>
-                <span class="article-word-count">
-                    文章共1171字
-                </span>
-            </footer>
-        </div>
-            <div class="article-image">
-                
-                    <img src="/images/40.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第四章 windows 实战-向日葵" />
-                
-            </div>
-        
-    </a>
-</article>
-        
-            <article class="article-compact">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E5%9B%9B%E7%AB%A0-windows%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第四章-windows日志分析</h2>
-            <footer class="article-time">
-                <time datetime='2025-09-05T00:00:00Z'>2025年09月05日</time>
-                <span class="article-word-count">
-                    文章共2164字
-                </span>
-            </footer>
-        </div>
-            <div class="article-image">
-                
-                    <img src="/images/39.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第四章-windows日志分析" />
-                
-            </div>
-        
-    </a>
-</article>
-        
-            <article class="article-compact">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%94%E7%AB%A0-linux%E5%AE%9E%E6%88%98-%E9%BB%91%E9%93%BE/">
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第五章 linux实战-黑链</h2>
-            <footer class="article-time">
-                <time datetime='2025-09-05T00:00:00Z'>2025年09月05日</time>
-                <span class="article-word-count">
-                    文章共600字
-                </span>
-            </footer>
-        </div>
-            <div class="article-image">
-                
-                    <img src="/images/45.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第五章 linux实战-黑链" />
-                
-            </div>
-        
-    </a>
-</article>
-        
-            <article class="article-compact">
-    <a href="/p/%E7%8E%84%E6%9C%BA%E9%9D%B6%E5%9C%BA%E7%AC%AC%E4%BA%94%E7%AB%A0-windows-%E5%AE%9E%E6%88%98-evtx%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/">
-        <div class="article-details">
-            <h2 class="article-title">【玄机靶场】第五章 Windows 实战-evtx文件分析</h2>
-            <footer class="article-time">
-                <time datetime='2025-09-05T00:00:00Z'>2025年09月05日</time>
-                <span class="article-word-count">
-                    文章共724字
-                </span>
-            </footer>
-        </div>
-            <div class="article-image">
-                
-                    <img src="/images/46.webp" loading="lazy" alt="Featured image of post 【玄机靶场】第五章 Windows 实战-evtx文件分析" />
-                
-            </div>
-        
-    </a>
-</article>
-        
-    </section>
-    <nav class='pagination'>
-        
+			
         
 
         
-            
-                <span class='page-link current'>1</span>
-                
-            
-            
-                    <a class='page-link' href='/categories/%E8%93%9D%E9%98%9F/page/2/'>2</a>
-                
-            
-            
-                    <a class='page-link' href='/categories/%E8%93%9D%E9%98%9F/page/3/'>3</a>
-                
-            
-    </nav>
+    </footer>
+    
 
-<footer class="site-footer">
+    
+	
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="案例一">案例一</h1>
+<p>在小程序处进行测试<br>
+<strong>在填写信息处存在上传图片，可以尝试Xss。</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224125945.png" alt="image.png"><br>
+<strong>点击进去，在bp的历史记录里抓包</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130105.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130116.png" alt="image.png"><br>
+<strong>在bp抓的数据包中存在经典的id号，（水平越权），查看别人数据</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130141.png" alt="image.png"><br>
+<strong>修改id值，可以查看别人的访客数据</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130206.png" alt="image.png"></p>
+<h1 id="案例二">案例二</h1>
+<p><strong>填完数据之后，抓包依然存在id</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130246.png" alt="image.png"><br>
+<strong>点击进去，查看数据包，修改id数值</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130316.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130346.png" alt="image.png"></p>
+<h1 id="案例三">案例三</h1>
+<p><strong>点击访客进入</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130411.png" alt="image.png"><br>
+<strong>再点击进校来访</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130429.png" alt="image.png"><br>
+<strong>点击搜索，将name的数值删除为空</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130529.png" alt="image.png"></p>
+<h1 id="案例四">案例四</h1>
+<p><strong>点击添加进校人员</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130830.png" alt="image.png"><br>
+<strong>在上传图片位置，上传一张图片</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130851.png" alt="image.png"><br>
+<strong>查看数据包得知它的上传路径，根据特征得出它上传到云里面了</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130907.png" alt="image.png"><br>
+<strong>在浏览器里进行访问，然后一步一步的删除内容</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130935.png" alt="image.png"><br>
+<strong>删到一定程度，便会显示所有内容</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224130958.png" alt="image.png"><br>
+<strong>访问路径，敏感信息拿到</strong><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260224131026.png" alt="image.png"></p>
+<h1 id="总结">总结</h1>
+<p>以上4个案例都是基于修改ID参数信息进行的越权操作。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/src%E5%A6%82%E4%BD%95%E4%BB%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/119.webp" loading="lazy" data-key="" data-hash="/images/119.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【SRC】如何从小程序获取登录密码</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/srcwebpack%E5%88%A9%E7%94%A8%E5%8F%8A%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/117.webp" loading="lazy" data-key="" data-hash="/images/117.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【SRC】Webpack利用及工具下载</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/srcdruid-monitor%E9%A1%B5%E9%9D%A2%E4%B9%8B%E6%9C%AA%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/114.webp" loading="lazy" data-key="" data-hash="/images/114.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【SRC】Druid monitor页面之未授权登录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/pocapache-struts-xml%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9Ecve-2025-68493/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/115.webp" loading="lazy" data-key="" data-hash="/images/115.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【POC】Apache Struts XML外部实体注入漏洞(CVE-2025-68493)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/src%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/104.webp" loading="lazy" data-key="" data-hash="/images/104.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【SRC】任意用户登录</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+    
+    
+        
+    
+
+    <footer class="site-footer">
     <section class="copyright">
         &copy; 
         
@@ -586,6 +525,84 @@
 
 
 
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
 
             </main>
         </div>
