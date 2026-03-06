@@ -7,7 +7,178 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Slimer</copyright>
-        <lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【搬运】某公司的渗透技能考核靶场通关记录</title>
+        <link>http://localhost:1313/p/%E6%90%AC%E8%BF%90%E6%9F%90%E5%85%AC%E5%8F%B8%E7%9A%84%E6%B8%97%E9%80%8F%E6%8A%80%E8%83%BD%E8%80%83%E6%A0%B8%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95/</link>
+        <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%90%AC%E8%BF%90%E6%9F%90%E5%85%AC%E5%8F%B8%E7%9A%84%E6%B8%97%E9%80%8F%E6%8A%80%E8%83%BD%E8%80%83%E6%A0%B8%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95/</guid>
+        <description>&lt;img src="http://localhost:1313/images/122.webp" alt="Featured image of post 【搬运】某公司的渗透技能考核靶场通关记录" /&gt;&lt;h1 id=&#34;0x0-前言&#34;&gt;0x0 前言&lt;/h1&gt;
+&lt;p&gt;某天，突然基友群发了个东西，一问说是网上别人发的，不知道哪个公司的一个技能考核的靶机环境：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306120949.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这个思路，应该是自己总结的。这里可以选择不看这个总结的思路，自己根据IP去测一测。那么，这个只提供了一个IP地址，我们按照正常流程来操作就完了，先进行信息收集。&lt;br&gt;
+既然是某个公司的面试环境，咱们这边还是码一下吧，大家主要看思路得了，感觉扩散的话不是很好。&lt;/p&gt;
+&lt;h1 id=&#34;0x1-端口扫描&#34;&gt;0x1 端口扫描&lt;/h1&gt;
+&lt;p&gt;工具扫描或者测绘搜索都行，既然这是个公网IP，我这边就直接先测绘搜一下，FOFA开搜：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121035.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+起手就有一个9443端口，访问一下发现是个Wordpress。那前台是没什么洞的，除非插件导致，但是这一看就没装什么插件：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121048.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+为了防止测绘漏掉什么端口，这边用Fscan再扫一个全端口。果然扫出来一个13306端口，其实就算没有识别出指纹，我们也能猜出来这是个Mysql：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121102.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121113.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x2目录备份文件扫描&#34;&gt;0x2 目录/备份文件扫描&lt;/h1&gt;
+&lt;p&gt;为了节省时间，在Fscan扫描全端口的期间，我这边再同时开了两个工具，扫描目录和备份文件。一个基于专门扫描备份文件的字典，一个是基于扫描目录字典：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121132.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+目录这边扫到一个info.php，其他都是些WP的常规路径：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121145.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这个info.php简单看一下，可以看到禁了很多执行命令的函数，这意味着我们Getshell之后，大概率还要想办法绕过，以此来执行命令：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121156.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121205.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们再看看另外一边，备份文件扫描到一个压缩包，单看文件名来看的话，估计是个网站源码的备份文件：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121220.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x3压缩包爆破&#34;&gt;0x3 压缩包爆破&lt;/h1&gt;
+&lt;p&gt;打开一看要密码才能看……6，我就知道没这么简单：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121238.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+那么现在，我们就要尝试爆破压缩包密码。这边推荐大家使用基于Hash爆破的工具，因为速度会更快。不过我们首先需要一个足够大的字典，下载地址如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;download&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weakpass&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wordlists&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1949&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weakpass_3p&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;z&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121259.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+解压完之后，那么这是相当的可以：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121315.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+下面这个，也是一个用于哈希密码爆破的工具。当然你也可以用hashcat，这两个工具各有千秋，简单来说的话，Hashcat在运行时更偏向于GPU，而John运行时更偏向于CPU，具体的区别大家可以自行搜索：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在下载后，John里面有很多的运行程序，比如下面这个：zip2john，就是用于解析获取压缩包文件哈希值的：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121349.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+运行zip2john，解析并获取压缩包文件哈希：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;zip2john.exe webbak.zip &amp;gt; webbak.hashes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121413.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+那么现在，我们会得到一个包含压缩包哈希的文件：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121431.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+接着，我们使用John调用字典，并指定hash文件进行爆破，只用了两分半钟我便得到了明文，速度还是非常客观的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;john --wordlist=B:\字典\weakpass_3p\weakpass_3p webbak.hashes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121500.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+看解压密码对不对，OK没问题，拿到数据库密码：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121513.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x4连接数据库&#34;&gt;0x4 连接数据库&lt;/h1&gt;
+&lt;p&gt;先连接一手数据库，看用户表里面怎么个事：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121528.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这密码是个加密的，目前两个思路：一个就是爆破、另一个是直接替换，但是不管怎么样，我们要先获得密文的加密类型，在hashcat wiki里面有针对密文类型的记录：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://hashcat.net/wiki/doku.php?id=example%20hashes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121555.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+搜索WordPress可以直接定位到对应的序号位置，而且我们可以看到每个加密类型后面都有一个默认的密文，那明文是什么呢？&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121614.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+我们直接看最后一个类型，其说明了对于提供的密文，对应的明文均是：hashcat&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121634.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这边我们直接替换原密文，改为hashcat提供的密文（如果是攻防当中，我们改了密文的话，登录系统后记得改回原密文。一般是不能进行更改的，如果迫不得已更改的话，务必记得保存原密文，更改后复原）：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121648.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+OK啊，现在后台是进了，但是弹了个没权限：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121659.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x5后台ip绕过&#34;&gt;0x5 后台IP绕过&lt;/h1&gt;
+&lt;p&gt;估计需要绕过IP，没看见哪有IP啊，只能看数据库了。然后在某个表里发现了有个IP，使用XFF添加此IP尝试刷新后台看看怎么事：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121720.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+直接用XFF插件，加一个表里的IP尝试：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121747.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+OK没毛病，进来了：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121801.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x6插件上传getshell&#34;&gt;0x6 插件上传GetShell&lt;/h1&gt;
+&lt;p&gt;进了Wordpress后台那么我们就可以很轻易的GetShell，而且拿Shell的方法很多。我这边利用插件来传马，在本地将你的xxx.php压缩为.zip的包：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121819.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+然后直接在插件处进行上传，报错不用管它：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121838.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121846.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+上传后就会被解压，现在应该已经被解压了，路径为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/wp-content/upgrade/压缩包名/原木马名
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;比如我的是压缩包是zzg.zip，马子是zzg.php，那么路径为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/wp-content/upgrade/zzg/zzg.php
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306121917.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+这是Wordpress后台上马最快、步骤最简单的一种方式，但是如果别人也用这个方式操作后，你的文件夹会直接被覆盖。如果是在比赛的话，连上马之后，赶紧将马子在别的路径下放一个。&lt;/p&gt;
+&lt;h1 id=&#34;0x7读取flag并解密hash&#34;&gt;0x7 读取flag并解密hash&lt;/h1&gt;
+&lt;p&gt;理论上，根据它的设计来说，应该需要绕过disable_functions进行命令执行的，但是哥斯拉直接执行了，那就不必绕过了。我朋友用的蚁剑，是无法直接执行命令的：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306122007.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+密文：&lt;code&gt;90cc3c4e6***********5326e0ad:CB**25&lt;/code&gt;&lt;br&gt;
+这里要知道是什么格式类型才能更好的使用hashcat进行爆破，经过一系列的操作后，得知使用的是md5(md5($pass) . $salt)这个加密格式，而dz则是指discuz：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306122032.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+Hashcat爆破&lt;br&gt;
+在hashcat里面对应的密文类型编号是：2611&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306122043.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+具体为什么呢，我不是很清楚，在算法这一块我确实真不是特别会。接下来，使用hashcat爆破的话，指定hash内容和字典进行爆破即可：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;github&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;brannondorsey&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;naive&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hashcat&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;releases&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;download&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rockyou&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;txt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306122109.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hashcat -m 2611 90cc3c4e6**************5326e0ad:C**G25 rockyou.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306122124.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+我焯，CMD5&lt;br&gt;
+然后，我得知了一个更快的方式：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306122143.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+然后我试了一下，cmd5会根据密文识别可能得加密类型。然后直接点点点点，切换密文类型进行尝试，如果cmd5有记录的话，可以直接解开（开始没试cmd5，又是自闭的一天）：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306122203.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+然后切到了对应且正确的加密类型，解出来了，6：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260306122215.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+显然，算法这一块也是一个很重要的东西，不说那啥吧，咱们高低还是得有一个比较深入的了解。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【红队】青龙面板远程RCE漏洞</title>
         <link>http://localhost:1313/p/%E7%BA%A2%E9%98%9F%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%BF%9C%E7%A8%8Brce%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate>
