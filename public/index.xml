@@ -781,6 +781,97 @@
 </description>
         </item>
         <item>
+        <title>水平越权漏洞详解</title>
+        <link>http://localhost:1313/p/%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/</link>
+        <pubDate>Mon, 09 Mar 2026 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/</guid>
+        <description>&lt;img src="http://localhost:1313/images/124.webp" alt="Featured image of post 水平越权漏洞详解" /&gt;&lt;h1 id=&#34;0x00-前言&#34;&gt;0x00 前言&lt;/h1&gt;
+&lt;p&gt;越权作为SRC中最常见的漏洞，今天让我们来学习一些SRC中实战的越权案例以及一些越权漏洞挖掘的小技巧。&lt;br&gt;
+越权分为「水平越权」和「垂直越权」，在某些概念上，也包括「权限绕过」。&lt;br&gt;
+水平越权的概念：&lt;strong&gt;「权限相等者互相越权」&lt;/strong&gt;。&lt;br&gt;
+比如：课堂中的学员和学员之间的越权、企业管理者和企业管理者之间的越权、用户和用户之间的越权、电商和电商之间的越权&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;身份分析案例&#34;&gt;身份分析案例&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://******.*****.com/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112116.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+我们来分析一下这个平台&lt;br&gt;
+&lt;strong&gt;「问题1:首先搞明白我是谁？」&lt;/strong&gt;&lt;br&gt;
+在此平台中，我是一个创作者，可以创作文章、视频等内容&lt;br&gt;
+&lt;strong&gt;「问题2:我能水平越权到谁？」&lt;/strong&gt;&lt;br&gt;
+我可以水平越权到其他创作者，其他创作者所创建的文章、视频等内容&lt;br&gt;
+&lt;strong&gt;「问题3:我怎么证明我越权成功了呢？」&lt;/strong&gt;&lt;br&gt;
+使用A/B两个测试账号，使用A账号成功增删改查到B账号等数据。&lt;br&gt;
+&lt;strong&gt;「关键点：使用两个浏览器，登陆A/B两个账号，进行越权测试」&lt;/strong&gt;&lt;br&gt;
+下面给几个实战SRC的案例，以加深大家对越权的理解。&lt;/p&gt;
+&lt;h1 id=&#34;0x01-某站越权1&#34;&gt;0x01 某站越权1：&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;「某站仪表盘编辑标签处越权漏洞」&lt;/strong&gt;&lt;br&gt;
+编辑标签处存在越权漏洞，可以通过可遍历的mainId获取其他用户的xx信息、xx信息等等&amp;hellip;&lt;br&gt;
+登录账户A,访问仪表盘&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112225.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+编辑标签处抓包&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112246.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+「这里我的测试方法是：」获取报文后，放入Repeater，然后修改mainId，发现获取到的不是自己的文章。可以登陆B账号创建一个文章，在同样的地方抓到同样的报文，使用B账号的mainId进行验证，发现漏洞存在。&lt;/p&gt;
+&lt;h1 id=&#34;0x02-某站越权2&#34;&gt;0x02 某站越权2：&lt;/h1&gt;
+&lt;p&gt;点击编辑，查看burp报文的history&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112327.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112337.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+找到此post接口，pageId处存在越权，可以查看其他企业仪表盘大量信息。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112351.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+返回包中有报表信息泄露。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112402.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+上面两个是简单的数字型越权漏洞，下面我们看一些复杂点的。&lt;br&gt;
+某站越权3:&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112418.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+编辑处抓包：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112433.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+adminUserIdList处存在越权漏洞，添加其他用户id可将任意用户加入自己的企业，然后通过刷新页面获取以下接口可获取全站用户数据。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112446.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+但是，此用户id过长，且无明显的增长规律，通常称为「不可遍历ID」&lt;br&gt;
+这就导致了此处虽然存在越权，但是造成的危害有限。&lt;br&gt;
+那么如何进行使这个危害扩大化呢？&lt;/p&gt;
+&lt;h2 id=&#34;扩大不可遍历id越权的危害&#34;&gt;扩大不可遍历ID越权的危害&lt;/h2&gt;
+&lt;p&gt;（在尝试以下方法前，要现尝试发现此id是否存在规律，有些id虽然长，但是呈递增/递减趋势，或者存在一定的规律性，即为可遍历ID）&lt;br&gt;
+&lt;strong&gt;「way1:利用可遍历ID的越权获取不可遍历的ID」&lt;/strong&gt;&lt;br&gt;
+如：使用可遍历的gourpId获取不可遍历的企业id、bizid和用户id&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112532.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+此处就获取到了不可遍历的用户id&lt;br&gt;
+&lt;strong&gt;「Way2：利用接口报错获取不可遍历ID」&lt;/strong&gt;&lt;br&gt;
+通过可遍历id的接口报错，获取不可遍历id，然后利用不可遍历的corpid进一步进行越权测试。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112554.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+&lt;strong&gt;「Way3：不可遍历ID为公开id」&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112610.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+分享此文件时，查看文件的路径处出现此id，说明此处id为公开id，公开作品可被任意修改。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112625.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x03-其他越权案例&#34;&gt;0x03 其他越权案例&lt;/h1&gt;
+&lt;h2 id=&#34;路径处的越权&#34;&gt;路径处的越权&lt;/h2&gt;
+&lt;p&gt;除了通常的GET传参、POST传参处可能存在越权问题，「路径处」也可能存在越权漏洞，如以下报文&lt;br&gt;
+某OKR平台，在A账户修改OKR处抓包，获取到一个PATCH包，其路径处516668处存在越权漏洞，通过修改此id可以越权修改其他用户KR的内容。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112715.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+同样如，可越权获取全站工作事项详情：&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112726.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+都是通过遍历路径中的id来进行越权操作的。&lt;/p&gt;
+&lt;h2 id=&#34;多次传入json的越权&#34;&gt;多次传入json的越权&lt;/h2&gt;
+&lt;p&gt;某处通知功能，选择通知人后保存的时候抓包，获取如下报文。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112749.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+如果我们正常只选择一个用户，只有一个json传入，如{&amp;ldquo;uid&amp;rdquo;:89045}, 我们手动传入多个uid，由于此id可遍历，可以给全站用户发送通知，并在返回包中包含用户信息，造成信息泄露。&lt;/p&gt;
+&lt;h2 id=&#34;滞空参数值造成的越权漏洞&#34;&gt;滞空参数值造成的越权漏洞&lt;/h2&gt;
+&lt;p&gt;进入某小程序，点击地址管理处查看history报文&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112809.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+滞空其header头中的memberxxx和openxxx两个字短，即可回显所有收货地址。&lt;br&gt;
+&lt;img src=&#34;https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260310112826.png&#34; alt=&#34;image.png&#34;&gt;&lt;br&gt;
+滞空参数也可用于传参中，如get、post传参的传参值，也可能会导致返回所有数据的问题。&lt;/p&gt;
+&lt;h1 id=&#34;0x04-总结&#34;&gt;0x04 总结&lt;/h1&gt;
+&lt;p&gt;关于水平越权，还有很多精妙的小技巧和漏洞挖掘手法，但是最本质的对与目标站点权限的理解，自己要去对每一个细节点都去进行尝试，一定会有所收获。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【搬运】某公司的渗透技能考核靶场通关记录</title>
         <link>http://localhost:1313/p/%E6%90%AC%E8%BF%90%E6%9F%90%E5%85%AC%E5%8F%B8%E7%9A%84%E6%B8%97%E9%80%8F%E6%8A%80%E8%83%BD%E8%80%83%E6%A0%B8%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95/</link>
         <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
