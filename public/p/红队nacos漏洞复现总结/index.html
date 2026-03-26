@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x01 简介 sudo chroot是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。sudo用于获取管理员权限，而\u00a0chroot（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过\u00a0sudo chroot进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，sudo chroot提供了一种灵活且安全的方式来管理和操作 Linux 系统。\n">
-<title>【CVE-2025-32463】Linux sudo chroot 本地提权</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Nacos漏洞复现总结 目录\n未授权访问(CVE-2021-29441) 漏洞简介 影响版本 环境搭建 漏洞复现 权限绕过登陆(QVD-2023-6271) 漏洞简介 影响版本 环境搭建 漏洞复现 Nacos Hessian 反序列化漏洞 影响范围 利用工具 环境搭建 漏洞复现 Nacos-Client Yaml反序列化 工具准备 漏洞复现 未授权访问(CVE-2021-29441) 漏洞简介 该漏洞发生在nacos在进行认证授权操作时，会判断请求的user-agent是否为&quot;Nacos-Server&quot;，如果是的话则不进行任何认证。\n">
+<title>【红队】Nacos漏洞复现总结</title>
 
-<link rel='canonical' href='http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/'>
+<link rel='canonical' href='http://localhost:1313/p/%E7%BA%A2%E9%98%9Fnacos%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E6%80%BB%E7%BB%93/'>
 
-<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【CVE-2025-32463】Linux sudo chroot 本地提权">
-<meta property='og:description' content="0x01 简介 sudo chroot是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。sudo用于获取管理员权限，而\u00a0chroot（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过\u00a0sudo chroot进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，sudo chroot提供了一种灵活且安全的方式来管理和操作 Linux 系统。\n">
-<meta property='og:url' content='http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/'>
+<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【红队】Nacos漏洞复现总结">
+<meta property='og:description' content="Nacos漏洞复现总结 目录\n未授权访问(CVE-2021-29441) 漏洞简介 影响版本 环境搭建 漏洞复现 权限绕过登陆(QVD-2023-6271) 漏洞简介 影响版本 环境搭建 漏洞复现 Nacos Hessian 反序列化漏洞 影响范围 利用工具 环境搭建 漏洞复现 Nacos-Client Yaml反序列化 工具准备 漏洞复现 未授权访问(CVE-2021-29441) 漏洞简介 该漏洞发生在nacos在进行认证授权操作时，会判断请求的user-agent是否为&quot;Nacos-Server&quot;，如果是的话则不进行任何认证。\n">
+<meta property='og:url' content='http://localhost:1313/p/%E7%BA%A2%E9%98%9Fnacos%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E6%80%BB%E7%BB%93/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-10T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/91.webp' />
-<meta name="twitter:title" content="【CVE-2025-32463】Linux sudo chroot 本地提权">
-<meta name="twitter:description" content="0x01 简介 sudo chroot是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。sudo用于获取管理员权限，而\u00a0chroot（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过\u00a0sudo chroot进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，sudo chroot提供了一种灵活且安全的方式来管理和操作 Linux 系统。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/91.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-26T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-26T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/128.webp' />
+<meta name="twitter:title" content="【红队】Nacos漏洞复现总结">
+<meta name="twitter:description" content="Nacos漏洞复现总结 目录\n未授权访问(CVE-2021-29441) 漏洞简介 影响版本 环境搭建 漏洞复现 权限绕过登陆(QVD-2023-6271) 漏洞简介 影响版本 环境搭建 漏洞复现 Nacos Hessian 反序列化漏洞 影响范围 利用工具 环境搭建 漏洞复现 Nacos-Client Yaml反序列化 工具准备 漏洞复现 未授权访问(CVE-2021-29441) 漏洞简介 该漏洞发生在nacos在进行认证授权操作时，会判断请求的user-agent是否为&quot;Nacos-Server&quot;，如果是的话则不进行任何认证。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/128.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -232,13 +232,11 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#0x01-简介">0x01 简介</a></li>
-    <li><a href="#0x02-漏洞描述">0x02 漏洞描述</a></li>
-    <li><a href="#0x03-利用条件">0x03 利用条件</a></li>
-    <li><a href="#0x04-环境搭建">0x04 环境搭建</a></li>
-    <li><a href="#0x05-漏洞复现">0x05 漏洞复现</a></li>
-    <li><a href="#0x06-修复建议">0x06 修复建议</a></li>
-    <li><a href="#参考链接">参考链接</a></li>
+    <li><a href="#nacos漏洞复现总结">Nacos漏洞复现总结</a></li>
+    <li><a href="#未授权访问cve-2021-29441">未授权访问(CVE-2021-29441)</a></li>
+    <li><a href="#权限绕过登陆qvd-2023-6271">权限绕过登陆(QVD-2023-6271)</a></li>
+    <li><a href="#nacos-hessian-反序列化漏洞">Nacos Hessian 反序列化漏洞</a></li>
+    <li><a href="#nacos-client-yaml反序列化">Nacos-Client Yaml反序列化</a></li>
   </ul>
 </nav>
         </div>
@@ -253,9 +251,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/">
+            <a href="/p/%E7%BA%A2%E9%98%9Fnacos%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E6%80%BB%E7%BB%93/">
                 
-                    <img src="/images/91.webp" loading="lazy" alt="Featured image of post 【CVE-2025-32463】Linux sudo chroot 本地提权" />
+                    <img src="/images/128.webp" loading="lazy" alt="Featured image of post 【红队】Nacos漏洞复现总结" />
                 
             </a>
         </div>
@@ -264,14 +262,6 @@
     <div class="article-details">
     
     <header class="article-category">
-        
-            <a href="/categories/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2/" style="background-color: #2b2d42; color: #edf2f4;">
-                内网攻防
-            </a>
-        
-            <a href="/categories/%E5%B7%A5%E5%85%B7/" style="background-color: #c8102e; color: #fffbf0;">
-                工具
-            </a>
         
             <a href="/categories/%E7%BA%A2%E9%98%9F/" style="background-color: #ff6b6b; color: #ffffff;">
                 红队
@@ -283,7 +273,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/">【CVE-2025-32463】Linux sudo chroot 本地提权</a>
+            <a href="/p/%E7%BA%A2%E9%98%9Fnacos%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E6%80%BB%E7%BB%93/">【红队】Nacos漏洞复现总结</a>
         </h2>
     
         
@@ -307,10 +297,10 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>2025年10月10日</time>
+</svg>2026年03月26日</time>
                 <span class="article-word-count">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                    文章共962字
+                    文章共1126字
                 </span>
             </div>
 			
@@ -329,38 +319,74 @@
     <section class="article-content">
     
     
-    <h1 id="0x01-简介">0x01 简介</h1>
-<p><code>sudo chroot</code>是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。<code>sudo</code>用于获取管理员权限，而 <code>chroot</code>（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过 <code>sudo chroot</code>进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，<code>sudo chroot</code>提供了一种灵活且安全的方式来管理和操作 Linux 系统。</p>
-<h1 id="0x02-漏洞描述">0x02 漏洞描述</h1>
-<p><strong>漏洞编号：CVE-2025-32463</strong><br>
-这是一个严重的本地提权漏洞，该漏洞 CVSS 评分为 7.8，属于高危漏洞。该漏洞允许本地低权限用户通过特制的恶意 <code>chroot</code>环境触发动态库加载，从而以 root 权限执行任意代码。攻击者可以利用 <code>sudo</code>的 <code>-R</code>（即 <code>--chroot</code>）选项，诱骗 <code>sudo</code>使用用户指定的根目录加载恶意共享库。问题根源在于 <code>sudo</code>在读取 <code>sudoers</code>配置文件之前，就开始在用户控制的 <code>chroot</code>环境中解析路径。</p>
-<h1 id="0x03-利用条件">0x03 利用条件</h1>
-<h2 id="1-影响版本">1) 影响版本</h2>
-<p><code>sudo --version</code>若输出的版本信息在 1.9.14 至 1.9.17 之间<br>
-1.9.14 &lt;= sudo &lt;= 1.9.17<br>
-1.8 系列及更早版本不受影响，因为它们不包含 chroot 功能。 在特定配置或发行版中，即使该版本早于官方公告，潜在的不安全行为仍可能被利用。</p>
-<h2 id="2-权限要求">2) 权限要求</h2>
-<p>普通用户</p>
-<h2 id="3-其他条件">3) 其他条件</h2>
-<p><code>sudo</code>版本要能使用 <code>--chroot</code>功能</p>
-<h1 id="0x04-环境搭建">0x04 环境搭建</h1>
-<p>作者已尝试在 ubuntu-22.04.5-desktop-amd64 以及 ubuntu-18.04.6-desktop-amd64 复现过，均以失败告终，最后在 kali-linux-2024.1-amd64 上复现成功，后面又测试了几个系统，确认 <strong>Fedora 41 Server</strong> 以及 <strong>Ubuntu 24.04-1</strong> 也可被攻击。</p>
+    <h1 id="nacos漏洞复现总结">Nacos漏洞复现总结</h1>
+<p>目录</p>
 <ul>
-<li>去官网下载 sudo 是漏洞版本内的 Linux ISO，这里以 2024 年第一版的 Kali 为例子。</li>
+<li>未授权访问(CVE-2021-29441)
+<ul>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B">漏洞简介</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC">影响版本</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">环境搭建</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0">漏洞复现</a></li>
 </ul>
+</li>
+<li>权限绕过登陆(QVD-2023-6271)
+<ul>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B-1">漏洞简介</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC-1">影响版本</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-1">环境搭建</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-1">漏洞复现</a></li>
+</ul>
+</li>
+<li>Nacos Hessian 反序列化漏洞
+<ul>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E5%BD%B1%E5%93%8D%E8%8C%83%E5%9B%B4">影响范围</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7">利用工具</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-2">环境搭建</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-2">漏洞复现</a></li>
+</ul>
+</li>
+<li>Nacos-Client Yaml反序列化
+<ul>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E5%B7%A5%E5%85%B7%E5%87%86%E5%A4%87">工具准备</a></li>
+<li><a href="https://www.cnblogs.com/thebeastofwar/p/17920565.html#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-3">漏洞复现</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="未授权访问cve-2021-29441">未授权访问(CVE-2021-29441)</h1>
+<h2 id="漏洞简介">漏洞简介</h2>
+<p>该漏洞发生在nacos在进行认证授权操作时，会判断请求的user-agent是否为&quot;Nacos-Server&quot;，如果是的话则不进行任何认证。</p>
+<h2 id="影响版本">影响版本</h2>
+<p>Nacos &lt;= 2.0.0-ALPHA.1</p>
+<h2 id="环境搭建">环境搭建</h2>
+<p>vulhub</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://old.kali.org/kali-images/kali-2024.1/
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker-compose up -d
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>然后就是在 VMware 上配置 Kali 虚拟机了，这一系列过程就不赘述了。</li>
-</ul>
-<h1 id="0x05-漏洞复现">0x05 漏洞复现</h1>
-<p>POC：</p>
+</div><p><img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222095502166-991797020.png" alt="img"></p>
+<h2 id="漏洞复现">漏洞复现</h2>
+<p>访问http://ip:8848/nacos/v1/auth/users?pageNo=1&amp;pageSize=1会发现是403<br>
+<img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222100444184-268633408.png" alt="img"><br>
+但把ua改为Nacos-Server即可获取到账号和加密的密码<br>
+<img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222100501176-2024492990.png" alt="img"><br>
+离线爆破<br>
+<a href="https://github.com/wolaile08/BCryptDecode">BCryptDecode</a><br>
+<img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222100904998-375031177.png" alt="img"><br>
+可以创建用户名密码进行登录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">curl </span><span class="n">-X</span> <span class="n">POST</span> <span class="n">-d</span> <span class="s2">&#34;username=test&amp;password=test&#34;</span> <span class="n">-H</span> <span class="s2">&#34;User-Agent: Nacos-Server&#34;</span> <span class="s2">&#34;http://192.168.30.131:8848/nacos/v1/auth/users&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有的版本直接访问就可以获取到敏感信息</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -368,44 +394,111 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过网盘分享的文件：CVE-2025-32463_chwoot-main.zip
-</span></span><span class="line"><span class="cl">链接: https://pan.baidu.com/s/1Qkb8ohhQPdwNope5RxZ11w 提取码: ynwk 
-</span></span><span class="line"><span class="cl">--来自百度网盘超级会员v4的分享
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/nacos/v1/auth/users?pageNo<span class="o">=</span>1<span class="p">&amp;</span><span class="nv">pageSize</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">/nacos/v1/cs/configs?dataId<span class="o">=</span><span class="p">&amp;</span><span class="nv">group</span><span class="o">=</span><span class="p">&amp;</span><span class="nv">appName</span><span class="o">=</span><span class="p">&amp;</span><span class="nv">config_tags</span><span class="o">=</span><span class="p">&amp;</span><span class="nv">pageNo</span><span class="o">=</span>1<span class="p">&amp;</span><span class="nv">pageSize</span><span class="o">=</span>10<span class="p">&amp;</span><span class="nv">tenant</span><span class="o">=</span>dev<span class="p">&amp;</span><span class="nv">search</span><span class="o">=</span>accurate
+</span></span><span class="line"><span class="cl">/nacos/v1/core/cluster/nodes?withInstances<span class="o">=</span>false<span class="p">&amp;</span><span class="nv">pageNo</span><span class="o">=</span>1<span class="p">&amp;</span>pageS%20ize<span class="o">=</span>10<span class="p">&amp;</span>keyword
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251010154955.png" alt="image.png"></p>
-<h1 id="0x06-修复建议">0x06 修复建议</h1>
-<ul>
-<li>安全更新</li>
-<li>目前官方已发布安全更新，建议用户尽快升级至最新版本：sudo &gt;= 1.9.17p1</li>
-<li>官方补丁</li>
-</ul>
+</div><h1 id="权限绕过登陆qvd-2023-6271">权限绕过登陆(QVD-2023-6271)</h1>
+<h2 id="漏洞简介-1">漏洞简介</h2>
+<p>Nacos用户使用默认JWT密钥导致未授权访问漏洞.通过该漏洞,攻击者可以绕过用户名密码认证,直接登录Nacos用户.</p>
+<h2 id="影响版本-1">影响版本</h2>
+<p>0.1.0&lt;= Nacos&lt;= 2.2.0</p>
+<h2 id="环境搭建-1">环境搭建</h2>
+<p><a href="https://github.com/alibaba/nacos/releases/tag/2.2.0-BETA">Nacos2.2.0-BETA</a><br>
+执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./startup.sh -m standalone
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="漏洞复现-1">漏洞复现</h2>
+<p>进入容器,找到默认密钥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SecretKey012345678901234567890123456789012345678901234567890123456789
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222101556896-14756113.png" alt="img"><br>
+利用jwt.io构造出jwt<br>
+其中payload为sub:nacos,exp:较大的时间戳,密钥为默认密钥,勾选base64加密<br>
+<img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222103724405-779434069.png" alt="img"><br>
+然后把一个登录包发送到重放模块,添加Authorization: Bearer (jwt)<br>
+<img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222103846180-1813239713.png" alt="img"><br>
+然后再抓取一个登录包,把Authorization: Bearer (jwt)添加到头部<br>
+<img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222103935110-1339057423.png" alt="img"><br>
+然后放包,就可以权限绕过了<br>
+<img src="https://img2023.cnblogs.com/blog/3254245/202312/3254245-20231222103755798-1904567492.png" alt="img"></p>
+<h1 id="nacos-hessian-反序列化漏洞">Nacos Hessian 反序列化漏洞</h1>
+<h2 id="影响范围">影响范围</h2>
+<p>Nacos 1.4.1+在单机模式下默认不开放7848端口，故该情况通常不受此漏洞影响。然而，1.4.0、2.x版本无论单机或集群模式均默认开放7848端口。<br>
+所以最终影响范围是：<br>
+1.4.0 &lt;= Nacos &lt; 1.4.6 使用cluster集群模式运行<br>
+2.0.0 &lt;= Nacos &lt; 2.2.3 任意模式启动均受到影响</p>
+<h2 id="利用工具">利用工具</h2>
+<p><a href="https://github.com/c0olw/NacosRce">https://github.com/c0olw/NacosRce</a></p>
+<h2 id="环境搭建-2">环境搭建</h2>
+<p><a href="https://github.com/alibaba/nacos/releases/download/2.2.0/nacos-server-2.2.0.tar.gz">https://github.com/alibaba/nacos/releases/download/2.2.0/nacos-server-2.2.0.tar.gz</a><br>
+然后</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./startup.sh -m standalone
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="漏洞复现-2">漏洞复现</h2>
+<p>命令执行<br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106092611732-1366814249.png" alt="img"><br>
+冰蝎连接<br>
+1、需要设置请求头x-client-data:rebeyond<br>
+2、设置Referer:https://www.google.com/<br>
+3、路径随意<br>
+4、密码rebeyond<br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106093414196-2003047679.png" alt="img"><br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106093431412-243037845.png" alt="img"><br>
+哥斯拉连接<br>
+1、需要设置请求头x-client-data:godzilla<br>
+2、设置Referer:https://www.google.com/<br>
+3、路径随意<br>
+4、密码是pass 和 key<br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106093253868-329195258.png" alt="img"><br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106093311781-1835736124.png" alt="img"><br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106093333462-2084415502.png" alt="img"><br>
+CMD内存马<br>
+1、需要设置请求头x-client-data:cmd<br>
+2、设置Referer:https://www.google.com/<br>
+3、请求头cmd:要执行的命令<br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106093656566-1974752409.png" alt="img"></p>
+<h1 id="nacos-client-yaml反序列化">Nacos-Client Yaml反序列化</h1>
+<h2 id="工具准备">工具准备</h2>
+<p><a href="https://github.com/artsploit/yaml-payload/">https://github.com/artsploit/yaml-payload/</a><br>
+<a href="https://github.com/charonlight/NacosExploitGUI">https://github.com/charonlight/NacosExploitGUI</a></p>
+<h2 id="漏洞复现-3">漏洞复现</h2>
+<p>春秋云镜hospital<br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106162305790-967339537.png" alt="img"><br>
+然后</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- https://www.sudo.ws/security/advisories/host_any/
-</span></span><span class="line"><span class="cl">- https://www.sudo.ws/security/advisories/chroot_bug
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">javac</span> <span class="nt">src</span><span class="o">/</span><span class="nt">artsploit</span><span class="o">/</span><span class="nt">AwesomeScriptEngineFactory</span><span class="p">.</span><span class="nc">java</span>
+</span></span><span class="line"><span class="cl"><span class="nt">jar</span> <span class="nt">-cvf</span> <span class="nt">yaml-payload</span><span class="p">.</span><span class="nc">jar</span> <span class="nt">-C</span> <span class="nt">src</span><span class="o">/</span> <span class="o">.</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>临时处置</li>
-<li>在环境中搜索任何使用了 Host 或 Host_Alias 选项的内容。检查 <code>/etc/sudoers</code>中定义的所有 Sudo 规则以及 <code>/etc/sudoers.d</code>下的文件。如果 Sudo 规则存储在 LDAP 中，请使用 ldapsearch 等工具转储这些规则。</li>
-</ul>
-<h1 id="参考链接">参考链接</h1>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://ubuntu.com/security/CVE-2025-32463
-</span></span><span class="line"><span class="cl">https://nvd.nist.gov/vuln/detail/CVE-2025-32463
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
+</div><p><img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106162333611-331992610.png" alt="img"><br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106162341053-109587352.png" alt="img"><br>
+<img src="https://img2024.cnblogs.com/blog/3254245/202401/3254245-20240106162350722-1600282812.png" alt="img"></p>
+
 </section>
 
 
@@ -426,63 +519,6 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/poccve-2026-24061-telnet%E8%BF%9C%E7%A8%8B%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E%E6%89%B9%E9%87%8F%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/116.webp" loading="lazy" data-key="" data-hash="/images/116.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【POC】CVE-2026-24061 telnet远程认证绕过漏洞批量检测工具</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/82.webp" loading="lazy" data-key="" data-hash="/images/82.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【资产收集】ENScan_Go-信息收集工具</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/13.webp" loading="lazy" data-key="" data-hash="/images/13.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【内网攻防】Windows工作组信息收集</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -517,6 +553,63 @@
 
         <div class="article-details">
             <h2 class="article-title">【搬运】405 绕过与未授权深度利用合集</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/124.webp" loading="lazy" data-key="" data-hash="/images/124.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">水平越权漏洞详解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%90%AC%E8%BF%90%E6%9F%90%E5%85%AC%E5%8F%B8%E7%9A%84%E6%B8%97%E9%80%8F%E6%8A%80%E8%83%BD%E8%80%83%E6%A0%B8%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/122.webp" loading="lazy" data-key="" data-hash="/images/122.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【搬运】某公司的渗透技能考核靶场通关记录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BA%A2%E9%98%9F%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%BF%9C%E7%A8%8Brce%E6%BC%8F%E6%B4%9E/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/120.webp" loading="lazy" data-key="" data-hash="/images/120.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【红队】青龙面板远程RCE漏洞</h2>
         </div>
     </a>
 </article>

